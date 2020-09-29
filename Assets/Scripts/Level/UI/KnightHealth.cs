@@ -9,6 +9,12 @@ public class KnightHealth : MonoBehaviour
     //Функция обновляет отображение здоровья
     public void UpdateHealth(int health)
     {
+        int max = hearts.Count;
+        if  (health > max)
+        {
+            health = max; 
+        }
+
         for (int i = 0; i < health; i ++)
         {
             hearts[i].SetActive(true);
