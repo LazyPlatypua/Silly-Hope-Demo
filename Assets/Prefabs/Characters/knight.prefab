@@ -503,7 +503,7 @@ Transform:
   m_GameObject: {fileID: 4734167138094323541}
   m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 1}
   m_Children:
   - {fileID: 4391886680217486755}
   m_Father: {fileID: 0}
@@ -546,7 +546,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 614783233
   m_SortingLayer: 2
-  m_SortingOrder: 3
+  m_SortingOrder: 30
   m_Sprite: {fileID: 21300000, guid: 4ed941f0ba6cb504b8b4ba9f389bb89b, type: 3}
   m_Color: {r: 0.7607844, g: 0.7607844, b: 0.7607844, a: 1}
   m_FlipX: 0
@@ -635,7 +635,9 @@ MonoBehaviour:
   attack_menu: {fileID: 0}
   animator: {fileID: 6427206158910338603}
   default_health: 0
+  daze_time: 0
   current_health: 0
+  combometer: {fileID: 0}
   rhythm_manager: {fileID: 0}
   swords:
   - {fileID: 7431785469811841728}

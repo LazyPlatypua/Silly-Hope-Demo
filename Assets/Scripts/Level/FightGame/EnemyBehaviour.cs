@@ -189,5 +189,6 @@ public class EnemyBehaviour : CreatureBehaviour
         position = new Vector3(transform.position.x + 10f, transform.position.y, 0.0f);
         is_running = true;
         animator.SetBool("run", is_running);
+        death_count++;
     }
 }

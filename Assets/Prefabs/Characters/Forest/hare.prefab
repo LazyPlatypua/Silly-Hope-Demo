@@ -121,7 +121,7 @@ Transform:
   m_GameObject: {fileID: 5846901002581680611}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 16.67, y: -3.71, z: 0}
-  m_LocalScale: {x: 0.08340624, y: 0.08340624, z: 0.08340624}
+  m_LocalScale: {x: 0.072, y: 0.072, z: 1}
   m_Children:
   - {fileID: 8241759080016127567}
   - {fileID: 1432474086744756175}
@@ -244,7 +244,7 @@ MonoBehaviour:
   damage: 0
   ink: 10
   combo_meter_size: 4
-  position: {x: 0, y: 0, z: 0}
+  position: {x: 1.27, y: 0.2, z: 0}
   spawn_point_index: 0
   running_speed: 1
   death_count: 0

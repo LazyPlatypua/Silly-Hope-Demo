@@ -146,7 +146,7 @@ public class MainMenuManager : MonoBehaviour
     public Scene[] scenes = new Scene[11];
 
     //Функция срабатывает при старте сцены
-    void Start()
+    void Awake()
     {
         equipSelector.Init();
 

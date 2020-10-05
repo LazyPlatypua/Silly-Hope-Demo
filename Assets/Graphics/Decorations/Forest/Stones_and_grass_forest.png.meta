@@ -30,6 +30,30 @@ TextureImporter:
       213: 4949900395108050084
     second: "\u041A\u0430\u043C\u043D\u0438 \u0438 \u0442\u0440\u0430\u0432\u0430
       (\u0423\u0437\u043B\u043E\u0432\u0430\u0442\u044B\u0439 \u043B\u0435\u0441)_6"
+  - first:
+      213: -1890063414434218622
+    second: Stones_and_grass_forest_0
+  - first:
+      213: -7549417642170080346
+    second: Stones_and_grass_forest_1
+  - first:
+      213: 304223446620525890
+    second: Stones_and_grass_forest_2
+  - first:
+      213: -2666415948223803921
+    second: Stones_and_grass_forest_3
+  - first:
+      213: -6150431223344792813
+    second: Stones_and_grass_forest_4
+  - first:
+      213: 4866945959798922887
+    second: Stones_and_grass_forest_5
+  - first:
+      213: 2815080592894113688
+    second: Stones_and_grass_forest_6
+  - first:
+      213: -956152787790618392
+    second: Stones_and_grass_forest_7
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -274,10 +298,10 @@ TextureImporter:
         (\u0423\u0437\u043B\u043E\u0432\u0430\u0442\u044B\u0439 \u043B\u0435\u0441)_6"
       rect:
         serializedVersion: 2
-        x: 110
-        y: 255
-        width: 4793
-        height: 937
+        x: 0
+        y: 0
+        width: 250
+        height: 250
       alignment: 9
       pivot: {x: 0.50216675, y: 0.1186484}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -287,6 +311,174 @@ TextureImporter:
       bones: []
       spriteID: c504e942f508df547b533bd86e60cc13
       internalID: 4949900395108050084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stones_and_grass_forest_0
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 171
+        width: 87
+        height: 60
+      alignment: 9
+      pivot: {x: 0.46301296, y: 0.12458191}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b46549d9dcaca8141a3b470e7cea51fa
+      internalID: -1890063414434218622
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stones_and_grass_forest_1
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 163
+        width: 62
+        height: 78
+      alignment: 9
+      pivot: {x: 0.4777565, y: 0.08745262}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4cd3a6e382c999a4b92f7b77fc05a542
+      internalID: -7549417642170080346
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stones_and_grass_forest_2
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 163
+        width: 72
+        height: 73
+      alignment: 9
+      pivot: {x: 0.5191536, y: 0.03400703}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 457cce1f972a4f74e98fb0e5c02dcdae
+      internalID: 304223446620525890
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stones_and_grass_forest_3
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 102
+        width: 43
+        height: 62
+      alignment: 9
+      pivot: {x: 0.50326926, y: 0.06465653}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 374a4a6901d8eda44b81926710faccd8
+      internalID: -2666415948223803921
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stones_and_grass_forest_4
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 98
+        width: 44
+        height: 58
+      alignment: 9
+      pivot: {x: 0.47444013, y: 0.024937728}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb4f9c0350a5b2c4abdeef2333067348
+      internalID: -6150431223344792813
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stones_and_grass_forest_5
+      rect:
+        serializedVersion: 2
+        x: 164
+        y: 94
+        width: 71
+        height: 66
+      alignment: 9
+      pivot: {x: 0.53168005, y: 0.06974111}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 073fe07e70377c24d91373385040846c
+      internalID: 4866945959798922887
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stones_and_grass_forest_6
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 63
+        width: 217
+        height: 19
+      alignment: 9
+      pivot: {x: 0.49774566, y: 0.13095494}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a1b47c0b1c774ae469af87ec2e28d561
+      internalID: 2815080592894113688
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stones_and_grass_forest_7
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 16
+        width: 238
+        height: 41
+      alignment: 9
+      pivot: {x: 0.4993149, y: 0.06648124}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 72090e95323c9174bb79969338aa6729
+      internalID: -956152787790618392
       vertices: []
       indices: 
       edges: []

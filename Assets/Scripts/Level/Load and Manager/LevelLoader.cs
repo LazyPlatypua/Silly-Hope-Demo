@@ -290,12 +290,12 @@ public class LevelLoader : MonoBehaviour
             case 7:
                 //Энт
                 enemies.Clear();
-                newGo = Instantiate(enemies_bosses[0], new Vector3(enemies_position[1].x + start_running_delta, enemies_position[1].y, enemies_position[1].z), Quaternion.identity);
+                newGo = Instantiate(enemies_bosses[0], new Vector3(enemies_position[2].x + start_running_delta, enemies_position[2].y, enemies_position[2].z), Quaternion.identity);
                 newGo.SetActive(false);
                 enemies.Add(newGo);
-                newGo.GetComponent<EnemyBehaviour>().spawn_point_index = 1;
-                newGo.GetComponent<EnemyBehaviour>().position = enemies_position[1];
-                Debug.Log("LevelLoader.LoadCreatures(): Loaded enemy at position " + 1);
+                newGo.GetComponent<EnemyBehaviour>().spawn_point_index = 2;
+                newGo.GetComponent<EnemyBehaviour>().position = enemies_position[2];
+                Debug.Log("LevelLoader.LoadCreatures(): Loaded enemy at position " + 2);
                 break;
 
             case 8:

@@ -3479,7 +3479,7 @@ AnimationClip:
   m_Events:
   - time: 1.5
     functionName: DeactivateAnimation
-    data: die
+    data: death
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
