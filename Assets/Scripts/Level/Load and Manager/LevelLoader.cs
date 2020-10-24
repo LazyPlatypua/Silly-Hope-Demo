@@ -51,9 +51,6 @@ public class LevelLoader : MonoBehaviour
     public GameObject combometer;           //Комбометр на сцене
     public GameObject knight_healthbar;     //Здоровье рыцаря на сцене
     public GameObject progress;             //Прогресс игрока на сцене
-    public GameObject green_line;           //Зеленая линия
-    public GameObject yellow_line;          //Желтая линия
-    public GameObject red_line;             //Красная линия
 
     [Header("Positions")]
     public Vector3 decorations_pos;
@@ -75,7 +72,7 @@ public class LevelLoader : MonoBehaviour
 
     [Header("Equipment Settings")]  //Настройки снаряжения
     public int sword_damage_modificator = 0;        //Модификатор урона меча
-    public int knight_health = 3;                   //Здоровье рыцаря
+    public int knight_health = 5;                   //Здоровье рыцаря
     public bool score_for_point_modifier = false;   //Модификатор для получнения очков за точки
     public int combometer_needed_points = 3;        //Количество точек, необходимых для заполнения одной ячейки комбометра
     public Figures figure = null;                   //Фигура для спецприема
@@ -88,8 +85,7 @@ public class LevelLoader : MonoBehaviour
     public Language.LanguageType language_settings = Language.LanguageType.english;           //Выбор языка. 0 - английский, 1 - русский, 2 - немецкий, 3 - французский, 4 - эсперанто. В будущем написать класс для него и добавить в класс сохранений
     public float travel_time = 2.5f;                                //Время достижения точкой конца экрана
     public float start_running_delta = 3.0f;                        //разница между позицией врага и той, с которой он начинает дфижение
-    public float endline = -2.7f;                                   //конец экрана
-    public float startline = 2.7f;                                  //конец экрана
+    public float endline = 6f;                                   //конец экрана
 
     //Функция срабатывает при включении сцены раньше Start
     void Start()
@@ -121,6 +117,19 @@ public class LevelLoader : MonoBehaviour
         if (pointSpawner == null)
         {
             pointSpawner = PointSpawner.instance;
+        }
+
+        if (DataHolder.current_scene >= 3)
+        {
+            DataHolder.combometer_size = 2;
+            if (DataHolder.current_scene >= 8)
+            {
+                DataHolder.combometer_size = 3;
+            }
+        }
+        else
+        {
+            DataHolder.combometer_size = 1;
         }
 
         master_volume = DataHolder.master_volume; 
@@ -247,6 +256,7 @@ public class LevelLoader : MonoBehaviour
             case 4:
                 //Воспоминания
                 enemies.Clear();
+
                 i = 0;
                 foreach (GameObject enemy in enemies_memories)
                 {
@@ -511,7 +521,6 @@ public class LevelLoader : MonoBehaviour
         game_manager.audio_clip = audio_clips[current_scene];
         pointSpawner.StartPointSpawner(beat_tempo, audio_clips[current_scene], rhythm_manager, game_manager, _sprite);
         pointSpawner.pointImage = _sprite;
-        pointSpawner.endLine = this.endline;
         rhythm_manager.StartRhytmManager();
     }
 

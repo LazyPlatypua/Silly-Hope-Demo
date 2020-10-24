@@ -46,6 +46,7 @@ public class SpawnDecorations : MonoBehaviour
                 AddToPolygons(n_point);
 
                 GameObject new_decoration = (GameObject) Instantiate(decorations[Random.Range(0, decorations.Count)], n_point, Quaternion.identity);
+                SpriteRenderer new_sprite = new_decoration.GetComponent<SpriteRenderer>();
 
                 float screen_y_axis_threshold = (Mathf.Abs(points[0].y) + Mathf.Abs(points[1].y))/ 3.0f;
 
@@ -53,27 +54,27 @@ public class SpawnDecorations : MonoBehaviour
 
                 if (n_point.y >= additional_points[0].y)
                 {
-                    new_decoration.GetComponent<SpriteRenderer>().sortingOrder = 0;
+                    new_sprite.sortingOrder = 0;
                 }
                 else
                 {
                     if (n_point.y >= additional_points[1].y)
                     {
-                        new_decoration.GetComponent<SpriteRenderer>().sortingOrder = 10;
+                        new_sprite.sortingOrder = 10;
                     }
                     else
                     {
                         if(n_point.y >= additional_points[2].y )
                         {
-                            new_decoration.GetComponent<SpriteRenderer>().sortingOrder = 20;
+                            new_sprite.sortingOrder = 20;
                         }
                         else
                         {
-                            new_decoration.GetComponent<SpriteRenderer>().sortingOrder = 30;
+                            new_sprite.sortingOrder = 30;
                         }
                     }
-                    
                 }
+                new_sprite.color = getRandomColor();
             }
         }
     }
@@ -87,5 +88,11 @@ public class SpawnDecorations : MonoBehaviour
             new Vector3(point.x - t_density, point.y - t_density, 0.0f)
         };
         occupied_polygons.Add(polygon);
+    }
+
+    Color getRandomColor()
+    {
+        int newc = UnityEngine.Random.Range(200, 255);
+        return new Color(newc, newc, newc);
     }
 }

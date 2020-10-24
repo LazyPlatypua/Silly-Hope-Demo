@@ -5,20 +5,21 @@ using TMPro;
 
 public class MainMenuManager : MonoBehaviour
 {
+    public static MainMenuManager instance;
     [Header("Main Links")]              //Ссылки на главные объекты меню
     public SceneLoader scene_loader;    //Ссылка на загрузчик уровня
-    public GameObject cover;            //Ссылка на обложку
     public GameObject spread;           //Ссылка на разворот
     public GameObject spread_main;      //Ссылка на главный разворот
     public GameObject content;          //Ссылка на содержание
     public GameObject shop;             //Ссылка на магазин
     public GameObject equip;            //Ссылка на снаряжение
     public EquipSelector equipSelector;    //Ссылка на селектор снаряжения
-    public ShopSelector shopSelector;
     public GameObject settings;         //Ссылка на настройки
     public GameObject post_processing;  //Ссылка на объект пост процессинга
     public AudioSource audio_source;    //ССылка на аудиоисточник
-    public InkwellsManager inkwells;
+
+    [Header("Pop Up")]
+    public PopUpManager popUpManager;   //ссылка на поп ап
 
     [Header("Current Equipment")]                       //Cнаряжение рыцаря
     public TextMeshProUGUI equip_header_text;           //Заголовок "снаряжение"
@@ -27,8 +28,6 @@ public class MainMenuManager : MonoBehaviour
     public byte current_charm_1;                        //текущий второй талисман
     public byte current_charm_2;                        //текущий третий талисман
     public byte combometer_size;                        //Текущий размер комбометра
-    public bool is_block_available;                     //Доступен ли блок
-    public bool is_defensive_offensive_is_available;    //Доступно ли оборонительное наступление
     public bool combo_split_is_available;               //Доступно ли комбо разрыва
     public bool combo_fourious_attack_is_available;     //Доступно ли комбо яростной атаки
     public bool combo_master_stun_is_available;         //Доступно ли комбо мастерское оглушение
@@ -39,7 +38,6 @@ public class MainMenuManager : MonoBehaviour
 
     [Header("Purchased items")]         //Приобретеные вещи
     public bool is_prolog_completed;        //Пройден ли пролог
-
     public bool broken_sword_is_purchased;  //Сломанный меч приобретен
     public bool falchion_is_purchased;      //Фальшион приобретен
     public bool zweihander_is_purchased;    //Двуручник приобретен
@@ -59,6 +57,7 @@ public class MainMenuManager : MonoBehaviour
     public bool traitor_charm_is_purchased;     //Талисман предателя приобретен
 
     [Header("Score and ink")]   //очки и чернила
+    public InkwellsManager inkwells;
     public short best_score;    //Лучший результат
     public short black_ink;     //Количество чернил
 
@@ -68,7 +67,7 @@ public class MainMenuManager : MonoBehaviour
     public float master_volume;                     //Общая громкость игры
     public float music_volume;                      //Громкость музыки
     public float sfx_volume;                        //Громкость звуковых эффектов
-    public string state = "cover";                  //Текущее состояние меню
+    public string state = "spread";                  //Текущее состояние меню
     public Slider volume_slider;                    //Слайдер громкости
     public TextMeshProUGUI settings_back_text;      //Ссылка на текст "Назад"
     public TextMeshProUGUI settings_header_text;    //Ссылка на текст заголовка настроек
@@ -79,7 +78,8 @@ public class MainMenuManager : MonoBehaviour
     private string graphics_normal;                 //Текст нормальных настроек
 
     [Header("Main Spread")] //Главный разворот
-    public TextMeshProUGUI tap_to_continue_text;    //Ссылка на текст "Нажмите, чтобы продолжить"
+    public TextMeshProUGUI score_text;
+    public TextMeshProUGUI chapter_text;
     public TextMeshProUGUI continue_text;           //Ссылка на текст "Продолжить"
     public TextMeshProUGUI equipment_text;          //Ссылка на текст "Снаряжение"         
     public TextMeshProUGUI shop_text;               //Ссылка на текст "Лавка"
@@ -92,6 +92,9 @@ public class MainMenuManager : MonoBehaviour
     public TextMeshProUGUI black_ink_text;      //Ссылка на текст счета на чернильнице
 
     [Header("Content")]    //Содержание
+    public Sprite default_button;
+    public Sprite selected_button;
+    public GameObject prolog_button;
     public Button[] chapter_buttons;            //Ссыдка на кнопки сцен
     public TextMeshProUGUI[] chapter_prices_text;       //Ссылка на ценнки сцен
     public GameObject first_act;                //Ссылка на содержание первого акта
@@ -148,6 +151,7 @@ public class MainMenuManager : MonoBehaviour
     //Функция срабатывает при старте сцены
     void Awake()
     {
+        instance = this;
         equipSelector.Init();
 
         scenes = new Scene[11]
@@ -165,9 +169,7 @@ public class MainMenuManager : MonoBehaviour
             new Scene(11, 0, false, false)
         };
         current_act = Act.first_act;
-
-        state = "cover";
-        ChangeState();
+        ChangeState("spread");
         LoadData();
 
         audio_source.volume = music_volume;
@@ -196,21 +198,6 @@ public class MainMenuManager : MonoBehaviour
         {
             BackButton();
         }
-
-        if (state == "cover" && Input.touchCount > 0 ) 
-        {
-            Touch touch = Input.GetTouch(0);
-            if (touch.phase == TouchPhase.Began) 
-            {
-                ChangeState("spread");
-            }
-        }
-
-        if (state == "cover" && Input.GetMouseButtonDown(0))
-        {
-            ChangeState("spread");
-        }
-        
     }
     
     //Функция устанавливает громкость
@@ -222,46 +209,33 @@ public class MainMenuManager : MonoBehaviour
     }
 
     //Функция загружает сохраненные данные
-    private void LoadData()
+    private bool LoadData()
     {
+        bool return_value = true;
         GameData game_data = SaveSystem.LoadData();
 
         if (game_data == null)
         {
-            //Debug.Log("MainMenuManager.LoadData(): Game Data Is missing. Creating default save file");
             game_data = new GameData();
+            return_value = false;
         }
         else
         {
             DataHolder.language = game_data.language;
+            return_value = true;
         }
 
         language_settings = Language.IntToLanguage(DataHolder.language);
         SetStrings(DataHolder.language);
 
-        //Debug.Log("Language: " + language_settings + '\n' + "Graphics Tier: " + (graphics_tier = game_data.graphics_tier) + '\n' + "Master Volume: " + (master_volume = game_data.master_volume) + '\n' + "Music Volume: " + (music_volume = game_data.music_volume) + '\n' + "SFX Volume: " + (sfx_volume = game_data.sfx_volume));
-
         best_score = game_data.best_score;  //Лучший результат
         black_ink = game_data.black_ink;   //Количество чернил
-
-        //Debug.Log("Current Scene: " + (current_scene = game_data.current_scene) + '\n' + "Current Weapon: " + game_data.current_weapon + '\n' + "Current Armor: " + game_data.current_armor + '\n' + "Current Charm №1: " + (current_charm_0 = game_data.current_charm_0) + '\n' + "Current Charm №2: " + (current_charm_1 = game_data.current_charm_1) + '\n' + "Current Charm №3: " + (current_charm_2 = game_data.current_charm_2));   
         
         equipSelector.SetCurrentEquipId(EquipSelector.EquipType.Weapon, DataHolder.current_weapon);
         equipSelector.SetCurrentEquipId(EquipSelector.EquipType.Armor, DataHolder.current_armor);
         equipSelector.SetCurrentEquipId(EquipSelector.EquipType.Talisman1, DataHolder.current_charm_0);
         equipSelector.SetCurrentEquipId(EquipSelector.EquipType.Talisman2, DataHolder.current_charm_1);
         equipSelector.SetCurrentEquipId(EquipSelector.EquipType.Talisman3, DataHolder.current_charm_2);
-
-        // Debug.Log("Current Combometer Size: " + (combometer_size = game_data.combometer_size));         //Текущий размер комбометра
-        // Debug.Log("Is Block available: " + (is_block_available = game_data.is_block_available));        //Доступен ли блок
-        // Debug.Log("Is Deffensive Offensive available: " + (is_defensive_offensive_is_available = game_data.is_defensive_offensive_is_available));       //Доступно ли оборонительное наступление
-        // Debug.Log("Is Split available: " + (combo_split_is_available = game_data.combo_split_is_available));                                            //Доступно ли комбо разрыва
-        // Debug.Log("Is Fourious Attack available: " + (combo_fourious_attack_is_available = game_data.combo_fourious_attack_is_available));              //Доступно ли комбо яростной атаки
-        // Debug.Log("Is Master Stun available: " + (combo_master_stun_is_available = game_data.combo_master_stun_is_available));                          //Доступно ли комбо мастерское оглушение
-        // Debug.Log("Is Horizontal Cut available: " + (combo_horizontal_cut_is_available = game_data.combo_horizontal_cut_is_available));                 //Доступно ли комбо горизонтального разреза
-        // Debug.Log("Is Shuflle available: " + (combo_shuffle_is_available = game_data.combo_shuffle_is_available));                                      //Доступно ли комбо перетасовки
-        // Debug.Log("Is Florescence available: " + (combo_florescence_is_available = game_data.combo_florescence_is_available));                          //Доступно ли комбо расцвета
-        // Debug.Log("Is sublime dissection available: " + (combo_sublime_dissection_is_available = game_data.combo_sublime_dissection_is_available));     //Доступно ли комбо грандиозного рассчения
 
         scenes[0].is_purchased = game_data.scene1_is_purchased;    //Первая сцена приобретена 
         scenes[0].is_completed = game_data.scene1_is_completed;    //Первая cцена пройдена один раз
@@ -275,7 +249,7 @@ public class MainMenuManager : MonoBehaviour
         scenes[4].is_completed = game_data.scene5_is_completed;    //Пятая cцена пройдена один раз
         scenes[5].is_purchased = game_data.scene6_is_purchased;    //Шестая сцена приобретена 
         scenes[5].is_completed = game_data.scene6_is_completed;    //Шестая cцена пройдена один раз
-        scenes[6].is_purchased = game_data.scene7_is_purchased;    //Седьмая сцена приобретена 
+        scenes[6].is_purchased = game_data.scene7_is_purchased;    //Седьмая сцена приобретена d
         scenes[6].is_completed = game_data.scene7_is_completed;    //Седьмая cцена пройдена один раз
         scenes[7].is_purchased = game_data.scene8_is_purchased;    //Восьмая сцена приобретена 
         scenes[7].is_completed = game_data.scene8_is_completed;    //Восьмая cцена пройдена один раз
@@ -285,6 +259,7 @@ public class MainMenuManager : MonoBehaviour
         scenes[9].is_completed = game_data.scene10_is_completed;   //Десятая cцена пройдена один раз
         scenes[10].is_purchased = game_data.scene11_is_purchased;   //Одиннадцатая сцена приобретена 
         scenes[10].is_completed = game_data.scene11_is_completed;   //Одиннадцатая cцена пройдена один раз
+
         broken_sword_is_purchased = game_data.broken_sword_is_purchased;  //Сломанный меч приобретен
         falchion_is_purchased = game_data.falchion_is_purchased;      //Фальшион приобретен
         zweihander_is_purchased = game_data.zweihander_is_purchased;    //Двуручник приобретен
@@ -292,9 +267,11 @@ public class MainMenuManager : MonoBehaviour
         januar_dagger_is_purchased = game_data.januar_dagger_is_purchased; //Кинжал святого Януария приобретен
         viennese_spear_is_purchased = game_data.viennese_spear_is_purchased;//Венское копье приобретено
         russian_sword_is_purchased = game_data.russian_sword_is_purchased; //Русский меч приобретен
+
         chain_mail_is_purchased = game_data.chain_mail_is_purchased;            //Кольчуга приобретена
         hardened_chain_mail_is_purchased = game_data.hardened_chain_mail_is_purchased;   //Урепленная кольчуга приобретена
         heavy_armor_is_purchased = game_data.heavy_armor_is_purchased;           //Тяжелая броня приобретена
+
         welfare_charm_is_purchased = game_data.welfare_charm_is_purchased;     //Талисман благоденствия приобретен
         heretic_charm_is_purchased = game_data.heretic_charm_is_purchased;     //Талисман еритика приобретен
         order_charm_is_purchased = game_data.order_charm_is_purchased;       //Талисман ордена приобретен
@@ -302,7 +279,44 @@ public class MainMenuManager : MonoBehaviour
         pommel_charm_is_purchased = game_data.pommel_charm_is_purchased;      //Талисман навершие из слоновой кости приобретен
         papa_charm_is_purchased = game_data.papa_charm_is_purchased;        //Талисман печать папы приобретен
         traitor_charm_is_purchased = game_data.traitor_charm_is_purchased;     //Талисман предателя приобретен
+        
+        byte size = DataHolder.combometer_size;
+        if (current_scene > 2)
+        {
+            size = 2;
+            combometer_size = size;
+            combo_split_is_available = true;               //Доступно ли комбо разрыва
+            combo_fourious_attack_is_available = true;     //Доступно ли комбо яростной атаки
+            combo_master_stun_is_available = true;         //Доступно ли комбо мастерское оглушение
+            combo_horizontal_cut_is_available = true;      //Доступно ли комбо горизонтального разреза
+            combo_shuffle_is_available = true;             //Доступно ли комбо перетасовки
+            combo_florescence_is_available = true;         //Доступно ли комбо расцвета
+            combo_sublime_dissection_is_available = true;  //Доступно ли комбо грандиозного рассчения
+        }
+        else
+        {
+            combo_split_is_available = true;               //Доступно ли комбо разрыва
+            combo_fourious_attack_is_available = true;     //Доступно ли комбо яростной атаки
+            combo_master_stun_is_available = true;         //Доступно ли комбо мастерское оглушение
+            combo_horizontal_cut_is_available = false;      //Доступно ли комбо горизонтального разреза
+            combo_shuffle_is_available = false;             //Доступно ли комбо перетасовки
+            combo_florescence_is_available = false;         //Доступно ли комбо расцвета
+            combo_sublime_dissection_is_available = false;  //Доступно ли комбо грандиозного рассчения
+        }
+        if (current_scene > 7)
+        {
+            size = 3;
+            combometer_size = size;
+            combo_split_is_available = true;               //Доступно ли комбо разрыва
+            combo_fourious_attack_is_available = true;     //Доступно ли комбо яростной атаки
+            combo_master_stun_is_available = true;         //Доступно ли комбо мастерское оглушение
+            combo_horizontal_cut_is_available = true;      //Доступно ли комбо горизонтального разреза
+            combo_shuffle_is_available = true;             //Доступно ли комбо перетасовки
+            combo_florescence_is_available = true;         //Доступно ли комбо расцвета
+            combo_sublime_dissection_is_available = true;  //Доступно ли комбо грандиозного рассчения
+        }
 
+        popUpManager.gameObject.SetActive(false);
         if (DataHolder.from_level)
         {
             black_ink = DataHolder.black_ink;
@@ -314,14 +328,69 @@ public class MainMenuManager : MonoBehaviour
             }
             else
             {
+                if(!scenes[current_scene - 1].is_completed)
+                {
+                    popUpManager.gameObject.SetActive(true);
+                    switch (current_scene)
+                    {
+                        case 1:
+                            popUpManager.OpenPopUp(chapter_1_text.text);
+                            break;
+
+                        case 2:
+                            popUpManager.OpenPopUp(chapter_2_text.text);
+                            break;
+
+                        case 3:
+                            popUpManager.OpenPopUp(chapter_3_text.text, size);
+                            SaveData();
+                            break;
+
+                        case 4:
+                            popUpManager.OpenPopUp(chapter_4_text.text);
+                            break;
+
+                        case 5:
+                            popUpManager.OpenPopUp(chapter_5_text.text);
+                            break;
+
+                        case 6:
+                            popUpManager.OpenPopUp(chapter_6_text.text);
+                            break;
+
+                        case 7:
+                            popUpManager.OpenPopUp(chapter_7_text.text);
+                            break;
+
+                        case 8:
+                            popUpManager.OpenPopUp(chapter_8_text.text, size);
+                            SaveData();
+                            break;
+
+                        case 9:
+                            popUpManager.OpenPopUp(chapter_9_text.text);
+                            break;
+
+                        case 10:
+                            popUpManager.OpenPopUp(chapter_10_text.text);
+                            break;
+
+                        case 11:
+                            popUpManager.OpenPopUp(chapter_11_text.text);
+                            break;
+
+                        default:
+                            Debug.LogError("MainMenuManager.LoadData: current scene " + current_scene + " will not show pop up text ");
+                            break;
+                    }
+                }
                 scenes[current_scene - 1].is_completed = true;
             }
             UpdateContentButtons();
         }
-
+        
         SaveShortData();
-
-        //Debug.Log("MainMenuManager.LoadData is complete");
+        return return_value;
     }
 
     //Функция обновляет тексты меню согласно языку
@@ -329,7 +398,6 @@ public class MainMenuManager : MonoBehaviour
     {
         //Debug.Log("SetStrings: " + language);
         StringSettings temp = new StringSettings(language);
-        tap_to_continue_text.text = temp.tap_to_continue;
         continue_text.text = temp._continue ;
 
         equipment_text.text = temp.equipment;
@@ -368,7 +436,134 @@ public class MainMenuManager : MonoBehaviour
         chapter_10_text.text = temp.chapter_10;
         chapter_11_text.text = temp.chapter_11;
 
-        equipSelector.SetStrings(language);
+        equipSelector.SetStrings(temp);
+
+        popUpManager.UpdateStrings(temp);
+        UpdateMainSpread(temp);
+    }
+
+    public void UpdateMainSpread(StringSettings temp)
+    {
+        switch(current_scene)
+        {
+            case 0:
+                chapter_text.text = temp.prologue;
+                break;
+            case 1:
+                chapter_text.text = temp.chapter_1;
+                break;
+
+            case 2:
+                chapter_text.text = temp.chapter_2;
+                break;
+
+            case 3:
+                chapter_text.text = temp.chapter_3;
+                break;
+
+            case 4:
+                chapter_text.text = temp.chapter_4;
+                break;
+
+            case 5:
+                chapter_text.text = temp.chapter_5;
+                break;
+
+            case 6:
+                chapter_text.text = temp.chapter_6;
+                break;
+
+            case 7:
+                chapter_text.text = temp.chapter_7;
+                break;
+
+            case 8:
+                chapter_text.text = temp.chapter_8;
+                break;
+
+            case 9:
+                chapter_text.text = temp.chapter_9;
+                break;
+
+            case 10:
+                chapter_text.text = temp.chapter_10;
+                break;
+
+            case 11:
+                chapter_text.text = temp.chapter_11;
+                break;
+
+            case 12:
+                chapter_text.text = temp.epilogue;
+                break;
+
+            default:
+                Debug.Log("MainMenuManager.UpdateMainSpread: Undefined scene, setting up to 1");
+                goto case 1;
+        }
+
+        score_text.text = $"{temp.best_score}\n{best_score.ToString()}";
+    }
+
+    public void UpdateMainSpread()
+    {
+        switch (current_scene)
+        {
+            case 0:
+                chapter_text.text = prologue_text.text;
+                break;
+            case 1:
+                chapter_text.text = chapter_1_text.text;
+                break;
+
+            case 2:
+                chapter_text.text = chapter_2_text.text;
+                break;
+
+            case 3:
+                chapter_text.text = chapter_3_text.text;
+                break;
+
+            case 4:
+                chapter_text.text = chapter_4_text.text;
+                break;
+
+            case 5:
+                chapter_text.text = chapter_5_text.text;
+                break;
+
+            case 6:
+                chapter_text.text = chapter_6_text.text;
+                break;
+
+            case 7:
+                chapter_text.text = chapter_7_text.text;
+                break;
+
+            case 8:
+                chapter_text.text = chapter_8_text.text;
+                break;
+
+            case 9:
+                chapter_text.text = chapter_9_text.text;
+                break;
+
+            case 10:
+                chapter_text.text = chapter_10_text.text;
+                break;
+
+            case 11:
+                chapter_text.text = chapter_11_text.text;
+                break;
+
+            case 12:
+                chapter_text.text = epilogue_text.text;
+                break;
+
+            default:
+                Debug.Log("MainMenuManager.UpdateMainSpread: Undefined scene, setting up to 1");
+                goto case 1;
+        }
     }
 
     //сохраняет данные одной сессии
@@ -399,30 +594,18 @@ public class MainMenuManager : MonoBehaviour
     }
 
     //Функция меняет текущее состояние меню
-    private void ChangeState(string change_to)
+   public void ChangeState(string change_to)
     {
         state = change_to;
         ChangeState();
     }
 
     //Функция меняет текущее состояние меню
-    private void ChangeState()
+    public void ChangeState()
     {
         switch (state)
-        {   
-            case "cover":
-                cover.SetActive(true);
-                spread.SetActive(false);
-                content.SetActive(false);
-                spread_main.SetActive(false);
-                shop.SetActive(false);
-                equip.SetActive(false);
-                equipSelector.SetActive(false);
-                settings.SetActive(false);
-            break;
-
+        { 
             case "spread":
-                cover.SetActive(false);
                 spread.SetActive(true);
                 content.SetActive(false);
                 spread_main.SetActive(true);
@@ -430,12 +613,12 @@ public class MainMenuManager : MonoBehaviour
                 equip.SetActive(false);
                 equipSelector.SetActive(false);
                 settings.SetActive(false);
+                UpdateMainSpread();
             break;
 
             case "content":
                 current_act = (Act) 0;
                 UpdateContentAct();
-                cover.SetActive(false);
                 spread.SetActive(true);
                 content.SetActive(true);
                 spread_main.SetActive(false);
@@ -446,7 +629,6 @@ public class MainMenuManager : MonoBehaviour
             break;
 
             case "equip":
-                cover.SetActive(false);
                 spread.SetActive(true);
                 content.SetActive(false);
                 spread_main.SetActive(false);
@@ -457,7 +639,6 @@ public class MainMenuManager : MonoBehaviour
             break;
 
             case "equipSelector":
-                cover.SetActive(false);
                 spread.SetActive(true);
                 content.SetActive(false);
                 spread_main.SetActive(false);
@@ -468,19 +649,16 @@ public class MainMenuManager : MonoBehaviour
             break;
 
             case "shopSelector":
-                cover.SetActive(false);
                 spread.SetActive(true);
                 content.SetActive(false);
                 spread_main.SetActive(false);
                 shop.SetActive(false);
                 equip.SetActive(false);
-                shopSelector.SetActive(true);
                 settings.SetActive(false);
             break;
 
 
             case "shop":
-                cover.SetActive(false);
                 spread.SetActive(true);
                 content.SetActive(false);
                 spread_main.SetActive(false);
@@ -491,7 +669,6 @@ public class MainMenuManager : MonoBehaviour
             break;
 
             case "settings":
-                cover.SetActive(false);
                 spread.SetActive(true);
                 content.SetActive(false);
                 spread_main.SetActive(false);
@@ -536,7 +713,28 @@ public class MainMenuManager : MonoBehaviour
         {
             b.gameObject.SetActive(false);
             b.interactable = false;
+            b.gameObject.GetComponent<Image>().sprite = default_button;
         }
+        if (is_prolog_completed)
+        {
+            if (current_scene < chapter_prices_text.Length)
+            {
+                if (current_scene > 0)
+                {
+                    prolog_button.GetComponent<Image>().sprite = default_button;
+                    chapter_buttons[current_scene - 1].gameObject.GetComponent<Image>().sprite = selected_button;
+                }
+                else
+                {
+                    prolog_button.GetComponent<Image>().sprite = selected_button;
+                }
+            }
+        }
+        else
+        {
+            prolog_button.GetComponent<Image>().sprite = selected_button;
+        }
+
         int t = scenes[0].price;
 
         if (is_prolog_completed)
@@ -636,26 +834,12 @@ public class MainMenuManager : MonoBehaviour
     //Функция обновляет текущую сцену (главу)
     public void SelectChapter(int chapter)
     {
-        if (chapter == 0)
+        if (chapter != 0 && !scenes[chapter - 1].is_purchased)
         {
-            return;
-        }
-        if (chapter == 12)
-        {
-            return;
-        }
-        if (chapter == 13)
-        {
-            return;
-        }
-        if (!scenes[chapter - 1].is_purchased)
-        {
-            //Debug.Log("MainMenuManager.SelectChapter(" + chapter + "): Chapter is not purchased");
             if (BuyScene(chapter - 1))
             {
                 current_scene = (byte)chapter;
             }
-            return;
         }
         else
         {
@@ -673,17 +857,13 @@ public class MainMenuManager : MonoBehaviour
 
             if (scenes[scene_number].is_purchased)
             {
-                //Debug.Log("MainMenuManager.BuyScene: Scene is already purchased!");
                 return false;
             }
             black_ink -= System.Convert.ToInt16(scenes[scene_number].price);
             scenes[scene_number].is_purchased = true;
-            //Debug.Log("MainMenuManager.BuyScene: free_black_ink = " + black_ink);
-            ShopUpdate();
         }
         else
         {
-            //Debug.Log("MainMenuManager.BuyScene: Not enought ink!");
             return false;
         }
 
@@ -691,12 +871,6 @@ public class MainMenuManager : MonoBehaviour
         inkwells.InkUpdate(black_ink);
         UpdateContentButtons();
         return true;
-    }
-
-    //Кнопка обновления магазина
-    private void ShopUpdate()
-    {
-        
     }
 
     //Кнопка загрузки уровня
@@ -804,49 +978,46 @@ public class MainMenuManager : MonoBehaviour
     //Кнопка возвращает меню в предыдущее состояние
     public void BackButton()
     {
-        if (state != "cover")
+        switch (state)
         {
-            switch (state)
-            {
-                case "spread":
-                    ChangeState("cover");
-                    break;
+            case "spread":
+                Exit();
+                break;
 
-                case "content":
-                    ChangeState("spread");
-                    break;
+            case "content":
+                ChangeState("spread");
+                break;
 
-                case "equip":
-                    ChangeState("spread");
-                    break;
+            case "equip":
+                ChangeState("spread");
+                break;
 
-                case "equipWeapon":
-                    ChangeState("spread");
-                    break;
+            case "equipWeapon":
+                ChangeState("spread");
+                break;
 
-                case "shop":
-                    ChangeState("spread");
-                    break;
+            case "equipSelector":
+                ChangeState("equip");
+                break;
 
-                case "settings":
-                    ChangeState("spread");
-                    break;
+            case "shop":
+                ChangeState("spread");
+                break;
 
-                default:
-                    Debug.LogError("On Escape: undefined state");
-                    break;
-            }
-        }
-        else
-        {
-            Exit();
+            case "settings":
+                ChangeState("spread");
+                break;
+
+            default:
+                Debug.LogError("On Escape: undefined state:" + state);
+                break;
         }
     }
 
     //Кнопка выхода
     public void Exit()
     {
-        //Debug.Log("NewMainMenuManger.Exit()");
+        Debug.Log("MainMenuManger.Exit()");
 
         Application.Quit();
     }
@@ -884,9 +1055,12 @@ public class MainMenuManager : MonoBehaviour
     }
 
     public void SelectEquip() {
-        equipSelector.onAction();
+        bool temp = equipSelector.onAction();
         SaveData();
-        ChangeState("equip");
+        if (temp)
+        {
+            ChangeState("equip");
+        }
     }
 
     public byte GetCurrentEquipId(EquipSelector.EquipType equipType) {

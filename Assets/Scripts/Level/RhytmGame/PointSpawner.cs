@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 
 public class PointSpawner : AudioAnalizer
@@ -13,27 +14,23 @@ public class PointSpawner : AudioAnalizer
     public GameObject pointPrefab;
 
     public static int bpm = 120;
-    public static float musicDelay;
+    public float musicDelay;
     public static float audioLenght;
     public AudioClip musicClip;
     public Sprite pointImage;
 
-    public float spawnPointHeight = 5f;
-    public float endLine = -6;
-    public GameObject mainLine;
-    private float mainLineHeight;
+    public float endLine = 6;
 
-    public float[] freqBand = new float[4];
+    public float freqBand;
 
     public float timeBetweenPoints = 1.5f;
-    public float pointRotationSpeed = 2f;             //Скорость вращения точек 
-    public float[] linesXCoord;
+    public Vector3 spawnPosition;
 
-    public float[] lineTreshholds;
+    public float treshhold;
 
     public bool isWorking = false;
     public bool levelIsStarted = false;
-    private bool canGenerate = true;
+    private bool canGenerate = false;
     private bool isStarted = false;
 
     private void Awake()
@@ -49,8 +46,6 @@ public class PointSpawner : AudioAnalizer
         musicClip = clip;
         rhythmManager = rhythm;
         gameManager = game;
-
-        mainLineHeight = mainLine.transform.position.y;
 
         if(rhythmManager ==null)
         {
@@ -76,10 +71,10 @@ public class PointSpawner : AudioAnalizer
         {
             musicAudioSource = gameManager.audio_source;
         }
+        musicDelay = gameManager.musicDelay;
         PointBehaviour.beat_tempo = bpm;
         PointBehaviour.end_point = endLine;
         audioLenght = clip.length;
-        musicDelay = (spawnPointHeight - mainLineHeight) / (bpm / 60);
 
         _audioSource.Stop();
         _audioSource.clip = musicClip;
@@ -87,7 +82,6 @@ public class PointSpawner : AudioAnalizer
         musicAudioSource.Stop();
         musicAudioSource.clip = musicClip;
 
-        isWorking = true;
         _audioSource.Play();
         StartCoroutine(StartMusic());
     }
@@ -98,6 +92,8 @@ public class PointSpawner : AudioAnalizer
         yield return new WaitForSecondsRealtime(musicDelay);
 
         levelIsStarted = true;
+        isWorking = true;
+        canGenerate = true;
         musicAudioSource.Play();
     }
 
@@ -105,16 +101,9 @@ public class PointSpawner : AudioAnalizer
     {
         GetSpectrumAudioSource();
         MakeFrequencyBand();
-        if(canGenerate)
+        if(canGenerate && freqBand > treshhold)
         {
-            for (int i = 3; i >= 0; i --)
-            {
-                if ((freqBand[i] > lineTreshholds[i]))
-                {
-                    GeneratePoint(i);
-                    break;
-                }
-            }
+            GeneratePoint();
         }
 
         isStarted |= _audioSource.time > 0f;
@@ -136,49 +125,28 @@ public class PointSpawner : AudioAnalizer
 
     protected override void MakeFrequencyBand()
     {
-        int count = 0;
-
-        for (int i = 0; i < 4; i++)
-        {
-            float average = 0;
-            int sampleCount = (int)Mathf.Pow(4, i) * 4;
-
-            if (i == 3)
-            {
-                sampleCount += 2;
-            }
-
-            for (int j = 0; j < sampleCount; j++)
-            {
-                average += _samples[count] * (count + 1);
-                count++;
-            }
-
-            average /= count;
-
-            freqBand[i] = average;
-        }
+        freqBand = _samples[0];
     }
 
-    public void GeneratePoint( int line)
+    public void GeneratePoint()
     {
+        int line = UnityEngine.Random.Range(0, 2);
         GameObject newgo = Instantiate(pointPrefab);
         PointBehaviour newgo_pb = newgo.GetComponent<PointBehaviour>();
 
-        newgo.transform.position = new Vector3(linesXCoord[line], spawnPointHeight, 0.0f);
+        newgo.transform.position = spawnPosition;
         newgo_pb.line = line;
-        newgo_pb.rotation_speed = pointRotationSpeed * (Random.Range(0, 2) * 2 - 1);
         newgo_pb.rhythm_manager = this.rhythmManager;
         newgo_pb.game_manager = this.gameManager;
         newgo_pb.sprite_renderer.sprite = pointImage;
-        newgo_pb.SetRed(line >= 2);
+        newgo_pb.SetRed(line >= 1);
         StartCoroutine(WaitToGenerateNewPoint());
     }
 
     IEnumerator WaitToGenerateNewPoint()
     {
         canGenerate = false;
-        yield return new WaitForSecondsRealtime(timeBetweenPoints);
+        yield return new WaitForSecondsRealtime(timeBetweenPoints + UnityEngine.Random.Range(-0.5f, 0.5f));
         canGenerate = true;
     }
 }

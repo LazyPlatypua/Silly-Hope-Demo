@@ -5,24 +5,28 @@ using UnityEngine;
 
 public class AttackMenu : MonoBehaviour
 {
+    [Header("Links")]
     public static AttackMenu instance;          //ссылка на это меню
     public KnightBehaviour knight_behaviour;    //сылка на поведение рыцаря
     public KnightCombometer knight_combometer;  //ссылка на комбометр игрока
     public GameManager game_manager;            //ссылка на игровой менеджер
-    public Transform main_line_transform;       //трансформ главной линии
+    public List<Transform> active_lines_transforms;       //трансформы активных линий
     public List<SliderScript> sliders;          //скрипты слайдеров
     public List<Sprite> enemy_sprites;          //портреты врагов
     public List<Sprite> attack_sprites;         //отображени атак
+
+    [Header("Attack Settings")]
     public int sword_damage;                    //урон меча
     public float timeToDisableHealth = 1f;
     public int daze_time = 2;                   //Время оглушения врагов
     public float time_of_latest_attack = 0f;    //Время последней атаки
 
-    [Header("Fight and Enemies Settings")]
+    [Header("Enemies Settings")]
     public List<GameObject> enemies;            //список врагов
     public List<Vector3> enemies_position;      //Позиция врагов на экране
     public float start_running_delta;           //разница между позицией врага и той, с которой он начинает дфижение
 
+    [Header("Combometer Settings")]
     public Animator combometer_animator_green;      //Ссылка на аниматор рыцаря
     public Animator combometer_animator_red;        //Ссылка на аниматор рыцаря
     public int combometer_needed_points;            //количество точек, необходимых для заполнения одной ячейки комбометра
@@ -32,6 +36,15 @@ public class AttackMenu : MonoBehaviour
     private bool[] green_combometer_cells_number;   //Какие ячейки зеленого комбометра заполнены
     private bool[] red_combometer_cell;             //Какие точки заполнены в одной ячейке красного комбметра  
     private bool[] red_combometer_cells_number;     //Какие ячейки красного комбометра заполнены
+
+    [Header("Combos Settings")]
+    public bool combo_split_is_available;               //Доступно ли комбо разрыва
+    public bool combo_fourious_attack_is_available;     //Доступно ли комбо яростной атаки
+    public bool combo_master_stun_is_available;         //Доступно ли комбо мастерское оглушение
+    public bool combo_horizontal_cut_is_available;      //Доступно ли комбо горизонтального разреза
+    public bool combo_shuffle_is_available;             //Доступно ли комбо перетасовки
+    public bool combo_florescence_is_available;         //Доступно ли комбо расцвета
+    public bool combo_sublime_dissection_is_available;  //Доступно ли комбо грандиозного рассчения
 
     private void Awake()
     {
@@ -62,7 +75,12 @@ public class AttackMenu : MonoBehaviour
                 break;
 
             case 2:
-                for (int i = 1; i < 3; i++)
+                for (int i = 1; i < 2; i++)
+                    ActivateEnemies(i);
+                break;
+
+            case 3:
+                for (int i = 0; i < 2; i++)
                     ActivateEnemies(i);
                 break;
 
@@ -93,50 +111,83 @@ public class AttackMenu : MonoBehaviour
             red_combometer_cells_number[i] = false;
         }
 
-        Vector3 s = new Vector3(main_line_transform.localScale.x, 0.4f);
+        Vector3 s = new Vector3(active_lines_transforms[1].localScale.x, active_lines_transforms[1].localScale.y);
         switch(sword)
         {
             case 0:
                 sword_damage += 1;
-                s.y *= 1;
+                s.x *= 1;
                 break;
 
             case 1:
                 sword_damage += 1;
-                s.y *= 0.3f;
+                s.x *= 0.3f;
                 break;
 
             case 2:
                 sword_damage += 1;
-                s.y *= 0.5f;
+                s.x *= 0.5f;
                 break;
 
             case 3:
                 sword_damage += 2;
-                s.y *= 1.3f;
+                s.x *= 1.3f;
                 break;
 
             case 4:
                 sword_damage += 1;
-                s.y *= 0.6f;
+                s.x *= 0.6f;
                 break;
 
             case 5:
                 sword_damage += 1;
-                s.y *= 0.4f;
+                s.x *= 0.4f;
                 break;
 
             case 6:
                 sword_damage += 2;
-                s.y *= 1.5f;
+                s.x *= 1.5f;
                 break;
 
             case 7:
                 s.y *= 0.6f;
                 break;
         }
-
-        main_line_transform.localScale = s;
+        foreach(Transform line in active_lines_transforms)
+        {
+            line.localScale = s;
+        }
+       
+        if (combometer_size == 2)
+        {
+            combo_split_is_available = true;               //Доступно ли комбо разрыва
+            combo_fourious_attack_is_available = true;     //Доступно ли комбо яростной атаки
+            combo_master_stun_is_available = true;         //Доступно ли комбо мастерское оглушение
+            combo_horizontal_cut_is_available = true;      //Доступно ли комбо горизонтального разреза
+            combo_shuffle_is_available = true;             //Доступно ли комбо перетасовки
+            combo_florescence_is_available = true;         //Доступно ли комбо расцвета
+            combo_sublime_dissection_is_available = true;  //Доступно ли комбо грандиозного рассчения
+        }
+        else
+        {
+            combo_split_is_available = true;               //Доступно ли комбо разрыва
+            combo_fourious_attack_is_available = true;     //Доступно ли комбо яростной атаки
+            combo_master_stun_is_available = true;         //Доступно ли комбо мастерское оглушение
+            combo_horizontal_cut_is_available = false;      //Доступно ли комбо горизонтального разреза
+            combo_shuffle_is_available = false;             //Доступно ли комбо перетасовки
+            combo_florescence_is_available = false;         //Доступно ли комбо расцвета
+            combo_sublime_dissection_is_available = false;  //Доступно ли комбо грандиозного рассчения
+        }
+        if (combometer_size == 3)
+        {
+            combo_split_is_available = true;               //Доступно ли комбо разрыва
+            combo_fourious_attack_is_available = true;     //Доступно ли комбо яростной атаки
+            combo_master_stun_is_available = true;         //Доступно ли комбо мастерское оглушение
+            combo_horizontal_cut_is_available = true;      //Доступно ли комбо горизонтального разреза
+            combo_shuffle_is_available = true;             //Доступно ли комбо перетасовки
+            combo_florescence_is_available = true;         //Доступно ли комбо расцвета
+            combo_sublime_dissection_is_available = true;  //Доступно ли комбо грандиозного рассчения
+        }
         return true;
     }
 

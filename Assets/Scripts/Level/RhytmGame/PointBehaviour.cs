@@ -7,22 +7,22 @@ public class PointBehaviour : MonoBehaviour
 	public GameManager game_manager;					//Ссылка на игровой менеджер
 	public RhythmManager rhythm_manager;				//Ссылка на ритм менеджер
 	public Animator point_animator;						//Ссылка на аниматор точки
-	public RotationScript point_main_rot_script;		//Ссылка на скрипт вращения точки
 	public GameObject circle;							//Ссылка на круг вокруг точки
 	public Color[] colors = new Color[4];				//Ссылка на цвета точки
 	public Transform m_transform;						//Ссылка на трансформ точки
 
 	public static float beat_tempo = 120;				//Темп песни. 
 	public static bool is_started = false;				//Начался ли уровень и не на паузе ли игра
-	public static float end_point;                      //положение крайней нижней точки, после которой она удаляется.
-	public static bool[] active_lines = new bool[4];
-	public float rotation_speed;						//Скорость вращения цветка
+	public static float end_point = 6;                      //положение крайней нижней точки, после которой она удаляется.
+	public static bool[] active_lines = new bool[2];
 	public int line = 0;								//номер линии, на которой находится точка
 
 	public bool can_be_pressed = false;					//Может ли точка быть нажатой
 	public bool is_red_point = false;					//Это красная точка?
 	public bool can_be_moved = true;                    //Может ли точка перемещаться?
 	public bool is_missed = false;
+
+	private short direction = 1;
 
 	//Функция срабатывает в первый фрейм сцены
 	private void Start()
@@ -44,9 +44,6 @@ public class PointBehaviour : MonoBehaviour
 			gameObject.GetComponent<Animator>();
         }
 		m_transform = transform;
-		rotation_speed = Random.Range(-5f, 5f);
-		point_main_rot_script.rotation_speed = this.rotation_speed;
-
         RhytmEvent.instance.onRhytmButtonPress += OnButtonPress;
 	}
 
@@ -64,16 +61,11 @@ public class PointBehaviour : MonoBehaviour
 		if (is_started)
 		{
 			if (can_be_moved)
-			m_transform.position -= new Vector3(0f, beat_tempo / 60 * Time.deltaTime, 0f);
+			m_transform.position += new Vector3(direction * beat_tempo / 60 * Time.deltaTime, 0f, 0f);
 
-			point_main_rot_script.is_started = true;
-		}
-		else
-		{
-			point_main_rot_script.is_started = false;
 		}
 
-		if (transform.position.y <= end_point)
+		if (Mathf.Abs(transform.position.x) >= end_point)
 		{
 			rhythm_manager.OnMissPoint();
 			Destroy(gameObject);
@@ -123,10 +115,12 @@ public class PointBehaviour : MonoBehaviour
 		if (!is_red)
 		{
 			sprite_renderer.color = colors[0];
+			direction = -1;
 		}
 		else
 		{
 			sprite_renderer.color = colors[1];
+			direction = 1;
 		}
 	}
 }

@@ -12,8 +12,6 @@ public class GameData
     public byte current_charm_1;   //текущий второй талисман
     public byte current_charm_2;   //текущий третий талисман
     public byte combometer_size;   //Текущий размер комбометра
-    public bool is_block_available;                     //Доступен ли блок
-    public bool is_defensive_offensive_is_available;    //Доступно ли оборонительное наступление
     public bool combo_split_is_available;               //Доступно ли комбо разрыва
     public bool combo_fourious_attack_is_available;     //Доступно ли комбо яростной атаки
     public bool combo_master_stun_is_available;         //Доступно ли комбо мастерское оглушение
@@ -85,8 +83,6 @@ public class GameData
         current_charm_1 = 0;   //текущий второй талисман
         current_charm_2 = 0;   //текущий третий талисман
         combometer_size = 1;   //Текущий размер комбометра
-        is_block_available = false;                     //Доступен ли блок
-        is_defensive_offensive_is_available = false;    //Доступно ли оборонительное наступление
         combo_split_is_available = false;               //Доступно ли комбо разрыва
         combo_fourious_attack_is_available = false;     //Доступно ли комбо яростной атаки
         combo_master_stun_is_available = false;         //Доступно ли комбо мастерское оглушение
@@ -157,9 +153,6 @@ public class GameData
         current_charm_1 = temp.current_charm_1;   //текущий второй талисман
         current_charm_2 = temp.current_charm_2;   //текущий третий талисман
         combometer_size = temp.combometer_size;   //Текущий размер комбометра
-        is_block_available = temp.is_block_available;                     //Доступен ли блок
-        is_defensive_offensive_is_available = temp.is_defensive_offensive_is_available;    //Доступно ли оборонительное наступление
-        combo_split_is_available = temp.combo_split_is_available;               //Доступно ли комбо разрыва
         combo_fourious_attack_is_available = temp.combo_fourious_attack_is_available;     //Доступно ли комбо яростной атаки
         combo_master_stun_is_available = temp.combo_master_stun_is_available;         //Доступно ли комбо мастерское оглушение
         combo_horizontal_cut_is_available = temp.combo_horizontal_cut_is_available;      //Доступно ли комбо горизонтального разреза
@@ -190,6 +183,7 @@ public class GameData
         scene10_is_completed = temp.scene10_is_completed;   //Десятая cцена пройдена один раз
         scene11_is_purchased = temp.scene11_is_purchased;   //Одиннадцатая сцена приобретена 
         scene11_is_completed = temp.scene11_is_completed;   //Одиннадцатая cцена пройдена один раз
+
         broken_sword_is_purchased = temp.broken_sword_is_purchased;  //Сломанный меч приобретен
         falchion_is_purchased = temp.falchion_is_purchased;      //Фальшион приобретен
         zweihander_is_purchased = temp.zweihander_is_purchased;    //Двуручник приобретен
@@ -197,9 +191,11 @@ public class GameData
         januar_dagger_is_purchased = temp.januar_dagger_is_purchased; //Кинжал святого Януария приобретен
         viennese_spear_is_purchased = temp.viennese_spear_is_purchased;//Венское копье приобретено
         russian_sword_is_purchased = temp.russian_sword_is_purchased; //Русский меч приобретен
+
         chain_mail_is_purchased = temp.chain_mail_is_purchased;            //Кольчуга приобретена
         hardened_chain_mail_is_purchased = temp.hardened_chain_mail_is_purchased;   //Урепленная кольчуга приобретена
         heavy_armor_is_purchased = temp.heavy_armor_is_purchased;           //Тяжелая броня приобретена
+
         welfare_charm_is_purchased = temp.welfare_charm_is_purchased;     //Талисман благоденствия приобретен
         heretic_charm_is_purchased = temp.heretic_charm_is_purchased;     //Талисман еритика приобретен
         order_charm_is_purchased = temp.order_charm_is_purchased;       //Талисман ордена приобретен
@@ -276,8 +272,6 @@ public class GameData
         current_charm_1 = main_menu.GetCurrentEquipId(EquipSelector.EquipType.Talisman2);   //текущий второй талисман
         current_charm_2 = main_menu.GetCurrentEquipId(EquipSelector.EquipType.Talisman3);   //текущий третий талисман
         combometer_size = main_menu.combometer_size;   //Текущий размер комбометра
-        is_block_available = main_menu.is_block_available;                     //Доступен ли блок
-        is_defensive_offensive_is_available = main_menu.is_defensive_offensive_is_available;    //Доступно ли оборонительное наступление
         combo_split_is_available = main_menu.combo_split_is_available;               //Доступно ли комбо разрыва
         combo_fourious_attack_is_available = main_menu.combo_fourious_attack_is_available;     //Доступно ли комбо яростной атаки
         combo_master_stun_is_available = main_menu.combo_master_stun_is_available;         //Доступно ли комбо мастерское оглушение
@@ -373,8 +367,6 @@ public class GameData
         current_charm_1 = temp.current_charm_1;   //текущий второй талисман
         current_charm_2 = temp.current_charm_2;   //текущий третий талисман
         combometer_size = temp.combometer_size;   //Текущий размер комбометра
-        is_block_available = temp.is_block_available;                     //Доступен ли блок
-        is_defensive_offensive_is_available = temp.is_defensive_offensive_is_available;    //Доступно ли оборонительное наступление
         combo_split_is_available = temp.combo_split_is_available;               //Доступно ли комбо разрыва
         combo_fourious_attack_is_available = temp.combo_fourious_attack_is_available;     //Доступно ли комбо яростной атаки
         combo_master_stun_is_available = temp.combo_master_stun_is_available;         //Доступно ли комбо мастерское оглушение

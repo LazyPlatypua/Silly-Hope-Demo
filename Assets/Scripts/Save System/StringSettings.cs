@@ -18,7 +18,7 @@ public struct StringSettings
     public string confirmation_no;      //"Нет"
     public string exit;                 //"Выход"
 
-    public string tap_to_continue;      //"Нажмите, чтобы продолжить"
+    public string best_score;
     public string equipment;            //"Снаряжение"
     public string shop;                 //"Лавка"
     public string content;              //"Содержание"
@@ -120,6 +120,11 @@ public struct StringSettings
     public string chapter_10;   //"Глава 10"
     public string chapter_11;   //"Глава 11"
 
+    public string pop_up_now_available;
+    public string pop_up_size_update;
+    public string pop_up_new_combo;
+    public string pop_up_ok;
+
     public string tutorial_points;
     public string tutorial_combometer;
     public string tutorial_attack;
@@ -150,7 +155,7 @@ public struct StringSettings
                 confirmation_yes = "Yes";
                 confirmation_no = "No";
 
-                tap_to_continue = "Tap to Continue";
+                best_score = "Best score:";
                 equipment = "Equipment";
                 shop = "Shop";
                 content = "Content";
@@ -251,12 +256,17 @@ public struct StringSettings
                 chapter_10 = "Chapter 10: Throne";
                 chapter_11 = "Chapter 11: Necromancer";
 
-                tutorial_points = "Чтобы поймать точку, нажмите на область экрана, по которой точка следует, когда она окажется на белой линии. Поймайте три точки.";
-                tutorial_combometer = "Когда вы поймаете 4 точки, оружие Себастьяна загорится пламенем, а он сам будет готов нанести удар. Соберите четыре точки зеленого и красного цветов.";
-                tutorial_attack = "Когда вы накопите достаточно точек одного цвета, вы сможете атаковать. Передвиньте портрет противника влево, чтобы нанести обычную (зеленую) атаку, и вправо, чтобы нанести тяжелую (красную) атаку.";
-                tutorial_enemy = "Каждая пропущенная вами точка идет в счет врага. Противник незамедлительно вас атакует, если соберет достаточно точек. Победите его до того, как он убъет Себастьяна.";
-                tutorial_exit = "За убийство противников вы получаете чернила, которые сможете потратить на приобретение оружия или следующих Глав Silly Hope.\n Теперь нажмите кнопку Назад (back) на вашем устройстве, чтобы открыть меню и выйти.";
-                tutorial_end = "Начать приключение";
+                pop_up_now_available = "Now available";
+                pop_up_size_update = "Attack storage increased to";
+                pop_up_new_combo = ". New combos are available.";
+                pop_up_ok = "OK";
+
+                tutorial_points = "To catch a point, touch screen on the area that the point follows when point is on the white line. Catch three points.";
+                tutorial_combometer = "When you catch four dots of the same color, Sebastian's weapon will light up in flames, and he will be ready to strike. Light knight's sword.";
+                tutorial_attack = "When the weapon is on fire, knight can attack. Move your opponent's portrait to the left for a normal (green) attack, and to the right for a heavy (red) attack.";
+                tutorial_enemy = "Every point you missed counts towards the enemy. The enemy will immediately attack knight if they collect enough points. Defeat him before he kills Sebastian.";
+                tutorial_exit = "You get ink, for killing opponents, which you can spend on purchasing weapons or the next Chapters of Silly Hope.\nNow press the back button on your device to open the menu and exit.";
+                tutorial_end = "Start the adventure";
                 break;
 
             case 1: //Русский
@@ -276,7 +286,7 @@ public struct StringSettings
                 confirmation_yes = "Да";
                 confirmation_no = "Нет";
 
-                tap_to_continue = "Нажмите, чтобы продолжить";
+                best_score = "Лучший счет:";
                 equipment = "Снаряжение";
                 shop = "Лавка";
                 content = "Содержание";
@@ -377,9 +387,14 @@ public struct StringSettings
                 chapter_10 = "Глава 10: Трон";
                 chapter_11 = "Глава 11: Некромант";
 
+                pop_up_now_available = "Теперь доступно:";
+                pop_up_size_update = "Лимит запасаемых атак увеличен до";
+                pop_up_new_combo = ". Новые комбинации атак доступны.";
+                pop_up_ok = "Хорошо";
+
                 tutorial_points = "Чтобы поймать точку, нажмите на область экрана, по которой точка следует, когда она окажется на белой линии. Поймайте три точки.";
-                tutorial_combometer = "Когда вы поймаете 4 точки, оружие Себастьяна загорится пламенем, а он сам будет готов нанести удар. Соберите четыре точки зеленого и красного цветов.";
-                tutorial_attack = "Когда вы накопите достаточно точек одного цвета, вы сможете атаковать. Передвиньте портрет противника влево, чтобы нанести обычную (зеленую) атаку, и вправо, чтобы нанести тяжелую (красную) атаку.";
+                tutorial_combometer = "Когда вы поймаете 4 точки одного цвета, оружие Себастьяна загорится пламенем, а он сам будет готов нанести удар. Зажгите меч Себастьяна.";
+                tutorial_attack = "Когда оружие загорится, вы сможете атаковать. Передвиньте портрет противника влево, чтобы нанести обычную (зеленую) атаку, и вправо, чтобы нанести тяжелую (красную) атаку.";
                 tutorial_enemy = "Каждая пропущенная вами точка идет в счет врага. Противник незамедлительно вас атакует, если соберет достаточно точек. Победите его до того, как он убъет Себастьяна.";
                 tutorial_exit = "За убийство противников вы получаете чернила, которые сможете потратить на приобретение оружия или следующих Глав Silly Hope.\n Теперь нажмите кнопку Назад (back) на вашем устройстве, чтобы открыть меню и выйти.";
                 tutorial_end = "Начать приключение";
@@ -402,7 +417,7 @@ public struct StringSettings
                 confirmation_yes = "Ja";
                 confirmation_no = "Nein";
 
-                tap_to_continue = "Klicke um Fortzufahren";
+                best_score = "Bestes Ergebnis:";
                 equipment = "Ausrüstung";
                 shop = "Verkaufsstelle";
                 content = "Inhalt";
@@ -503,12 +518,17 @@ public struct StringSettings
                 chapter_10 = "Kapitel 10: Thron";
                 chapter_11 = "Kapitel 11: Nekromant";
 
-                tutorial_points = "Чтобы поймать точку, нажмите на область экрана, по которой точка следует, когда она окажется на белой линии. Поймайте три точки.";
-                tutorial_combometer = "Когда вы поймаете 4 точки, оружие Себастьяна загорится пламенем, а он сам будет готов нанести удар. Соберите четыре точки зеленого и красного цветов.";
-                tutorial_attack = "Когда вы накопите достаточно точек одного цвета, вы сможете атаковать. Передвиньте портрет противника влево, чтобы нанести обычную (зеленую) атаку, и вправо, чтобы нанести тяжелую (красную) атаку.";
-                tutorial_enemy = "Каждая пропущенная вами точка идет в счет врага. Противник незамедлительно вас атакует, если соберет достаточно точек. Победите его до того, как он убъет Себастьяна.";
-                tutorial_exit = "За убийство противников вы получаете чернила, которые сможете потратить на приобретение оружия или следующих Глав Silly Hope.\n Теперь нажмите кнопку Назад (back) на вашем устройстве, чтобы открыть меню и выйти.";
-                tutorial_end = "Начать приключение"; 
+                pop_up_now_available = "Jetzt verfügbar";
+                pop_up_size_update = "Angriffsspeicherlimit auf";
+                pop_up_new_combo = "erhöht. Neue Combos sind verfügbar.";
+                pop_up_ok = "OK";
+
+                tutorial_points = "Um einen Punkt zu erfassen, berühren Sie den Bereich, dem der Punkt folgt, wenn sich der Punkt auf der weißen Linie befindet. Fange drei Punkte.";
+                tutorial_combometer = "Wenn Sie vier Punkte derselben Farbe fangen, leuchtet Sebastians Waffe in Flammen auf und er ist bereit zu schlagen. Leichtes Ritterschwert.";
+                tutorial_attack = "Wenn die Waffe in Flammen steht, kann der Ritter angreifen. Bewegen Sie das Porträt Ihres Gegners für einen normalen (grünen) Angriff nach links und für einen schweren (roten) Angriff nach rechts.";
+                tutorial_enemy = "Jeder Punkt, den Sie verpasst haben, zählt für den Feind. Der Feind greift den Ritter sofort an, wenn er genügend Punkte gesammelt hat. Besiege ihn, bevor er Sebastian tötet.";
+                tutorial_exit = "Sie erhalten Tinte, um Gegner zu töten, die Sie für den Kauf von Waffen oder die nächsten Kapitel der dummen Hoffnung ausgeben können.\nDrücken Sie nun die Zurück-Taste auf Ihrem Gerät, um das Menü zu öffnen und zu beenden.";
+                tutorial_end = "Starte das Abenteuer";
                 break;
 
             case 3: //Французский
@@ -528,7 +548,7 @@ public struct StringSettings
                 confirmation_yes = "Oui";
                 confirmation_no = "Non";
 
-                tap_to_continue = "Cliquez pour continuer";
+                best_score = "Meilleur score:";
                 equipment = "Équipement";
                 shop = "Magasin";
                 content = "Сontenu";
@@ -629,12 +649,17 @@ public struct StringSettings
                 chapter_10 = "Chapitre 10: Trône";
                 chapter_11 = "Chapitre 11: Nécromancien";
 
-                tutorial_points = "Чтобы поймать точку, нажмите на область экрана, по которой точка следует, когда она окажется на белой линии. Поймайте три точки.";
-                tutorial_combometer = "Когда вы поймаете 4 точки, оружие Себастьяна загорится пламенем, а он сам будет готов нанести удар. Соберите четыре точки зеленого и красного цветов.";
-                tutorial_attack = "Когда вы накопите достаточно точек одного цвета, вы сможете атаковать. Передвиньте портрет противника влево, чтобы нанести обычную (зеленую) атаку, и вправо, чтобы нанести тяжелую (красную) атаку.";
-                tutorial_enemy = "Каждая пропущенная вами точка идет в счет врага. Противник незамедлительно вас атакует, если соберет достаточно точек. Победите его до того, как он убъет Себастьяна.";
-                tutorial_exit = "За убийство противников вы получаете чернила, которые сможете потратить на приобретение оружия или следующих Глав Silly Hope.\n Теперь нажмите кнопку Назад (back) на вашем устройстве, чтобы открыть меню и выйти.";
-                tutorial_end = "Начать приключение";
+                pop_up_now_available = "Maintenant disponible";
+                pop_up_size_update = "Limite de stockage d'attaque augmentée à";
+                pop_up_new_combo = ". De nouveaux combos sont disponibles.";
+                pop_up_ok = "D'accord";
+
+                tutorial_points = "Pour capturer un point, touchez l'écran sur la zone que le point suit lorsque le point est sur la ligne blanche. Attrapez trois points.";
+                tutorial_combometer = "Lorsque vous attrapez quatre points de la même couleur, l'arme de Sebastian s'allumera en flammes et il sera prêt à frapper. Épée de chevalier léger.";
+                tutorial_attack = "Lorsque l'arme est en feu, le chevalier peut attaquer. Déplacez le portrait de votre adversaire vers la gauche pour une attaque normale (verte) et vers la droite pour une attaque lourde (rouge).";
+                tutorial_enemy = "Chaque point que vous avez manqué compte pour l'ennemi. L'ennemi attaquera immédiatement le chevalier s'il accumule suffisamment de points. Battez-le avant qu'il ne tue Sebastian.";
+                tutorial_exit = "Vous obtenez de l'encre, pour tuer des adversaires, que vous pouvez dépenser pour acheter des armes ou les prochains chapitres de Silly Hope.\nAppuyez maintenant sur le bouton Retour de votre appareil pour ouvrir le menu et quitter.";
+                tutorial_end = "Commencez l'aventure";
                 break;
 
             case 4: //Эсперанто
@@ -654,7 +679,7 @@ public struct StringSettings
                 confirmation_yes = "Jes";
                 confirmation_no = "Ne";
 
-                tap_to_continue = "Alklaku por daŭrigi";
+                best_score = "Plej bona poentaro:";
                 equipment = "Ekipo";
                 shop = "Vendejo";
                 content = "Enhavtabelo";
@@ -755,12 +780,17 @@ public struct StringSettings
                 chapter_10 = "Ĉapitro 10: Trono";
                 chapter_11 = "Ĉapitro 11: Nekromancisto";
 
-                tutorial_points = "Чтобы поймать точку, нажмите на область экрана, по которой точка следует, когда она окажется на белой линии. Поймайте три точки.";
-                tutorial_combometer = "Когда вы поймаете 4 точки, оружие Себастьяна загорится пламенем, а он сам будет готов нанести удар. Соберите четыре точки зеленого и красного цветов.";
-                tutorial_attack = "Когда вы накопите достаточно точек одного цвета, вы сможете атаковать. Передвиньте портрет противника влево, чтобы нанести обычную (зеленую) атаку, и вправо, чтобы нанести тяжелую (красную) атаку.";
-                tutorial_enemy = "Каждая пропущенная вами точка идет в счет врага. Противник незамедлительно вас атакует, если соберет достаточно точек. Победите его до того, как он убъет Себастьяна.";
-                tutorial_exit = "За убийство противников вы получаете чернила, которые сможете потратить на приобретение оружия или следующих Глав Silly Hope.\n Теперь нажмите кнопку Назад (back) на вашем устройстве, чтобы открыть меню и выйти.";
-                tutorial_end = "Начать приключение";
+                pop_up_now_available = "Nun havebla";
+                pop_up_size_update = "Ataka limo de stokado pliiĝis al";
+                pop_up_new_combo = ". Novaj komboj disponeblas";
+                pop_up_ok = "Bone";
+
+                tutorial_points = "Por kapti punkton, tuŝekrano sur la areo, kiun la punkto sekvas, kiam punkto estas sur la blanka linio. Kaptu tri poentojn.";
+                tutorial_combometer = "Kiam vi kaptos kvar samkolorajn punktojn, la armilo de Sebastiano ekbrulos, kaj li estos preta bati. Malpeza kavalira glavo.";
+                tutorial_attack = "Kiam la armilo ekbrulas, kavaliro povas ataki. Movu la portreton de via kontraŭulo maldekstren por normala (verda) atako, kaj dekstren por peza (ruĝa) atako.";
+                tutorial_enemy = "Ĉiu punkto, kiun vi maltrafis, kalkulas al la malamiko. La malamiko tuj atakos kavaliron se ili kolektos sufiĉe da punktoj. Venku lin antaŭ ol li mortigos Sebastian.";
+                tutorial_exit = "Vi ricevas inkon por mortigi kontraŭulojn, kiun vi povas elspezi por aĉeti armilojn aŭ la sekvajn Ĉapitrojn de Stulta Espero.\nNun premu la butonon Reen de via aparato por malfermi la menuon kaj eliri.";
+                tutorial_end = "Komencu la aventuron";
                 break;
 
             default:

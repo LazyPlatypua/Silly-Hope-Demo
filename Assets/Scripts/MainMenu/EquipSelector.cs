@@ -123,8 +123,7 @@ public class EquipSelector : MonoBehaviour
         equipment[(int)EquipType.Talisman3].sprites = talismanSprites;
     }
 
-    public void SetStrings(int language) {
-        StringSettings temp = new StringSettings(language);
+    public void SetStrings(StringSettings temp) {
 
         buttonTextSelect = temp.select;
         buttonTextPurchase = temp.purchase;
@@ -149,7 +148,7 @@ public class EquipSelector : MonoBehaviour
         };
 
         equipment[(int)EquipType.Weapon].cost = new int[8] {
-            0,20,30,40,50,60,70,80
+            0,10,20,40,200,300,500,100
         };
 
         equipment[(int)EquipType.Weapon].purchased = new bool[8];
@@ -168,7 +167,7 @@ public class EquipSelector : MonoBehaviour
         };
 
         equipment[(int)EquipType.Armor].cost = new int[4] {
-            0,20,30,40
+            0,50,200,500
         };
 
         equipment[(int)EquipType.Armor].purchased = new bool[4];
@@ -192,7 +191,7 @@ public class EquipSelector : MonoBehaviour
         equipment[(int)EquipType.Talisman1].purchased[0] = true;
 
         equipment[(int)EquipType.Talisman1].cost = new int[8] {
-            0,20,30,40,50,60,70,80
+            0,50,50,70,500,50,50,3000
         };
 
         equipment[(int)EquipType.Talisman2].names = equipment[(int)EquipType.Talisman1].names;
@@ -236,15 +235,19 @@ public class EquipSelector : MonoBehaviour
         }
     }
 
-    public void onAction() {
+    public bool onAction() {
         if (equipment[(int)currentEquipType].IsPurchased()) {
             equipment[(int)currentEquipType].UpdateCurrentText();
+            return true;
         } else {
             if (equipment[(int)currentEquipType].GetCost() <= inkwells.getInkCount()) {
                 inkwells.InkUpdate(inkwells.getInkCount() - equipment[(int)currentEquipType].GetCost());
                 equipment[(int)currentEquipType].Purchase();
+                actionButtonText.text = buttonTextSelect;
+                costText.text = "";
             }
         }
+        return false;
     }
 
     public byte GetCurrentEquipId(EquipType type) {

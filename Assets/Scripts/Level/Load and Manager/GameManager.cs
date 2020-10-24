@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
     public int score = 0;                       //Текущие очки игрока
     public AudioSource audio_source;            //Источник звука
     public float audio_lenght;                  //длинна аудио дорожки
-    public float musicDelay;
+    public float musicDelay = 3;
     public AudioClip audio_clip;                //музыкальная дорожка уровня
 
     [Header("UI")]
@@ -63,7 +63,6 @@ public class GameManager : MonoBehaviour
             progress_bar = progress.GetComponent<ProgressBar>();    //получить ссылку на скрипт слайдер прогресса
         }
 
-        musicDelay = PointSpawner.musicDelay;
         audio_source = gameObject.GetComponent<AudioSource>(); //получить audioSource
 
         isLoaded = true;
