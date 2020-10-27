@@ -26,6 +26,30 @@ TextureImporter:
   - first:
       213: -3048890087363925875
     second: "\u041C\u0435\u0447\u0438_7"
+  - first:
+      213: 4942803658038726614
+    second: Longsword
+  - first:
+      213: 2502179063286778365
+    second: broken-sword
+  - first:
+      213: -6779290568513393858
+    second: falchion
+  - first:
+      213: 943680124963508912
+    second: two-handed-sword
+  - first:
+      213: 3311805387594076385
+    second: saint-peters-sword
+  - first:
+      213: -2629470278661546997
+    second: dagger
+  - first:
+      213: 5143059047844927304
+    second: russian-sword
+  - first:
+      213: 992475680141493749
+    second: spear
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -134,90 +158,6 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "\u041C\u0435\u0447\u0438_0"
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 779
-        width: 691
-        height: 2380
-      alignment: 9
-      pivot: {x: 0.61837095, y: 0.16663705}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ad1a27cd98effa043845997555a961b9
-      internalID: -8113364130640849281
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: "\u041C\u0435\u0447\u0438_1"
-      rect:
-        serializedVersion: 2
-        x: 735
-        y: 938
-        width: 546
-        height: 1034
-      alignment: 9
-      pivot: {x: 0.72554815, y: 0.23401032}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5f0421dfbf4279a4d9c54aecc9effc52
-      internalID: -2382071796957218342
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: "\u041C\u0435\u0447\u0438_2"
-      rect:
-        serializedVersion: 2
-        x: 1314
-        y: 921
-        width: 382
-        height: 1605
-      alignment: 9
-      pivot: {x: 0.7041744, y: 0.16495205}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5f5a0469b276c7e45a015dd55fddb177
-      internalID: -707100632927539370
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: "\u041C\u0435\u0447\u0438_3"
-      rect:
-        serializedVersion: 2
-        x: 1698
-        y: 298
-        width: 1260
-        height: 3485
-      alignment: 9
-      pivot: {x: 0.5778993, y: 0.2535612}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 86d4845fbebb37248b730c545be17469
-      internalID: 3307140169365935450
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: "\u041C\u0435\u0447\u0438_4"
       rect:
         serializedVersion: 2
@@ -297,6 +237,174 @@ TextureImporter:
       bones: []
       spriteID: 025228a94a6e9a941b18beb1999655a8
       internalID: -3048890087363925875
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Longsword
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 160
+        width: 134
+        height: 468
+      alignment: 9
+      pivot: {x: 0.7034355, y: 0.16840604}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0d50492838c143643add6ba6b602490d
+      internalID: 4942803658038726614
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: broken-sword
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 189
+        width: 109
+        height: 180
+      alignment: 9
+      pivot: {x: 0.75526935, y: 0.2519933}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b7a846823a461d844b468f929e2104b2
+      internalID: 2502179063286778365
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: falchion
+      rect:
+        serializedVersion: 2
+        x: 265
+        y: 186
+        width: 72
+        height: 294
+      alignment: 9
+      pivot: {x: 0.8164308, y: 0.18566972}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f8288abcf3935004b960701e0e3f7aad
+      internalID: -6779290568513393858
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: two-handed-sword
+      rect:
+        serializedVersion: 2
+        x: 341
+        y: 71
+        width: 249
+        height: 681
+      alignment: 9
+      pivot: {x: 0.6069086, y: 0.25302264}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 32f51b0a24a51954e9ce66037da5e57b
+      internalID: 943680124963508912
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: saint-peters-sword
+      rect:
+        serializedVersion: 2
+        x: 612
+        y: 200
+        width: 85
+        height: 318
+      alignment: 9
+      pivot: {x: 0.8179996, y: 0.14686954}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d176067a934a27d48a5541b5006625a9
+      internalID: 3311805387594076385
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dagger
+      rect:
+        serializedVersion: 2
+        x: 763
+        y: 200
+        width: 62
+        height: 250
+      alignment: 9
+      pivot: {x: 0.91862535, y: 0.17880878}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cbe7b65536f82724b9f2fe5ce0675947
+      internalID: -2629470278661546997
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: russian-sword
+      rect:
+        serializedVersion: 2
+        x: 884
+        y: 165
+        width: 61
+        height: 368
+      alignment: 9
+      pivot: {x: 0.9359631, y: 0.19909137}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb731c7578576404885f04c99b14777f
+      internalID: 5143059047844927304
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spear
+      rect:
+        serializedVersion: 2
+        x: 1012
+        y: 6
+        width: 62
+        height: 895
+      alignment: 9
+      pivot: {x: 0.93404853, y: 0.22637859}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 476fcc029f809874cb339e5fb6a8c2d6
+      internalID: 992475680141493749
       vertices: []
       indices: 
       edges: []
