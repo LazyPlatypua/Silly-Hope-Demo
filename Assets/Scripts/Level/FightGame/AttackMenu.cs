@@ -10,6 +10,7 @@ public class AttackMenu : MonoBehaviour
     public KnightBehaviour knight_behaviour;    //сылка на поведение рыцаря
     public KnightCombometer knight_combometer;  //ссылка на комбометр игрока
     public GameManager game_manager;            //ссылка на игровой менеджер
+    public CameraManager cameraManager;         //ссылка на поведение камеры
     public List<Transform> active_lines_transforms;       //трансформы активных линий
     public List<SliderScript> sliders;          //скрипты слайдеров
     public List<Sprite> enemy_sprites;          //портреты врагов
@@ -57,6 +58,10 @@ public class AttackMenu : MonoBehaviour
         if (game_manager == null)
         {
             game_manager = GameManager.instance;
+        }
+        if (cameraManager == null)
+        {
+            cameraManager = CameraManager.instance;
         }
         if(knight_behaviour == null)
         {
@@ -754,6 +759,7 @@ public class AttackMenu : MonoBehaviour
     public bool DealDamageToEnemy(Attack attack)
     {
         int damage;
+        cameraManager.JiggleRight();
         if (attack.attack_name == "daze")
         {
             damage = daze_time;
@@ -769,6 +775,7 @@ public class AttackMenu : MonoBehaviour
     //Нанести урон рыцарю
     public void DealDamageToKnight(string name, int damage)
     {
+        cameraManager.JiggleLeft();
         knight_behaviour.TakeDamage(damage, name);
     }
 
