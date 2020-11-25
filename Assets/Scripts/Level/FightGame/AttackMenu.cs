@@ -28,8 +28,6 @@ public class AttackMenu : MonoBehaviour
     public float start_running_delta;           //разница между позицией врага и той, с которой он начинает дфижение
 
     [Header("Combometer Settings")]
-    public Animator combometer_animator_green;      //Ссылка на аниматор рыцаря
-    public Animator combometer_animator_red;        //Ссылка на аниматор рыцаря
     public int combometer_needed_points;            //количество точек, необходимых для заполнения одной ячейки комбометра
     public int combometer_size;                     //количество ячеек комбометра
 
@@ -231,25 +229,25 @@ public class AttackMenu : MonoBehaviour
             {
                 switch (enemy.name)
                 {
-                    case "peasant_type_1(Clone)":
+                    case "peasant_red(Clone)":
                         index = enemy.GetComponent<EnemyBehaviour>().spawn_point_index;
                         ChangeImage(index, 0);
                         activatedSliders[index] = true;
                         break;
 
-                    case "peasant_type_2(Clone)":
+                    case "peasant_green(Clone)":
                         index = enemy.GetComponent<EnemyBehaviour>().spawn_point_index;
                         ChangeImage(index, 1);
                         activatedSliders[index] = true;
                         break;
 
-                    case "peasant_type_3(Clone)":
+                    case "peasant_blue(Clone)":
                         index = enemy.GetComponent<EnemyBehaviour>().spawn_point_index;
                         ChangeImage(index, 2);
                         activatedSliders[index] = true;
                         break;
 
-                    case "peasant_type_4(Clone)":
+                    case "peasant_yellow(Clone)":
                         index = enemy.GetComponent<EnemyBehaviour>().spawn_point_index;
                         ChangeImage(index, 3);
                         activatedSliders[index] = true;
@@ -472,21 +470,23 @@ public class AttackMenu : MonoBehaviour
 
                 if (!green_combometer_cells_number[0])
                 {
-                    PlayFirstCombometerAnimation(1);
                     green_combometer_cells_number[0] = true;
+
+                    foreach (SliderScript slider in sliders)
+                    {
+                        slider.SliderImageAppear();
+                    }
                     return;
                 }
 
                 if (!green_combometer_cells_number[1])
                 {
-                    PlaySecondCombometerAnimation(1);
                     green_combometer_cells_number[1] = true;
                     return;
                 }
 
                 if (!green_combometer_cells_number[2])
                 {
-                    PlayThirdCombometerAnimation(1);
                     green_combometer_cells_number[2] = true;
                     return;
                 }
@@ -527,21 +527,23 @@ public class AttackMenu : MonoBehaviour
 
                 if (!red_combometer_cells_number[0])
                 {
-                    PlayFirstCombometerAnimation(3);
                     red_combometer_cells_number[0] = true;
+
+                    foreach (SliderScript slider in sliders)
+                    {
+                        slider.SliderImageAppear();
+                    }
                     return;
                 }
 
                 if (!red_combometer_cells_number[1])
                 {
-                    PlaySecondCombometerAnimation(3);
                     red_combometer_cells_number[1] = true;
                     return;
                 }
 
                 if (!red_combometer_cells_number[2])
                 {
-                    PlayThirdCombometerAnimation(3);
                     red_combometer_cells_number[2] = true;
                     return;
                 }
@@ -583,14 +585,12 @@ public class AttackMenu : MonoBehaviour
                 if (green_combometer_cells_number.Length == 3 && green_combometer_cells_number[combometer_size - 1])
                 {
                     green_combometer_cells_number[combometer_size - 1] = false;
-                    RePlayThirdCombometerAnimation(1);
                     return true;
                 }
 
                 if (green_combometer_cells_number.Length == 2 && green_combometer_cells_number[1])
                 {
                     green_combometer_cells_number[1] = false;
-                    RePlaySecondCombometerAnimation(1);
                     return true;
                 }
 
@@ -598,7 +598,6 @@ public class AttackMenu : MonoBehaviour
                 {
                     Debug.Log("RemoveFromCombometer(" + point + ");");
                     green_combometer_cells_number[0] = false;
-                    RePlayFirstCombometerAnimation(1);
                     knight_combometer.ActivateLight(true, false);
                     break;
                 }
@@ -612,21 +611,18 @@ public class AttackMenu : MonoBehaviour
 
                 if (red_combometer_cells_number.Length == 3 && red_combometer_cells_number[combometer_size - 1])
                 {
-                    RePlayThirdCombometerAnimation(3);
                     red_combometer_cells_number[combometer_size - 1] = false;
                     return true;
                 }
 
                 if (red_combometer_cells_number.Length == 2 && red_combometer_cells_number[1])
                 {
-                    RePlaySecondCombometerAnimation(3);
                     red_combometer_cells_number[1] = false;
                     return true;
                 }
 
                 if (red_combometer_cells_number[0])
                 {
-                    RePlayFirstCombometerAnimation(3);
                     red_combometer_cells_number[0] = false;
                     knight_combometer.ActivateLight(false, false);
                     return true;
@@ -637,122 +633,14 @@ public class AttackMenu : MonoBehaviour
                 Debug.Log("RemoveFromCombometer(" + point + "): Undefined point!");
                 break;
         }
+        if (red_combometer_cells_number[0] && green_combometer_cells_number[0])
+        {
+            foreach (SliderScript slider in sliders)
+            {
+                slider.SliderImageDisappear();
+            }
+        }
         return false;
-    }
-
-    //Проиграть анимацию первого комбометра
-    private void PlayFirstCombometerAnimation(int point)
-    {
-        switch (point)
-        {
-            case 1:
-                combometer_animator_green.SetBool("start_green", true);
-                break;
-
-            case 3:
-                combometer_animator_red.SetBool("start_red", true);
-                break;
-
-            default:
-                Debug.Log("PlayFirstCombometerAnimation(" + point + "): Undefined point!");
-                break;
-        }
-    }
-
-    //Проиграть анимацию первого комбометра назад
-    private void RePlayFirstCombometerAnimation(int point)
-    {
-        Debug.Log("RePlayFirstCombometerAnimation(" + point + ");");
-        switch (point)
-        {
-            case 1:
-                combometer_animator_green.SetBool("start_green", false);
-                break;
-
-            case 3:
-                combometer_animator_red.SetBool("start_red", false);
-                break;
-
-            default:
-                Debug.Log("RePlayFirstCombometerAnimation(" + point + "): Undefined point!");
-                break;
-        }
-    }
-
-    //Проиграть анимацию второго комбометра
-    private void PlaySecondCombometerAnimation(int point)
-    {
-        switch (point)
-        {
-            case 1:
-                combometer_animator_green.SetBool("continue_green", true);
-                break;
-
-            case 3:
-                combometer_animator_red.SetBool("continue_red", true);
-                break;
-
-            default:
-                Debug.Log("PlaySecondCombometerAnimation(" + point + "): Undefined point!");
-                break;
-        }
-    }
-
-    //Проиграть анимацию первого комбометра назад
-    private void RePlaySecondCombometerAnimation(int point)
-    {
-        switch (point)
-        {
-            case 1:
-                combometer_animator_green.SetBool("continue_green", false);
-                break;
-
-            case 3:
-                combometer_animator_red.SetBool("continue_red", false);
-                break;
-
-            default:
-                Debug.Log("RePlaySecondCombometerAnimation(" + point + "): Undefined point!");
-                break;
-        }
-    }
-
-    //Проиграть анимацию третьего комбометра
-    private void PlayThirdCombometerAnimation(int point)
-    {
-        switch (point)
-        {
-            case 1:
-                combometer_animator_green.SetBool("finish_green", true);
-                break;
-
-            case 3:
-                combometer_animator_red.SetBool("finish_red", true);
-                break;
-
-            default:
-                Debug.Log("PlayThirdCombometerAnimation(" + point + "): Undefined point!");
-                break;
-        }
-    }
-
-    //Проиграть анимацию третьего комбометра назад
-    private void RePlayThirdCombometerAnimation(int point)
-    {
-        switch (point)
-        {
-            case 1:
-                combometer_animator_green.SetBool("finish_green", false);
-                break;
-
-            case 3:
-                combometer_animator_red.SetBool("finish_red", false);
-                break;
-
-            default:
-                Debug.Log("RePlayThirdCombometerAnimation(" + point + "): Undefined point!");
-                break;
-        }
     }
 
     //Наснести урон врагу

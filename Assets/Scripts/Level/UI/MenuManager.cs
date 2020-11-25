@@ -17,7 +17,7 @@ public class MenuManager : MonoBehaviour
     public Animator mainLineAnimator;
     public GameManager game_manager;        //Ссылка на игровой менджер
     public GameObject line_buttons;         //Ссылка на кнопки линий
-    public GameObject sliders;              //Ссылка слайдеры
+    public SliderScript[] sliders;              //Ссылка слайдеры
 
     [Header("Positions")]   //Позиции меню
     public Vector3 start_position;  //Стартовая позиция
@@ -276,21 +276,30 @@ public class MenuManager : MonoBehaviour
         menu_animator.SetBool("DeactivateMenu", false);
         if(game_is_paused)
         {
-           rhythmManager.TriggerPoints(true);
+            rhythmManager.TriggerPoints(true);
             pointSpawner._audioSource.Play();
             if (pointSpawner.levelIsStarted)
             {
                 game_manager.audio_source.Play();
             }
             line_buttons.SetActive(true);
-            sliders.SetActive(true);
+            if (SliderScript.showed)
+            {
+                foreach (SliderScript slider in sliders)
+                {
+                    slider.SliderImageAppear();
+                }
+            }
             game_is_paused = false;
         }
         else
         {
             game_is_paused = true;
             line_buttons.SetActive(false);
-            sliders.SetActive(false);
+            foreach (SliderScript slider in sliders)
+            {
+                slider.SliderImageDisappear();
+            }
         }
     }
 
