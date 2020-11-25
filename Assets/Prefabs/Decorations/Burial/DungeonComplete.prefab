@@ -124,13 +124,7 @@ MonoBehaviour:
   spawnDecorations: {fileID: 6822583228250508510}
   postProcessing: {fileID: 8730251819978511162}
   locationEffects: {fileID: 0}
-  random_decorations:
-  - {fileID: 3269522866447485095, guid: a27d698c1918d43428d5efc4e50a2d70, type: 3}
-  - {fileID: 5474077862066941947, guid: 94b65a58edb9f2946b0f6e871e5549ab, type: 3}
-  - {fileID: 6752955079536685663, guid: 274743f019ae3de42be5c331108508a6, type: 3}
-  - {fileID: 6316289523793674995, guid: 718b3d873bcb5664d9c7879f631f1e3c, type: 3}
-  - {fileID: 7483797837107218625, guid: 2847ad65d24322046b4898103201e7f9, type: 3}
-  - {fileID: 546025324198199082, guid: a3f4bac5f2fe621439f0f7c77ef1cdba, type: 3}
+  random_decorations: []
 --- !u!1 &4784291430980852830
 GameObject:
   m_ObjectHideFlags: 0

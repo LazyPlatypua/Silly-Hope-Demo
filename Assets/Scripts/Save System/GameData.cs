@@ -1,4 +1,6 @@
 ﻿//Класс отвечает за необходимые для переноса в следующую сцену/игровую сессию данные
+
+using Level.Load_and_Manager;
 using UnityEngine;
 
 [System.Serializable]
@@ -253,13 +255,13 @@ public class GameData
         music_volume = temp.music_volume;  //Громкость музыки
         sfx_volume = temp.sfx_volume;    //Громкость звуковых эффектов
 
-        short score = System.Convert.ToInt16(level_loader.game_manager.score);
-        if (score > level_loader.best_score)
+        short score = System.Convert.ToInt16(level_loader.gameManager.score);
+        if (score > level_loader.bestScore)
         {
             best_score = score;  //Лучший результат
         }
         
-        black_ink = level_loader.black_ink;   //Количество чернил
+        black_ink = level_loader.blackInk;   //Количество чернил
     }
 
     public GameData(MainMenuManager main_menu)

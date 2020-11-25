@@ -5,6 +5,7 @@ using UnityEngine.EventSystems;
 
 public class SliderScript : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
 {
+    static public bool showed = false;
     public Slider m_slider;         //ссылка на слайдер
     public Image handle_image;      //ссылка на изображение рукоятки
     public Image background_image;  //ссылка на фон слайдера
@@ -35,6 +36,18 @@ public class SliderScript : MonoBehaviour, IDragHandler, IBeginDragHandler, IEnd
             Debug.LogError("Components are missing!");
         }
         ToDefault();
+    }
+
+    public void SliderImageAppear()
+    {
+        animator.SetBool("activate", true);
+        showed = true;
+    }
+
+    public void SliderImageDisappear()
+    {
+        animator.SetBool("activate", false);
+        showed = false;
     }
 
     //Функция срабатывает при начале перемещения слайдера
@@ -90,6 +103,7 @@ public class SliderScript : MonoBehaviour, IDragHandler, IBeginDragHandler, IEnd
         {
             a = 0f
         };
+        SliderImageDisappear();
     }
 
     //Функция меняет изображение рукоятки

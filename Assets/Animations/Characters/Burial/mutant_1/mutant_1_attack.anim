@@ -4057,7 +4057,7 @@ AnimationClip:
   m_Events:
   - time: 0.5
     functionName: PointOfAttack
-    data: simple_attack
+    data: attack
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0

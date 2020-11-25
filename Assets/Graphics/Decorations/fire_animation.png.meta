@@ -121,16 +121,16 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 1000
-        height: 1032
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 100
+        height: 103
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6ed29ab60aecd2d44b6d3220d0f81991
+      spriteID: f8a75b63f625c4d47b6d44eb1bb6992c
       internalID: 8314308955538630803
       vertices: []
       indices: 
@@ -140,18 +140,18 @@ TextureImporter:
       name: fire_animation_1
       rect:
         serializedVersion: 2
-        x: 1000
+        x: 100
         y: 0
-        width: 1000
-        height: 1032
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 100
+        height: 103
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2bdbdc84d5b51f74a989fd0f16d277ec
+      spriteID: 67360bbfb0ba6474aa9ff6a609c9003f
       internalID: 996638998543384504
       vertices: []
       indices: 
@@ -161,18 +161,18 @@ TextureImporter:
       name: fire_animation_2
       rect:
         serializedVersion: 2
-        x: 2000
+        x: 200
         y: 0
-        width: 1000
-        height: 1032
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 100
+        height: 103
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e3a46d914ac3870468a2e053b691983d
+      spriteID: 8efcb3844effe7547992f56cf8a0d835
       internalID: 2056924120469444468
       vertices: []
       indices: 
@@ -182,18 +182,18 @@ TextureImporter:
       name: fire_animation_3
       rect:
         serializedVersion: 2
-        x: 3000
+        x: 300
         y: 0
-        width: 1000
-        height: 1032
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 100
+        height: 103
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 26ee748d85c271442b1e6140839d5775
+      spriteID: e7aee9961af6a06478f64af10d5d4741
       internalID: -3499930701754477147
       vertices: []
       indices: 
@@ -203,18 +203,18 @@ TextureImporter:
       name: fire_animation_4
       rect:
         serializedVersion: 2
-        x: 4000
+        x: 400
         y: 0
-        width: 1000
-        height: 1032
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 100
+        height: 103
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0db28aaaac7154643a78863ac79024ef
+      spriteID: a7e693d1ab7cf0147aa55f4b2d6a2211
       internalID: 8466061075529824551
       vertices: []
       indices: 
@@ -224,18 +224,18 @@ TextureImporter:
       name: fire_animation_5
       rect:
         serializedVersion: 2
-        x: 5000
+        x: 500
         y: 0
-        width: 1000
-        height: 1032
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 100
+        height: 103
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f114fda4dcfe28f4ca35b76a4b97d9fd
+      spriteID: fdd0573778c41d44cb45739d0e3994b9
       internalID: 689483009432355683
       vertices: []
       indices: 
