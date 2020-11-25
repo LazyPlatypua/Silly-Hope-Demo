@@ -238,7 +238,7 @@ namespace Level.Load_and_Manager
 
                 default:
                 {
-                    Debug.LogError("LevelLoader.LoadDecorations(): cutscene is not recognised");
+                    Debug.LogError($"LevelLoader.LoadDecorations(): cutscene is not recognised");
                     break;
                 }
             }
