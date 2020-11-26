@@ -1,33 +1,29 @@
-﻿using System.Collections.Generic;
+﻿//Класс отвечает за менеджмент декорации
+using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
 
-public class DecorationsScript : MonoBehaviour
+namespace Level.Decoration
 {
-    public SpawnDecorations spawnDecorations;
-    public GameObject postProcessing;
-    public GameObject locationEffects;
-
-    public List<GameObject>random_decorations;  //Префабы рандомноустанавливающихся декораций 
-
-    private void Start()
+    [RequireComponent(typeof(SpawnDecorations))]
+    public class DecorationsScript : MonoBehaviour
     {
-        if (spawnDecorations == null)
-        {
-            spawnDecorations = SpawnDecorations.instance;
-        }
-    }
+        [NotNull] public SpawnDecorations spawnDecorations;    // Ссылка на спавнер декорации
+        [NotNull] public GameObject postProcessing;    // Ссылка на игровой объект пост-процессинга
+        [NotNull] public GameObject locationEffects;    //Ссылка на игровой объект эффекта локации
 
-    public void SetUpGraphics(bool enable)
-    {
-        if(postProcessing != null) 
-            postProcessing.SetActive(!enable);
+        public List<Sprite> randomDecorations;  //Префабы рандомноустанавливающихся декораций 
 
-        if (locationEffects != null) 
-            locationEffects.SetActive(!enable);
+        // Функция включает эффекты сцены, если передана ложь и наоборот
+        public void SetUpGraphics(bool isLow)
+        { 
+            postProcessing.SetActive(!isLow); 
+            locationEffects.SetActive(!isLow);
 
-        if (!enable)
-        {
-            spawnDecorations.Spawn(random_decorations);
+            if (!isLow)
+            {
+                spawnDecorations.Spawn(randomDecorations);
+            }
         }
     }
 }

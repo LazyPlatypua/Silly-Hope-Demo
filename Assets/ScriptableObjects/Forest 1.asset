@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e25b32e910e410f4a824ae51783f5daa, type: 3}
+  m_Name: Forest 1
+  m_EditorClassIdentifier: 
+  id: 5
+  decorationPrefab: {fileID: 4118371603091619614, guid: 49c4daf7aef9a2641afc0154d311fdba,
+    type: 3}
+  enemiesPrefabs:
+  - {fileID: 5846901002581680611, guid: 4cc2c75dd12ff1744a39263d0a0a728c, type: 3}
+  - {fileID: 5513130534347418711, guid: 62f0158bb74bd8c4bb339b5af4eba902, type: 3}
+  - {fileID: 6295009276504397155, guid: 34b2f4dc926c0f1468c95151e665b285, type: 3}
+  - {fileID: 5547601693351915363, guid: 09e9a075955751c41930fdc84b07834a, type: 3}
+  pointSprite: {fileID: 21300000, guid: 9dd5794eddebb2d4bb54e83f83f039c7, type: 3}
+  audioClip: {fileID: 8300000, guid: cc4fb7cc498a0594f9f68ca1de4b4185, type: 3}
+  timestamps:
+  - 0
+  beatTempos: 78000000

@@ -1,147 +1,155 @@
 //Класс отвечает за происходящие на уровне действия. Поддерживает функции SpawnPoint(), DeletePoint(), AddInk(int ink),
-using UnityEngine;  //Подключить классы unity
 
-public class GameManager : MonoBehaviour
+using System;
+using UnityEngine;
+using UnityEngine.Serialization;
+
+//Подключить классы unity
+
+namespace Level.Load_and_Manager
 {
-    public static GameManager instance;         //Ссылка на этот игровой менеджер
-
-    [Header("Rhytm Manager and Music Settings")]
-    public RhythmManager rhythm_manager;        //Ссылка на ритм менеджер
-    public float highest_screen_point = 4f;     //самая высокая точка экрана
-    public float music_volume = 0.5f;           //громкость музыки
-    public float point_acceleration = 1.0f;     //Ускорение точек
-    public bool score_for_point_modificator = false;    //Модификатор очков за точку
-    public int score = 0;                       //Текущие очки игрока
-    public AudioSource audio_source;            //Источник звука
-    public float audio_lenght;                  //длинна аудио дорожки
-    public float musicDelay = 3;
-    public AudioClip audio_clip;                //музыкальная дорожка уровня
-
-    [Header("UI")]
-    public int combometer_size;                 //размер комбометра
-    public int language_settings = 0;           //текщие языковые настройки
-    public int black_ink = 0;                   //Черные чернила
-    public int current_record;                  //текущий рекорд игрока
-    public AttackMenu attack_menu;              //Меню атак
-    public MenuManager pause_menu;               //Меню паузы
-    public GameObject progress;                 //прогресс игрока на уровне
-    public GameObject combometer;               //игровой объект комбометра
-    public GameObject knight_healthbar;         //Шкала здоровья рыцаря
-    private KnightHealth healthbar;             //полоска здоровья рыцаря
-    private ProgressBar progress_bar;           //дорожка прогресса
-    private bool isLoaded = false;              //загружен ли менеджер
-    private void Awake()
+    public class GameManager : MonoBehaviour
     {
-        instance = this;
-    }
+        public static GameManager instance;         //Ссылка на этот игровой менеджер
 
-    //Функция вызывается при окончании работы загрузчика уровней
-    public bool StartManager()
-    {
-        if (rhythm_manager == null)
+        [FormerlySerializedAs("rhythm_manager")] [Header("Rhytm Manager and Music Settings")]
+        public RhythmManager rhythmManager;        //Ссылка на ритм менеджер
+        [FormerlySerializedAs("highest_screen_point")] public float highestScreenPoint = 4f;     //самая высокая точка экрана
+        [FormerlySerializedAs("music_volume")] public float musicVolume = 0.5f;           //громкость музыки
+        [FormerlySerializedAs("point_acceleration")] public float pointAcceleration = 1.0f;     //Ускорение точек
+        [FormerlySerializedAs("score_for_point_modificator")] public bool scoreForPointModificator = false;    //Модификатор очков за точку
+        public int score = 0;                       //Текущие очки игрока
+        [FormerlySerializedAs("audio_source")] public AudioSource audioSource;            //Источник звука
+        [FormerlySerializedAs("audio_lenght")] public float audioLenght;                  //длинна аудио дорожки
+        [NonSerialized] public readonly float musicDelay = 3;
+        [FormerlySerializedAs("audio_clip")] public AudioClip audioClip;                //музыкальная дорожка уровня
+
+        [FormerlySerializedAs("combometer_size")] [Header("UI")]
+        public int combometerSize;                 //размер комбометра
+        [FormerlySerializedAs("language_settings")] public int languageSettings = 0;           //текщие языковые настройки
+        [FormerlySerializedAs("black_ink")] public int blackInk = 0;                   //Черные чернила
+        [FormerlySerializedAs("current_record")] public int currentRecord;                  //текущий рекорд игрока
+        [FormerlySerializedAs("attack_menu")] public AttackMenu attackMenu;              //Меню атак
+        [FormerlySerializedAs("pause_menu")] public MenuManager pauseMenu;               //Меню паузы
+        public GameObject progress;                 //прогресс игрока на уровне
+        public GameObject combometer;               //игровой объект комбометра
+        [FormerlySerializedAs("knight_healthbar")] public GameObject knightHealthbar;         //Шкала здоровья рыцаря
+        private KnightHealth healthbar;             //полоска здоровья рыцаря
+        private ProgressBar progress_bar;           //дорожка прогресса
+        private bool isLoaded = false;              //загружен ли менеджер
+        private void Awake()
         {
-            rhythm_manager = RhythmManager.instance;
+            instance = this;
         }
 
-        if (attack_menu == null)
+        //Функция вызывается при окончании работы загрузчика уровней
+        public bool StartManager()
         {
-            attack_menu = AttackMenu.instance;
+            if (rhythmManager == null)
+            {
+                rhythmManager = RhythmManager.instance;
+            }
+
+            if (attackMenu == null)
+            {
+                attackMenu = AttackMenu.instance;
+            }
+
+            if (pauseMenu == null)
+            {
+                pauseMenu = MenuManager.instance;
+            }
+
+            if (knightHealthbar != null)   //Если здороровье включено
+            {
+                healthbar = knightHealthbar.GetComponent<KnightHealth>();  //получить ссылку на скрипт здоровья
+            }
+
+            if (progress != null)   //если прогресс включен
+            {
+                progress_bar = progress.GetComponent<ProgressBar>();    //получить ссылку на скрипт слайдер прогресса
+            }
+
+            audioSource = gameObject.GetComponent<AudioSource>(); //получить audioSource
+
+            isLoaded = true;
+            return isLoaded;
         }
 
-        if (pause_menu == null)
+        //Функция обновляет снаряжение
+        public void UpdateEquipment(bool pointModifier, float volume)
         {
-            pause_menu = MenuManager.instance;
+            scoreForPointModificator = pointModifier;
+            audioSource.volume = volume;
         }
 
-        if (knight_healthbar != null)   //Если здороровье включено
+        //Функция вызывается в каждом кадре
+        void Update()
         {
-            healthbar = knight_healthbar.GetComponent<KnightHealth>();  //получить ссылку на скрипт здоровья
+            if (progress_bar != null)
+            {
+                progress_bar.UpdateProgressBar(audioSource.time / audioLenght * 100.0f);
+            }
         }
 
-        if (progress != null)   //если прогресс включен
+        //Функция добавляет чернила
+        public void AddInk(int ink)
         {
-            progress_bar = progress.GetComponent<ProgressBar>();    //получить ссылку на скрипт слайдер прогресса
+            blackInk += ink;
         }
 
-        audio_source = gameObject.GetComponent<AudioSource>(); //получить audioSource
-
-        isLoaded = true;
-        return isLoaded;
-    }
-
-    //Функция обновляет снаряжение
-    public void UpdateEquipment(bool point_modifier, float volume)
-    {
-        score_for_point_modificator = point_modifier;
-        audio_source.volume = volume;
-    }
-
-    //Функция вызывается в каждом кадре
-    void Update()
-    {
-        if (progress_bar != null)
+        //Функция добавляет очки
+        public bool AddScore(bool isRed)
         {
-            progress_bar.UpdateProgressBar(audio_source.time / audio_lenght * 100.0f);
+            attackMenu.AddToKnight(isRed);
+            if(!scoreForPointModificator)
+            {
+                score += rhythmManager.combo_count;
+            }
+            return true;
         }
-    }
 
-    //Функция добавляет чернила
-    public void AddInk(int ink)
-    {
-        black_ink += ink;
-    }
-
-    //Функция добавляет очки
-    public bool AddScore(bool is_red)
-    {
-        attack_menu.AddToKnight(is_red);
-        if(!score_for_point_modificator)
+        //Функция обновляет полоску здоровья
+        public void UpdateHealthBar(int health)
         {
-            score += rhythm_manager.combo_count;
+            if (healthbar != null)
+            {
+                healthbar.UpdateHealth(health);
+            }
         }
-        return true;
-    }
 
-    //Функция обновляет полоску здоровья
-    public void UpdateHealthBar(int health)
-    {
-        if (healthbar != null)
+        //Функция обновляет изображения
+        public bool EnemyDefeat()
         {
-            healthbar.UpdateHealth(health);
+            attackMenu.UpdateImages();
+            return true;
         }
-    }
 
-    //Функция обновляет изображения
-    public bool EnemyDefeat()
-    {
-        attack_menu.UpdateImages();
-        return true;
-    }
-
-    //Добавить очко врагу
-    public void AddToEnemy()
-    {
-        attack_menu.AddToEnemyCombometer();
-    }
-
-    //Включить поражение
-    public void Defeat()
-    {
-        pause_menu.ActivateDefeatScreen();
-    }
-
-    //Включить победу
-    public void Victory()
-    {
-        pause_menu.ActivateVictoryScreen();
-    }
-
-    //Функция срабатывает при сворачивании / развороте приложения
-    public void OnApplicationPause(bool pause)
-    {
-        if (pause)
+        //Добавить очко врагу
+        public void AddToEnemy()
         {
-            pause_menu.Pause();
+            attackMenu.AddToEnemyCombometer();
+        }
+
+        //Включить поражение
+        public void Defeat()
+        {
+            pauseMenu.ActivateDefeatScreen();
+        }
+
+        //Включить победу
+        public void Victory()
+        {
+            pauseMenu.ActivateVictoryScreen();
+        }
+
+        //Функция срабатывает при сворачивании / развороте приложения
+        public void OnApplicationPause(bool pause)
+        {
+            if (pause)
+            {
+                pauseMenu.Pause();
+            }
         }
     }
 }

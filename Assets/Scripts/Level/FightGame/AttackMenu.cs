@@ -1,6 +1,7 @@
 ﻿//Класс отвечает за меню атак, за комбометры врагов и рыцаря, за спавн врагов
 using System.Collections;
 using System.Collections.Generic;
+using Level.Load_and_Manager;
 using UnityEngine;
 
 public class AttackMenu : MonoBehaviour

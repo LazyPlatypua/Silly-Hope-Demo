@@ -1,6 +1,7 @@
 ﻿//Класс с настройками меню паузы уровня
 using System.Collections;           //Подключить базовые классы с#
-using System.Collections.Generic;   //Подключить списки
+using System.Collections.Generic;
+using Level.Load_and_Manager; //Подключить списки
 using UnityEngine;                  //Подключить классы unity
 using UnityEngine.UI;               //Подключить классы пользовательского интерфейса
 using TMPro;                        //подключить классы TextMeshPro (улучшенное отображение текстов на экране)
@@ -233,7 +234,7 @@ public class MenuManager : MonoBehaviour
             Debug.Log("UIManager.UpdateScore()");
 
             score_text.text = game_manager.score.ToString();
-            black_ink_text.text = game_manager.black_ink.ToString();
+            black_ink_text.text = game_manager.blackInk.ToString();
         }
     }
 
@@ -247,7 +248,7 @@ public class MenuManager : MonoBehaviour
             Time.timeScale = 0f;
 
             rhythmManager.TriggerPoints(false);
-            game_manager.audio_source.Pause();
+            game_manager.audioSource.Pause();
             pointSpawner._audioSource.Pause();
         }
 
@@ -280,7 +281,7 @@ public class MenuManager : MonoBehaviour
             pointSpawner._audioSource.Play();
             if (pointSpawner.levelIsStarted)
             {
-                game_manager.audio_source.Play();
+                game_manager.audioSource.Play();
             }
             line_buttons.SetActive(true);
             if (SliderScript.showed)
@@ -427,6 +428,6 @@ public class MenuManager : MonoBehaviour
             DataHolder.best_score = (short) game_manager.score;
         }
 
-        DataHolder.black_ink += (short) game_manager.black_ink;
+        DataHolder.black_ink += (short) game_manager.blackInk;
     }
 }

@@ -281,6 +281,7 @@ public class MainMenuManager : MonoBehaviour
         traitor_charm_is_purchased = game_data.traitor_charm_is_purchased;     //Талисман предателя приобретен
         
         byte size = DataHolder.combometer_size;
+        current_scene = DataHolder.current_scene;
         if (current_scene > 2)
         {
             size = 2;
@@ -322,7 +323,7 @@ public class MainMenuManager : MonoBehaviour
             black_ink = DataHolder.black_ink;
             best_score = DataHolder.best_score;
             DataHolder.from_level = false;
-            if(DataHolder.current_scene == 0)
+            if(current_scene == 0)
             {
                 is_prolog_completed = true;
             }

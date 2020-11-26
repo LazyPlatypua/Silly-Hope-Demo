@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e25b32e910e410f4a824ae51783f5daa, type: 3}
+  m_Name: Labs
+  m_EditorClassIdentifier: 
+  id: 9
+  decorationPrefab: {fileID: 8577110760001642309, guid: c038ab1008614524d9bc641388aea4b3,
+    type: 3}
+  enemiesPrefabs:
+  - {fileID: 275943309493245456, guid: 3288ec0a735943a4d90158e368b1361b, type: 3}
+  - {fileID: 728113756597615541, guid: d80552c7a800f3c489416aaea7a48112, type: 3}
+  pointSprite: {fileID: 21300000, guid: 9fbf644ed16e5b54cacad340e399f625, type: 3}
+  audioClip: {fileID: 8300000, guid: 5273e391b7fc7ba47bd9b90511aa8dc3, type: 3}
+  timestamps:
+  - 0
+  beatTempos: 6e000000

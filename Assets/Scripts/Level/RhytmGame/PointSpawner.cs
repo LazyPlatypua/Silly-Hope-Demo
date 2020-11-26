@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections;
+using Level.Load_and_Manager;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class PointSpawner : AudioAnalizer
 {
@@ -13,20 +15,21 @@ public class PointSpawner : AudioAnalizer
     public AttackMenu attackMenu;
     public GameObject pointPrefab;
 
-    public static int bpm = 120;
-    public float musicDelay;
+    public static int[] bpm;
+    public static float[] timeStamps;
+    public float musicDelay = 6;
     public static float audioLenght;
     public AudioClip musicClip;
-    public Sprite pointImage;
+    public Sprite pointSprite;
 
-    public float endLine = 6;
+    public float endLine = 5.3f;
 
     public float freqBand;
 
-    public float timeBetweenPoints = 1.5f;
+    public float timeBetweenPoints = 0.7f;
     public Vector3 spawnPosition;
 
-    public float treshhold;
+    public float threshold = 0.005f;
 
     public bool isWorking = false;
     public bool levelIsStarted = false;
@@ -38,43 +41,18 @@ public class PointSpawner : AudioAnalizer
         instance = this;
     }
 
-    public void StartPointSpawner(int beatsPerMinute, AudioClip clip, RhythmManager rhythm, GameManager game, Sprite image)
+    public void StartPointSpawner(LocationData locationData, RhythmManager rhythmManager, GameManager gameManager)
     {
         levelIsStarted = false;
-        pointImage = image;
-        bpm = beatsPerMinute;
-        musicClip = clip;
-        rhythmManager = rhythm;
-        gameManager = game;
-
-        if(rhythmManager ==null)
-        {
-            rhythmManager = RhythmManager.instance;
-        }
-
-        if(gameManager == null)
-        {
-            gameManager = GameManager.instance;
-        }
-
-        if(attackMenu == null)
-        {
-            attackMenu = AttackMenu.instance;
-        }
-
-        if (_audioSource == null)
-        {
-            _audioSource = gameObject.GetComponent<AudioSource>();
-        }
-
-        if (musicAudioSource == null)
-        {
-            musicAudioSource = gameManager.audio_source;
-        }
+        pointSprite = locationData.pointSprite;
+        bpm = locationData.beatTempos;
+        timeStamps = locationData.timestamps;
+        musicClip = locationData.audioClip;
+        
         musicDelay = gameManager.musicDelay;
-        PointBehaviour.beat_tempo = bpm;
+        PointBehaviour.beat_tempo = bpm[0];
         PointBehaviour.end_point = endLine;
-        audioLenght = clip.length;
+        audioLenght = musicClip.length;
 
         _audioSource.Stop();
         _audioSource.clip = musicClip;
@@ -86,6 +64,7 @@ public class PointSpawner : AudioAnalizer
         StartCoroutine(StartMusic());
     }
 
+    
     
     IEnumerator StartMusic()
     {
@@ -101,7 +80,7 @@ public class PointSpawner : AudioAnalizer
     {
         GetSpectrumAudioSource();
         MakeFrequencyBand();
-        if(canGenerate && freqBand > treshhold)
+        if(canGenerate && freqBand > threshold)
         {
             GeneratePoint();
         }
@@ -138,7 +117,7 @@ public class PointSpawner : AudioAnalizer
         newgo_pb.line = line;
         newgo_pb.rhythm_manager = this.rhythmManager;
         newgo_pb.game_manager = this.gameManager;
-        newgo_pb.sprite_renderer.sprite = pointImage;
+        newgo_pb.sprite_renderer.sprite = pointSprite;
         newgo_pb.SetRed(line >= 1);
         StartCoroutine(WaitToGenerateNewPoint());
     }

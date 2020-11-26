@@ -1,98 +1,87 @@
 ﻿//Класс создает случайно расположенные случайные декорации.
-using System.Collections;                       //Подключить базовые классы с#
-using System.Collections.Generic;               //Подключить списки
-using UnityEngine;                              //Подключить классы unity
 
-public class SpawnDecorations : MonoBehaviour
+using System;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Serialization;
+using Random = UnityEngine.Random;
+
+namespace Level.Decoration
 {
-    public static SpawnDecorations instance;
-    public Vector3[] points;                    //2 точки, образующие рамки, в которых будут созданы декорации
-    public Vector3[] additional_points;         //Дополнительные точки, отвечающие за номер отображения слоя декорации
-    [Range(0.1f, 1f)]
-    public float density;                       //Плотность спавна декораций
-    bool occupied = false;                      //Заполнена ли область декорациями
-
-    private readonly List<List<Vector3>> occupied_polygons = new List<List<Vector3>>();  //список занимаемых полигонов
-    private float t_density;                   //Величина, обратная плотности
-
-    private void Awake()
+    public class SpawnDecorations : MonoBehaviour
     {
-        instance = this;
-    }
+        public static SpawnDecorations instance;
 
-    //Функция создает декорации. Принимает список создаваемых декораций
-    public void Spawn(List<GameObject> decorations)
-    {
-        if (decorations.Count < 2)
-        {
-            return;
-        }
-        occupied_polygons.Clear();
+        public GameObject decorationPrefab;    // Префаб декорации
+        public Vector3[] points;    // 2 точки, образующие рамки, в которых будут созданы декорации.
+        public float[] additionalPoints;    // Дополнительные точки, отвечающие за номер отображения слоя декорации
+        public int[] layers;    // Глубина спрайтов
+        [FormerlySerializedAs("numberOfDecorations")] [Range(2, 100)]
+        public int decorationDensity;    // Плотность спавна декораций
+        public float randomMaxThreshold;    // Максимальное отклонение от сетки установки декорации
 
-        t_density = 1 / density;
-        for (int i = 0; i < 1000; i++)
+        //Функция создает декорации. Принимает список создаваемых декораций
+        public void Spawn(List<Sprite> decorations)
         {
-            Vector3 n_point = new Vector3(Random.Range(points[0].x, points[1].x), Random.Range(points[1].y, points[0].y), 0.0f);
-            occupied = false;
-            foreach (List<Vector3> occupied_points in occupied_polygons)
+            if (decorations.Count == 0)
+                throw new ArgumentException("Value cannot be an empty collection.", nameof(decorations));
+
+            float height = points[0].y;
+            float xSize = points[1].x - points[0].x;
+            float zSize = points[1].z - points[0].z;
+            float decorationSize = (xSize) * (zSize) / decorationDensity;
+            if (points[0].x >= points[1].x || points[0].z >= points[1].z)
             {
-                if (n_point.x <= occupied_points[0].x && n_point.y <= occupied_points[0].y && n_point.x >= occupied_points[1].x && n_point.y >= occupied_points[1].y)
+                throw new ArgumentException("First point must coordinates less, than second", nameof(decorations));
+            }
+            for (float xCoord = points[0].x; xCoord < points[1].x; xCoord += xSize / decorationDensity)
+            {
+                for (float zCoord = points[0].z; zCoord < points[1].z; zCoord += zSize / decorationDensity)
                 {
-                    occupied = true;
+                    Vector3 spawnPoint = new Vector3(xCoord, height, zCoord);
+                    spawnPoint.x += Random.Range(-randomMaxThreshold, randomMaxThreshold);
+                    spawnPoint.z += Random.Range(-randomMaxThreshold, randomMaxThreshold);
+                    Sprite decorationSprite = decorations[Random.Range(0, decorations.Count)];
+                    AddGameObject(spawnPoint, decorationSprite);
                 }
             }
-            if (!occupied)
+        }
+
+        // Функция добавляет одну декорацию в указанную точку
+        private void AddGameObject(Vector3 point, Sprite decorationSprite)
+        {
+            SpriteRenderer newSprite = Instantiate(decorationPrefab, point, Quaternion.identity)
+                .GetComponent<SpriteRenderer>();
+            newSprite.sprite = decorationSprite;
+
+            for (int i = 0; i < layers.Length; i++)
             {
-                AddToPolygons(n_point);
-
-                GameObject new_decoration = (GameObject) Instantiate(decorations[Random.Range(0, decorations.Count)], n_point, Quaternion.identity);
-                SpriteRenderer new_sprite = new_decoration.GetComponent<SpriteRenderer>();
-
-                float screen_y_axis_threshold = (Mathf.Abs(points[0].y) + Mathf.Abs(points[1].y))/ 3.0f;
-
-                Debug.Log(screen_y_axis_threshold);
-
-                if (n_point.y >= additional_points[0].y)
+                if (point.z >= additionalPoints[i])
                 {
-                    new_sprite.sortingOrder = 0;
+                    newSprite.sortingOrder = layers[i];
+                    break;
                 }
-                else
-                {
-                    if (n_point.y >= additional_points[1].y)
-                    {
-                        new_sprite.sortingOrder = 10;
-                    }
-                    else
-                    {
-                        if(n_point.y >= additional_points[2].y )
-                        {
-                            new_sprite.sortingOrder = 20;
-                        }
-                        else
-                        {
-                            new_sprite.sortingOrder = 30;
-                        }
-                    }
-                }
-                new_sprite.color = getRandomColor();
+            }
+
+            newSprite.color = GetRandomColor();
+        }
+
+        // Функция случайным образом устанавливает яркость цвета декорации
+        static Color GetRandomColor()
+        {
+            var newc = Random.Range(200, 255);
+            return new Color(newc, newc, newc);
+        }
+        
+        // Функция срабатывает при запуске сценария илм при изменении поля в инспекторе
+        private void OnValidate()
+        {
+            int pointsSize = additionalPoints.Length;
+            if (pointsSize != layers.Length)
+            {
+                Debug.LogWarning("SpawnDecorations: AdditionalPoints and layers must be same array size!");
+                Array.Resize(ref layers, pointsSize);
             }
         }
-    }
-
-    //добавляет точку с декорацией к занимаемым полигонам
-    private void AddToPolygons(Vector3 point)
-    {
-        List<Vector3> polygon = new List<Vector3>
-        {
-            new Vector3(point.x + t_density, point.y + t_density, 0.0f),
-            new Vector3(point.x - t_density, point.y - t_density, 0.0f)
-        };
-        occupied_polygons.Add(polygon);
-    }
-
-    Color getRandomColor()
-    {
-        int newc = UnityEngine.Random.Range(200, 255);
-        return new Color(newc, newc, newc);
     }
 }

@@ -287,100 +287,53 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bca61794c483bfb4ab80ef9c6348059a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  game_manager: {fileID: 1093084283}
-  pause_menu: {fileID: 1004277547}
-  rhythm_manager: {fileID: 228418103}
+  gameManager: {fileID: 1093084283}
+  pauseMenu: {fileID: 1004277547}
+  rhythmManager: {fileID: 228418103}
   pointSpawner: {fileID: 455996195}
-  attack_menu: {fileID: 616301474}
-  point_images:
-  - {fileID: 21300000, guid: 56e155e08cdb97f40a0cd002e8137373, type: 3}
-  - {fileID: 21300000, guid: 9dd5794eddebb2d4bb54e83f83f039c7, type: 3}
-  - {fileID: 21300000, guid: 5a469013e1f9e0e4fa4cb9ede437784d, type: 3}
-  - {fileID: 21300000, guid: d8d4bf0b21ba1e240a6c1c791eba4e01, type: 3}
-  - {fileID: 21300000, guid: 5a469013e1f9e0e4fa4cb9ede437784d, type: 3}
-  - {fileID: 21300000, guid: 83e99e7414065d54e92703d8b9fe0b9c, type: 3}
-  - {fileID: 21300000, guid: 4ebfe52f38d395f4d842ba6cc6e23c7b, type: 3}
-  knight_prefab: {fileID: 4734167138094323541, guid: 35773e9e26b8c5a41bf9268a68aa8b9d,
+  attackMenu: {fileID: 616301474}
+  knightPrefab: {fileID: 4734167138094323541, guid: 35773e9e26b8c5a41bf9268a68aa8b9d,
     type: 3}
-  enemies_location_1:
-  - {fileID: 5808400395058988383, guid: 85f36837036d9354890c8ab4055070ec, type: 3}
-  - {fileID: 5725529036979287879, guid: b7e520f3aa834c34094496912e67ac12, type: 3}
-  - {fileID: 5817043601937221188, guid: de9c9167a3c26634b850747a76bfd50d, type: 3}
-  - {fileID: 3042733979411291686, guid: 6f2bbd0bbd0db0049b9fd00e6b8beed4, type: 3}
-  enemies_location_2:
-  - {fileID: 5846901002581680611, guid: 4cc2c75dd12ff1744a39263d0a0a728c, type: 3}
-  - {fileID: 5513130534347418711, guid: 62f0158bb74bd8c4bb339b5af4eba902, type: 3}
-  - {fileID: 6295009276504397155, guid: 34b2f4dc926c0f1468c95151e665b285, type: 3}
-  - {fileID: 5547601693351915363, guid: 09e9a075955751c41930fdc84b07834a, type: 3}
-  enemies_location_3:
-  - {fileID: 499326954950571466, guid: faab95e8107365143af68e5a06154823, type: 3}
-  - {fileID: 2910761443267189016, guid: 6ad24822b55c8e24895977846d60528c, type: 3}
-  enemies_location_4:
-  - {fileID: 275943309493245456, guid: 3288ec0a735943a4d90158e368b1361b, type: 3}
-  - {fileID: 728113756597615541, guid: d80552c7a800f3c489416aaea7a48112, type: 3}
-  enemies_location_5:
-  - {fileID: 5808400395058988383, guid: 85f36837036d9354890c8ab4055070ec, type: 3}
-  - {fileID: 5725529036979287879, guid: b7e520f3aa834c34094496912e67ac12, type: 3}
-  - {fileID: 5817043601937221188, guid: de9c9167a3c26634b850747a76bfd50d, type: 3}
-  - {fileID: 3042733979411291686, guid: 6f2bbd0bbd0db0049b9fd00e6b8beed4, type: 3}
-  - {fileID: 5846901002581680611, guid: 4cc2c75dd12ff1744a39263d0a0a728c, type: 3}
-  - {fileID: 5513130534347418711, guid: 62f0158bb74bd8c4bb339b5af4eba902, type: 3}
-  - {fileID: 6295009276504397155, guid: 34b2f4dc926c0f1468c95151e665b285, type: 3}
-  - {fileID: 5547601693351915363, guid: 09e9a075955751c41930fdc84b07834a, type: 3}
-  - {fileID: 5095181546750958734, guid: 30fec4f3334db3a47891d238b3cf2767, type: 3}
-  - {fileID: 3549255808967450326, guid: 844f16aae3ab4224b8dbdbd41e2a139d, type: 3}
-  - {fileID: 3458435175005596405, guid: 5d8edf71b74a15e4a9aabf9b83e195c7, type: 3}
-  - {fileID: 499326954950571466, guid: faab95e8107365143af68e5a06154823, type: 3}
-  - {fileID: 2910761443267189016, guid: 6ad24822b55c8e24895977846d60528c, type: 3}
-  - {fileID: 275943309493245456, guid: 3288ec0a735943a4d90158e368b1361b, type: 3}
-  - {fileID: 728113756597615541, guid: d80552c7a800f3c489416aaea7a48112, type: 3}
-  enemies_memories:
-  - {fileID: 5095181546750958734, guid: 30fec4f3334db3a47891d238b3cf2767, type: 3}
-  - {fileID: 3549255808967450326, guid: 844f16aae3ab4224b8dbdbd41e2a139d, type: 3}
-  - {fileID: 3458435175005596405, guid: 5d8edf71b74a15e4a9aabf9b83e195c7, type: 3}
-  enemies_bosses:
-  - {fileID: 5405063775316272703, guid: 07718f5a060385e4dac0458021aeff2e, type: 3}
-  - {fileID: 7892976055205218671, guid: 7fc41d6e4b3afbb44a8b6eb50687090a, type: 3}
-  decorationsScript: {fileID: 0}
-  village_background: {fileID: 9051064963064472662, guid: 30c317f9624882a49aed6419b7396563,
-    type: 3}
-  forest_background: {fileID: 4118371603091619614, guid: 49c4daf7aef9a2641afc0154d311fdba,
-    type: 3}
-  dungeon_background: {fileID: 2767837736965441249, guid: f0b196b4fcf05d64689ec9332d1d7616,
-    type: 3}
-  labs_background: {fileID: 8577110760001642309, guid: c038ab1008614524d9bc641388aea4b3,
-    type: 3}
-  throne_background: {fileID: 2543441621143840733, guid: bd52cbe5bdf3f064491597a057ddc45d,
-    type: 3}
-  castle_background: {fileID: 5877403409919962770, guid: b08635a3c70d4fb4d95d9a3f5e6b2987,
-    type: 3}
+  locationDatas:
+  - {fileID: 11400000, guid: 7e570f44c2d5c944aab12f3cb38210b7, type: 2}
+  - {fileID: 11400000, guid: 02e96e496e0c1c2479a74c013173913b, type: 2}
+  - {fileID: 11400000, guid: 1be498a7750639c4d9abe87485870752, type: 2}
+  - {fileID: 11400000, guid: e481b09603bd52842b5281e0938c8d17, type: 2}
+  - {fileID: 11400000, guid: 390597d7c6be79c4488cd7a843b43711, type: 2}
+  - {fileID: 11400000, guid: 41578bd7c7a4bb4448f514188392ba9b, type: 2}
+  - {fileID: 11400000, guid: cd24ee99304ad9a479de34c272e03e06, type: 2}
+  - {fileID: 11400000, guid: f80d6fd0f83ee334d80e4e32ac27af44, type: 2}
+  - {fileID: 11400000, guid: b1abbdebd28a326458d957d374e08305, type: 2}
+  - {fileID: 11400000, guid: 08e01b46623518a45a82b5b24ec3a175, type: 2}
+  - {fileID: 11400000, guid: fc44b05ab9a249c4db87d24b9f6111a7, type: 2}
+  - {fileID: 11400000, guid: 511dbd45d6df0584b92fbda789fea113, type: 2}
   combometer: {fileID: 0}
-  knight_healthbar: {fileID: 1798473622}
+  knightHealthbar: {fileID: 1798473622}
   progress: {fileID: 694020943}
-  decorations_pos: {x: 0, y: 0.4, z: 0}
-  knight_position: {x: -3.7, y: -0.9, z: 0.1}
-  enemies_position:
+  decorationsPos: {x: 0, y: 0.4, z: 0}
+  knightPosition: {x: -3.7, y: -1.18, z: 0.1}
+  enemiesPosition:
   - {x: 2, y: -0.9, z: 0.4}
   - {x: 2.5, y: -0.9, z: 0.1}
   - {x: 3, y: -0.9, z: -0.2}
-  uni_menu_position: {x: 0, y: 1, z: 0}
-  point_spawn_point:
+  menuPosition: {x: 0, y: 1, z: 0}
+  pointSpawnPoint:
   - {x: 0.5, y: 3, z: 0}
   - {x: 1.5, y: 3, z: 0}
   - {x: 2.5, y: 3, z: 0}
   - {x: 3.5, y: 3, z: 0}
-  point_finish_point: {x: 0, y: -2.8, z: 0}
-  best_score: 0
-  black_ink: 0
+  pointFinishPoint: {x: 0, y: -2.8, z: 0}
+  bestScore: 0
+  blackInk: 0
   language: 0
-  master_volume: 0
-  music_volume: 0.5
-  sfx_volume: 0
-  sword_damage_modificator: 0
-  knight_health: 5
-  score_for_point_modifier: 0
-  combometer_needed_points: 3
-  audio_clips:
+  masterVolume: 0
+  musicVolume: 0.5
+  sfxVolume: 0
+  swordDamageModificator: 0
+  knightHealth: 5
+  scoreForPointModifier: 0
+  combometerNeededPoints: 3
+  audioClips:
   - {fileID: 8300000, guid: c1c6986fba1de794b9e30c409d5f1563, type: 3}
   - {fileID: 8300000, guid: c1c6986fba1de794b9e30c409d5f1563, type: 3}
   - {fileID: 8300000, guid: c1c6986fba1de794b9e30c409d5f1563, type: 3}
@@ -393,7 +346,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 5273e391b7fc7ba47bd9b90511aa8dc3, type: 3}
   - {fileID: 8300000, guid: c4a4c203e3f349640bc01b97a62dd725, type: 3}
   - {fileID: 8300000, guid: 58c42a80083d73448ae4f91bc9d71de8, type: 3}
-  string_settings:
+  stringSettings:
     headphones: 
     play_tutorial: 
     skip_tutorial: 
@@ -506,9 +459,9 @@ MonoBehaviour:
     tutorial_enemy: 
     tutorial_exit: 
     tutorial_end: 
-  language_settings: 1
-  travel_time: 2.5
-  start_running_delta: 3
+  languageSettings: 1
+  travelTime: 2.5
+  startRunningDelta: 3
   endline: -3
 --- !u!1 &74842563
 GameObject:
@@ -777,7 +730,6 @@ GameObject:
   - component: {fileID: 146268958}
   - component: {fileID: 146268957}
   - component: {fileID: 146268956}
-  - component: {fileID: 146268959}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -833,19 +785,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &146268959
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 146268955}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a05e1e890c86e3945aa9b20cbfb13b6e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  govno: {fileID: 0}
 --- !u!1 &209127876 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1776743388055475323, guid: e3e673ec6d70ba845888ac824633e205,
@@ -1062,8 +1001,6 @@ MonoBehaviour:
   button_images:
   - {fileID: 945369252}
   - {fileID: 1365181850}
-  - {fileID: 0}
-  - {fileID: 0}
   combo_text: {fileID: 1813162359}
   song_time: 0
   deactivation_time: 0.01
@@ -2301,7 +2238,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aea206af22cd6ad4a9d601a7a68d953b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _audioSource: {fileID: 0}
+  _audioSource: {fileID: 455996194}
   rhytmEvent: {fileID: 0}
   musicAudioSource: {fileID: 1093084282}
   rhythmManager: {fileID: 228418103}
@@ -2311,12 +2248,12 @@ MonoBehaviour:
     type: 3}
   musicDelay: 6
   musicClip: {fileID: 0}
-  pointImage: {fileID: 0}
+  pointSprite: {fileID: 0}
   endLine: 5.3
   freqBand: 0
   timeBetweenPoints: 0.7
   spawnPosition: {x: 0, y: -2, z: 0}
-  treshhold: 0.005
+  threshold: 0.005
   isWorking: 0
   levelIsStarted: 0
 --- !u!1 &485273958
@@ -5328,25 +5265,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9732952ea69d09c4ca539799df833e9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rhythm_manager: {fileID: 228418103}
-  highest_screen_point: 4
-  music_volume: 0.5
-  point_acceleration: 1
-  score_for_point_modificator: 0
+  rhythmManager: {fileID: 228418103}
+  highestScreenPoint: 4
+  musicVolume: 0.5
+  pointAcceleration: 1
+  scoreForPointModificator: 0
   score: 0
-  audio_source: {fileID: 1093084282}
-  audio_lenght: 0
-  musicDelay: 3
-  audio_clip: {fileID: 0}
-  combometer_size: 0
-  language_settings: 0
-  black_ink: 0
-  current_record: 0
-  attack_menu: {fileID: 616301474}
-  pause_menu: {fileID: 1004277547}
+  audioSource: {fileID: 1093084282}
+  audioLenght: 0
+  audioClip: {fileID: 0}
+  combometerSize: 0
+  languageSettings: 0
+  blackInk: 0
+  currentRecord: 0
+  attackMenu: {fileID: 616301474}
+  pauseMenu: {fileID: 1004277547}
   progress: {fileID: 694020943}
   combometer: {fileID: 0}
-  knight_healthbar: {fileID: 1798473622}
+  knightHealthbar: {fileID: 1798473622}
 --- !u!114 &1093084284
 MonoBehaviour:
   m_ObjectHideFlags: 0

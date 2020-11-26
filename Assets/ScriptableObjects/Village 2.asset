@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e25b32e910e410f4a824ae51783f5daa, type: 3}
+  m_Name: Village 2
+  m_EditorClassIdentifier: 
+  id: 2
+  decorationPrefab: {fileID: 9051064963064472662, guid: 30c317f9624882a49aed6419b7396563,
+    type: 3}
+  enemiesPrefabs:
+  - {fileID: 5808400395058988383, guid: 85f36837036d9354890c8ab4055070ec, type: 3}
+  - {fileID: 5725529036979287879, guid: b7e520f3aa834c34094496912e67ac12, type: 3}
+  - {fileID: 5817043601937221188, guid: de9c9167a3c26634b850747a76bfd50d, type: 3}
+  - {fileID: 3042733979411291686, guid: 6f2bbd0bbd0db0049b9fd00e6b8beed4, type: 3}
+  pointSprite: {fileID: 21300000, guid: 56e155e08cdb97f40a0cd002e8137373, type: 3}
+  audioClip: {fileID: 8300000, guid: c1c6986fba1de794b9e30c409d5f1563, type: 3}
+  timestamps:
+  - 0
+  beatTempos: 96000000

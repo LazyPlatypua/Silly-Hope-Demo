@@ -1,4 +1,6 @@
 ﻿//Класс отвечает за поведение точек
+
+using Level.Load_and_Manager;
 using TMPro;                        //Подключить TextMeshPro
 using UnityEngine;                  //Подключить классы unity
 using UnityEngine.UI;               //Подключить классы интерфейса unity
@@ -28,7 +30,7 @@ public class RhythmManager : MonoBehaviour
             game_manager = GameManager.instance;
         }
 
-        song_time = game_manager.audio_source.time;
+        song_time = game_manager.audioSource.time;
 
         ComboToZero();
         return true;

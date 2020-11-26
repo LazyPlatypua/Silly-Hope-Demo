@@ -1,5 +1,6 @@
 ﻿//Класс отвечает за поведение существа
 using System.Collections;
+using Level.Load_and_Manager;
 using UnityEngine;
 
 public class CreatureBehaviour : MonoBehaviour

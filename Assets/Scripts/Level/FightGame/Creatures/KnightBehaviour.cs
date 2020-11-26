@@ -1,5 +1,6 @@
 ﻿//Класс отвечает за поведение рыцаря
-using System.Collections.Generic;   //Подключить списки
+using System.Collections.Generic;
+using Level.Load_and_Manager; //Подключить списки
 using UnityEngine;                  //Подключить классы unity
 
 public class KnightBehaviour : CreatureBehaviour
