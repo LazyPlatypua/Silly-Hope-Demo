@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections;
 using Level.Load_and_Manager;
+using Save_System;
+using Save_System.Scriptable_Objects;
 using UnityEngine;
 using UnityEngine.Serialization;
 

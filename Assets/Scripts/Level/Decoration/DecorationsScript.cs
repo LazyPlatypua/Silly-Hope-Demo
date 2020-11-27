@@ -8,12 +8,11 @@ namespace Level.Decoration
     [RequireComponent(typeof(SpawnDecorations))]
     public class DecorationsScript : MonoBehaviour
     {
-        [NotNull] public SpawnDecorations spawnDecorations;    // Ссылка на спавнер декорации
-        [NotNull] public GameObject postProcessing;    // Ссылка на игровой объект пост-процессинга
-        [NotNull] public GameObject locationEffects;    //Ссылка на игровой объект эффекта локации
-
-        public List<Sprite> randomDecorations;  //Префабы рандомноустанавливающихся декораций 
-
+        [NotNull] [Tooltip("Link to Spawn Decorations Script.")] public SpawnDecorations spawnDecorations;
+        [NotNull] [Tooltip("Link to PP Volume gameObject.")] public GameObject postProcessing;
+        [NotNull] [Tooltip("Link to location particle effect gameObject.")] public GameObject locationEffects;
+        [NotNull] [Tooltip("List of decorations sprites for this location.")] public List<Sprite> randomDecorations;
+        
         // Функция включает эффекты сцены, если передана ложь и наоборот
         public void SetUpGraphics(bool isLow)
         { 

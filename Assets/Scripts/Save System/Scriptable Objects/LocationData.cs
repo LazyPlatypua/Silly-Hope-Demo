@@ -1,28 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
-using UnityEngine.Serialization;
 
-namespace Level.Load_and_Manager
+namespace Save_System.Scriptable_Objects
 {
     [CreateAssetMenu(fileName = "LocationData", menuName = "ScriptableObjects/LocationData", order = 1)]
-    public class LocationData : ScriptableObject
+    public class LocationData : ItemData
     {
-        [Tooltip("Location id")]
-        public short id = 0;
+        [Tooltip("Decoration prefab.")] [NotNull] public GameObject decorationPrefab;
+        [Tooltip("Enemies prefab.")] [NotNull] public List<GameObject> enemiesPrefabs;
+        [Tooltip("Point image.")] [NotNull] public Sprite pointSprite;
         
-        [Tooltip("Decoration prefab")]
-        public GameObject decorationPrefab;
-        [Tooltip("Enemies prefab")]
-        public List<GameObject> enemiesPrefabs;
-        [Tooltip("Point image")]
-        public Sprite pointSprite;
-        
-        [Tooltip("Music for location")]
-        public AudioClip audioClip;
-        [Tooltip("Timestamps for changing beat tempo")]
+        [Tooltip("Music for location.")] [NotNull] public AudioClip audioClip;
+        [Tooltip("Timestamps for changing beat tempo.")] [NotNull]
         public float[] timestamps;
-        [Tooltip("Beat tempos for timestamps")]
+        [Tooltip("Beat tempos for timestamps.")] [NotNull]
         public int[]  beatTempos;
         
         private void OnValidate()

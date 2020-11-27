@@ -12,12 +12,19 @@ namespace Level.Decoration
     {
         public static SpawnDecorations instance;
 
-        public GameObject decorationPrefab;    // Префаб декорации
-        public Vector3[] points;    // 2 точки, образующие рамки, в которых будут созданы декорации.
-        public float[] additionalPoints;    // Дополнительные точки, отвечающие за номер отображения слоя декорации
+        [Tooltip("General-purpose decoration prefab.")] public GameObject decorationPrefab;
+        [Tooltip(
+            "Two points that create a frame for the decoration spawn." +
+            "First must have x and z coordinates must have values less than that of the second point.")]
+        public Vector3[] points; 
+        [Tooltip("Additional points that define the coordinates z at which the depth of the sprites will be changed. " +
+                 "Must be from the nearest to the furthest")]
+        public float[] additionalPoints;   
+        [Tooltip("Depth of sprites in defined z coordinates. Must be from from highest to lowest.")]
         public int[] layers;    // Глубина спрайтов
-        [FormerlySerializedAs("numberOfDecorations")] [Range(2, 100)]
+        [Tooltip("Density of decorations. Higher values generate more decorations.")] [Range(1, 20)]
         public int decorationDensity;    // Плотность спавна декораций
+        [Tooltip("Max deviation from the spawn grid.")]
         public float randomMaxThreshold;    // Максимальное отклонение от сетки установки декорации
 
         //Функция создает декорации. Принимает список создаваемых декораций

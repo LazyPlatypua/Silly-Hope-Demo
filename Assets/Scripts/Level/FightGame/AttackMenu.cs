@@ -1,36 +1,39 @@
 ﻿//Класс отвечает за меню атак, за комбометры врагов и рыцаря, за спавн врагов
 using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using Level.Load_and_Manager;
+using Save_System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class AttackMenu : MonoBehaviour
 {
     [Header("Links")]
     public static AttackMenu instance;          //ссылка на это меню
-    public KnightBehaviour knight_behaviour;    //сылка на поведение рыцаря
-    public KnightCombometer knight_combometer;  //ссылка на комбометр игрока
-    public GameManager game_manager;            //ссылка на игровой менеджер
-    public CameraManager cameraManager;         //ссылка на поведение камеры
-    public List<Transform> active_lines_transforms;       //трансформы активных линий
-    public List<SliderScript> sliders;          //скрипты слайдеров
-    public List<Sprite> enemy_sprites;          //портреты врагов
-    public List<Sprite> attack_sprites;         //отображени атак
+    
+    public KnightBehaviour knightBehaviour;    //сылка на поведение рыцаря
+    public KnightCombometer knightCombometer;  //ссылка на комбометр игрока
+    public GameManager gameManager;            //ссылка на игровой менеджер
+    [NotNull]public CameraManager cameraManager;         //ссылка на поведение камеры
+    public List<Transform> activeLinesTransforms;       //трансформы активных линий
+    [NotNull] public List<SliderScript> sliders;          //скрипты слайдеров
+    public List<Sprite> enemyPortrets;          //портреты врагов
 
     [Header("Attack Settings")]
-    public int sword_damage;                    //урон меча
+    public int swordDamage;                    //урон меча
     public float timeToDisableHealth = 1f;
-    public int daze_time = 2;                   //Время оглушения врагов
-    public float time_of_latest_attack = 0f;    //Время последней атаки
+    public int dazeTime = 2;                   //Время оглушения врагов
+    public float timeOfLatestAttack = 0f;    //Время последней атаки
 
     [Header("Enemies Settings")]
     public List<GameObject> enemies;            //список врагов
-    public List<Vector3> enemies_position;      //Позиция врагов на экране
-    public float start_running_delta;           //разница между позицией врага и той, с которой он начинает дфижение
+    public List<Vector3> enemiesPosition;      //Позиция врагов на экране
+    public float startRunningDelta;           //разница между позицией врага и той, с которой он начинает дфижение
 
-    [Header("Combometer Settings")]
-    public int combometer_needed_points;            //количество точек, необходимых для заполнения одной ячейки комбометра
-    public int combometer_size;                     //количество ячеек комбометра
+    [FormerlySerializedAs("combometer_needed_points")] [Header("Combometer Settings")]
+    public int combometerNeededPoints;            //количество точек, необходимых для заполнения одной ячейки комбометра
+    [FormerlySerializedAs("combometer_size")] public int combometerSize;                     //количество ячеек комбометра
 
     private bool[] green_combometer_cell;           //Какие точки заполнены в одной ячейке зеленого комбметра
     private bool[] green_combometer_cells_number;   //Какие ячейки зеленого комбометра заполнены
@@ -38,13 +41,13 @@ public class AttackMenu : MonoBehaviour
     private bool[] red_combometer_cells_number;     //Какие ячейки красного комбометра заполнены
 
     [Header("Combos Settings")]
-    public bool combo_split_is_available;               //Доступно ли комбо разрыва
-    public bool combo_fourious_attack_is_available;     //Доступно ли комбо яростной атаки
-    public bool combo_master_stun_is_available;         //Доступно ли комбо мастерское оглушение
-    public bool combo_horizontal_cut_is_available;      //Доступно ли комбо горизонтального разреза
-    public bool combo_shuffle_is_available;             //Доступно ли комбо перетасовки
-    public bool combo_florescence_is_available;         //Доступно ли комбо расцвета
-    public bool combo_sublime_dissection_is_available;  //Доступно ли комбо грандиозного рассчения
+    public bool comboSplitIsAvailable;               //Доступно ли комбо разрыва
+    public bool comboFuriousAttackIsAvailable;     //Доступно ли комбо яростной атаки
+    public bool comboMasterStunIsAvailable;         //Доступно ли комбо мастерское оглушение
+    public bool comboHorizontalCutIsAvailable;      //Доступно ли комбо горизонтального разреза
+    public bool comboShuffleIsAvailable;             //Доступно ли комбо перетасовки
+    public bool comboFlorescenceIsAvailable;         //Доступно ли комбо расцвета
+    public bool comboSublimeDissectionIsAvailable;  //Доступно ли комбо грандиозного рассчения
 
     private void Awake()
     {
@@ -52,21 +55,23 @@ public class AttackMenu : MonoBehaviour
     }
 
     //Запустить меню атак
-    public bool StartAttackMenu (int sword_damage_modificator, int size, int needed_points, int sword) 
+    public bool StartAttackMenu (SwordData swordData, int size, int neededPoints) 
     {
-        if (game_manager == null)
+        if(knightBehaviour == null)
         {
-            game_manager = GameManager.instance;
+            knightBehaviour = KnightBehaviour.instance;
         }
-        if (cameraManager == null)
+
         {
-            cameraManager = CameraManager.instance;
+            swordDamage = swordData.damage;
+            Vector3 captureLinesSize =
+                new Vector3(activeLinesTransforms[1].localScale.x, activeLinesTransforms[1].localScale.y);
+            captureLinesSize *= swordData.captureZoneSize;
+            foreach (Transform line in activeLinesTransforms)
+            {
+                line.localScale = captureLinesSize;
+            }
         }
-        if(knight_behaviour == null)
-        {
-            knight_behaviour = KnightBehaviour.instance;
-        }
-        sword_damage += sword_damage_modificator;
 
         switch (enemies.Count)
         {
@@ -96,101 +101,55 @@ public class AttackMenu : MonoBehaviour
 
         UpdateImages();
 
-        combometer_size = size;
-        combometer_needed_points = needed_points;
+        combometerSize = size;
+        combometerNeededPoints = neededPoints;
 
-        green_combometer_cell = new bool[combometer_needed_points];
-        red_combometer_cell = new bool[combometer_needed_points];
-        for (int i = 0; i < combometer_needed_points; i++)
+        green_combometer_cell = new bool[combometerNeededPoints];
+        red_combometer_cell = new bool[combometerNeededPoints];
+        for (int i = 0; i < combometerNeededPoints; i++)
         {
             green_combometer_cell[i] = false;
             red_combometer_cell[i] = false;
         }
 
-        green_combometer_cells_number = new bool[combometer_size];
-        red_combometer_cells_number = new bool[combometer_size];
-        for (int i = 0; i < combometer_size; i++)
+        green_combometer_cells_number = new bool[combometerSize];
+        red_combometer_cells_number = new bool[combometerSize];
+        for (int i = 0; i < combometerSize; i++)
         {
             green_combometer_cells_number[i] = false;
             red_combometer_cells_number[i] = false;
         }
-
-        Vector3 s = new Vector3(active_lines_transforms[1].localScale.x, active_lines_transforms[1].localScale.y);
-        switch(sword)
-        {
-            case 0:
-                sword_damage += 1;
-                s.x *= 1;
-                break;
-
-            case 1:
-                sword_damage += 1;
-                s.x *= 0.3f;
-                break;
-
-            case 2:
-                sword_damage += 1;
-                s.x *= 0.5f;
-                break;
-
-            case 3:
-                sword_damage += 2;
-                s.x *= 1.3f;
-                break;
-
-            case 4:
-                sword_damage += 1;
-                s.x *= 0.6f;
-                break;
-
-            case 5:
-                sword_damage += 1;
-                s.x *= 0.4f;
-                break;
-
-            case 6:
-                sword_damage += 2;
-                s.x *= 1.5f;
-                break;
-
-            case 7:
-                s.y *= 0.6f;
-                break;
-        }
-        foreach(Transform line in active_lines_transforms)
-        {
-            line.localScale = s;
-        }
+        
        
-        if (combometer_size == 2)
+        if (combometerSize == 2)
         {
-            combo_split_is_available = true;               //Доступно ли комбо разрыва
-            combo_fourious_attack_is_available = true;     //Доступно ли комбо яростной атаки
-            combo_master_stun_is_available = true;         //Доступно ли комбо мастерское оглушение
-            combo_horizontal_cut_is_available = true;      //Доступно ли комбо горизонтального разреза
-            combo_shuffle_is_available = true;             //Доступно ли комбо перетасовки
-            combo_florescence_is_available = true;         //Доступно ли комбо расцвета
-            combo_sublime_dissection_is_available = true;  //Доступно ли комбо грандиозного рассчения
+            comboSplitIsAvailable = true;               //Доступно ли комбо разрыва
+            comboFuriousAttackIsAvailable = true;     //Доступно ли комбо яростной атаки
+            comboMasterStunIsAvailable = true;         //Доступно ли комбо мастерское оглушение
+            comboHorizontalCutIsAvailable = true;      //Доступно ли комбо горизонтального разреза
+            comboShuffleIsAvailable = true;             //Доступно ли комбо перетасовки
+            comboFlorescenceIsAvailable = true;         //Доступно ли комбо расцвета
+            comboSublimeDissectionIsAvailable = true;  //Доступно ли комбо грандиозного рассчения
         }
         else
         {
-            combo_split_is_available = true;               //Доступно ли комбо разрыва
-            combo_fourious_attack_is_available = true;     //Доступно ли комбо яростной атаки
-            combo_master_stun_is_available = true;         //Доступно ли комбо мастерское оглушение
-            combo_horizontal_cut_is_available = false;      //Доступно ли комбо горизонтального разреза
-            combo_shuffle_is_available = false;             //Доступно ли комбо перетасовки
-            combo_florescence_is_available = false;         //Доступно ли комбо расцвета
-            combo_sublime_dissection_is_available = false;  //Доступно ли комбо грандиозного рассчения
+            comboSplitIsAvailable = true;               //Доступно ли комбо разрыва
+            comboFuriousAttackIsAvailable = true;     //Доступно ли комбо яростной атаки
+            comboMasterStunIsAvailable = true;         //Доступно ли комбо мастерское оглушение
+            comboHorizontalCutIsAvailable = false;      //Доступно ли комбо горизонтального разреза
+            comboShuffleIsAvailable = false;             //Доступно ли комбо перетасовки
+            comboFlorescenceIsAvailable = false;         //Доступно ли комбо расцвета
+            comboSublimeDissectionIsAvailable = false;  //Доступно ли комбо грандиозного рассчения
         }
-        if (combometer_size == 3)
+        if (combometerSize == 3)
         {
-            combo_split_is_available = true;               //Доступно ли комбо разрыва
-            combo_fourious_attack_is_available = true;     //Доступно ли комбо яростной атаки
-            combo_master_stun_is_available = true;         //Доступно ли комбо мастерское оглушение
-            combo_horizontal_cut_is_available = true;      //Доступно ли комбо горизонтального разреза
-            combo_shuffle_is_available = true;             //Доступно ли комбо перетасовки
-            combo_florescence_is_available = true;         //Доступно ли комбо расцвета
-            combo_sublime_dissection_is_available = true;  //Доступно ли комбо грандиозного рассчения
+            comboSplitIsAvailable = true;               //Доступно ли комбо разрыва
+            comboFuriousAttackIsAvailable = true;     //Доступно ли комбо яростной атаки
+            comboMasterStunIsAvailable = true;         //Доступно ли комбо мастерское оглушение
+            comboHorizontalCutIsAvailable = true;      //Доступно ли комбо горизонтального разреза
+            comboShuffleIsAvailable = true;             //Доступно ли комбо перетасовки
+            comboFlorescenceIsAvailable = true;         //Доступно ли комбо расцвета
+            comboSublimeDissectionIsAvailable = true;  //Доступно ли комбо грандиозного рассчения
         }
         return true;
     }
@@ -198,25 +157,25 @@ public class AttackMenu : MonoBehaviour
     //Активировать врагов на позиции
     public void ActivateEnemies(int position)
     {
-        int death_count_temp = 100;
-        int index_temp = 0;
+        int deathCountTemp = 100;
+        int indexTemp = 0;
         bool changed = false;
         for (int i =0; i < enemies.Count; i ++)
         {
-            if (!enemies[i].activeSelf && enemies[i].GetComponent<EnemyBehaviour>().death_count <= death_count_temp)
+            if (!enemies[i].activeSelf && enemies[i].GetComponent<EnemyBehaviour>().death_count <= deathCountTemp)
             {
                 changed = true;
-                index_temp = i;
-                death_count_temp = enemies[index_temp].GetComponent<EnemyBehaviour>().death_count;
+                indexTemp = i;
+                deathCountTemp = enemies[indexTemp].GetComponent<EnemyBehaviour>().death_count;
             }
         }
         if(!changed)
         {
-            index_temp = position;
+            indexTemp = position;
         }
-        enemies[index_temp].GetComponent<EnemyBehaviour>().spawn_point_index = position;
-        enemies[index_temp].GetComponent<EnemyBehaviour>().position = enemies_position[position];
-        enemies[index_temp].GetComponent<EnemyBehaviour>().Activate();
+        enemies[indexTemp].GetComponent<EnemyBehaviour>().spawn_point_index = position;
+        enemies[indexTemp].GetComponent<EnemyBehaviour>().position = enemiesPosition[position];
+        enemies[indexTemp].GetComponent<EnemyBehaviour>().Activate();
     }
 
     //Обновить изображения врагов в меню
@@ -345,18 +304,18 @@ public class AttackMenu : MonoBehaviour
     }
 
     //Изменить изображения лиц в меню
-    private void ChangeImage(int slider_number, int enemy_index)
+    private void ChangeImage(int sliderNumber, int enemyIndex)
     {
-        sliders[slider_number].EditHandleImage(enemy_sprites[enemy_index]);
+        sliders[sliderNumber].EditHandleImage(enemyPortrets[enemyIndex]);
     }
 
     //Активировать слайдер
-    public void ActivateSlider(int slider_id, int attack)
+    public void ActivateSlider(int sliderID, int attack)
     {
         Attack current = new Attack();
         foreach (GameObject enemy in enemies)
         {
-            if (enemy.activeSelf && enemy.GetComponent<EnemyBehaviour>().spawn_point_index == slider_id)
+            if (enemy.activeSelf && enemy.GetComponent<EnemyBehaviour>().spawn_point_index == sliderID)
             {
                 current.receiver = enemy.name;
                 break;
@@ -372,12 +331,12 @@ public class AttackMenu : MonoBehaviour
                     {
                         RemoveFromCombometer(0);
                         current.attack_name = "attack";
-                        StartCoroutine(WaitToDeactivateEnemyHealth(slider_id));
+                        StartCoroutine(WaitToDeactivateEnemyHealth(sliderID));
                     }
                     else
                     {
                         Debug.Log("ActivateSlider");
-                        DeactivateEnemyHealth(slider_id);
+                        DeactivateEnemyHealth(sliderID);
                     }
                     break;
 
@@ -386,36 +345,36 @@ public class AttackMenu : MonoBehaviour
                     {
                         RemoveFromCombometer(1);
                         current.attack_name = "heavy_attack";
-                        StartCoroutine(WaitToDeactivateEnemyHealth(slider_id));
+                        StartCoroutine(WaitToDeactivateEnemyHealth(sliderID));
                     }
                     else
                     {
                         Debug.Log("ActivateSlider");
-                        DeactivateEnemyHealth(slider_id);
+                        DeactivateEnemyHealth(sliderID);
                     }
                     break;
 
                 default:
-                    DeactivateEnemyHealth(slider_id);
+                    DeactivateEnemyHealth(sliderID);
                     break;
             }
 
-            time_of_latest_attack = Time.time;
-            knight_behaviour.Attack(current);
+            timeOfLatestAttack = Time.time;
+            knightBehaviour.Attack(current);
 
             SetSliderToDefault();
         }
         else
         {
-            DeactivateEnemyHealth(slider_id);
+            DeactivateEnemyHealth(sliderID);
         }
     }
 
-    public void ActivateEnemyHealth(int slider_id)
+    public void ActivateEnemyHealth(int sliderID)
     {
         foreach (GameObject enemy in enemies)
         {
-            if (enemy.activeSelf && enemy.GetComponent<EnemyBehaviour>().spawn_point_index == slider_id)
+            if (enemy.activeSelf && enemy.GetComponent<EnemyBehaviour>().spawn_point_index == sliderID)
             {
                 enemy.GetComponent<EnemyBehaviour>().ShowHealth();
                 break;
@@ -429,11 +388,11 @@ public class AttackMenu : MonoBehaviour
         DeactivateEnemyHealth(id);
     }
 
-    public void DeactivateEnemyHealth(int slider_id)
+    public void DeactivateEnemyHealth(int sliderID)
     {
         foreach (GameObject enemy in enemies)
         {
-            if (enemy.activeSelf && enemy.GetComponent<EnemyBehaviour>().spawn_point_index == slider_id)
+            if (enemy.activeSelf && enemy.GetComponent<EnemyBehaviour>().spawn_point_index == sliderID)
             {
                 enemy.GetComponent<EnemyBehaviour>().HideHealth();
                 break;
@@ -451,20 +410,20 @@ public class AttackMenu : MonoBehaviour
     }
 
     //Добавить точку r комбометру рыцаря
-    public void AddToKnight(bool is_red)
+    public void AddToKnight(bool isRed)
     {
-        if(!is_red)
+        if(!isRed)
         {
-            if (green_combometer_cell[combometer_needed_points - 1] == true)
+            if (green_combometer_cell[combometerNeededPoints - 1] == true)
             {
-                for (int y = 0; y < combometer_needed_points; y++)
+                for (int y = 0; y < combometerNeededPoints; y++)
                 {
                     green_combometer_cell[y] = false;
                 }
-                knight_combometer.Deactivate(!is_red);
-                knight_combometer.ActivateLight(!is_red, true);
+                knightCombometer.Deactivate(!isRed);
+                knightCombometer.ActivateLight(!isRed, true);
 
-                if (green_combometer_cells_number[combometer_size - 1])
+                if (green_combometer_cells_number[combometerSize - 1])
                 {
                     return;
                 }
@@ -494,7 +453,7 @@ public class AttackMenu : MonoBehaviour
                 return;
             }
 
-            for (int i = 0; i < combometer_needed_points; i++)
+            for (int i = 0; i < combometerNeededPoints; i++)
             {
                 if (green_combometer_cell[i] == true)
                 {
@@ -503,7 +462,7 @@ public class AttackMenu : MonoBehaviour
                 else
                 {
                     green_combometer_cell[i] = true;
-                    knight_combometer.Add(!is_red);
+                    knightCombometer.Add(!isRed);
                     break;
                 }
             }
@@ -511,17 +470,17 @@ public class AttackMenu : MonoBehaviour
         }
         else
         {
-            if (red_combometer_cell[combometer_needed_points - 1] == true)
+            if (red_combometer_cell[combometerNeededPoints - 1] == true)
             { 
-                for (int y = 0; y < combometer_needed_points; y++)
+                for (int y = 0; y < combometerNeededPoints; y++)
                 {
                     red_combometer_cell[y] = false;
-                    knight_combometer.Deactivate(!is_red);
+                    knightCombometer.Deactivate(!isRed);
                 }
-                knight_combometer.Deactivate(!is_red);
-                knight_combometer.ActivateLight(!is_red, true);
+                knightCombometer.Deactivate(!isRed);
+                knightCombometer.ActivateLight(!isRed, true);
 
-                if (red_combometer_cells_number[combometer_size - 1])
+                if (red_combometer_cells_number[combometerSize - 1])
                 {
                     return;
                 }
@@ -551,7 +510,7 @@ public class AttackMenu : MonoBehaviour
                 return;
             }
 
-            for (int i = 0; i < combometer_needed_points; i++)
+            for (int i = 0; i < combometerNeededPoints; i++)
             {
                 if (red_combometer_cell[i] == true)
                 {
@@ -560,7 +519,7 @@ public class AttackMenu : MonoBehaviour
                 else
                 {
                     red_combometer_cell[i] = true;
-                    knight_combometer.Add(!is_red);
+                    knightCombometer.Add(!isRed);
                     break;
                 }
             }
@@ -583,9 +542,9 @@ public class AttackMenu : MonoBehaviour
                     return false;
                 }
 
-                if (green_combometer_cells_number.Length == 3 && green_combometer_cells_number[combometer_size - 1])
+                if (green_combometer_cells_number.Length == 3 && green_combometer_cells_number[combometerSize - 1])
                 {
-                    green_combometer_cells_number[combometer_size - 1] = false;
+                    green_combometer_cells_number[combometerSize - 1] = false;
                     return true;
                 }
 
@@ -599,7 +558,7 @@ public class AttackMenu : MonoBehaviour
                 {
                     Debug.Log("RemoveFromCombometer(" + point + ");");
                     green_combometer_cells_number[0] = false;
-                    knight_combometer.ActivateLight(true, false);
+                    knightCombometer.ActivateLight(true, false);
                     break;
                 }
                 return false;
@@ -610,9 +569,9 @@ public class AttackMenu : MonoBehaviour
                     return false;
                 }
 
-                if (red_combometer_cells_number.Length == 3 && red_combometer_cells_number[combometer_size - 1])
+                if (red_combometer_cells_number.Length == 3 && red_combometer_cells_number[combometerSize - 1])
                 {
-                    red_combometer_cells_number[combometer_size - 1] = false;
+                    red_combometer_cells_number[combometerSize - 1] = false;
                     return true;
                 }
 
@@ -625,7 +584,7 @@ public class AttackMenu : MonoBehaviour
                 if (red_combometer_cells_number[0])
                 {
                     red_combometer_cells_number[0] = false;
-                    knight_combometer.ActivateLight(false, false);
+                    knightCombometer.ActivateLight(false, false);
                     return true;
                 }
                 return false;
@@ -651,11 +610,11 @@ public class AttackMenu : MonoBehaviour
         cameraManager.JiggleRight();
         if (attack.attack_name == "daze")
         {
-            damage = daze_time;
+            damage = dazeTime;
         }
         else
         {
-            damage = sword_damage;
+            damage = swordDamage;
         }
         GameObject.Find(attack.receiver).GetComponent<EnemyBehaviour>().TakeDamage(damage, attack.attack_name);
         return true;
@@ -665,7 +624,7 @@ public class AttackMenu : MonoBehaviour
     public void DealDamageToKnight(string name, int damage)
     {
         cameraManager.JiggleLeft();
-        knight_behaviour.TakeDamage(damage, name);
+        knightBehaviour.TakeDamage(damage, name);
     }
 
     //Добавить точку к вражескому комбометру

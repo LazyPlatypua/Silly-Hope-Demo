@@ -2,7 +2,11 @@
 
 using System;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using Level.Decoration;
+using Save_System;
+using Save_System.Scriptable_Objects;
+using Temp;
 using UnityEngine;
 
 namespace Level.Load_and_Manager
@@ -10,19 +14,27 @@ namespace Level.Load_and_Manager
     public class LevelLoader : MonoBehaviour
     {
         public static LevelLoader instance; //Ссылка на этот загрузчик уровня
-
-        [Tooltip("Link to Game Manager"), Header("Scene Links")] 
+        [Header("Scene Links")] 
+        [Tooltip("Link to Game Manager.")] 
         public GameManager gameManager;
-        [Tooltip("Link to Pause Menu")] public MenuManager pauseMenu;
-        [Tooltip("Link to Rhythm Manager")] public RhythmManager rhythmManager;
-        [Tooltip("Link to Point Spawner")] public PointSpawner pointSpawner;
-        [Tooltip("Link to Attack Menu")] public AttackMenu attackMenu;
-        [Tooltip("Knight prefab")]public GameObject knightPrefab;
+        [Tooltip("Link to Pause Menu.")] [NotNull] 
+        public MenuManager pauseMenu;
+        [Tooltip("Link to Rhythm Manager.")] [NotNull]
+        public RhythmManager rhythmManager;
+        [Tooltip("Link to Point Spawner.")] [NotNull]
+        public PointSpawner pointSpawner;
+        [Tooltip("Link to Attack Menu.")] [NotNull] 
+        public AttackMenu attackMenu;
+        
         private KnightBehaviour knightBehaviour;    //Ссылка на поведение рыцаря
         private List<GameObject> enemies;   //Список загруженных врагов
 
-        [Header("Locations objects")] 
-        [Tooltip("Scriptable objects of locations")]public List<LocationData> locationDatas;
+        [Header("Data"), Tooltip("Scriptable objects of locations. " +
+                 "It must be 12 in total.")]
+        public List<LocationData> locationDatas;
+        [Tooltip("Scriptable objects of swords. " +
+                 "It must be 8 in total.")]
+        public List<SwordData> swordDatas;
 
         [Header("UI")]
         public GameObject combometer;           //Комбометр на сцене
@@ -30,12 +42,10 @@ namespace Level.Load_and_Manager
         public GameObject progress;             //Прогресс игрока на сцене
 
         [Header("Positions")]
+        [Tooltip("Knight prefab")]public GameObject knightPrefab;
         public Vector3 decorationsPos;
         public Vector3 knightPosition;         //Позиция  рыцаря на экране
         public List<Vector3> enemiesPosition;  //Позиция врагов на экране
-        public Vector3 menuPosition;       //Позиция меню паузы
-        public List<Vector3> pointSpawnPoint;     //Спавн точки для точек
-        public Vector3 pointFinishPoint;          //Конечная точка для точек
 
         [Header("Score and ink")]   //очки и чернила
         public short bestScore;    //Лучший результат
@@ -47,15 +57,9 @@ namespace Level.Load_and_Manager
         public float musicVolume;  //Громкость музыки
         public float sfxVolume;    //Громкость звуковых эффектов
 
-        [Header("Equipment Settings")]  //Настройки снаряжения
-        public int swordDamageModificator = 0;        //Модификатор урона меча
         public int knightHealth = 5;                   //Здоровье рыцаря
         public bool scoreForPointModifier; //Модификатор для получнения очков за точки
         public int combometerNeededPoints = 3;        //Количество точек, необходимых для заполнения одной ячейки комбометра
-        private readonly Figures figure = null;                   //Фигура для спецприема
-
-        //Музыка
-        public List<AudioClip> audioClips;                             //Список музыкальных дорожек уровней
 
         [Header("Settings")]    //Общие настройки
         public StringSettings stringSettings;                          //Файл с языками
@@ -64,42 +68,14 @@ namespace Level.Load_and_Manager
             languageSettings =
                 Language.LanguageType
                     .english; //Выбор языка. 0 - английский, 1 - русский, 2 - немецкий, 3 - французский, 4 - эсперанто. В будущем написать класс для него и добавить в класс сохранений
-        public float travelTime = 2.5f;                                //Время достижения точкой конца экрана
+
         public float startRunningDelta = 3.0f;                        //разница между позицией врага и той, с которой он начинает дфижение
-        public float endline = 6f;                                   //конец экрана
 
         //Функция срабатывает при включении сцены раньше Start
         private void Start()
         {
             instance = this;
-
-            // ReSharper disable once HeapView.ObjectAllocation.Evident
             enemies = new List<GameObject>();
-
-            if(gameManager == null)
-            {
-                gameManager = GameManager.instance;
-            }
-
-            if(pauseMenu == null)
-            {
-                pauseMenu = MenuManager.instance;
-            }
-
-            if (attackMenu == null)
-            {
-                attackMenu = AttackMenu.instance;
-            }
-
-            if(rhythmManager == null)
-            {
-                rhythmManager = RhythmManager.instance;
-            }
-
-            if (pointSpawner == null)
-            {
-                pointSpawner = PointSpawner.instance;
-            }
 
             if (DataHolder.current_scene >= 3)
             {
@@ -121,14 +97,9 @@ namespace Level.Load_and_Manager
             LoadLocation(locationDatas[DataHolder.current_scene]); 
             LoadUI();
                              
-            LoadEquipment(DataHolder.current_weapon, DataHolder.current_armor, DataHolder.current_charm_0, DataHolder.current_charm_1, DataHolder.current_charm_2); 
-            GameManagerSettings();    
-        
-            attackMenu.enemies_position = this.enemiesPosition;
-            attackMenu.start_running_delta = this.startRunningDelta;
-            attackMenu.StartAttackMenu(swordDamageModificator, DataHolder.combometer_size, combometerNeededPoints, DataHolder.current_weapon);   
-            attackMenu.knight_combometer = knightBehaviour.SetKnightBehaviour(knightHealth, DataHolder.current_weapon, DataHolder.combometer_size, figure); 
-        
+            LoadEquipment(swordDatas[DataHolder.current_weapon], DataHolder.current_armor, DataHolder.current_charm_0,
+                DataHolder.current_charm_1, DataHolder.current_charm_2);
+
             pauseMenu.game_is_paused = true;
             pauseMenu.SetPosition();
         }
@@ -198,78 +169,15 @@ namespace Level.Load_and_Manager
             gameManager.combometer = combometer;
 
             pauseMenu.DeactivateMenu();
-
-        }
-
-        //Настроить игровой менеджер
-        private void GameManagerSettings()
-        {
-            gameManager.currentRecord = bestScore; //Текущий рекорд игрока
-            gameManager.blackInk = blackInk; //Общее количество добытых чернил
-            gameManager.pauseMenu = this.pauseMenu; //ссылка на меню паузы
-
-            gameManager.UpdateEquipment(scoreForPointModifier, musicVolume);
-
-            gameManager.StartManager();
         }
 
         //Функция загружает настройки, согласно снаряжению рыцаря
-        private void LoadEquipment(int currentWeapon, int currentArmor, int currentCharm0, int currentCharm1, int currentCharm2)
+        private void LoadEquipment(SwordData currentWeapon, int currentArmor, int currentCharm0, int currentCharm1, int currentCharm2)
         {
-            //current_equipment index = 0 - оружие, = 1 - броня, = 2 - талисман 1, = 3 - талисман 2, = 4 - талисман 3
-
-            //оружие
-            switch (currentWeapon)
-            {
-                case 0: //длинный меч
-                
-                    break;
-
-                case 1: //сломанный меч
-                
-                    break;
-
-                case 2: //фальшион
-
-                    break;
-
-                case 3: //двуручный меч 
-                
-                    break;
-
-                case 4: //Меч святого Петра
-                
-                    //figure = new Figures("Zet");
-                    break;
-
-                case 5: //кинжал из крови святого Януария
-                
-                    //figure = new Figures("Omega");
-                    break;
-
-                case 6: //Венское копье
-                
-                    //figure = new Figures("Mu");
-                    break;
-
-                case 7: //Меч, покрытый елеем
-                
-                    //figure = new Figures("Sigma");
-                    break;
-
-                default:
-                    Debug.LogError("LevelLoader.LoadEquipment(): undefined sword!");
-                    break;
-            }
-
-            //броня
-            knightHealth += currentArmor;
-
             //талисманы
             switch (currentCharm0)
             {
                 case 1:
-                    swordDamageModificator += 1; //Талисман благоденствия
                     break;
 
                 case 2:
@@ -307,7 +215,6 @@ namespace Level.Load_and_Manager
             switch (currentCharm1)
             {
                 case 1:
-                    swordDamageModificator += 1; //Талисман благоденствия
                     break;
 
                 case 2:
@@ -345,7 +252,6 @@ namespace Level.Load_and_Manager
             switch (currentCharm2)
             {
                 case 1:
-                    swordDamageModificator += 1; //Талисман благоденствия
                     break;
 
                 case 2:
@@ -354,11 +260,11 @@ namespace Level.Load_and_Manager
                     break;
 
                 case 3:
-                    knightHealth += 1;    //Талисман ордена
+                    knightHealth += 1; //Талисман ордена
                     break;
 
                 case 4:
-                    combometerNeededPoints = 1;    //Нагрудный крест
+                    combometerNeededPoints = 1; //Нагрудный крест
                     scoreForPointModifier = true;
                     break;
 
@@ -368,24 +274,37 @@ namespace Level.Load_and_Manager
                     break;
 
                 case 6:
-                    knightHealthbar.SetActive(true);    //Печать папы
+                    knightHealthbar.SetActive(true); //Печать папы
                     break;
 
                 case 7:
-                    musicVolume = 1.0f;  //Подвеска предателя
+                    musicVolume = 1.0f; //Подвеска предателя
                     break;
 
                 default:
                     Debug.Log("LevelLoader.LoadEquipment(): undefined Charm");
                     break;
             }
-            knightBehaviour.default_health = knightHealth;
-
 
             if ((currentCharm0 == 4 || currentCharm1 == 4 || currentCharm2 == 4) && (currentCharm0 == 2 || currentCharm1 == 2 || currentCharm2 == 2))
             {
                 combometerNeededPoints = 1;
             }
+            
+            gameManager.currentRecord = bestScore; //Текущий рекорд игрока
+            gameManager.blackInk = blackInk; //Общее количество добытых чернил
+            gameManager.pauseMenu = this.pauseMenu; //ссылка на меню паузы
+            gameManager.UpdateEquipment(scoreForPointModifier, musicVolume);
+            gameManager.StartManager();
+            
+            attackMenu.enemiesPosition = this.enemiesPosition;
+            attackMenu.startRunningDelta = this.startRunningDelta;
+            attackMenu.StartAttackMenu(currentWeapon, DataHolder.combometer_size, combometerNeededPoints); 
+            
+            knightHealth += currentArmor;
+            knightBehaviour.SetKnightBehaviour(knightHealth, currentWeapon, DataHolder.combometer_size);
+            
+            attackMenu.knightCombometer = knightBehaviour.GetCombometer();
 
         }
     }

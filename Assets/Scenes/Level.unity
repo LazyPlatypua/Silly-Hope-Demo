@@ -292,8 +292,6 @@ MonoBehaviour:
   rhythmManager: {fileID: 228418103}
   pointSpawner: {fileID: 455996195}
   attackMenu: {fileID: 616301474}
-  knightPrefab: {fileID: 4734167138094323541, guid: 35773e9e26b8c5a41bf9268a68aa8b9d,
-    type: 3}
   locationDatas:
   - {fileID: 11400000, guid: 7e570f44c2d5c944aab12f3cb38210b7, type: 2}
   - {fileID: 11400000, guid: 02e96e496e0c1c2479a74c013173913b, type: 2}
@@ -307,45 +305,35 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 08e01b46623518a45a82b5b24ec3a175, type: 2}
   - {fileID: 11400000, guid: fc44b05ab9a249c4db87d24b9f6111a7, type: 2}
   - {fileID: 11400000, guid: 511dbd45d6df0584b92fbda789fea113, type: 2}
+  swordDatas:
+  - {fileID: 11400000, guid: 4e9e40ce67d701047ab1673391bc8657, type: 2}
+  - {fileID: 11400000, guid: f827cf72bb34303419b84286dd710ef7, type: 2}
+  - {fileID: 11400000, guid: 3c18eb8f11aefd845a18e96b7e05a0bf, type: 2}
+  - {fileID: 11400000, guid: 715ea8b4b4601b44da33eec1e3145d70, type: 2}
+  - {fileID: 11400000, guid: e0295517a20fb6f489cac961ce265c06, type: 2}
+  - {fileID: 11400000, guid: 59f06bca0c6ac9a4a814aaa5a122b149, type: 2}
+  - {fileID: 11400000, guid: 16c861722edf24f4d900eb4d90eb9e5b, type: 2}
+  - {fileID: 11400000, guid: 994b05bf1ac268b46b3240218632f22f, type: 2}
   combometer: {fileID: 0}
   knightHealthbar: {fileID: 1798473622}
   progress: {fileID: 694020943}
+  knightPrefab: {fileID: 4734167138094323541, guid: 35773e9e26b8c5a41bf9268a68aa8b9d,
+    type: 3}
   decorationsPos: {x: 0, y: 0.4, z: 0}
   knightPosition: {x: -3.7, y: -1.18, z: 0.1}
   enemiesPosition:
   - {x: 2, y: -0.9, z: 0.4}
   - {x: 2.5, y: -0.9, z: 0.1}
   - {x: 3, y: -0.9, z: -0.2}
-  menuPosition: {x: 0, y: 1, z: 0}
-  pointSpawnPoint:
-  - {x: 0.5, y: 3, z: 0}
-  - {x: 1.5, y: 3, z: 0}
-  - {x: 2.5, y: 3, z: 0}
-  - {x: 3.5, y: 3, z: 0}
-  pointFinishPoint: {x: 0, y: -2.8, z: 0}
   bestScore: 0
   blackInk: 0
   language: 0
   masterVolume: 0
   musicVolume: 0.5
   sfxVolume: 0
-  swordDamageModificator: 0
   knightHealth: 5
   scoreForPointModifier: 0
   combometerNeededPoints: 3
-  audioClips:
-  - {fileID: 8300000, guid: c1c6986fba1de794b9e30c409d5f1563, type: 3}
-  - {fileID: 8300000, guid: c1c6986fba1de794b9e30c409d5f1563, type: 3}
-  - {fileID: 8300000, guid: c1c6986fba1de794b9e30c409d5f1563, type: 3}
-  - {fileID: 8300000, guid: cc4fb7cc498a0594f9f68ca1de4b4185, type: 3}
-  - {fileID: 8300000, guid: 375104294d968cf489ec59bb9091ce66, type: 3}
-  - {fileID: 8300000, guid: cc4fb7cc498a0594f9f68ca1de4b4185, type: 3}
-  - {fileID: 8300000, guid: cc4fb7cc498a0594f9f68ca1de4b4185, type: 3}
-  - {fileID: 8300000, guid: 266f75d7eb325ea44ab1873c56ebed87, type: 3}
-  - {fileID: 8300000, guid: 5273e391b7fc7ba47bd9b90511aa8dc3, type: 3}
-  - {fileID: 8300000, guid: 5273e391b7fc7ba47bd9b90511aa8dc3, type: 3}
-  - {fileID: 8300000, guid: c4a4c203e3f349640bc01b97a62dd725, type: 3}
-  - {fileID: 8300000, guid: 58c42a80083d73448ae4f91bc9d71de8, type: 3}
   stringSettings:
     headphones: 
     play_tutorial: 
@@ -460,9 +448,7 @@ MonoBehaviour:
     tutorial_exit: 
     tutorial_end: 
   languageSettings: 1
-  travelTime: 2.5
   startRunningDelta: 3
-  endline: -3
 --- !u!1 &74842563
 GameObject:
   m_ObjectHideFlags: 0
@@ -2942,18 +2928,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43df66b52bd13d241987e38c14bad844, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  knight_behaviour: {fileID: 0}
-  knight_combometer: {fileID: 0}
-  game_manager: {fileID: 1093084283}
-  cameraManager: {fileID: 0}
-  active_lines_transforms:
+  knightBehaviour: {fileID: 0}
+  knightCombometer: {fileID: 0}
+  gameManager: {fileID: 1093084283}
+  cameraManager: {fileID: 1347287473}
+  activeLinesTransforms:
   - {fileID: 1327502106}
   - {fileID: 1294890912}
   sliders:
   - {fileID: 2002092029}
   - {fileID: 537992217}
   - {fileID: 336077068}
-  enemy_sprites:
+  enemyPortrets:
   - {fileID: -5667513083435329038, guid: e150ad6d0a816aa4eb625f0ea08c3a2c, type: 3}
   - {fileID: 1100035719543331810, guid: e150ad6d0a816aa4eb625f0ea08c3a2c, type: 3}
   - {fileID: -2974516611232637195, guid: e150ad6d0a816aa4eb625f0ea08c3a2c, type: 3}
@@ -2971,23 +2957,22 @@ MonoBehaviour:
   - {fileID: 852298670311035757, guid: e150ad6d0a816aa4eb625f0ea08c3a2c, type: 3}
   - {fileID: 5984371359630213757, guid: e150ad6d0a816aa4eb625f0ea08c3a2c, type: 3}
   - {fileID: -7699349106523695469, guid: e150ad6d0a816aa4eb625f0ea08c3a2c, type: 3}
-  attack_sprites: []
-  sword_damage: 0
+  swordDamage: 1
   timeToDisableHealth: 1
-  daze_time: 2
-  time_of_latest_attack: 0
+  dazeTime: 2
+  timeOfLatestAttack: 0
   enemies: []
-  enemies_position: []
-  start_running_delta: 0
-  combometer_needed_points: 0
-  combometer_size: 0
-  combo_split_is_available: 0
-  combo_fourious_attack_is_available: 0
-  combo_master_stun_is_available: 0
-  combo_horizontal_cut_is_available: 0
-  combo_shuffle_is_available: 0
-  combo_florescence_is_available: 0
-  combo_sublime_dissection_is_available: 0
+  enemiesPosition: []
+  startRunningDelta: 0
+  combometerNeededPoints: 0
+  combometerSize: 0
+  comboSplitIsAvailable: 0
+  comboFuriousAttackIsAvailable: 0
+  comboMasterStunIsAvailable: 0
+  comboHorizontalCutIsAvailable: 0
+  comboShuffleIsAvailable: 0
+  comboFlorescenceIsAvailable: 0
+  comboSublimeDissectionIsAvailable: 0
 --- !u!4 &650194178
 Transform:
   m_ObjectHideFlags: 0

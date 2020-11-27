@@ -5201,14 +5201,14 @@ MonoBehaviour:
   decorationPrefab: {fileID: 1241658159659159857, guid: 2f60942bd58863f4aac7a26cf24f56a0,
     type: 3}
   points:
-  - {x: -6, y: -2.839, z: -0.3}
-  - {x: 6, y: -2.839, z: 0.5}
+  - {x: -6, y: -2.72, z: -0.3}
+  - {x: 6, y: -2.72, z: 0.5}
   additionalPoints:
   - 0.4
   - 0.1
   - -0.2
   layers: 1e000000140000000a000000
-  numberOfDecorations: 14
+  decorationDensity: 14
   randomMaxThreshold: 0.05
 --- !u!1 &5340062213865019432
 GameObject:

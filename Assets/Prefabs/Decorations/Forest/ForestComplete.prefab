@@ -235,8 +235,8 @@ MonoBehaviour:
   decorationPrefab: {fileID: 1241658159659159857, guid: 2f60942bd58863f4aac7a26cf24f56a0,
     type: 3}
   points:
-  - {x: -5, y: -2.4, z: -0.2}
-  - {x: 5, y: -2.4, z: 0.28}
+  - {x: -5, y: -2.72, z: -0.2}
+  - {x: 5, y: -2.72, z: 0.28}
   additionalPoints:
   - 0.25
   - 0.1

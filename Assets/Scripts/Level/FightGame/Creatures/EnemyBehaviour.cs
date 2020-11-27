@@ -101,7 +101,7 @@ public class EnemyBehaviour : CreatureBehaviour
         current_health = default_health;
 
         gameObject.SetActive(true);
-        transform.position = new Vector3 (position.x + attack_menu.start_running_delta, position.y, position.z);
+        transform.position = new Vector3 (position.x + attack_menu.startRunningDelta, position.y, position.z);
         is_running = true;
 
         switch (spawn_point_index)
