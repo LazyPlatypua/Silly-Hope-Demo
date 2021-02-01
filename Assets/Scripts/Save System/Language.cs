@@ -3,11 +3,11 @@ public struct Language
 {
     public enum LanguageType
     {
-        english,
-        russian,
-        german,
-        french,
-        esperanto
+        English,
+        Russian,
+        German,
+        French,
+        Esperanto
     }
 
     //Преобразовать из int в Language

@@ -67,43 +67,43 @@ public class ShopSelector : MonoBehaviour
         purchaseButtonText.text = temp.purchase;
 
         contentItems = new ShopItem[8] {
-            new ShopItem(temp.longsword, temp.longsword_description),
-            new ShopItem(temp.broken_sword, temp.broken_sword_description),
-            new ShopItem(temp.falchion, temp.falchion_description),
-            new ShopItem(temp.zweichender, temp.zweichender_description),
-            new ShopItem(temp.peter_sword, temp.peter_sword_description),
-            new ShopItem(temp.januarius_dagger, temp.januarius_dagger_description),
-            new ShopItem(temp.spear, temp.spear_description),
-            new ShopItem(temp.russian_sword, temp.russian_sword_description),
+            new ShopItem(temp.longsword, temp.longswordDescription),
+            new ShopItem(temp.brokenSword, temp.brokenSwordDescription),
+            new ShopItem(temp.falchion, temp.falchionDescription),
+            new ShopItem(temp.zweichender, temp.zweichenderDescription),
+            new ShopItem(temp.peterSword, temp.peterSwordDescription),
+            new ShopItem(temp.januariusDagger, temp.januariusDaggerDescription),
+            new ShopItem(temp.spear, temp.spearDescription),
+            new ShopItem(temp.russianSword, temp.russianSwordDescription),
         };
 
         weaponItems = new ShopItem[8] {
-            new ShopItem(temp.longsword, temp.longsword_description),
-            new ShopItem(temp.broken_sword, temp.broken_sword_description),
-            new ShopItem(temp.falchion, temp.falchion_description),
-            new ShopItem(temp.zweichender, temp.zweichender_description),
-            new ShopItem(temp.peter_sword, temp.peter_sword_description),
-            new ShopItem(temp.januarius_dagger, temp.januarius_dagger_description),
-            new ShopItem(temp.spear, temp.spear_description),
-            new ShopItem(temp.russian_sword, temp.russian_sword_description),
+            new ShopItem(temp.longsword, temp.longswordDescription),
+            new ShopItem(temp.brokenSword, temp.brokenSwordDescription),
+            new ShopItem(temp.falchion, temp.falchionDescription),
+            new ShopItem(temp.zweichender, temp.zweichenderDescription),
+            new ShopItem(temp.peterSword, temp.peterSwordDescription),
+            new ShopItem(temp.januariusDagger, temp.januariusDaggerDescription),
+            new ShopItem(temp.spear, temp.spearDescription),
+            new ShopItem(temp.russianSword, temp.russianSwordDescription),
         };
 
         armorItems = new ShopItem[4] {
-            new ShopItem(temp.light_armor, temp.light_armor_description),
-            new ShopItem(temp.chain_mail, temp.chain_mail_description),
-            new ShopItem(temp.strengthened_chain_mail, temp.strengthened_chain_mail_description),
-            new ShopItem(temp.heavy_armor, temp.heavy_armor_description),
+            new ShopItem(temp.lightArmor, temp.lightArmorDescription),
+            new ShopItem(temp.chainMail, temp.chainMailDescription),
+            new ShopItem(temp.strengthenedChainMail, temp.strengthenedChainMailDescription),
+            new ShopItem(temp.heavyArmor, temp.heavyArmorDescription),
         };
 
         talismanItems = new ShopItem[8] {
-            new ShopItem(temp.no_charm, ""),
-            new ShopItem(temp.welfare_charm, temp.welfare_charm_description),
-            new ShopItem(temp.heretics_charm, temp.heretics_charm_description),
-            new ShopItem(temp.orders_charm, temp.orders_charm_description),
-            new ShopItem(temp.crucifix, temp.crucifix_description),
-            new ShopItem(temp.ivory_pommel, temp.ivory_pommel_description),
-            new ShopItem(temp.popes_seal, temp.popes_seal_description),
-            new ShopItem(temp.traitors_pendant, temp.traitors_pendant_description),
+            new ShopItem(temp.noCharm, ""),
+            new ShopItem(temp.welfareCharm, temp.welfareCharmDescription),
+            new ShopItem(temp.hereticCharm, temp.hereticCharmDescription),
+            new ShopItem(temp.orderCharm, temp.orderCharmDescription),
+            new ShopItem(temp.crucifix, temp.crucifixDescription),
+            new ShopItem(temp.ivoryPommel, temp.ivoryPommelDescription),
+            new ShopItem(temp.popeSeal, temp.popeSealDescription),
+            new ShopItem(temp.traitorPendant, temp.traitorPendantDescription),
         };
     }
 
@@ -200,7 +200,7 @@ public class ShopSelector : MonoBehaviour
         }
 
         if (Input.GetMouseButtonUp(0)) {
-            swipeHandle(new Vector2(Input.mousePosition.x,Input.mousePosition.y));
+            SwipeHandle(new Vector2(Input.mousePosition.x,Input.mousePosition.y));
         }
 
         if (Input.touches.Length > 0) {
@@ -212,12 +212,12 @@ public class ShopSelector : MonoBehaviour
             }
 
             if (t.phase == TouchPhase.Ended) {
-                swipeHandle(new Vector2(t.position.x,t.position.y));
+                SwipeHandle(new Vector2(t.position.x,t.position.y));
             }
         }
     }
 
-    private void swipeHandle(Vector2 endPosition) {
+    private void SwipeHandle(Vector2 endPosition) {
         //create vector from the two points
         Vector2 currentSwipe = new Vector2(endPosition.x - startPostition.x, endPosition.y - startPostition.y);
 

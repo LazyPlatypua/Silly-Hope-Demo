@@ -5,11 +5,11 @@ public class CameraManager : MonoBehaviour
 {
     public static CameraManager instance;  //Ссылка на этот скрипт
     public Animator animator;       //Ссылка на аниматор камеры
-    public Camera m_camera;         //Ссылка на камеру
-    public Vector3 start_position;  //Начальная позиция камеры
-    public Vector3 last_position;   //Конечная позиция точки
-    public float start_size;        //Начальный размер камеры
-    public float last_size;         //Конечный размер камеры
+    public Camera mCamera;         //Ссылка на камеру
+    public Vector3 startPosition;  //Начальная позиция камеры
+    public Vector3 lastPosition;   //Конечная позиция точки
+    public float startSize;        //Начальный размер камеры
+    public float lastSize;         //Конечный размер камеры
 
     private void Awake()
     {

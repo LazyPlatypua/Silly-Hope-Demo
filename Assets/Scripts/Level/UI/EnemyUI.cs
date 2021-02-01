@@ -6,8 +6,10 @@ public class EnemyUI : MonoBehaviour
 {
     public Image combometerWhiteImage;
     public Image healthbarRedImage;
-    public Animator _animator;
+    public Animator animator;
     public float waitForStart = 1f;
+    private static readonly int HealthAppear = Animator.StringToHash("health_appear");
+    private static readonly int ComboAppear = Animator.StringToHash("combo_appear");
 
     public void SetToDefault()
     {
@@ -27,7 +29,7 @@ public class EnemyUI : MonoBehaviour
 
     public void ActivateHealthBar()
     {
-        _animator.SetBool("health_appear", true);
+        animator.SetBool(HealthAppear, true);
     }
 
     public void ActivateHealthBar(float fill)
@@ -38,7 +40,7 @@ public class EnemyUI : MonoBehaviour
 
     public void DeactivateHealthBar()
     {
-        _animator.SetBool("health_appear", false);
+        animator.SetBool(HealthAppear, false);
     }
 
     public void ChangeCombometerFill(float fill)
@@ -48,7 +50,7 @@ public class EnemyUI : MonoBehaviour
 
     public void ActivateCombometer()
     {
-        _animator.SetBool("combo_appear", true);
+        animator.SetBool(ComboAppear, true);
     }
 
     public void ActivateCombometer(float fill)
@@ -59,7 +61,7 @@ public class EnemyUI : MonoBehaviour
 
     public void DeactivateCombometer()
     {
-        _animator.SetBool("combo_appear", false);
+        animator.SetBool(ComboAppear, false);
     }
 
     public IEnumerator WaitToStart()

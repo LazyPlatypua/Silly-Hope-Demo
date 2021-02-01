@@ -5,22 +5,22 @@ public class EnemyBehaviour : CreatureBehaviour
 {
     [Header("Links")]
     public EnemyUI enemyUI;       //ссылка на полоску здоровья врага
-    public SpriteRenderer m_sprite_renderer;    //спрайтовый рендер врага
+    public SpriteRenderer spriteRenderer;    //спрайтовый рендер врага
     [Header("Enemy settings")]
     public int damage = 1;                      //урон врага
     public int ink = 4;                         //количество чернил, которое получит игрок за убийство врага
     [Range(2, 6)]                           
-    public int combo_meter_size = 2;            //размер комбометра
+    public int comboMeterSize = 2;            //размер комбометра
 
     public Vector3 position;                    //позиция врага
-    public int spawn_point_index;               //Индекс точки спавна
-    public float running_speed = 1;             //скорость бега врага
+    public int spawnPointIndex;               //Индекс точки спавна
+    public float runningSpeed = 1;             //скорость бега врага
     protected bool is_running_out = false;      //Бежит ли враг
     protected bool is_running = false;          //Убегает ли враг
 
     [HideInInspector]
-    public int death_count = 0;                 //Количество смертей врага
-    public int currently_filled = 0;        //количество заполненных ячеек
+    public int deathCount = 0;                 //Количество смертей врага
+    public int currentlyFilled = 0;        //количество заполненных ячеек
 
     //Функция срабатывает при старте сцены
     private void Start() 
@@ -29,9 +29,9 @@ public class EnemyBehaviour : CreatureBehaviour
         {
             animator = GetComponent<Animator>();
         }
-        if (m_sprite_renderer == null)
+        if (spriteRenderer == null)
         {
-            m_sprite_renderer = GetComponent<SpriteRenderer>();
+            spriteRenderer = GetComponent<SpriteRenderer>();
         }
         Activate();
     }
@@ -41,17 +41,17 @@ public class EnemyBehaviour : CreatureBehaviour
     {
         if (is_running)
         {
-            float step = running_speed * Time.deltaTime;
+            float step = runningSpeed * Time.deltaTime;
             transform.position = Vector3.MoveTowards(transform.position, position, step);
             if (Vector3.Distance(transform.position, position) < 0.01f)
             {
                 is_running = false;
                 if (is_running_out)
                 {
-                    death_count++;
-                    attack_menu.ActivateEnemies(spawn_point_index);
+                    deathCount++;
+                    attackMenu.ActivateEnemies(spawnPointIndex);
                     enemyUI.SetToDefault();
-                    current_health = default_health;
+                    currentHealth = defaultHealth;
                     Death();
                 }
             }
@@ -64,7 +64,7 @@ public class EnemyBehaviour : CreatureBehaviour
     {
         float amount;
         base.UpdateHealth(damage);
-        amount = (float)current_health / (float)default_health;
+        amount = (float)currentHealth / (float)defaultHealth;
         enemyUI.ChangeHealthFill(amount);
     }
 
@@ -86,11 +86,11 @@ public class EnemyBehaviour : CreatureBehaviour
 
         base.StartDeathAnim();
 
-        death_count++;
-        game_manager.AddInk(ink);
-        current_health = default_health;
+        deathCount++;
+        gameManager.AddInk(ink);
+        currentHealth = defaultHealth;
 
-        attack_menu.ActivateEnemies(spawn_point_index);
+        attackMenu.ActivateEnemies(spawnPointIndex);
     }
 
     //Функция включает врага на сцене
@@ -98,26 +98,26 @@ public class EnemyBehaviour : CreatureBehaviour
     {
         animator.SetBool("death", false);
         SetAllAnimToFalse();
-        current_health = default_health;
+        currentHealth = defaultHealth;
 
         gameObject.SetActive(true);
-        transform.position = new Vector3 (position.x + attack_menu.startRunningDelta, position.y, position.z);
+        transform.position = new Vector3 (position.x + attackMenu.startRunningDelta, position.y, position.z);
         is_running = true;
 
-        switch (spawn_point_index)
+        switch (spawnPointIndex)
         {
             case 0:
-                m_sprite_renderer.sortingOrder = 0;
+                spriteRenderer.sortingOrder = 0;
                 break;
             case 1:
-                m_sprite_renderer.sortingOrder = 10;
+                spriteRenderer.sortingOrder = 10;
                 break;
             case 2:
-                m_sprite_renderer.sortingOrder = 20;
+                spriteRenderer.sortingOrder = 20;
                 break;
             default:
-                Debug.LogError("Unknown spawn point index: " + spawn_point_index + ", go to spawn point 0.");
-                spawn_point_index = 0;
+                Debug.LogError("Unknown spawn point index: " + spawnPointIndex + ", go to spawn point 0.");
+                spawnPointIndex = 0;
                 goto case 0;
         }
         enemyUI.gameObject.SetActive(true);
@@ -129,7 +129,7 @@ public class EnemyBehaviour : CreatureBehaviour
         base.Attack(a);
 
         enemyUI.DeactivateCombometer();
-        currently_filled = 0;
+        currentlyFilled = 0;
     }
 
     //Функция обнуляет все анимации (кроме смерти)
@@ -143,13 +143,13 @@ public class EnemyBehaviour : CreatureBehaviour
     {
         base.PointOfAttack(name);
 
-        attack_menu.DealDamageToKnight(name, damage);
+        attackMenu.DealDamageToKnight(name, damage);
     }
 
     //Функция, выключающая анимацию. 
-    public override void DeactivateAnimation(string active_trigger)
+    public override void DeactivateAnimation(string activeTrigger)
     {
-        base.DeactivateAnimation(active_trigger);
+        base.DeactivateAnimation(activeTrigger);
     }
 
     //Функция, отключающая врага на сцене
@@ -157,13 +157,13 @@ public class EnemyBehaviour : CreatureBehaviour
     {
         gameObject.SetActive(false);
 
-        game_manager.EnemyDefeat();
+        gameManager.EnemyDefeat();
     }
 
     //Функция, возвращающая булево значение на вопрос: полон ли комбометр врага
     public virtual bool IsCombometerFull()
     {
-        return combo_meter_size == currently_filled;
+        return comboMeterSize == currentlyFilled;
     }
 
     //функция добавляет очки к комбометру. Если враг оглушен, очки не добавляются
@@ -171,11 +171,11 @@ public class EnemyBehaviour : CreatureBehaviour
     {
         if (!stuned)
         {
-            if(currently_filled < combo_meter_size)
+            if(currentlyFilled < comboMeterSize)
             {
-                currently_filled++;
+                currentlyFilled++;
             }
-            enemyUI.ActivateCombometer((float)currently_filled / (float) combo_meter_size);
+            enemyUI.ActivateCombometer((float)currentlyFilled / (float) comboMeterSize);
         }
     }
 
@@ -184,11 +184,11 @@ public class EnemyBehaviour : CreatureBehaviour
     {
         Debug.Log("EnemyBehaviour: Running Out " + gameObject.name);
         is_running_out = true;
-        running_speed *= 2;
+        runningSpeed *= 2;
         transform.Rotate(0f, 180f, 0f);
         position = new Vector3(transform.position.x + 10f, transform.position.y, 0.0f);
         is_running = true;
         animator.SetBool("run", is_running);
-        death_count++;
+        deathCount++;
     }
 }

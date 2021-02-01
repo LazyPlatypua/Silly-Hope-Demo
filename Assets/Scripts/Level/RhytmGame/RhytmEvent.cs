@@ -13,16 +13,16 @@ public class RhytmEvent : MonoBehaviour
         instance = this;
     }
 
-    public event Action<int> onRhytmButtonPress;
+    public event Action<int> ONRhytmButtonPress;
     public void RhytmButtonPress(int line)
     {
-        onRhytmButtonPress?.Invoke(line);
+        ONRhytmButtonPress?.Invoke(line);
     }
 
-    public event Action<int, float> onFrequancyChange;
+    public event Action<int, float> ONFrequancyChange;
 
     public void FrequancyChange(int id, float size)
     {
-        onFrequancyChange?.Invoke(id , size);
+        ONFrequancyChange?.Invoke(id , size);
     }
 }

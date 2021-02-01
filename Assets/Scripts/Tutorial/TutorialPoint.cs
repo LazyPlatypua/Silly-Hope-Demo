@@ -10,7 +10,7 @@ public class TutorialPoint : MonoBehaviour
     public int line = 0;
     public bool isRed = false;
     public bool canBePressed = false;
-    public Transform m_transform;
+    public Transform mTransform;
     public SpriteRenderer spriteRenderer;
     public TutorialManager tutorialManager;
     public Color[] colors;
@@ -21,7 +21,7 @@ public class TutorialPoint : MonoBehaviour
         {
             DestroyPoint(false);
         }
-        m_transform.position -= new Vector3(0f, speed * Time.deltaTime, 0f);
+        mTransform.position -= new Vector3(0f, speed * Time.deltaTime, 0f);
     }
 
     public void SetTutorialPoint(TutorialManager tutorialManager, bool isRed, int line, float end)
@@ -39,12 +39,12 @@ public class TutorialPoint : MonoBehaviour
         }
         endPoint = end;
 
-        tutorialManager.onRhytmButtonPress += OnButtonPress;
+        tutorialManager.ONRhytmButtonPress += OnButtonPress;
     }
 
-    private void OnButtonPress(int _line)
+    private void OnButtonPress(int line)
     {
-        if (canBePressed && _line == line)
+        if (canBePressed && line == this.line)
         {
             DestroyPoint(true);
         }

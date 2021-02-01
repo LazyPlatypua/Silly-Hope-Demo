@@ -1,6 +1,7 @@
 //Класс отвечает за происходящие на уровне действия. Поддерживает функции SpawnPoint(), DeletePoint(), AddInk(int ink),
 
 using System;
+using Level.FightGame;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -104,7 +105,7 @@ namespace Level.Load_and_Manager
             attackMenu.AddToKnight(isRed);
             if(!scoreForPointModificator)
             {
-                score += rhythmManager.combo_count;
+                score += rhythmManager.comboCount;
             }
             return true;
         }

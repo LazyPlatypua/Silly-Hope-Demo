@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Save_System.Scriptable_Objects
+namespace Scriptable_Objects
 {
     public class ItemData : ScriptableObject
     {

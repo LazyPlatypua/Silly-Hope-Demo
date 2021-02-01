@@ -7,14 +7,14 @@ using UnityEngine.UI;
 public class TutorialSlider : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
 {
     public TutorialManager tutorialManager;
-    public Slider m_slider;         //ссылка на слайдер
-    public Image background_image;  //ссылка на фон слайдера
-    public Color color_left;        //цвет левой части слайдера
-    public Color color_right;       //цвет правой части слайдера
+    public Slider mSlider;         //ссылка на слайдер
+    public Image backgroundImage;  //ссылка на фон слайдера
+    public Color colorLeft;        //цвет левой части слайдера
+    public Color colorRight;       //цвет правой части слайдера
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        background_image.color = new Color()
+        backgroundImage.color = new Color()
         {
             a = 1f
         };
@@ -23,14 +23,14 @@ public class TutorialSlider : MonoBehaviour, IDragHandler, IBeginDragHandler, IE
     //Функция срабатывает при перемещении слайдера
     public void OnDrag(PointerEventData eventData)
     {
-        background_image.color = Color.Lerp(color_left, color_right, m_slider.value);
+        backgroundImage.color = Color.Lerp(colorLeft, colorRight, mSlider.value);
         tutorialManager.tutorialEnemy.ShowHealth();
     }
 
     //Функция срабатывает при окончании перемещения слайдера
     public void OnEndDrag(PointerEventData data)
     {
-        if (!(m_slider.value <= 0.25 || m_slider.value >= 0.75f))
+        if (!(mSlider.value <= 0.25 || mSlider.value >= 0.75f))
         {
             ToDefault();
             tutorialManager.tutorialEnemy.HideHealth();
@@ -38,14 +38,14 @@ public class TutorialSlider : MonoBehaviour, IDragHandler, IBeginDragHandler, IE
             return;
         }
 
-        if(m_slider.value <= 0.25f || m_slider.value >= 0.75f)
+        if(mSlider.value <= 0.25f || mSlider.value >= 0.75f)
         {
             bool attack = true;
-            if (m_slider.value <= 0.25f)
+            if (mSlider.value <= 0.25f)
             {
                 attack = true;  //зеленый
             }
-            if (m_slider.value >= 0.75f)
+            if (mSlider.value >= 0.75f)
             {
                 attack = false; //красный
             }
@@ -58,8 +58,8 @@ public class TutorialSlider : MonoBehaviour, IDragHandler, IBeginDragHandler, IE
     //Функция обнуляет положение рукоятки
     public void ToDefault()
     {
-        m_slider.value = 0.5f;
-        background_image.color = new Color()
+        mSlider.value = 0.5f;
+        backgroundImage.color = new Color()
         {
             a = 0f
         };

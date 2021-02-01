@@ -336,7 +336,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   combometerWhiteImage: {fileID: 2303982053127731120}
   healthbarRedImage: {fileID: 6604922014866349460}
-  _animator: {fileID: 5171405569765579127}
+  animator: {fileID: 5171405569765579127}
   waitForStart: 1
 --- !u!95 &5171405569765579127
 Animator:

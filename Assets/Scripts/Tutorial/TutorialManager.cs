@@ -29,7 +29,7 @@ public class TutorialManager : MonoBehaviour
     public bool redAttackActivated = false;
     public bool greenAttackActivated = false;
 
-    public int combometer_needed_points = 3;            //количество точек, необходимых для заполнения одной ячейки комбометра
+    public int combometerNeededPoints = 3;            //количество точек, необходимых для заполнения одной ячейки комбометра
 
     private bool[] green_combometer_cell;           //Какие точки заполнены в одной ячейке зеленого комбметра
     private bool green_combometer_cells_number;   //Какие ячейки зеленого комбометра заполнены
@@ -38,34 +38,34 @@ public class TutorialManager : MonoBehaviour
 
     public enum State
     {
-        points,
-        combometer,
-        attack,
-        enemy,
-        exit
+        Points,
+        Combometer,
+        Attack,
+        Enemy,
+        Exit
     }
-    public State current_state;
+    public State currentState;
 
     private void Awake()
     {
         instance = this;
         canGenerate = false;
-        current_state = 0;
+        currentState = 0;
         StringSettings temp = new StringSettings(DataHolder.language);
-        instructions[0] = temp.tutorial_points;
-        instructions[1] = temp.tutorial_combometer;
-        instructions[2] = temp.tutorial_attack;
-        instructions[3] = temp.tutorial_enemy;
-        instructions[4] = temp.tutorial_exit;
-        exitButtonText.text = temp.tutorial_end;
-        instructionsField.text = instructions[(int)current_state];
+        instructions[0] = temp.tutorialPoints;
+        instructions[1] = temp.tutorialCombometer;
+        instructions[2] = temp.tutorialAttack;
+        instructions[3] = temp.tutorialEnemy;
+        instructions[4] = temp.tutorialExit;
+        exitButtonText.text = temp.tutorialEnd;
+        instructionsField.text = instructions[(int)currentState];
         tutorialKnight.gameObject.SetActive(false);
         tutorialEnemy.gameObject.SetActive(false);
         tutorialSlider.gameObject.SetActive(false);
         exitButton.SetActive(false);
-        green_combometer_cell = new bool[combometer_needed_points];
-        red_combometer_cell = new bool[combometer_needed_points];
-        for (int i = 0; i < combometer_needed_points; i++)
+        green_combometer_cell = new bool[combometerNeededPoints];
+        red_combometer_cell = new bool[combometerNeededPoints];
+        for (int i = 0; i < combometerNeededPoints; i++)
         {
             green_combometer_cell[i] = false;
             red_combometer_cell[i] = false;
@@ -78,11 +78,11 @@ public class TutorialManager : MonoBehaviour
 
     private void Update()
     {
-        if(canGenerate && current_state != State.exit)
+        if(canGenerate && currentState != State.Exit)
         {
             GeneratePoint();
         }
-        if (Input.GetKeyDown(KeyCode.Escape) && current_state == State.exit && !exitButton.activeSelf)
+        if (Input.GetKeyDown(KeyCode.Escape) && currentState == State.Exit && !exitButton.activeSelf)
         {
             exitButton.SetActive(true);
         }
@@ -91,11 +91,11 @@ public class TutorialManager : MonoBehaviour
     private void GeneratePoint()
     {
         GameObject newgo = Instantiate(pointPrefab);
-        TutorialPoint newgo_tp = newgo.GetComponent<TutorialPoint>();
+        TutorialPoint newgoTp = newgo.GetComponent<TutorialPoint>();
         int line= UnityEngine.Random.Range(0, 4);
 
         newgo.transform.position = new Vector3(linesXCoord[line], startPoint, 0.0f);
-        newgo_tp.SetTutorialPoint(this, line >= 2, line, endPoint);
+        newgoTp.SetTutorialPoint(this, line >= 2, line, endPoint);
         StartCoroutine(WaitToGenerateNewPoint());
     }
 
@@ -118,7 +118,7 @@ public class TutorialManager : MonoBehaviour
         }
         int catchedPoints = catchedGreenPoints + catchedRedPoints;
 
-        if(current_state == State.points && catchedPoints >= 3)
+        if(currentState == State.Points && catchedPoints >= 3)
         {
             catchedRedPoints = 0;
             catchedRedPoints = 0;
@@ -126,18 +126,18 @@ public class TutorialManager : MonoBehaviour
             return;
         }
 
-        if (current_state == State.combometer && catchedRedPoints >3 && catchedGreenPoints > 3)
+        if (currentState == State.Combometer && catchedRedPoints >3 && catchedGreenPoints > 3)
         {
             ChangeState();
         }
 
-        if(!(current_state == State.points || current_state == State.exit))
+        if(!(currentState == State.Points || currentState == State.Exit))
         {
             if (!isRed)
             {
-                if (green_combometer_cell[combometer_needed_points - 1] == true)
+                if (green_combometer_cell[combometerNeededPoints - 1] == true)
                 {
-                    for (int y = 0; y < combometer_needed_points; y++)
+                    for (int y = 0; y < combometerNeededPoints; y++)
                     {
                         green_combometer_cell[y] = false;
                     }
@@ -157,7 +157,7 @@ public class TutorialManager : MonoBehaviour
                     return;
                 }
 
-                for (int i = 0; i < combometer_needed_points; i++)
+                for (int i = 0; i < combometerNeededPoints; i++)
                 {
                     if (green_combometer_cell[i] == true)
                     {
@@ -174,9 +174,9 @@ public class TutorialManager : MonoBehaviour
             }
             else
             {
-                if (red_combometer_cell[combometer_needed_points - 1] == true)
+                if (red_combometer_cell[combometerNeededPoints - 1] == true)
                 {
-                    for (int y = 0; y < combometer_needed_points; y++)
+                    for (int y = 0; y < combometerNeededPoints; y++)
                     {
                         red_combometer_cell[y] = false;
                         knightCombometer.Deactivate(!isRed);
@@ -197,7 +197,7 @@ public class TutorialManager : MonoBehaviour
                     return;
                 }
 
-                for (int i = 0; i < combometer_needed_points; i++)
+                for (int i = 0; i < combometerNeededPoints; i++)
                 {
                     if (red_combometer_cell[i] == true)
                     {
@@ -218,40 +218,40 @@ public class TutorialManager : MonoBehaviour
 
     public void AddToEnemy()
     {
-        if (current_state == State.enemy)
+        if (currentState == State.Enemy)
         {
             tutorialEnemy.AddToCombometer();
         }
     }
 
-    public event Action<int> onRhytmButtonPress;
+    public event Action<int> ONRhytmButtonPress;
     public void RhytmButtonPress(int line)
     {
-        onRhytmButtonPress?.Invoke(line);
+        ONRhytmButtonPress?.Invoke(line);
     }
 
     public void ChangeState()
     {
-        current_state++;
+        currentState++;
         animator.SetTrigger("animate");
-        switch (current_state)
+        switch (currentState)
         {
-            case State.combometer:
+            case State.Combometer:
                 animator.SetBool("knight", true);
                 tutorialKnight.gameObject.SetActive(true);
                 break;
 
-            case State.attack:
+            case State.Attack:
                 animator.SetBool("slider", true);
                 tutorialSlider.gameObject.SetActive(true);
                 break;
 
-            case State.enemy:
+            case State.Enemy:
                 animator.SetBool("enemy", true);
                 tutorialEnemy.gameObject.SetActive(true);
                 break;
 
-            case State.exit:
+            case State.Exit:
                 tutorialEnemy.gameObject.SetActive(false);
                 tutorialSlider.gameObject.SetActive(false);
                 tutorialKnight.animator.speed = 0.1f;
@@ -263,7 +263,7 @@ public class TutorialManager : MonoBehaviour
 
     public void ChangeText()
     {
-        instructionsField.text = instructions[(int)current_state];
+        instructionsField.text = instructions[(int)currentState];
     }
 
     public void DealDamageToKnight()
@@ -278,9 +278,9 @@ public class TutorialManager : MonoBehaviour
 
     public void ActivateSlider(bool attack)
     {
-        switch (current_state)
+        switch (currentState)
         {
-            case State.attack:
+            case State.Attack:
                 switch (attack)
                 {
                     case true:
@@ -300,7 +300,7 @@ public class TutorialManager : MonoBehaviour
                 }
                 break;
 
-            case State.enemy:
+            case State.Enemy:
                 switch (attack)
                 {
                     case true:

@@ -40,11 +40,11 @@ public class TutorialKnight : MonoBehaviour
     }
 
     //Обнулить анимацию
-    public void DeactivateAnimation(string active_trigger)
+    public void DeactivateAnimation(string activeTrigger)
     {
-        animator.SetBool(active_trigger, false);
+        animator.SetBool(activeTrigger, false);
 
-        if (active_trigger == "take_damage")
+        if (activeTrigger == "take_damage")
         {
             SetAllAnimToFalse();
         }

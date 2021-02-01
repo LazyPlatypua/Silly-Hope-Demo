@@ -553,22 +553,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc9c897dda76fe848bd88ab10b002446, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  game_manager: {fileID: 0}
-  attack_menu: {fileID: 0}
+  gameManager: {fileID: 0}
+  attackMenu: {fileID: 0}
   animator: {fileID: 6538726438472717513}
-  default_health: 3
-  daze_time: 2
-  current_health: 0
+  defaultHealth: 2
+  dazeTime: 4
+  currentHealth: 2
   enemyUI: {fileID: 896464006005677049}
-  m_sprite_renderer: {fileID: 6137054168140881250}
+  spriteRenderer: {fileID: 6137054168140881250}
   damage: 1
   ink: 4
-  combo_meter_size: 6
-  position: {x: 2, y: -0.4, z: 0}
-  spawn_point_index: 1
-  running_speed: 1
-  death_count: 0
-  currently_filled: 0
+  comboMeterSize: 6
+  position: {x: 2.5, y: -0.9, z: 0.1}
+  spawnPointIndex: 1
+  runningSpeed: 1
+  deathCount: 0
+  currentlyFilled: 0
 --- !u!95 &6538726438472717513
 Animator:
   serializedVersion: 3
@@ -970,6 +970,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3892239336373051396}
     m_Modifications:
+    - target: {fileID: 6604922015082188195, guid: b5e4ae806ad813e4191cf8290bc43dd7,
+        type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 1161085519885455149}
     - target: {fileID: 6604922015082188196, guid: b5e4ae806ad813e4191cf8290bc43dd7,
         type: 3}
       propertyPath: m_Name
@@ -1087,6 +1092,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b5e4ae806ad813e4191cf8290bc43dd7, type: 3}
+--- !u!224 &896464006005677042 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 6604922015082188200, guid: b5e4ae806ad813e4191cf8290bc43dd7,
+    type: 3}
+  m_PrefabInstance: {fileID: 6330236812510221914}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1161085519885455149 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5171405569765579127, guid: b5e4ae806ad813e4191cf8290bc43dd7,
+    type: 3}
+  m_PrefabInstance: {fileID: 6330236812510221914}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &896464006005677049 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6604922015082188195, guid: b5e4ae806ad813e4191cf8290bc43dd7,
@@ -1099,9 +1116,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcd0fc295347e184aa15a90e1dd7db00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!224 &896464006005677042 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 6604922015082188200, guid: b5e4ae806ad813e4191cf8290bc43dd7,
-    type: 3}
-  m_PrefabInstance: {fileID: 6330236812510221914}
-  m_PrefabAsset: {fileID: 0}

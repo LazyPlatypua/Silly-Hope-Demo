@@ -8,22 +8,22 @@ public class InkwellsManager : MonoBehaviour
     public List<Sprite> inkwellsSprites;
     public SpriteRenderer spriteRenderer;
     public TextMeshProUGUI inkText;
-    public GameObject DebugMenu;
+    public GameObject debugMenu;
 
-    public int highest_value = 100;
-    public int middle_value = 50;
+    public int highestValue = 100;
+    public int middleValue = 50;
     public bool debugMenuIsActive;
     public int currentInk;
     
     public void InkUpdate(int ink)
     {
-        if(ink >= highest_value)
+        if(ink >= highestValue)
         {
             spriteRenderer.sprite = inkwellsSprites[2];
         }
         else
         {
-            if (ink >= middle_value)
+            if (ink >= middleValue)
             {
                 spriteRenderer.sprite = inkwellsSprites[1];
             }
@@ -39,11 +39,11 @@ public class InkwellsManager : MonoBehaviour
 
     public void TriggerDebugMenu()
     {
-        DebugMenu.SetActive(!debugMenuIsActive);
+        debugMenu.SetActive(!debugMenuIsActive);
         debugMenuIsActive = !debugMenuIsActive;
     }
 
-    public int getInkCount() 
+    public int GETInkCount() 
     {
         return currentInk;
     }

@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -8232,9 +8232,9 @@ MonoBehaviour:
   - {fileID: 21300002, guid: e7b511dcdcefefb4a88417b0e2d0a8a4, type: 3}
   spriteRenderer: {fileID: 729636040}
   inkText: {fileID: 1314849006}
-  DebugMenu: {fileID: 1384360013}
-  highest_value: 100
-  middle_value: 50
+  debugMenu: {fileID: 1384360013}
+  highestValue: 100
+  middleValue: 50
   debugMenuIsActive: 0
   currentInk: 0
 --- !u!1 &735966592
@@ -11652,7 +11652,7 @@ SpriteRenderer:
   m_Size: {x: 8.79, y: 14.351896}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1085963543
@@ -16845,77 +16845,77 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fca8fa37abc4de4b955119fda5b4766, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scene_loader: {fileID: 2083151731}
+  sceneLoader: {fileID: 2083151731}
   spread: {fileID: 214779961}
-  spread_main: {fileID: 453433055}
+  spreadMain: {fileID: 453433055}
   content: {fileID: 1654149985}
   shop: {fileID: 455650206}
   equip: {fileID: 1717192689}
   equipSelector: {fileID: 40103019}
   settings: {fileID: 1790901308}
-  post_processing: {fileID: 7811647393019018669}
-  audio_source: {fileID: 1606208568}
+  postProcessing: {fileID: 7811647393019018669}
+  audioSource: {fileID: 1606208568}
   popUpManager: {fileID: 247861606}
-  equip_header_text: {fileID: 81370597}
-  current_scene: 0
-  current_charm_0: 0
-  current_charm_1: 0
-  current_charm_2: 0
-  combometer_size: 1
-  combo_split_is_available: 0
-  combo_fourious_attack_is_available: 0
-  combo_master_stun_is_available: 0
-  combo_horizontal_cut_is_available: 0
-  combo_shuffle_is_available: 0
-  combo_florescence_is_available: 0
-  combo_sublime_dissection_is_available: 0
-  is_prolog_completed: 0
-  broken_sword_is_purchased: 0
-  falchion_is_purchased: 0
-  zweihander_is_purchased: 0
-  peter_sword_is_purchased: 0
-  januar_dagger_is_purchased: 0
-  viennese_spear_is_purchased: 0
-  russian_sword_is_purchased: 0
-  chain_mail_is_purchased: 0
-  hardened_chain_mail_is_purchased: 0
-  heavy_armor_is_purchased: 0
-  welfare_charm_is_purchased: 0
-  heretic_charm_is_purchased: 0
-  order_charm_is_purchased: 0
-  cross_charm_is_purchased: 0
-  pommel_charm_is_purchased: 0
-  papa_charm_is_purchased: 0
-  traitor_charm_is_purchased: 0
+  equipHeaderText: {fileID: 81370597}
+  currentScene: 0
+  currentCharm0: 0
+  currentCharm1: 0
+  currentCharm2: 0
+  combometerSize: 0
+  comboSplitIsAvailable: 0
+  comboFouriousAttackIsAvailable: 0
+  comboMasterStunIsAvailable: 0
+  comboHorizontalCutIsAvailable: 0
+  comboShuffleIsAvailable: 0
+  comboFlorescenceIsAvailable: 0
+  comboSublimeDissectionIsAvailable: 0
+  isPrologCompleted: 0
+  brokenSwordIsPurchased: 0
+  falchionIsPurchased: 0
+  zweihanderIsPurchased: 0
+  peterSwordIsPurchased: 0
+  januarDaggerIsPurchased: 0
+  vienneseSpearIsPurchased: 0
+  russianSwordIsPurchased: 0
+  chainMailIsPurchased: 0
+  hardenedChainMailIsPurchased: 0
+  heavyArmorIsPurchased: 0
+  welfareCharmIsPurchased: 0
+  hereticCharmIsPurchased: 0
+  orderCharmIsPurchased: 0
+  crossCharmIsPurchased: 0
+  pommelCharmIsPurchased: 0
+  papaCharmIsPurchased: 0
+  traitorCharmIsPurchased: 0
   inkwells: {fileID: 729636041}
-  best_score: 0
-  black_ink: 0
-  language_settings: 1
-  graphics_tier: 0
-  master_volume: 0
-  music_volume: 0.433
-  sfx_volume: 0
+  bestScore: 0
+  blackInk: 0
+  languageSettings: 0
+  graphicsTier: 0
+  masterVolume: 0
+  musicVolume: 0.433
+  sfxVolume: 0
   state: cover
-  volume_slider: {fileID: 359316630}
-  settings_back_text: {fileID: 1422520285}
-  settings_header_text: {fileID: 1529949541}
-  graphics_tier_text: {fileID: 325220137}
-  volume_text: {fileID: 1197459632}
-  language_button_text: {fileID: 1017047543}
-  score_text: {fileID: 645896716}
-  chapter_text: {fileID: 1165785203}
-  continue_text: {fileID: 1422603058}
-  equipment_text: {fileID: 1279974479}
-  shop_text: {fileID: 1063716717}
-  content_text: {fileID: 1108741045}
-  settings_text: {fileID: 2027924457}
-  exit_text: {fileID: 593240338}
-  equipment_back_text: {fileID: 1099798416}
-  black_ink_text: {fileID: 1021096916}
-  default_button: {fileID: 21300000, guid: 52de0da6437582945963dbb460d7a72c, type: 3}
-  selected_button: {fileID: 21300000, guid: c1afd23f02ae5984a9101a797364f75f, type: 3}
-  prolog_button: {fileID: 1351219147}
-  chapter_buttons:
+  volumeSlider: {fileID: 359316630}
+  settingsBackText: {fileID: 1422520285}
+  settingsHeaderText: {fileID: 1529949541}
+  graphicsTierText: {fileID: 325220137}
+  volumeText: {fileID: 1197459632}
+  languageButtonText: {fileID: 1017047543}
+  scoreText: {fileID: 645896716}
+  chapterText: {fileID: 1165785203}
+  continueText: {fileID: 1422603058}
+  equipmentText: {fileID: 1279974479}
+  shopText: {fileID: 1063716717}
+  contentText: {fileID: 1108741045}
+  settingsText: {fileID: 2027924457}
+  exitText: {fileID: 593240338}
+  equipmentBackText: {fileID: 1099798416}
+  blackInkText: {fileID: 1314849006}
+  defaultButton: {fileID: 21300000, guid: 52de0da6437582945963dbb460d7a72c, type: 3}
+  selectedButton: {fileID: 21300000, guid: de6217d352d3aaf478111848b7e12947, type: 3}
+  prologButton: {fileID: 1351219147}
+  chapterButtons:
   - {fileID: 1592380322}
   - {fileID: 544001493}
   - {fileID: 28394183}
@@ -16927,8 +16927,7 @@ MonoBehaviour:
   - {fileID: 831141732}
   - {fileID: 251602036}
   - {fileID: 167939468}
-  - {fileID: 2086083139}
-  chapter_prices_text:
+  chapterPricesText:
   - {fileID: 537443465}
   - {fileID: 1363759844}
   - {fileID: 1433001620}
@@ -16940,33 +16939,33 @@ MonoBehaviour:
   - {fileID: 250809555}
   - {fileID: 1518829111}
   - {fileID: 283751268}
-  first_act: {fileID: 2083177279}
-  second_act: {fileID: 987428067}
-  third_act: {fileID: 1067905849}
+  firstAct: {fileID: 2083177279}
+  secondAct: {fileID: 987428067}
+  thirdAct: {fileID: 1067905849}
   epilogue: {fileID: 774990206}
-  scene_image: {fileID: 305393375}
-  scene_preview:
+  sceneImage: {fileID: 305393375}
+  scenePreview:
   - {fileID: 21300000, guid: 5823b223a784a31479954742282c03c7, type: 3}
   - {fileID: 21300000, guid: 9c37fb5c3e6fe1b40a57727f968712e4, type: 3}
   - {fileID: 21300000, guid: e0c39fcc35205ac4f827c2a1e3e4ae2e, type: 3}
   - {fileID: 21300000, guid: 48abf6721ea83e04280fdc6a7bf8b585, type: 3}
-  select_scene_text: {fileID: 469082853}
-  content_next_text: {fileID: 1011576865}
-  prologue_text: {fileID: 2124227775}
-  epilogue_text: {fileID: 266520921}
-  titles_text: {fileID: 533834539}
-  chapter_1_text: {fileID: 373556515}
-  chapter_2_text: {fileID: 820855486}
-  chapter_3_text: {fileID: 2008003807}
-  chapter_4_text: {fileID: 1228384371}
-  chapter_5_text: {fileID: 1990134949}
-  chapter_6_text: {fileID: 555037191}
-  chapter_7_text: {fileID: 1312606440}
-  chapter_8_text: {fileID: 894222942}
-  chapter_9_text: {fileID: 759215645}
-  chapter_10_text: {fileID: 985129009}
-  chapter_11_text: {fileID: 384838781}
-  current_act: 0
+  selectSceneText: {fileID: 469082853}
+  contentNextText: {fileID: 1011576865}
+  prologueText: {fileID: 2124227775}
+  epilogueText: {fileID: 266520921}
+  titlesText: {fileID: 533834539}
+  chapter1Text: {fileID: 373556515}
+  chapter2Text: {fileID: 820855486}
+  chapter3Text: {fileID: 2008003807}
+  chapter4Text: {fileID: 1228384371}
+  chapter5Text: {fileID: 1990134949}
+  chapter6Text: {fileID: 555037191}
+  chapter7Text: {fileID: 1312606440}
+  chapter8Text: {fileID: 894222942}
+  chapter9Text: {fileID: 759215645}
+  chapter10Text: {fileID: 985129009}
+  chapter11Text: {fileID: 384838781}
+  currentAct: 0
 --- !u!4 &1606208567
 Transform:
   m_ObjectHideFlags: 0

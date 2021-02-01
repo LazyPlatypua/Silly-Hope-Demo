@@ -3,9 +3,9 @@
 [RequireComponent(typeof(AudioSource))]
 public class AudioAnalizer : MonoBehaviour
 {
-    public AudioSource _audioSource;
+    public AudioSource audioSource;
     public RhytmEvent rhytmEvent;
-    public static float[] _samples = new float[512];
+    public static float[] samples = new float[512];
 
     void Awake()
     {
@@ -13,15 +13,15 @@ public class AudioAnalizer : MonoBehaviour
         {
             rhytmEvent = RhytmEvent.instance;
         }
-        if (_audioSource == null)
+        if (audioSource == null)
         {
-            _audioSource = GetComponent<AudioSource>();
+            audioSource = GetComponent<AudioSource>();
         }
     }
 
     protected void GetSpectrumAudioSource()
     {
-        _audioSource.GetSpectrumData(_samples, 0, FFTWindow.Blackman);
+        audioSource.GetSpectrumData(samples, 0, FFTWindow.Blackman);
     }
 
     protected virtual void MakeFrequencyBand()

@@ -1,7 +1,7 @@
 ﻿using Temp;
 using UnityEngine;
 
-namespace Save_System.Scriptable_Objects
+namespace Scriptable_Objects
 {
     [CreateAssetMenu(fileName = "MagicSwordData", menuName = "ScriptableObjects/MagicSwordData", order = 3)]
     public class MagicSwordData : SwordData

@@ -3,9 +3,9 @@ using UnityEngine;
 
 public class RotationScript : MonoBehaviour
 {
-    public bool is_random = false;      //назначит рандомную скорость вращения
-    public bool is_started = false;     //вращение началось
-    public float rotation_speed = 1f;   //скорость вращения
+    public bool isRandom = false;      //назначит рандомную скорость вращения
+    public bool isStarted = false;     //вращение началось
+    public float rotationSpeed = 1f;   //скорость вращения
 
     private Transform m_transform;      //трансформ точки
     
@@ -13,18 +13,18 @@ public class RotationScript : MonoBehaviour
     void Start()
     {
         m_transform = gameObject.transform;
-        if (is_random)
+        if (isRandom)
         {
-            rotation_speed = Random.Range(-5f, 5f);
+            rotationSpeed = Random.Range(-5f, 5f);
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (is_started)
+        if (isStarted)
         {
-            m_transform.Rotate(0.0f, 0.0f, rotation_speed, Space.Self);
+            m_transform.Rotate(0.0f, 0.0f, rotationSpeed, Space.Self);
         }
     }
 }

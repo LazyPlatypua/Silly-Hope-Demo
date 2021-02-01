@@ -447,22 +447,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc9c897dda76fe848bd88ab10b002446, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  game_manager: {fileID: 0}
-  attack_menu: {fileID: 0}
+  gameManager: {fileID: 0}
+  attackMenu: {fileID: 0}
   animator: {fileID: 5817043601937221191}
-  default_health: 3
-  daze_time: 2
-  current_health: 0
+  defaultHealth: 4
+  dazeTime: 2
+  currentHealth: 4
   enemyUI: {fileID: 4691318753365126203}
-  m_sprite_renderer: {fileID: 5817043601937221208}
+  spriteRenderer: {fileID: 5817043601937221208}
   damage: 1
   ink: 4
-  combo_meter_size: 6
-  position: {x: 3.46, y: -0.95, z: 0}
-  spawn_point_index: 2
-  running_speed: 1
-  death_count: 0
-  currently_filled: 0
+  comboMeterSize: 6
+  position: {x: 3, y: -0.9, z: -0.2}
+  spawnPointIndex: 2
+  runningSpeed: 1
+  deathCount: 0
+  currentlyFilled: 0
 --- !u!1 &6493429124602960855
 GameObject:
   m_ObjectHideFlags: 0
@@ -716,6 +716,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5817043601937221211}
     m_Modifications:
+    - target: {fileID: 6604922015082188195, guid: b5e4ae806ad813e4191cf8290bc43dd7,
+        type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 6734862692123670767}
     - target: {fileID: 6604922015082188196, guid: b5e4ae806ad813e4191cf8290bc43dd7,
         type: 3}
       propertyPath: m_Name
@@ -833,6 +838,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b5e4ae806ad813e4191cf8290bc43dd7, type: 3}
+--- !u!95 &6734862692123670767 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5171405569765579127, guid: b5e4ae806ad813e4191cf8290bc43dd7,
+    type: 3}
+  m_PrefabInstance: {fileID: 1924035504288129432}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &4691318753365126203 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6604922015082188195, guid: b5e4ae806ad813e4191cf8290bc43dd7,

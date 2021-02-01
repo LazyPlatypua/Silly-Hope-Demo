@@ -3,61 +3,61 @@ using UnityEngine;
 
 public class KnightCombometer : MonoBehaviour
 {
-    public GameObject[] cells_green;    //Массив ячеек зеленого цвета
-    public GameObject[] cells_red;      //Массив ячеек крсного цвета
-    public GameObject light_green;      //Ссылка на свет зеленого цвета
-    public GameObject light_red;        //Ссылка на свет красного цвета
+    public GameObject[] cellsGreen;    //Массив ячеек зеленого цвета
+    public GameObject[] cellsRed;      //Массив ячеек крсного цвета
+    public GameObject greenFlame;      //Ссылка на свет зеленого цвета
+    public GameObject redFlame;        //Ссылка на свет красного цвета
 
-    public int currently_filled_green;  //Количество заполненных зеленых ячеек
-    public int currently_filled_red;    //Количество заполненных красныч ячеек
+    public int currentlyFilledGreen;  //Количество заполненных зеленых ячеек
+    public int currentlyFilledRed;    //Количество заполненных красныч ячеек
     public int size;                    //Размер комбометра
 
-    public KnightBehaviour knight_behaviour;    //Ссылка на поведение рыцаря
+    public KnightBehaviour knightBehaviour;    //Ссылка на поведение рыцаря
 
     //Устновить комбометр
     public void StartCombometer(int size)
     {
         this.size = size;
 
-        if (knight_behaviour == null)    //проверка на наличие ссылки на поведение врага
+        if (knightBehaviour == null)    //проверка на наличие ссылки на поведение врага
         {
             Debug.Log("KnightCombometer.Start(): KnightBehaviour is missing!");
             //knight_behaviour = GameObject.Find("knight(Clone)").GetComponent<KnightBehaviour>();
         }
 
-        foreach (GameObject cell in cells_green)
+        foreach (GameObject cell in cellsGreen)
         {
             cell.SetActive(false);
         }
-        foreach (GameObject cell in cells_red)
+        foreach (GameObject cell in cellsRed)
         {
             cell.SetActive(false);
         }
 
-        light_green.SetActive(false);
-        light_red.SetActive(false);
+        greenFlame.SetActive(false);
+        redFlame.SetActive(false);
     }
 
     //Обновить ячейки
     public bool UpdateCells()
     {
-        if (currently_filled_red > 0)
+        if (currentlyFilledRed > 0)
         {
-            for (int i = 0; i < currently_filled_red; i++)
+            for (int i = 0; i < currentlyFilledRed; i++)
             {
-                cells_red[i].SetActive(true);
+                cellsRed[i].SetActive(true);
             }
         }
 
-        if (currently_filled_green > 0)
+        if (currentlyFilledGreen > 0)
         {
-            for (int i = 0; i < currently_filled_green; i++)
+            for (int i = 0; i < currentlyFilledGreen; i++)
             {
-                cells_green[i].SetActive(true);
+                cellsGreen[i].SetActive(true);
             }
         }
 
-        if (currently_filled_red >= size || currently_filled_green >= size)
+        if (currentlyFilledRed >= size || currentlyFilledGreen >= size)
         {
             return true;
         }
@@ -65,53 +65,57 @@ public class KnightCombometer : MonoBehaviour
     }
 
     //функция добавляет очки к комбометру
-    public void Add(bool is_green)
+    public void Add(bool isRed)
     {
-        if(is_green)
+        if(!isRed)
         {
-            currently_filled_green++;
+            currentlyFilledGreen++;
+            if (currentlyFilledGreen > size)
+                currentlyFilledGreen = size;
         }
         else
         {
-            currently_filled_red++;
+            currentlyFilledRed++;
+            if (currentlyFilledRed > size)
+                currentlyFilledRed = size;
         }
         
         UpdateCells();
     }
 
     //функция обнуляет комбометр
-    public void Deactivate(bool is_green)
+    public void Deactivate(bool isRed)
     {
-        if(is_green)
+        if(!isRed)
         {
-            foreach (GameObject cell in cells_green)
+            foreach (GameObject cell in cellsGreen)
             {
                 cell.SetActive(false);
             }
-            currently_filled_green = 0;
+            currentlyFilledGreen = 0;
         }
         else
         {
-            foreach (GameObject cell in cells_red)
+            foreach (GameObject cell in cellsRed)
             {
                 cell.SetActive(false);
             }
-            currently_filled_red = 0;
+            currentlyFilledRed = 0;
         }
         UpdateCells();
 
     }
 
     //Включить свет из оружия
-    public void ActivateLight(bool is_green, bool activate)
+    public void ActivateLight(bool isRed, bool activate)
     {
-        if(is_green)
+        if(!isRed)
         {
-            light_green.SetActive(activate);
+            greenFlame.SetActive(activate);
         }
         else
         {
-            light_red.SetActive(activate);
+            redFlame.SetActive(activate);
         }
     }
 }

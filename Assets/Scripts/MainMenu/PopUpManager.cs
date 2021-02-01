@@ -16,10 +16,10 @@ public class PopUpManager : MonoBehaviour
 
     public void UpdateStrings(StringSettings temp)
     {
-        nowAvailable = temp.pop_up_now_available;
-        sizeUpdate = temp.pop_up_size_update;
-        newCombo = temp.pop_up_new_combo;
-        okButtonText.text = temp.pop_up_ok;
+        nowAvailable = temp.popUpNowAvailable;
+        sizeUpdate = temp.popUpSizeUpdate;
+        newCombo = temp.popUpNewCombo;
+        okButtonText.text = temp.popUpOk;
     }
 
     public void ClosePopUp()

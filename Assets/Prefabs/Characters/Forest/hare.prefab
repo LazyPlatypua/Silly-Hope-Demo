@@ -314,22 +314,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6d17d1d44fc0a0489341048173191ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  game_manager: {fileID: 0}
-  attack_menu: {fileID: 0}
+  gameManager: {fileID: 0}
+  attackMenu: {fileID: 0}
   animator: {fileID: 1740562579506774100}
-  default_health: 10
-  daze_time: 0
-  current_health: 0
+  defaultHealth: 10
+  dazeTime: 2
+  currentHealth: 10
   enemyUI: {fileID: 1432474086744756164}
-  m_sprite_renderer: {fileID: 477779075909099015}
+  spriteRenderer: {fileID: 477779075909099015}
   damage: 0
   ink: 10
-  combo_meter_size: 4
+  comboMeterSize: 6
   position: {x: 1.27, y: 0.2, z: 0}
-  spawn_point_index: 0
-  running_speed: 1
-  death_count: 0
-  currently_filled: 0
+  spawnPointIndex: 0
+  runningSpeed: 1
+  deathCount: 0
+  currentlyFilled: 0
 --- !u!1 &6040375676005729286
 GameObject:
   m_ObjectHideFlags: 0

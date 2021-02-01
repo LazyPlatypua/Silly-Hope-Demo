@@ -1,5 +1,6 @@
 ﻿//Класс отвечает за поведение существа
 using System.Collections;
+using Level.FightGame;
 using Level.Load_and_Manager;
 using UnityEngine;
 
@@ -7,25 +8,24 @@ public class CreatureBehaviour : MonoBehaviour
 //Класс для всех существ
 {
     [Header("Links")]
-    public GameManager game_manager;    //ссылка на игровой менеджер
-    public AttackMenu attack_menu;      //ссылка на меню атак
+    public GameManager gameManager;    //ссылка на игровой менеджер
+    public AttackMenu attackMenu;      //ссылка на меню атак
     public Animator animator;           //ссылка на аниматор 
-    public int default_health;          //Здоровье по умолчанию
-    public float daze_time;
+    public int defaultHealth;          //Здоровье по умолчанию
+    public float dazeTime;
+    public int currentHealth;       //текущее здоровье
 
     protected bool stuned = false;      //является ли враг оглушенным
     protected bool ripost_flag = false; //Находится ли существо под маркером рипоста
     protected bool parry_flag = false;  //находится ли существо под маркером состояния парирования
-
-    [SerializeField]
-    protected int current_health;       //текущее здоровье
+    
 
     public virtual void Attack(Attack a)
     //функция, начинающая атаку существа. Если враг оглушен, то атака невозможна
     {
         if (!stuned)
         {
-            animator.SetBool(a.attack_name, true);
+            animator.SetBool(a.attackName, true);
         }
     }
 
@@ -73,8 +73,8 @@ public class CreatureBehaviour : MonoBehaviour
     protected virtual void UpdateHealth(int damage)
     //Функция обновляет здоровье существа
     {
-        current_health -= damage;
-        if (current_health <= 0)
+        currentHealth -= damage;
+        if (currentHealth <= 0)
         {
             StartDeathAnim();
         }
@@ -89,18 +89,18 @@ public class CreatureBehaviour : MonoBehaviour
     }
 
     //Функция, выключающая анимацию. 
-    public virtual void DeactivateAnimation(string active_trigger)
+    public virtual void DeactivateAnimation(string activeTrigger)
     {
-        if (active_trigger == "death")
+        if (activeTrigger == "death")
         {
             Death();
         }
         else
         {
-            animator.SetBool(active_trigger, false);
+            animator.SetBool(activeTrigger, false);
         }
 
-        if(active_trigger == "take_damage")
+        if(activeTrigger == "take_damage")
         {
             SetAllAnimToFalse();
         }
@@ -125,14 +125,14 @@ public class CreatureBehaviour : MonoBehaviour
     {
         SetAllAnimToFalse();
         stuned = true;
-        StartCoroutine(StartDaze(daze_time));
+        StartCoroutine(StartDaze(dazeTime));
         animator.SetBool("stun", stuned);
     }
 
-    protected virtual IEnumerator StartDaze(float daze_time)
+    protected virtual IEnumerator StartDaze(float dazeTime)
     //функция, начинающаяя отсчет до конца оглушения
     {
-        yield return new WaitForSecondsRealtime(daze_time);
+        yield return new WaitForSecondsRealtime(dazeTime);
         stuned = false;
     }
 

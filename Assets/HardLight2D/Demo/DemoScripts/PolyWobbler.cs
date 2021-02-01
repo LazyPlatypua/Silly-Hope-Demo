@@ -4,27 +4,27 @@
 [RequireComponent (typeof (PolygonCollider2D))]
 public class PolyWobbler : MonoBehaviour
 {
-    PolygonCollider2D Poly;
-    LineRenderer LineRend;
-    public float Wobbles = 1;
+    PolygonCollider2D poly;
+    LineRenderer lineRend;
+    public float wobbles = 1;
     Vector2[] points;
 
     private void Start ()
     {
-        Poly = GetComponent<PolygonCollider2D> ();
-        LineRend = GetComponent<LineRenderer> ();
+        poly = GetComponent<PolygonCollider2D> ();
+        lineRend = GetComponent<LineRenderer> ();
     }
 
     void Update ()
     {
-        points = Poly.GetPath (0);
-        LineRend.positionCount = points.Length;
+        points = poly.GetPath (0);
+        lineRend.positionCount = points.Length;
         for (int i = 0; i < points.Length; i++)
         {
-            points[i] += Random.insideUnitCircle * Time.deltaTime * Wobbles;
-            LineRend.SetPosition (i, points[i]);
+            points[i] += Random.insideUnitCircle * Time.deltaTime * wobbles;
+            lineRend.SetPosition (i, points[i]);
         }
-        Poly.SetPath (0, points);
-        HardLight2DManager.RefreshColliderReference (Poly);
+        poly.SetPath (0, points);
+        HardLight2DManager.RefreshColliderReference (poly);
     }
 }

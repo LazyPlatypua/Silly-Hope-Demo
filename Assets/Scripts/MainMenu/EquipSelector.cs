@@ -129,22 +129,22 @@ public class EquipSelector : MonoBehaviour
         buttonTextPurchase = temp.purchase;
         actionButtonText.text = temp.select;
 
-        equipment[(int)EquipType.Weapon].currentString = temp.current_weapon;
-        equipment[(int)EquipType.Armor].currentString = temp.current_armor;
-        equipment[(int)EquipType.Talisman1].currentString = temp.current_talisman;
-        equipment[(int)EquipType.Talisman2].currentString = temp.current_talisman;
-        equipment[(int)EquipType.Talisman3].currentString = temp.current_talisman;
+        equipment[(int)EquipType.Weapon].currentString = temp.currentWeapon;
+        equipment[(int)EquipType.Armor].currentString = temp.currentArmor;
+        equipment[(int)EquipType.Talisman1].currentString = temp.currentTalisman;
+        equipment[(int)EquipType.Talisman2].currentString = temp.currentTalisman;
+        equipment[(int)EquipType.Talisman3].currentString = temp.currentTalisman;
 
         // Set Weapon strings
         equipment[(int)EquipType.Weapon].names = new string[8] {
-            temp.longsword, temp.broken_sword, temp.falchion, temp.zweichender, 
-            temp.peter_sword, temp.januarius_dagger, temp.spear, temp.russian_sword
+            temp.longsword, temp.brokenSword, temp.falchion, temp.zweichender, 
+            temp.peterSword, temp.januariusDagger, temp.spear, temp.russianSword
         };
 
         equipment[(int)EquipType.Weapon].descriptions = new string[8] {
-            temp.longsword_description, temp.broken_sword_description, temp.falchion_description, 
-            temp.zweichender_description, temp.peter_sword_description, temp.januarius_dagger_description, 
-            temp.spear_description, temp.russian_sword_description
+            temp.longswordDescription, temp.brokenSwordDescription, temp.falchionDescription, 
+            temp.zweichenderDescription, temp.peterSwordDescription, temp.januariusDaggerDescription, 
+            temp.spearDescription, temp.russianSwordDescription
         };
 
         equipment[(int)EquipType.Weapon].cost = new int[8] {
@@ -158,12 +158,12 @@ public class EquipSelector : MonoBehaviour
 
         // Set Armor strings
         equipment[(int)EquipType.Armor].names = new string[4] {
-            temp.light_armor, temp.chain_mail, temp.strengthened_chain_mail, temp.heavy_armor
+            temp.lightArmor, temp.chainMail, temp.strengthenedChainMail, temp.heavyArmor
         };
 
         equipment[(int)EquipType.Armor].descriptions = new string[4] {
-            temp.light_armor_description, temp.chain_mail_description, 
-            temp.strengthened_chain_mail_description, temp.heavy_armor_description
+            temp.lightArmorDescription, temp.chainMailDescription, 
+            temp.strengthenedChainMailDescription, temp.heavyArmorDescription
         };
 
         equipment[(int)EquipType.Armor].cost = new int[4] {
@@ -177,14 +177,14 @@ public class EquipSelector : MonoBehaviour
 
         // Set Talisman strings
         equipment[(int)EquipType.Talisman1].names = new string[8] {
-            temp.no_charm, temp.welfare_charm, temp.heretics_charm, temp.orders_charm,
-            temp.crucifix, temp.ivory_pommel, temp.popes_seal, temp.traitors_pendant
+            temp.noCharm, temp.welfareCharm, temp.hereticCharm, temp.orderCharm,
+            temp.crucifix, temp.ivoryPommel, temp.popeSeal, temp.traitorPendant
         };
 
         equipment[(int)EquipType.Talisman1].descriptions = new string[8] {
-            "", temp.welfare_charm_description, temp.heretics_charm_description, temp.orders_charm_description,
-            temp.crucifix_description, temp.ivory_pommel_description, temp.popes_seal_description, 
-            temp.traitors_pendant_description
+            "", temp.welfareCharmDescription, temp.hereticCharmDescription, temp.orderCharmDescription,
+            temp.crucifixDescription, temp.ivoryPommelDescription, temp.popeSealDescription, 
+            temp.traitorPendantDescription
         };
 
         equipment[(int)EquipType.Talisman1].purchased = new bool[8];
@@ -235,13 +235,13 @@ public class EquipSelector : MonoBehaviour
         }
     }
 
-    public bool onAction() {
+    public bool ONAction() {
         if (equipment[(int)currentEquipType].IsPurchased()) {
             equipment[(int)currentEquipType].UpdateCurrentText();
             return true;
         } else {
-            if (equipment[(int)currentEquipType].GetCost() <= inkwells.getInkCount()) {
-                inkwells.InkUpdate(inkwells.getInkCount() - equipment[(int)currentEquipType].GetCost());
+            if (equipment[(int)currentEquipType].GetCost() <= inkwells.GETInkCount()) {
+                inkwells.InkUpdate(inkwells.GETInkCount() - equipment[(int)currentEquipType].GetCost());
                 equipment[(int)currentEquipType].Purchase();
                 actionButtonText.text = buttonTextSelect;
                 costText.text = "";

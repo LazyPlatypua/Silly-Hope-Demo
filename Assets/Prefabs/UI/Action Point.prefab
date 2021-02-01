@@ -177,22 +177,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3c7d185742af844ab863e3e17a610f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprite_renderer: {fileID: 8808530660412121392}
-  game_manager: {fileID: 0}
-  rhythm_manager: {fileID: 0}
-  point_animator: {fileID: 2012724918579239579}
+  spriteRenderer: {fileID: 8808530660412121392}
+  gameManager: {fileID: 0}
+  rhythmManager: {fileID: 0}
+  pointAnimator: {fileID: 2012724918579239579}
   circle: {fileID: 795026088633154840}
   colors:
   - {r: 0.47058824, g: 0.8784314, b: 0.56078434, a: 1}
   - {r: 0.8980392, g: 0.3137255, b: 0.22352941, a: 1}
   - {r: 0.9647059, g: 0.7254902, b: 0.23137255, a: 1}
   - {r: 0.49056602, g: 0.49056602, b: 0.49056602, a: 1}
-  m_transform: {fileID: 4089891793688383566}
   line: 0
-  can_be_pressed: 0
-  is_red_point: 0
-  can_be_moved: 1
-  is_missed: 0
+  canBePressed: 1
+  isRedPoint: 0
+  canBeMoved: 1
+  isMissed: 0
 --- !u!114 &5325976103310825553
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -205,9 +204,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ec771feaecce5840bb1c0b043c4d47d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  is_random: 0
-  is_started: 0
-  rotation_speed: 1
+  isRandom: 0
+  isStarted: 0
+  rotationSpeed: 1
 --- !u!95 &2012724918579239579
 Animator:
   serializedVersion: 3

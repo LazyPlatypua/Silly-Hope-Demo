@@ -24,7 +24,7 @@ public class CircleRhytm : AudioAnalizer
 
             for (int j = 0; j < sampleCount; j++)
             {
-                average += _samples[count] * (count + 1);
+                average += samples[count] * (count + 1);
                 count++;
             }
 

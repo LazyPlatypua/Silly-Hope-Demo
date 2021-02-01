@@ -5,13 +5,12 @@ using UnityEngine;  //Подключить классы unity
 
 public class PointBehaviour : MonoBehaviour
 {
-	public SpriteRenderer sprite_renderer;				//Ссылка на спрайт рендерер
-	public GameManager game_manager;					//Ссылка на игровой менеджер
-	public RhythmManager rhythm_manager;				//Ссылка на ритм менеджер
-	public Animator point_animator;						//Ссылка на аниматор точки
+	public SpriteRenderer spriteRenderer;				//Ссылка на спрайт рендерер
+	public GameManager gameManager;					//Ссылка на игровой менеджер
+	public RhythmManager rhythmManager;				//Ссылка на ритм менеджер
+	public Animator pointAnimator;						//Ссылка на аниматор точки
 	public GameObject circle;							//Ссылка на круг вокруг точки
 	public Color[] colors = new Color[4];				//Ссылка на цвета точки
-	public Transform m_transform;						//Ссылка на трансформ точки
 
 	public static float beat_tempo = 120;				//Темп песни. 
 	public static bool is_started = false;				//Начался ли уровень и не на паузе ли игра
@@ -19,39 +18,38 @@ public class PointBehaviour : MonoBehaviour
 	public static bool[] active_lines = new bool[2];
 	public int line = 0;								//номер линии, на которой находится точка
 
-	public bool can_be_pressed = false;					//Может ли точка быть нажатой
-	public bool is_red_point = false;					//Это красная точка?
-	public bool can_be_moved = true;                    //Может ли точка перемещаться?
-	public bool is_missed = false;
+	public bool canBePressed = false;					//Может ли точка быть нажатой
+	public bool isRedPoint = false;					//Это красная точка?
+	public bool canBeMoved = true;                    //Может ли точка перемещаться?
+	public bool isMissed = false;
 
 	private short direction = 1;
 
 	//Функция срабатывает в первый фрейм сцены
 	private void Start()
 	{ 
-		if(sprite_renderer == null)
+		if(spriteRenderer == null)
         {
 			gameObject.GetComponent<SpriteRenderer>();
         }
-		if (game_manager == null)
+		if (gameManager == null)
         {
-			game_manager = GameManager.instance;
+			gameManager = GameManager.instance;
         }
-		if (rhythm_manager == null)
+		if (rhythmManager == null)
 		{
-			rhythm_manager = RhythmManager.instance;
+			rhythmManager = RhythmManager.instance;
 		}
-		if (point_animator == null)
+		if (pointAnimator == null)
         {
 			gameObject.GetComponent<Animator>();
         }
-		m_transform = transform;
-        RhytmEvent.instance.onRhytmButtonPress += OnButtonPress;
+        RhytmEvent.instance.ONRhytmButtonPress += OnButtonPress;
 	}
 
-	private void OnButtonPress(int _line)
+	private void OnButtonPress(int line)
     {
-		if (can_be_pressed && _line == line)
+		if (canBePressed && line == this.line)
         {
 			DeactivatePoint();
 		}
@@ -62,14 +60,14 @@ public class PointBehaviour : MonoBehaviour
 	{
 		if (is_started)
 		{
-			if (can_be_moved)
-			m_transform.position += new Vector3(direction * beat_tempo / 60 * Time.deltaTime, 0f, 0f);
+			if (canBeMoved)
+			transform.position += new Vector3(direction * beat_tempo / 60 * Time.deltaTime, 0f, 0f);
 
 		}
 
 		if (Mathf.Abs(transform.position.x) >= end_point)
 		{
-			rhythm_manager.OnMissPoint();
+			rhythmManager.OnMissPoint();
 			Destroy(gameObject);
 		}
 
@@ -78,15 +76,15 @@ public class PointBehaviour : MonoBehaviour
 	//Деактивировать точку
 	public void DeactivatePoint()
 	{
-		can_be_pressed = false;
-		can_be_moved = false;
+		canBePressed = false;
+		canBeMoved = false;
 
-		point_animator.SetTrigger("catch");
+		pointAnimator.SetTrigger("catch");
 	}
 
 	public void DeletePoint()
     {
-		rhythm_manager.CatchPoint(this);
+		rhythmManager.CatchPoint(this);
 		Destroy(gameObject);
     }
 
@@ -95,8 +93,8 @@ public class PointBehaviour : MonoBehaviour
 	{
 		if (other.CompareTag("Line"))
 		{
-			can_be_pressed = true;
-			sprite_renderer.color = colors[2];
+			canBePressed = true;
+			spriteRenderer.color = colors[2];
 		}
 	}
 
@@ -104,24 +102,24 @@ public class PointBehaviour : MonoBehaviour
 	{
 		if (other.CompareTag("Line"))
 		{
-			can_be_pressed = false;
-			is_missed = true;
-			sprite_renderer.color = colors[3];
+			canBePressed = false;
+			isMissed = true;
+			spriteRenderer.color = colors[3];
 		}
 	}
 
 	//Функция назначает точку красной
-	public void SetRed(bool is_red)
+	public void SetRed(bool isRed)
 	{
-		is_red_point = is_red;
-		if (!is_red)
+		isRedPoint = isRed;
+		if (!isRed)
 		{
-			sprite_renderer.color = colors[0];
+			spriteRenderer.color = colors[0];
 			direction = -1;
 		}
 		else
 		{
-			sprite_renderer.color = colors[1];
+			spriteRenderer.color = colors[1];
 			direction = 1;
 		}
 	}

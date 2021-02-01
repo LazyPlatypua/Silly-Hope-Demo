@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
+using Level.FightGame;
 using Level.Load_and_Manager;
-using Save_System;
+using Scriptable_Objects;
 using UnityEngine;
 
 
@@ -27,9 +28,9 @@ public class KnightBehaviour : CreatureBehaviour
             sword.SetActive(false);
         }
 
-        if(game_manager == null)
+        if(gameManager == null)
         {
-            game_manager = GameManager.instance;
+            gameManager = GameManager.instance;
         }
         
         if (rhythmManager == null)
@@ -37,13 +38,13 @@ public class KnightBehaviour : CreatureBehaviour
             rhythmManager = RhythmManager.instance;
         }
         
-        if (attack_menu == null)
+        if (attackMenu == null)
         {
-            attack_menu = AttackMenu.instance;
+            attackMenu = AttackMenu.instance;
         }
         
-        current_health = health;
-        default_health = health;
+        currentHealth = health;
+        defaultHealth = health;
         
         GameObject currentSword = swords[swordData.id];
         currentSword.SetActive(true);
@@ -59,7 +60,7 @@ public class KnightBehaviour : CreatureBehaviour
     //Начать атаку
     public override void Attack(Attack a)
     {
-        animator.SetBool(a.attack_name, true);
+        animator.SetBool(a.attackName, true);
         current_a = a;
     }
 
@@ -67,8 +68,8 @@ public class KnightBehaviour : CreatureBehaviour
     public override void PointOfAttack(string name)
     {
         base.PointOfAttack(name);
-        current_a.attack_name = name;
-        attack_menu.DealDamageToEnemy(current_a);
+        current_a.attackName = name;
+        attackMenu.DealDamageToEnemy(current_a);
         current_a = new Attack();
     }
 
@@ -76,13 +77,13 @@ public class KnightBehaviour : CreatureBehaviour
     protected override void UpdateHealth(int damage)
     {
         base.UpdateHealth(damage);
-        game_manager.UpdateHealthBar(current_health);
+        gameManager.UpdateHealthBar(currentHealth);
     }
 
     //Убить рыцаря
     protected override void Death()
     {
-        game_manager.Defeat();
+        gameManager.Defeat();
     }
 
     //Обнулить все анимации
@@ -93,9 +94,9 @@ public class KnightBehaviour : CreatureBehaviour
     }
 
     //Обнулить анимацию
-    public override void DeactivateAnimation(string active_trigger)
+    public override void DeactivateAnimation(string activeTrigger)
     {
-        base.DeactivateAnimation(active_trigger);
+        base.DeactivateAnimation(activeTrigger);
     }
 
     //Начать анимацию смерти

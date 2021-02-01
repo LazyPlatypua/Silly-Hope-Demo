@@ -7,128 +7,128 @@ public class MainMenuManager : MonoBehaviour
 {
     public static MainMenuManager instance;
     [Header("Main Links")]              //Ссылки на главные объекты меню
-    public SceneLoader scene_loader;    //Ссылка на загрузчик уровня
+    public SceneLoader sceneLoader;    //Ссылка на загрузчик уровня
     public GameObject spread;           //Ссылка на разворот
-    public GameObject spread_main;      //Ссылка на главный разворот
+    public GameObject spreadMain;      //Ссылка на главный разворот
     public GameObject content;          //Ссылка на содержание
     public GameObject shop;             //Ссылка на магазин
     public GameObject equip;            //Ссылка на снаряжение
     public EquipSelector equipSelector;    //Ссылка на селектор снаряжения
     public GameObject settings;         //Ссылка на настройки
-    public GameObject post_processing;  //Ссылка на объект пост процессинга
-    public AudioSource audio_source;    //ССылка на аудиоисточник
+    public GameObject postProcessing;  //Ссылка на объект пост процессинга
+    public AudioSource audioSource;    //ССылка на аудиоисточник
 
     [Header("Pop Up")]
     public PopUpManager popUpManager;   //ссылка на поп ап
 
     [Header("Current Equipment")]                       //Cнаряжение рыцаря
-    public TextMeshProUGUI equip_header_text;           //Заголовок "снаряжение"
-    public byte current_scene;                          //Текущая сцена
-    public byte current_charm_0;                        //текущий первый талисман
-    public byte current_charm_1;                        //текущий второй талисман
-    public byte current_charm_2;                        //текущий третий талисман
-    public byte combometer_size;                        //Текущий размер комбометра
-    public bool combo_split_is_available;               //Доступно ли комбо разрыва
-    public bool combo_fourious_attack_is_available;     //Доступно ли комбо яростной атаки
-    public bool combo_master_stun_is_available;         //Доступно ли комбо мастерское оглушение
-    public bool combo_horizontal_cut_is_available;      //Доступно ли комбо горизонтального разреза
-    public bool combo_shuffle_is_available;             //Доступно ли комбо перетасовки
-    public bool combo_florescence_is_available;         //Доступно ли комбо расцвета
-    public bool combo_sublime_dissection_is_available;  //Доступно ли комбо грандиозного рассчения
+    public TextMeshProUGUI equipHeaderText;           //Заголовок "снаряжение"
+    public byte currentScene;                          //Текущая сцена
+    public byte currentCharm0;                        //текущий первый талисман
+    public byte currentCharm1;                        //текущий второй талисман
+    public byte currentCharm2;                        //текущий третий талисман
+    public byte combometerSize;                        //Текущий размер комбометра
+    public bool comboSplitIsAvailable;               //Доступно ли комбо разрыва
+    public bool comboFouriousAttackIsAvailable;     //Доступно ли комбо яростной атаки
+    public bool comboMasterStunIsAvailable;         //Доступно ли комбо мастерское оглушение
+    public bool comboHorizontalCutIsAvailable;      //Доступно ли комбо горизонтального разреза
+    public bool comboShuffleIsAvailable;             //Доступно ли комбо перетасовки
+    public bool comboFlorescenceIsAvailable;         //Доступно ли комбо расцвета
+    public bool comboSublimeDissectionIsAvailable;  //Доступно ли комбо грандиозного рассчения
 
     [Header("Purchased items")]         //Приобретеные вещи
-    public bool is_prolog_completed;        //Пройден ли пролог
-    public bool broken_sword_is_purchased;  //Сломанный меч приобретен
-    public bool falchion_is_purchased;      //Фальшион приобретен
-    public bool zweihander_is_purchased;    //Двуручник приобретен
-    public bool peter_sword_is_purchased;   //Меч святого Петра приобретен
-    public bool januar_dagger_is_purchased; //Кинжал святого Януария приобретен
-    public bool viennese_spear_is_purchased;//Венское копье приобретено
-    public bool russian_sword_is_purchased; //Русский меч приобретен
-    public bool chain_mail_is_purchased;            //Кольчуга приобретена
-    public bool hardened_chain_mail_is_purchased;   //Урепленная кольчуга приобретена
-    public bool heavy_armor_is_purchased;           //Тяжелая броня приобретена
-    public bool welfare_charm_is_purchased;     //Талисман благоденствия приобретен
-    public bool heretic_charm_is_purchased;     //Талисман еритика приобретен
-    public bool order_charm_is_purchased;       //Талисман ордена приобретен
-    public bool cross_charm_is_purchased;       //Талисман нагрудный крест приобретен
-    public bool pommel_charm_is_purchased;      //Талисман навершие из слоновой кости приобретен
-    public bool papa_charm_is_purchased;        //Талисман печать папы приобретен
-    public bool traitor_charm_is_purchased;     //Талисман предателя приобретен
+    public bool isPrologCompleted;        //Пройден ли пролог
+    public bool brokenSwordIsPurchased;  //Сломанный меч приобретен
+    public bool falchionIsPurchased;      //Фальшион приобретен
+    public bool zweihanderIsPurchased;    //Двуручник приобретен
+    public bool peterSwordIsPurchased;   //Меч святого Петра приобретен
+    public bool januarDaggerIsPurchased; //Кинжал святого Януария приобретен
+    public bool vienneseSpearIsPurchased;//Венское копье приобретено
+    public bool russianSwordIsPurchased; //Русский меч приобретен
+    public bool chainMailIsPurchased;            //Кольчуга приобретена
+    public bool hardenedChainMailIsPurchased;   //Урепленная кольчуга приобретена
+    public bool heavyArmorIsPurchased;           //Тяжелая броня приобретена
+    public bool welfareCharmIsPurchased;     //Талисман благоденствия приобретен
+    public bool hereticCharmIsPurchased;     //Талисман еритика приобретен
+    public bool orderCharmIsPurchased;       //Талисман ордена приобретен
+    public bool crossCharmIsPurchased;       //Талисман нагрудный крест приобретен
+    public bool pommelCharmIsPurchased;      //Талисман навершие из слоновой кости приобретен
+    public bool papaCharmIsPurchased;        //Талисман печать папы приобретен
+    public bool traitorCharmIsPurchased;     //Талисман предателя приобретен
 
     [Header("Score and ink")]   //очки и чернила
     public InkwellsManager inkwells;
-    public short best_score;    //Лучший результат
-    public short black_ink;     //Количество чернил
+    public short bestScore;    //Лучший результат
+    public short blackInk;     //Количество чернил
 
     [Header("Settings")]        //Настройки игры
-    public Language.LanguageType language_settings;  //Текущий язык
-    public byte graphics_tier;                      //Уровень графики
-    public float master_volume;                     //Общая громкость игры
-    public float music_volume;                      //Громкость музыки
-    public float sfx_volume;                        //Громкость звуковых эффектов
+    public Language.LanguageType languageSettings;  //Текущий язык
+    public byte graphicsTier;                      //Уровень графики
+    public float masterVolume;                     //Общая громкость игры
+    public float musicVolume;                      //Громкость музыки
+    public float sfxVolume;                        //Громкость звуковых эффектов
     public string state = "spread";                  //Текущее состояние меню
-    public Slider volume_slider;                    //Слайдер громкости
-    public TextMeshProUGUI settings_back_text;      //Ссылка на текст "Назад"
-    public TextMeshProUGUI settings_header_text;    //Ссылка на текст заголовка настроек
-    public TextMeshProUGUI graphics_tier_text;      //Ссылка на текст уровня графики
-    public TextMeshProUGUI volume_text;             //Ссылка на текст "Громкость"
-    public TextMeshProUGUI language_button_text;    //Ссылка на текст "Язык: "
+    public Slider volumeSlider;                    //Слайдер громкости
+    public TextMeshProUGUI settingsBackText;      //Ссылка на текст "Назад"
+    public TextMeshProUGUI settingsHeaderText;    //Ссылка на текст заголовка настроек
+    public TextMeshProUGUI graphicsTierText;      //Ссылка на текст уровня графики
+    public TextMeshProUGUI volumeText;             //Ссылка на текст "Громкость"
+    public TextMeshProUGUI languageButtonText;    //Ссылка на текст "Язык: "
     private string graphics_low;                    //Текст низких настроек
     private string graphics_normal;                 //Текст нормальных настроек
 
     [Header("Main Spread")] //Главный разворот
-    public TextMeshProUGUI score_text;
-    public TextMeshProUGUI chapter_text;
-    public TextMeshProUGUI continue_text;           //Ссылка на текст "Продолжить"
-    public TextMeshProUGUI equipment_text;          //Ссылка на текст "Снаряжение"         
-    public TextMeshProUGUI shop_text;               //Ссылка на текст "Лавка"
-    public TextMeshProUGUI content_text;            //Ссылка на текст "Продолжить"
-    public TextMeshProUGUI settings_text;           //Ссылка на текст "Настройки"
-    public TextMeshProUGUI exit_text;               //Ссылка на текст "Выход"
-    public TextMeshProUGUI equipment_back_text;     //Ссылка на текст "Назад"
+    public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI chapterText;
+    public TextMeshProUGUI continueText;           //Ссылка на текст "Продолжить"
+    public TextMeshProUGUI equipmentText;          //Ссылка на текст "Снаряжение"         
+    public TextMeshProUGUI shopText;               //Ссылка на текст "Лавка"
+    public TextMeshProUGUI contentText;            //Ссылка на текст "Продолжить"
+    public TextMeshProUGUI settingsText;           //Ссылка на текст "Настройки"
+    public TextMeshProUGUI exitText;               //Ссылка на текст "Выход"
+    public TextMeshProUGUI equipmentBackText;     //Ссылка на текст "Назад"
 
     [Header("Shop")]    //Лавка
-    public TextMeshProUGUI black_ink_text;      //Ссылка на текст счета на чернильнице
+    public TextMeshProUGUI blackInkText;      //Ссылка на текст счета на чернильнице
 
     [Header("Content")]    //Содержание
-    public Sprite default_button;
-    public Sprite selected_button;
-    public GameObject prolog_button;
-    public Button[] chapter_buttons;            //Ссыдка на кнопки сцен
-    public TextMeshProUGUI[] chapter_prices_text;       //Ссылка на ценнки сцен
-    public GameObject first_act;                //Ссылка на содержание первого акта
-    public GameObject second_act;               //Ссылка на содержание второго акта
-    public GameObject third_act;                //Ссылка на содержание третьего акта
+    public Sprite defaultButton;
+    public Sprite selectedButton;
+    public GameObject prologButton;
+    public Button[] chapterButtons;            //Ссыдка на кнопки сцен
+    public TextMeshProUGUI[] chapterPricesText;       //Ссылка на ценнки сцен
+    public GameObject firstAct;                //Ссылка на содержание первого акта
+    public GameObject secondAct;               //Ссылка на содержание второго акта
+    public GameObject thirdAct;                //Ссылка на содержание третьего акта
     public GameObject epilogue;                 //Ссылка на содержание эпилога
-    public SpriteRenderer scene_image;          //Ссылка на изображение акта
-    public Sprite[] scene_preview;              //Изображения актов
-    public TextMeshProUGUI select_scene_text;   //Ссылка на текст "Выбрать"
-    public TextMeshProUGUI content_next_text;   //ССылка на текст "Слудющее"
-    public TextMeshProUGUI prologue_text;       //Ссылка на текст "Пролог"
-    public TextMeshProUGUI epilogue_text;       //Ссылка на текст "Эпилог"
-    public TextMeshProUGUI titles_text;         //Ссылка на текст "Титры"
-    public TextMeshProUGUI chapter_1_text;      //Ссылка на текст "Глава 1"
-    public TextMeshProUGUI chapter_2_text;      //Ссылка на текст "Глава 2"
-    public TextMeshProUGUI chapter_3_text;      //Ссылка на текст "Глава 3"
-    public TextMeshProUGUI chapter_4_text;      //Ссылка на текст "Глава 4"
-    public TextMeshProUGUI chapter_5_text;      //Ссылка на текст "Глава 5"
-    public TextMeshProUGUI chapter_6_text;      //Ссылка на текст "Глава 6"
-    public TextMeshProUGUI chapter_7_text;      //Ссылка на текст "Глава 7"
-    public TextMeshProUGUI chapter_8_text;      //Ссылка на текст "Глава 8"
-    public TextMeshProUGUI chapter_9_text;      //Ссылка на текст "Глава 9"
-    public TextMeshProUGUI chapter_10_text;     //Ссылка на текст "Глава 10"
-    public TextMeshProUGUI chapter_11_text;     //Ссылка на текст "Глава 11"
+    public SpriteRenderer sceneImage;          //Ссылка на изображение акта
+    public Sprite[] scenePreview;              //Изображения актов
+    public TextMeshProUGUI selectSceneText;   //Ссылка на текст "Выбрать"
+    public TextMeshProUGUI contentNextText;   //ССылка на текст "Слудющее"
+    public TextMeshProUGUI prologueText;       //Ссылка на текст "Пролог"
+    public TextMeshProUGUI epilogueText;       //Ссылка на текст "Эпилог"
+    public TextMeshProUGUI titlesText;         //Ссылка на текст "Титры"
+    public TextMeshProUGUI chapter1Text;      //Ссылка на текст "Глава 1"
+    public TextMeshProUGUI chapter2Text;      //Ссылка на текст "Глава 2"
+    public TextMeshProUGUI chapter3Text;      //Ссылка на текст "Глава 3"
+    public TextMeshProUGUI chapter4Text;      //Ссылка на текст "Глава 4"
+    public TextMeshProUGUI chapter5Text;      //Ссылка на текст "Глава 5"
+    public TextMeshProUGUI chapter6Text;      //Ссылка на текст "Глава 6"
+    public TextMeshProUGUI chapter7Text;      //Ссылка на текст "Глава 7"
+    public TextMeshProUGUI chapter8Text;      //Ссылка на текст "Глава 8"
+    public TextMeshProUGUI chapter9Text;      //Ссылка на текст "Глава 9"
+    public TextMeshProUGUI chapter10Text;     //Ссылка на текст "Глава 10"
+    public TextMeshProUGUI chapter11Text;     //Ссылка на текст "Глава 11"
     //Перечисление Актов
     public enum Act
     {
-        first_act,
-        second_act,
-        third_act,
-        epilogue
+        FirstAct,
+        SecondAct,
+        ThirdAct,
+        Epilogue
     }
     //Текущий акт содержания
-    public Act current_act;
+    public Act currentAct;
     //Стуктура сцен
     public struct Scene
     {
@@ -168,26 +168,26 @@ public class MainMenuManager : MonoBehaviour
             new Scene(10, 275, false, false),
             new Scene(11, 0, false, false)
         };
-        current_act = Act.first_act;
+        currentAct = Act.FirstAct;
         ChangeState("spread");
         LoadData();
 
-        audio_source.volume = music_volume;
-        volume_slider.value = music_volume;
+        audioSource.volume = musicVolume;
+        volumeSlider.value = musicVolume;
 
-        switch (graphics_tier)
+        switch (graphicsTier)
         {
             case 0:
-                graphics_tier_text.text = "graphics: normal";
-                post_processing.SetActive(true);
+                graphicsTierText.text = "graphics: normal";
+                postProcessing.SetActive(true);
                 break;
 
             case 1:
-                graphics_tier_text.text = "graphics: low";
-                post_processing.SetActive(false);
+                graphicsTierText.text = "graphics: low";
+                postProcessing.SetActive(false);
                 break;
         }
-        inkwells.InkUpdate(black_ink);
+        inkwells.InkUpdate(blackInk);
         UpdateContentButtons();
     }
 
@@ -203,33 +203,33 @@ public class MainMenuManager : MonoBehaviour
     //Функция устанавливает громкость
     public void SetVolume(float vol)
     {
-        music_volume = vol;
-        audio_source.volume = vol;
+        musicVolume = vol;
+        audioSource.volume = vol;
         SaveData();
     }
 
     //Функция загружает сохраненные данные
     private bool LoadData()
     {
-        bool return_value = true;
-        GameData game_data = SaveSystem.LoadData();
+        bool returnValue = true;
+        GameData gameData = SaveSystem.LoadData();
 
-        if (game_data == null)
+        if (gameData == null)
         {
-            game_data = new GameData();
-            return_value = false;
+            gameData = new GameData();
+            returnValue = false;
         }
         else
         {
-            DataHolder.language = game_data.language;
-            return_value = true;
+            DataHolder.language = gameData.language;
+            returnValue = true;
         }
 
-        language_settings = Language.IntToLanguage(DataHolder.language);
+        languageSettings = Language.IntToLanguage(DataHolder.language);
         SetStrings(DataHolder.language);
 
-        best_score = game_data.best_score;  //Лучший результат
-        black_ink = game_data.black_ink;   //Количество чернил
+        bestScore = gameData.bestScore;  //Лучший результат
+        blackInk = gameData.blackInk;   //Количество чернил
         
         equipSelector.SetCurrentEquipId(EquipSelector.EquipType.Weapon, DataHolder.current_weapon);
         equipSelector.SetCurrentEquipId(EquipSelector.EquipType.Armor, DataHolder.current_armor);
@@ -237,161 +237,161 @@ public class MainMenuManager : MonoBehaviour
         equipSelector.SetCurrentEquipId(EquipSelector.EquipType.Talisman2, DataHolder.current_charm_1);
         equipSelector.SetCurrentEquipId(EquipSelector.EquipType.Talisman3, DataHolder.current_charm_2);
 
-        scenes[0].is_purchased = game_data.scene1_is_purchased;    //Первая сцена приобретена 
-        scenes[0].is_completed = game_data.scene1_is_completed;    //Первая cцена пройдена один раз
-        scenes[1].is_purchased = game_data.scene2_is_purchased;    //Вторая сцена приобретена 
-        scenes[1].is_completed = game_data.scene2_is_completed;    //Вторая cцена пройдена один раз
-        scenes[2].is_purchased = game_data.scene3_is_purchased;    //Третья сцена приобретена 
-        scenes[2].is_completed = game_data.scene3_is_completed;    //Третья cцена пройдена один раз
-        scenes[3].is_purchased = game_data.scene4_is_purchased;    //Четвертая сцена приобретена 
-        scenes[3].is_completed = game_data.scene4_is_completed;    //Четвертая cцена пройдена один раз
-        scenes[4].is_purchased = game_data.scene5_is_purchased;    //Пятая сцена приобретена 
-        scenes[4].is_completed = game_data.scene5_is_completed;    //Пятая cцена пройдена один раз
-        scenes[5].is_purchased = game_data.scene6_is_purchased;    //Шестая сцена приобретена 
-        scenes[5].is_completed = game_data.scene6_is_completed;    //Шестая cцена пройдена один раз
-        scenes[6].is_purchased = game_data.scene7_is_purchased;    //Седьмая сцена приобретена d
-        scenes[6].is_completed = game_data.scene7_is_completed;    //Седьмая cцена пройдена один раз
-        scenes[7].is_purchased = game_data.scene8_is_purchased;    //Восьмая сцена приобретена 
-        scenes[7].is_completed = game_data.scene8_is_completed;    //Восьмая cцена пройдена один раз
-        scenes[8].is_purchased = game_data.scene9_is_purchased;    //Девятая сцена приобретена 
-        scenes[8].is_completed = game_data.scene9_is_completed;    //Девятая cцена пройдена один раз
-        scenes[9].is_purchased = game_data.scene10_is_purchased;   //Десятая сцена приобретена 
-        scenes[9].is_completed = game_data.scene10_is_completed;   //Десятая cцена пройдена один раз
-        scenes[10].is_purchased = game_data.scene11_is_purchased;   //Одиннадцатая сцена приобретена 
-        scenes[10].is_completed = game_data.scene11_is_completed;   //Одиннадцатая cцена пройдена один раз
+        scenes[0].is_purchased = gameData.scene1IsPurchased;    //Первая сцена приобретена 
+        scenes[0].is_completed = gameData.scene1IsCompleted;    //Первая cцена пройдена один раз
+        scenes[1].is_purchased = gameData.scene2IsPurchased;    //Вторая сцена приобретена 
+        scenes[1].is_completed = gameData.scene2IsCompleted;    //Вторая cцена пройдена один раз
+        scenes[2].is_purchased = gameData.scene3IsPurchased;    //Третья сцена приобретена 
+        scenes[2].is_completed = gameData.scene3IsCompleted;    //Третья cцена пройдена один раз
+        scenes[3].is_purchased = gameData.scene4IsPurchased;    //Четвертая сцена приобретена 
+        scenes[3].is_completed = gameData.scene4IsCompleted;    //Четвертая cцена пройдена один раз
+        scenes[4].is_purchased = gameData.scene5IsPurchased;    //Пятая сцена приобретена 
+        scenes[4].is_completed = gameData.scene5IsCompleted;    //Пятая cцена пройдена один раз
+        scenes[5].is_purchased = gameData.scene6IsPurchased;    //Шестая сцена приобретена 
+        scenes[5].is_completed = gameData.scene6IsCompleted;    //Шестая cцена пройдена один раз
+        scenes[6].is_purchased = gameData.scene7IsPurchased;    //Седьмая сцена приобретена d
+        scenes[6].is_completed = gameData.scene7IsCompleted;    //Седьмая cцена пройдена один раз
+        scenes[7].is_purchased = gameData.scene8IsPurchased;    //Восьмая сцена приобретена 
+        scenes[7].is_completed = gameData.scene8IsCompleted;    //Восьмая cцена пройдена один раз
+        scenes[8].is_purchased = gameData.scene9IsPurchased;    //Девятая сцена приобретена 
+        scenes[8].is_completed = gameData.scene9IsCompleted;    //Девятая cцена пройдена один раз
+        scenes[9].is_purchased = gameData.scene10IsPurchased;   //Десятая сцена приобретена 
+        scenes[9].is_completed = gameData.scene10IsCompleted;   //Десятая cцена пройдена один раз
+        scenes[10].is_purchased = gameData.scene11IsPurchased;   //Одиннадцатая сцена приобретена 
+        scenes[10].is_completed = gameData.scene11IsCompleted;   //Одиннадцатая cцена пройдена один раз
 
-        broken_sword_is_purchased = game_data.broken_sword_is_purchased;  //Сломанный меч приобретен
-        falchion_is_purchased = game_data.falchion_is_purchased;      //Фальшион приобретен
-        zweihander_is_purchased = game_data.zweihander_is_purchased;    //Двуручник приобретен
-        peter_sword_is_purchased = game_data.peter_sword_is_purchased;   //Меч святого Петра приобретен
-        januar_dagger_is_purchased = game_data.januar_dagger_is_purchased; //Кинжал святого Януария приобретен
-        viennese_spear_is_purchased = game_data.viennese_spear_is_purchased;//Венское копье приобретено
-        russian_sword_is_purchased = game_data.russian_sword_is_purchased; //Русский меч приобретен
+        brokenSwordIsPurchased = gameData.brokenSwordIsPurchased;  //Сломанный меч приобретен
+        falchionIsPurchased = gameData.falchionIsPurchased;      //Фальшион приобретен
+        zweihanderIsPurchased = gameData.zweihanderIsPurchased;    //Двуручник приобретен
+        peterSwordIsPurchased = gameData.peterSwordIsPurchased;   //Меч святого Петра приобретен
+        januarDaggerIsPurchased = gameData.januarDaggerIsPurchased; //Кинжал святого Януария приобретен
+        vienneseSpearIsPurchased = gameData.vienneseSpearIsPurchased;//Венское копье приобретено
+        russianSwordIsPurchased = gameData.russianSwordIsPurchased; //Русский меч приобретен
 
-        chain_mail_is_purchased = game_data.chain_mail_is_purchased;            //Кольчуга приобретена
-        hardened_chain_mail_is_purchased = game_data.hardened_chain_mail_is_purchased;   //Урепленная кольчуга приобретена
-        heavy_armor_is_purchased = game_data.heavy_armor_is_purchased;           //Тяжелая броня приобретена
+        chainMailIsPurchased = gameData.chainMailIsPurchased;            //Кольчуга приобретена
+        hardenedChainMailIsPurchased = gameData.hardenedChainMailIsPurchased;   //Урепленная кольчуга приобретена
+        heavyArmorIsPurchased = gameData.heavyArmorIsPurchased;           //Тяжелая броня приобретена
 
-        welfare_charm_is_purchased = game_data.welfare_charm_is_purchased;     //Талисман благоденствия приобретен
-        heretic_charm_is_purchased = game_data.heretic_charm_is_purchased;     //Талисман еритика приобретен
-        order_charm_is_purchased = game_data.order_charm_is_purchased;       //Талисман ордена приобретен
-        cross_charm_is_purchased = game_data.cross_charm_is_purchased;       //Талисман нагрудный крест приобретен
-        pommel_charm_is_purchased = game_data.pommel_charm_is_purchased;      //Талисман навершие из слоновой кости приобретен
-        papa_charm_is_purchased = game_data.papa_charm_is_purchased;        //Талисман печать папы приобретен
-        traitor_charm_is_purchased = game_data.traitor_charm_is_purchased;     //Талисман предателя приобретен
+        welfareCharmIsPurchased = gameData.welfareCharmIsPurchased;     //Талисман благоденствия приобретен
+        hereticCharmIsPurchased = gameData.hereticCharmIsPurchased;     //Талисман еритика приобретен
+        orderCharmIsPurchased = gameData.orderCharmIsPurchased;       //Талисман ордена приобретен
+        crossCharmIsPurchased = gameData.crossCharmIsPurchased;       //Талисман нагрудный крест приобретен
+        pommelCharmIsPurchased = gameData.pommelCharmIsPurchased;      //Талисман навершие из слоновой кости приобретен
+        papaCharmIsPurchased = gameData.papaCharmIsPurchased;        //Талисман печать папы приобретен
+        traitorCharmIsPurchased = gameData.traitorCharmIsPurchased;     //Талисман предателя приобретен
         
         byte size = DataHolder.combometer_size;
-        current_scene = DataHolder.current_scene;
-        if (current_scene > 2)
+        currentScene = DataHolder.current_scene;
+        if (currentScene > 2)
         {
             size = 2;
-            combometer_size = size;
-            combo_split_is_available = true;               //Доступно ли комбо разрыва
-            combo_fourious_attack_is_available = true;     //Доступно ли комбо яростной атаки
-            combo_master_stun_is_available = true;         //Доступно ли комбо мастерское оглушение
-            combo_horizontal_cut_is_available = true;      //Доступно ли комбо горизонтального разреза
-            combo_shuffle_is_available = true;             //Доступно ли комбо перетасовки
-            combo_florescence_is_available = true;         //Доступно ли комбо расцвета
-            combo_sublime_dissection_is_available = true;  //Доступно ли комбо грандиозного рассчения
+            combometerSize = size;
+            comboSplitIsAvailable = true;               //Доступно ли комбо разрыва
+            comboFouriousAttackIsAvailable = true;     //Доступно ли комбо яростной атаки
+            comboMasterStunIsAvailable = true;         //Доступно ли комбо мастерское оглушение
+            comboHorizontalCutIsAvailable = true;      //Доступно ли комбо горизонтального разреза
+            comboShuffleIsAvailable = true;             //Доступно ли комбо перетасовки
+            comboFlorescenceIsAvailable = true;         //Доступно ли комбо расцвета
+            comboSublimeDissectionIsAvailable = true;  //Доступно ли комбо грандиозного рассчения
         }
         else
         {
-            combo_split_is_available = true;               //Доступно ли комбо разрыва
-            combo_fourious_attack_is_available = true;     //Доступно ли комбо яростной атаки
-            combo_master_stun_is_available = true;         //Доступно ли комбо мастерское оглушение
-            combo_horizontal_cut_is_available = false;      //Доступно ли комбо горизонтального разреза
-            combo_shuffle_is_available = false;             //Доступно ли комбо перетасовки
-            combo_florescence_is_available = false;         //Доступно ли комбо расцвета
-            combo_sublime_dissection_is_available = false;  //Доступно ли комбо грандиозного рассчения
+            comboSplitIsAvailable = true;               //Доступно ли комбо разрыва
+            comboFouriousAttackIsAvailable = true;     //Доступно ли комбо яростной атаки
+            comboMasterStunIsAvailable = true;         //Доступно ли комбо мастерское оглушение
+            comboHorizontalCutIsAvailable = false;      //Доступно ли комбо горизонтального разреза
+            comboShuffleIsAvailable = false;             //Доступно ли комбо перетасовки
+            comboFlorescenceIsAvailable = false;         //Доступно ли комбо расцвета
+            comboSublimeDissectionIsAvailable = false;  //Доступно ли комбо грандиозного рассчения
         }
-        if (current_scene > 7)
+        if (currentScene > 7)
         {
             size = 3;
-            combometer_size = size;
-            combo_split_is_available = true;               //Доступно ли комбо разрыва
-            combo_fourious_attack_is_available = true;     //Доступно ли комбо яростной атаки
-            combo_master_stun_is_available = true;         //Доступно ли комбо мастерское оглушение
-            combo_horizontal_cut_is_available = true;      //Доступно ли комбо горизонтального разреза
-            combo_shuffle_is_available = true;             //Доступно ли комбо перетасовки
-            combo_florescence_is_available = true;         //Доступно ли комбо расцвета
-            combo_sublime_dissection_is_available = true;  //Доступно ли комбо грандиозного рассчения
+            combometerSize = size;
+            comboSplitIsAvailable = true;               //Доступно ли комбо разрыва
+            comboFouriousAttackIsAvailable = true;     //Доступно ли комбо яростной атаки
+            comboMasterStunIsAvailable = true;         //Доступно ли комбо мастерское оглушение
+            comboHorizontalCutIsAvailable = true;      //Доступно ли комбо горизонтального разреза
+            comboShuffleIsAvailable = true;             //Доступно ли комбо перетасовки
+            comboFlorescenceIsAvailable = true;         //Доступно ли комбо расцвета
+            comboSublimeDissectionIsAvailable = true;  //Доступно ли комбо грандиозного рассчения
         }
 
         popUpManager.gameObject.SetActive(false);
         if (DataHolder.from_level)
         {
-            black_ink = DataHolder.black_ink;
-            best_score = DataHolder.best_score;
+            blackInk = DataHolder.black_ink;
+            bestScore = DataHolder.best_score;
             DataHolder.from_level = false;
-            if(current_scene == 0)
+            if(currentScene == 0)
             {
-                is_prolog_completed = true;
+                isPrologCompleted = true;
             }
             else
             {
-                if(!scenes[current_scene - 1].is_completed)
+                if(!scenes[currentScene - 1].is_completed)
                 {
                     popUpManager.gameObject.SetActive(true);
-                    switch (current_scene)
+                    switch (currentScene)
                     {
                         case 1:
-                            popUpManager.OpenPopUp(chapter_1_text.text);
+                            popUpManager.OpenPopUp(chapter1Text.text);
                             break;
 
                         case 2:
-                            popUpManager.OpenPopUp(chapter_2_text.text);
+                            popUpManager.OpenPopUp(chapter2Text.text);
                             break;
 
                         case 3:
-                            popUpManager.OpenPopUp(chapter_3_text.text, size);
+                            popUpManager.OpenPopUp(chapter3Text.text, size);
                             SaveData();
                             break;
 
                         case 4:
-                            popUpManager.OpenPopUp(chapter_4_text.text);
+                            popUpManager.OpenPopUp(chapter4Text.text);
                             break;
 
                         case 5:
-                            popUpManager.OpenPopUp(chapter_5_text.text);
+                            popUpManager.OpenPopUp(chapter5Text.text);
                             break;
 
                         case 6:
-                            popUpManager.OpenPopUp(chapter_6_text.text);
+                            popUpManager.OpenPopUp(chapter6Text.text);
                             break;
 
                         case 7:
-                            popUpManager.OpenPopUp(chapter_7_text.text);
+                            popUpManager.OpenPopUp(chapter7Text.text);
                             break;
 
                         case 8:
-                            popUpManager.OpenPopUp(chapter_8_text.text, size);
+                            popUpManager.OpenPopUp(chapter8Text.text, size);
                             SaveData();
                             break;
 
                         case 9:
-                            popUpManager.OpenPopUp(chapter_9_text.text);
+                            popUpManager.OpenPopUp(chapter9Text.text);
                             break;
 
                         case 10:
-                            popUpManager.OpenPopUp(chapter_10_text.text);
+                            popUpManager.OpenPopUp(chapter10Text.text);
                             break;
 
                         case 11:
-                            popUpManager.OpenPopUp(chapter_11_text.text);
+                            popUpManager.OpenPopUp(chapter11Text.text);
                             break;
 
                         default:
-                            Debug.LogError("MainMenuManager.LoadData: current scene " + current_scene + " will not show pop up text ");
+                            Debug.LogError("MainMenuManager.LoadData: current scene " + currentScene + " will not show pop up text ");
                             break;
                     }
                 }
-                scenes[current_scene - 1].is_completed = true;
+                scenes[currentScene - 1].is_completed = true;
             }
             UpdateContentButtons();
         }
         
         SaveShortData();
-        return return_value;
+        return returnValue;
     }
 
     //Функция обновляет тексты меню согласно языку
@@ -399,43 +399,43 @@ public class MainMenuManager : MonoBehaviour
     {
         //Debug.Log("SetStrings: " + language);
         StringSettings temp = new StringSettings(language);
-        continue_text.text = temp._continue ;
+        continueText.text = temp.@continue ;
 
-        equipment_text.text = temp.equipment;
-        shop_text.text = temp.shop;
-        content_text.text = temp.content;
-        settings_text.text = temp.settings;
+        equipmentText.text = temp.equipment;
+        shopText.text = temp.shop;
+        contentText.text = temp.content;
+        settingsText.text = temp.settings;
 
-        equip_header_text.text = temp.equipment;
-        settings_header_text.text = temp.settings;
+        equipHeaderText.text = temp.equipment;
+        settingsHeaderText.text = temp.settings;
 
-        graphics_low = temp.graphics_low;
-        graphics_normal = temp.graphics_normal;
+        graphics_low = temp.graphicsLow;
+        graphics_normal = temp.graphicsNormal;
         UpdateGraphicsText();
 
-        volume_text.text = temp.volume;
-        language_button_text.text = temp.language_;
-        settings_back_text.text = temp.back;
+        volumeText.text = temp.volume;
+        languageButtonText.text = temp.language;
+        settingsBackText.text = temp.back;
 
-        content_next_text.text = temp.following;
-        equipment_back_text.text = temp.back;
-        exit_text.text = temp.exit;
+        contentNextText.text = temp.following;
+        equipmentBackText.text = temp.back;
+        exitText.text = temp.exit;
 
-        select_scene_text.text = temp.select;
-        prologue_text.text = temp.prologue; 
-        epilogue_text.text = temp.epilogue;
-        titles_text.text = temp.titles;
-        chapter_1_text.text = temp.chapter_1;
-        chapter_2_text.text = temp.chapter_2;
-        chapter_3_text.text = temp.chapter_3;
-        chapter_4_text.text = temp.chapter_4;
-        chapter_5_text.text = temp.chapter_5;
-        chapter_6_text.text = temp.chapter_6;
-        chapter_7_text.text = temp.chapter_7;
-        chapter_8_text.text = temp.chapter_8;
-        chapter_9_text.text = temp.chapter_9;
-        chapter_10_text.text = temp.chapter_10;
-        chapter_11_text.text = temp.chapter_11;
+        selectSceneText.text = temp.select;
+        prologueText.text = temp.prologue; 
+        epilogueText.text = temp.epilogue;
+        titlesText.text = temp.titles;
+        chapter1Text.text = temp.chapter1;
+        chapter2Text.text = temp.chapter2;
+        chapter3Text.text = temp.chapter3;
+        chapter4Text.text = temp.chapter4;
+        chapter5Text.text = temp.chapter5;
+        chapter6Text.text = temp.chapter6;
+        chapter7Text.text = temp.chapter7;
+        chapter8Text.text = temp.chapter8;
+        chapter9Text.text = temp.chapter9;
+        chapter10Text.text = temp.chapter10;
+        chapter11Text.text = temp.chapter11;
 
         equipSelector.SetStrings(temp);
 
@@ -445,57 +445,57 @@ public class MainMenuManager : MonoBehaviour
 
     public void UpdateMainSpread(StringSettings temp)
     {
-        switch(current_scene)
+        switch(currentScene)
         {
             case 0:
-                chapter_text.text = temp.prologue;
+                chapterText.text = temp.prologue;
                 break;
             case 1:
-                chapter_text.text = temp.chapter_1;
+                chapterText.text = temp.chapter1;
                 break;
 
             case 2:
-                chapter_text.text = temp.chapter_2;
+                chapterText.text = temp.chapter2;
                 break;
 
             case 3:
-                chapter_text.text = temp.chapter_3;
+                chapterText.text = temp.chapter3;
                 break;
 
             case 4:
-                chapter_text.text = temp.chapter_4;
+                chapterText.text = temp.chapter4;
                 break;
 
             case 5:
-                chapter_text.text = temp.chapter_5;
+                chapterText.text = temp.chapter5;
                 break;
 
             case 6:
-                chapter_text.text = temp.chapter_6;
+                chapterText.text = temp.chapter6;
                 break;
 
             case 7:
-                chapter_text.text = temp.chapter_7;
+                chapterText.text = temp.chapter7;
                 break;
 
             case 8:
-                chapter_text.text = temp.chapter_8;
+                chapterText.text = temp.chapter8;
                 break;
 
             case 9:
-                chapter_text.text = temp.chapter_9;
+                chapterText.text = temp.chapter9;
                 break;
 
             case 10:
-                chapter_text.text = temp.chapter_10;
+                chapterText.text = temp.chapter10;
                 break;
 
             case 11:
-                chapter_text.text = temp.chapter_11;
+                chapterText.text = temp.chapter11;
                 break;
 
             case 12:
-                chapter_text.text = temp.epilogue;
+                chapterText.text = temp.epilogue;
                 break;
 
             default:
@@ -503,62 +503,62 @@ public class MainMenuManager : MonoBehaviour
                 goto case 1;
         }
 
-        score_text.text = $"{temp.best_score}\n{best_score.ToString()}";
+        scoreText.text = $"{temp.bestScore}\n{bestScore.ToString()}";
     }
 
     public void UpdateMainSpread()
     {
-        switch (current_scene)
+        switch (currentScene)
         {
             case 0:
-                chapter_text.text = prologue_text.text;
+                chapterText.text = prologueText.text;
                 break;
             case 1:
-                chapter_text.text = chapter_1_text.text;
+                chapterText.text = chapter1Text.text;
                 break;
 
             case 2:
-                chapter_text.text = chapter_2_text.text;
+                chapterText.text = chapter2Text.text;
                 break;
 
             case 3:
-                chapter_text.text = chapter_3_text.text;
+                chapterText.text = chapter3Text.text;
                 break;
 
             case 4:
-                chapter_text.text = chapter_4_text.text;
+                chapterText.text = chapter4Text.text;
                 break;
 
             case 5:
-                chapter_text.text = chapter_5_text.text;
+                chapterText.text = chapter5Text.text;
                 break;
 
             case 6:
-                chapter_text.text = chapter_6_text.text;
+                chapterText.text = chapter6Text.text;
                 break;
 
             case 7:
-                chapter_text.text = chapter_7_text.text;
+                chapterText.text = chapter7Text.text;
                 break;
 
             case 8:
-                chapter_text.text = chapter_8_text.text;
+                chapterText.text = chapter8Text.text;
                 break;
 
             case 9:
-                chapter_text.text = chapter_9_text.text;
+                chapterText.text = chapter9Text.text;
                 break;
 
             case 10:
-                chapter_text.text = chapter_10_text.text;
+                chapterText.text = chapter10Text.text;
                 break;
 
             case 11:
-                chapter_text.text = chapter_11_text.text;
+                chapterText.text = chapter11Text.text;
                 break;
 
             case 12:
-                chapter_text.text = epilogue_text.text;
+                chapterText.text = epilogueText.text;
                 break;
 
             default:
@@ -570,20 +570,20 @@ public class MainMenuManager : MonoBehaviour
     //сохраняет данные одной сессии
     public void SaveShortData()
     {
-        DataHolder.current_scene = this.current_scene;
+        DataHolder.current_scene = this.currentScene;
         DataHolder.current_weapon = this.equipSelector.GetCurrentEquipId(EquipSelector.EquipType.Weapon);
         DataHolder.current_armor = this.equipSelector.GetCurrentEquipId(EquipSelector.EquipType.Armor);
         DataHolder.current_charm_0 = this.equipSelector.GetCurrentEquipId(EquipSelector.EquipType.Talisman1);
         DataHolder.current_charm_1 = this.equipSelector.GetCurrentEquipId(EquipSelector.EquipType.Talisman2);
         DataHolder.current_charm_2 = this.equipSelector.GetCurrentEquipId(EquipSelector.EquipType.Talisman3);
-        DataHolder.combometer_size = this.combometer_size;
-        DataHolder.best_score = this.best_score;
-        DataHolder.black_ink = this.black_ink;
-        DataHolder.language = (byte)Language.LanguageToInt(this.language_settings);
-        DataHolder.graphics_tier = this.graphics_tier;
-        DataHolder.master_volume = this.master_volume;
-        DataHolder.music_volume = this.music_volume;
-        DataHolder.sfx_volume = this.sfx_volume;
+        DataHolder.combometer_size = this.combometerSize;
+        DataHolder.best_score = this.bestScore;
+        DataHolder.black_ink = this.blackInk;
+        DataHolder.language = (byte)Language.LanguageToInt(this.languageSettings);
+        DataHolder.graphics_tier = this.graphicsTier;
+        DataHolder.master_volume = this.masterVolume;
+        DataHolder.music_volume = this.musicVolume;
+        DataHolder.sfx_volume = this.sfxVolume;
         DataHolder.from_level = false;
     }
 
@@ -595,9 +595,9 @@ public class MainMenuManager : MonoBehaviour
     }
 
     //Функция меняет текущее состояние меню
-   public void ChangeState(string change_to)
+   public void ChangeState(string changeTo)
     {
-        state = change_to;
+        state = changeTo;
         ChangeState();
     }
 
@@ -609,7 +609,7 @@ public class MainMenuManager : MonoBehaviour
             case "spread":
                 spread.SetActive(true);
                 content.SetActive(false);
-                spread_main.SetActive(true);
+                spreadMain.SetActive(true);
                 shop.SetActive(false);
                 equip.SetActive(false);
                 equipSelector.SetActive(false);
@@ -618,11 +618,11 @@ public class MainMenuManager : MonoBehaviour
             break;
 
             case "content":
-                current_act = (Act) 0;
+                currentAct = (Act) 0;
                 UpdateContentAct();
                 spread.SetActive(true);
                 content.SetActive(true);
-                spread_main.SetActive(false);
+                spreadMain.SetActive(false);
                 shop.SetActive(false);
                 equip.SetActive(false);
                 equipSelector.SetActive(false);
@@ -632,7 +632,7 @@ public class MainMenuManager : MonoBehaviour
             case "equip":
                 spread.SetActive(true);
                 content.SetActive(false);
-                spread_main.SetActive(false);
+                spreadMain.SetActive(false);
                 shop.SetActive(false);
                 equip.SetActive(true);
                 equipSelector.SetActive(false);
@@ -642,7 +642,7 @@ public class MainMenuManager : MonoBehaviour
             case "equipSelector":
                 spread.SetActive(true);
                 content.SetActive(false);
-                spread_main.SetActive(false);
+                spreadMain.SetActive(false);
                 shop.SetActive(false);
                 equip.SetActive(false);
                 equipSelector.SetActive(true);
@@ -652,7 +652,7 @@ public class MainMenuManager : MonoBehaviour
             case "shopSelector":
                 spread.SetActive(true);
                 content.SetActive(false);
-                spread_main.SetActive(false);
+                spreadMain.SetActive(false);
                 shop.SetActive(false);
                 equip.SetActive(false);
                 settings.SetActive(false);
@@ -662,7 +662,7 @@ public class MainMenuManager : MonoBehaviour
             case "shop":
                 spread.SetActive(true);
                 content.SetActive(false);
-                spread_main.SetActive(false);
+                spreadMain.SetActive(false);
                 shop.SetActive(true);
                 equip.SetActive(false);
                 equipSelector.SetActive(false);
@@ -672,7 +672,7 @@ public class MainMenuManager : MonoBehaviour
             case "settings":
                 spread.SetActive(true);
                 content.SetActive(false);
-                spread_main.SetActive(false);
+                spreadMain.SetActive(false);
                 shop.SetActive(false);
                 equip.SetActive(false);
                 equipSelector.SetActive(false);
@@ -687,8 +687,8 @@ public class MainMenuManager : MonoBehaviour
 
     public void Addchapter()
     {
-        int size = chapter_prices_text.Length;
-        is_prolog_completed = true;
+        int size = chapterPricesText.Length;
+        isPrologCompleted = true;
 
         for (int i = 1; i < size; i++)
         {
@@ -702,107 +702,107 @@ public class MainMenuManager : MonoBehaviour
 
     public void AddInk()
     {
-        black_ink += 300;
-        inkwells.InkUpdate(black_ink);
+        blackInk += 300;
+        inkwells.InkUpdate(blackInk);
     }
 
     //Обновить кнопки в содержании
     private void UpdateContentButtons()
     {
-        int size = chapter_prices_text.Length;
-        foreach (Button b in chapter_buttons)
+        int size = chapterPricesText.Length;
+        foreach (Button b in chapterButtons)
         {
             b.gameObject.SetActive(false);
             b.interactable = false;
-            b.gameObject.GetComponent<Image>().sprite = default_button;
+            b.gameObject.GetComponent<Image>().sprite = defaultButton;
         }
-        if (is_prolog_completed)
+        if (isPrologCompleted)
         {
-            if (current_scene < chapter_prices_text.Length)
+            if (currentScene < chapterPricesText.Length)
             {
-                if (current_scene > 0)
+                if (currentScene > 0)
                 {
-                    prolog_button.GetComponent<Image>().sprite = default_button;
-                    chapter_buttons[current_scene - 1].gameObject.GetComponent<Image>().sprite = selected_button;
+                    prologButton.GetComponent<Image>().sprite = defaultButton;
+                    chapterButtons[currentScene - 1].gameObject.GetComponent<Image>().sprite = selectedButton;
                 }
                 else
                 {
-                    prolog_button.GetComponent<Image>().sprite = selected_button;
+                    prologButton.GetComponent<Image>().sprite = selectedButton;
                 }
             }
         }
         else
         {
-            prolog_button.GetComponent<Image>().sprite = selected_button;
+            prologButton.GetComponent<Image>().sprite = selectedButton;
         }
 
         int t = scenes[0].price;
 
-        if (is_prolog_completed)
+        if (isPrologCompleted)
         {
-            chapter_prices_text[0].text = t.ToString() ;
+            chapterPricesText[0].text = t.ToString() ;
             if (scenes[0].is_purchased)
             {
-                chapter_prices_text[0].text = ""; 
+                chapterPricesText[0].text = ""; 
             }
-            chapter_buttons[0].interactable = true;
-            chapter_buttons[0].gameObject.SetActive(true);
+            chapterButtons[0].interactable = true;
+            chapterButtons[0].gameObject.SetActive(true);
         }
 
         for (int i = 1; i < size; i++)
         {
             t = scenes[i].price;
-            chapter_prices_text[i].text = t.ToString(); ;
+            chapterPricesText[i].text = t.ToString(); ;
 
             if (scenes[i - 1].is_completed)
             {
                 if (scenes[i].is_purchased)
                 {
-                    chapter_prices_text[i].text = "";
+                    chapterPricesText[i].text = "";
                 }
-                chapter_buttons[i].interactable = true;
-                chapter_buttons[i].gameObject.SetActive(true);
+                chapterButtons[i].interactable = true;
+                chapterButtons[i].gameObject.SetActive(true);
             }
             else
             {
-                chapter_buttons[i].interactable = false;
-                chapter_buttons[i].gameObject.SetActive(false);
+                chapterButtons[i].interactable = false;
+                chapterButtons[i].gameObject.SetActive(false);
             }
 
         }
 
         if (scenes[size - 1].is_completed)
         {
-            chapter_buttons[size - 1].gameObject.SetActive(true);
+            chapterButtons[size - 1].gameObject.SetActive(true);
         }
     }
 
     //Функция обновляет акт содержания
     public void UpdateContentAct()
     {
-        first_act.SetActive(false);
-        second_act.SetActive(false);
-        third_act.SetActive(false);
+        firstAct.SetActive(false);
+        secondAct.SetActive(false);
+        thirdAct.SetActive(false);
         epilogue.SetActive(false);
-        switch (current_act)
+        switch (currentAct)
         {
-            case Act.first_act:
-                scene_image.sprite = scene_preview[0];
-                first_act.SetActive(true);
+            case Act.FirstAct:
+                sceneImage.sprite = scenePreview[0];
+                firstAct.SetActive(true);
                 break;
 
-            case Act.second_act:
-                scene_image.sprite = scene_preview[1];
-                second_act.SetActive(true);
+            case Act.SecondAct:
+                sceneImage.sprite = scenePreview[1];
+                secondAct.SetActive(true);
                 break;
 
-            case Act.third_act:
-                scene_image.sprite = scene_preview[2];
-                third_act.SetActive(true);
+            case Act.ThirdAct:
+                sceneImage.sprite = scenePreview[2];
+                thirdAct.SetActive(true);
                 break;
 
-            case Act.epilogue:
-                scene_image.sprite = scene_preview[3];
+            case Act.Epilogue:
+                sceneImage.sprite = scenePreview[3];
                 epilogue.SetActive(true);
                 break;
         }
@@ -811,22 +811,22 @@ public class MainMenuManager : MonoBehaviour
     //Функция переключает состояние содержания на следующий акт
     public void NextContentAct()
     {
-        switch (current_act)
+        switch (currentAct)
         {
-            case Act.first_act:
-                current_act = Act.second_act;
+            case Act.FirstAct:
+                currentAct = Act.SecondAct;
                 break;
 
-            case Act.second_act:
-                current_act = Act.third_act;
+            case Act.SecondAct:
+                currentAct = Act.ThirdAct;
                 break;
 
-            case Act.third_act:
-                current_act = Act.epilogue;
+            case Act.ThirdAct:
+                currentAct = Act.Epilogue;
                 break;
 
-            case Act.epilogue:
-                current_act = Act.first_act;
+            case Act.Epilogue:
+                currentAct = Act.FirstAct;
                 break;
         }
         UpdateContentAct();
@@ -839,37 +839,37 @@ public class MainMenuManager : MonoBehaviour
         {
             if (BuyScene(chapter - 1))
             {
-                current_scene = (byte)chapter;
+                currentScene = (byte)chapter;
             }
         }
         else
         {
-            current_scene = (byte)chapter;
+            currentScene = (byte)chapter;
         }
         UpdateContentButtons();
         SaveData();
     }
 
     //Кнопка покупки сцены
-    public bool BuyScene(int scene_number)
+    public bool BuyScene(int sceneNumber)
     {
-        if (black_ink >= scenes[scene_number].price)
+        if (blackInk >= scenes[sceneNumber].price)
         {
 
-            if (scenes[scene_number].is_purchased)
+            if (scenes[sceneNumber].is_purchased)
             {
                 return false;
             }
-            black_ink -= System.Convert.ToInt16(scenes[scene_number].price);
-            scenes[scene_number].is_purchased = true;
+            blackInk -= System.Convert.ToInt16(scenes[sceneNumber].price);
+            scenes[sceneNumber].is_purchased = true;
         }
         else
         {
             return false;
         }
 
-        black_ink_text.text = black_ink.ToString();
-        inkwells.InkUpdate(black_ink);
+        blackInkText.text = blackInk.ToString();
+        inkwells.InkUpdate(blackInk);
         UpdateContentButtons();
         return true;
     }
@@ -878,7 +878,7 @@ public class MainMenuManager : MonoBehaviour
     public void ToLevel()
     {
         SaveShortData();
-        scene_loader.SceneLoad("Level");   //Загрузить уровень
+        sceneLoader.SceneLoad("Level");   //Загрузить уровень
     }
 
     //Кнопка загрузки содержания
@@ -902,14 +902,14 @@ public class MainMenuManager : MonoBehaviour
 
     public void UpdateGraphicsText()
     {
-        switch (graphics_tier)
+        switch (graphicsTier)
         {
             case 0:
-                graphics_tier_text.text = graphics_normal;
+                graphicsTierText.text = graphics_normal;
                 break;
 
             case 1:
-                graphics_tier_text.text = graphics_low;
+                graphicsTierText.text = graphics_low;
                 break;
         }
     }
@@ -917,18 +917,18 @@ public class MainMenuManager : MonoBehaviour
     //Кнопка изменения уровня графики
     public void ChangeGraphicsTier()
     { 
-        switch (graphics_tier)
+        switch (graphicsTier)
         {
             case 0:
-                graphics_tier = 1;
-                graphics_tier_text.text = graphics_normal;
-                post_processing.SetActive(false);
+                graphicsTier = 1;
+                graphicsTierText.text = graphics_normal;
+                postProcessing.SetActive(false);
                 break;
 
             case 1:
-                graphics_tier = 0;
-                graphics_tier_text.text = graphics_low;
-                post_processing.SetActive(true);
+                graphicsTier = 0;
+                graphicsTierText.text = graphics_low;
+                postProcessing.SetActive(true);
                 break;
         }
         UpdateGraphicsText();
@@ -937,29 +937,29 @@ public class MainMenuManager : MonoBehaviour
 
     public void ChangeLanguage()
     {
-        switch (language_settings)
+        switch (languageSettings)
         {
-            case Language.LanguageType.english:
-                language_settings = Language.LanguageType.russian;
+            case Language.LanguageType.English:
+                languageSettings = Language.LanguageType.Russian;
                 break;
 
-            case Language.LanguageType.russian:
-                language_settings = Language.LanguageType.german;
+            case Language.LanguageType.Russian:
+                languageSettings = Language.LanguageType.German;
                 break;
 
-            case Language.LanguageType.german:
-                language_settings = Language.LanguageType.french;
+            case Language.LanguageType.German:
+                languageSettings = Language.LanguageType.French;
                 break;
 
-            case Language.LanguageType.french:
-                language_settings = Language.LanguageType.esperanto;
+            case Language.LanguageType.French:
+                languageSettings = Language.LanguageType.Esperanto;
                 break;
 
-            case Language.LanguageType.esperanto:
-                language_settings = Language.LanguageType.english;
+            case Language.LanguageType.Esperanto:
+                languageSettings = Language.LanguageType.English;
                 break;
         }
-        SetStrings(Language.LanguageToInt(language_settings));
+        SetStrings(Language.LanguageToInt(languageSettings));
     }
 
     //Срабатыввает при сворачивании и разворачивании приложения
@@ -967,11 +967,11 @@ public class MainMenuManager : MonoBehaviour
     {
         if (pause)
         {
-            audio_source.Pause();
+            audioSource.Pause();
         }
         else
         {
-            audio_source.Play();
+            audioSource.Play();
         }
     }
 
@@ -1056,7 +1056,7 @@ public class MainMenuManager : MonoBehaviour
     }
 
     public void SelectEquip() {
-        bool temp = equipSelector.onAction();
+        bool temp = equipSelector.ONAction();
         SaveData();
         if (temp)
         {

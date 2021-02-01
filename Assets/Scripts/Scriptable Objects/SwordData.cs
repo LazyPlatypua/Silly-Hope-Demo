@@ -1,7 +1,6 @@
-﻿using Save_System.Scriptable_Objects;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Save_System
+namespace Scriptable_Objects
 {
     [CreateAssetMenu(fileName = "SwordData", menuName = "ScriptableObjects/SwordData", order = 2)]
     public class SwordData : PurchasableItemData

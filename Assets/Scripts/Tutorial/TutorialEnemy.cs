@@ -15,7 +15,7 @@ public class TutorialEnemy : MonoBehaviour
     public float dazeTime = 2;
     public bool stuned = false;      //является ли враг оглушенным
     public Vector3 position;                    //позиция врага
-    public int currently_filled = 0;        //количество заполненных ячеек
+    public int currentlyFilled = 0;        //количество заполненных ячеек
 
     //Функция срабатывает при старте сцены
     private void Start()
@@ -88,7 +88,7 @@ public class TutorialEnemy : MonoBehaviour
         }
 
         enemyUI.DeactivateCombometer();
-        currently_filled = 0;
+        currentlyFilled = 0;
     }
 
     //Функция обнуляет все анимации (кроме смерти)
@@ -106,19 +106,19 @@ public class TutorialEnemy : MonoBehaviour
     }
 
     //Функция, выключающая анимацию. 
-    public void DeactivateAnimation(string active_trigger)
+    public void DeactivateAnimation(string activeTrigger)
     {
 
-        if (active_trigger == "death")
+        if (activeTrigger == "death")
         {
             Death();
         }
         else
         {
-            animator.SetBool(active_trigger, false);
+            animator.SetBool(activeTrigger, false);
         }
 
-        if (active_trigger == "take_damage")
+        if (activeTrigger == "take_damage")
         {
             SetAllAnimToFalse();
         }
@@ -133,7 +133,7 @@ public class TutorialEnemy : MonoBehaviour
     //Функция, возвращающая булево значение на вопрос: полон ли комбометр врага
     public bool IsCombometerFull()
     {
-        return comboMeterSize == currently_filled;
+        return comboMeterSize == currentlyFilled;
     }
 
     //функция добавляет очки к комбометру. Если враг оглушен, очки не добавляются
@@ -141,11 +141,11 @@ public class TutorialEnemy : MonoBehaviour
     {
         if (!stuned)
         {
-            if (currently_filled < comboMeterSize)
+            if (currentlyFilled < comboMeterSize)
             {
-                currently_filled++;
+                currentlyFilled++;
             }
-            enemyUI.ActivateCombometer((float)currently_filled / (float)comboMeterSize);
+            enemyUI.ActivateCombometer((float)currentlyFilled / (float)comboMeterSize);
         }
         if (IsCombometerFull())
         {
@@ -209,10 +209,10 @@ public class TutorialEnemy : MonoBehaviour
         animator.SetBool("stun", stuned);
     }
 
-    protected virtual IEnumerator StartDaze(float daze_time)
+    protected virtual IEnumerator StartDaze(float dazeTime)
     //функция, начинающаяя отсчет до конца оглушения
     {
-        yield return new WaitForSecondsRealtime(daze_time);
+        yield return new WaitForSecondsRealtime(dazeTime);
         stuned = false;
     }
 }

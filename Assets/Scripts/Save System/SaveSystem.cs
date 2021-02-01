@@ -6,13 +6,13 @@ using System.Runtime.Serialization.Formatters.Binary;
 public static class SaveSystem
 {
     //Сохранить данные из главного меню
-    public static void SaveData(MainMenuManager main_menu_manager)
+    public static void SaveData(MainMenuManager mainMenuManager)
     {
         BinaryFormatter formatter = new BinaryFormatter();
         string path = Application.persistentDataPath + "/SillyHopeSaveFile.yeboi";
         FileStream stream = new FileStream(path, FileMode.Create);
 
-        GameData data = new GameData(main_menu_manager);
+        GameData data = new GameData(mainMenuManager);
 
         formatter.Serialize(stream, data);
         stream.Close();

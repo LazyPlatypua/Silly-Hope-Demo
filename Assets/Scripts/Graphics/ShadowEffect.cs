@@ -8,18 +8,18 @@ public class ShadowEffect : MonoBehaviour
     public Vector3 offset = new Vector3(-0.1f, -0.1f);
     public Material material;
 
-    GameObject _shadow;
+    GameObject shadow;
     // Start is called before the first frame update
     void Start()
     {
-        _shadow = new GameObject("Shadow");
-        _shadow.transform.parent = transform;
+        shadow = new GameObject("Shadow");
+        shadow.transform.parent = transform;
 
-        _shadow.transform.localPosition = offset;
-        _shadow.transform.localRotation = Quaternion.identity;
+        shadow.transform.localPosition = offset;
+        shadow.transform.localRotation = Quaternion.identity;
 
         SpriteRenderer renderer = GetComponent<SpriteRenderer>();
-        SpriteRenderer sr = _shadow.AddComponent<SpriteRenderer>();
+        SpriteRenderer sr = shadow.AddComponent<SpriteRenderer>();
         sr.sprite = renderer.sprite;
         sr.material = material;
 
@@ -30,7 +30,7 @@ public class ShadowEffect : MonoBehaviour
 
     void LateUpdate()
     {
-        _shadow.transform.localPosition = offset;
+        shadow.transform.localPosition = offset;
     }
 
     // Update is called once per frame

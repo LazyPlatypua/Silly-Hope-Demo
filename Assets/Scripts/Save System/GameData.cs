@@ -7,241 +7,241 @@ using UnityEngine;
 public class GameData
 {
     [Header("Current Equipment")]   //Текущее снаряжение рыцаря, катсцены и другое
-    public byte current_scene;     //Текущая сцена
-    public byte current_weapon;    //текущиее оружее
-    public byte current_armor;     //Текущая броня
-    public byte current_charm_0;   //текущий первый талисман
-    public byte current_charm_1;   //текущий второй талисман
-    public byte current_charm_2;   //текущий третий талисман
-    public byte combometer_size;   //Текущий размер комбометра
-    public bool combo_split_is_available;               //Доступно ли комбо разрыва
-    public bool combo_fourious_attack_is_available;     //Доступно ли комбо яростной атаки
-    public bool combo_master_stun_is_available;         //Доступно ли комбо мастерское оглушение
-    public bool combo_horizontal_cut_is_available;      //Доступно ли комбо горизонтального разреза
-    public bool combo_shuffle_is_available;             //Доступно ли комбо перетасовки
-    public bool combo_florescence_is_available;         //Доступно ли комбо расцвета
-    public bool combo_sublime_dissection_is_available;  //Доступно ли комбо грандиозного рассчения
+    public byte currentScene;     //Текущая сцена
+    public byte currentWeapon;    //текущиее оружее
+    public byte currentArmor;     //Текущая броня
+    public byte currentCharm0;   //текущий первый талисман
+    public byte currentCharm1;   //текущий второй талисман
+    public byte currentCharm2;   //текущий третий талисман
+    public byte combometerSize;   //Текущий размер комбометра
+    public bool comboSplitIsAvailable;               //Доступно ли комбо разрыва
+    public bool comboFouriousAttackIsAvailable;     //Доступно ли комбо яростной атаки
+    public bool comboMasterStunIsAvailable;         //Доступно ли комбо мастерское оглушение
+    public bool comboHorizontalCutIsAvailable;      //Доступно ли комбо горизонтального разреза
+    public bool comboShuffleIsAvailable;             //Доступно ли комбо перетасовки
+    public bool comboFlorescenceIsAvailable;         //Доступно ли комбо расцвета
+    public bool comboSublimeDissectionIsAvailable;  //Доступно ли комбо грандиозного рассчения
 
     [Header("Purchased items")]         //Приобретеные вещи
-    public bool prolog_is_completed;    //Пройден ли пролог
-    public bool scene1_is_purchased;    //Первая сцена приобретена 
-    public bool scene1_is_completed;    //Первая cцена пройдена один раз
-    public bool scene2_is_purchased;    //Вторая сцена приобретена 
-    public bool scene2_is_completed;    //Вторая cцена пройдена один раз
-    public bool scene3_is_purchased;    //Третья сцена приобретена 
-    public bool scene3_is_completed;    //Третья cцена пройдена один раз
-    public bool scene4_is_purchased;    //Четвертая сцена приобретена 
-    public bool scene4_is_completed;    //Четвертая cцена пройдена один раз
-    public bool scene5_is_purchased;    //Пятая сцена приобретена 
-    public bool scene5_is_completed;    //Пятая cцена пройдена один раз
-    public bool scene6_is_purchased;    //Шестая сцена приобретена 
-    public bool scene6_is_completed;    //Шестая cцена пройдена один раз
-    public bool scene7_is_purchased;    //Седьмая сцена приобретена 
-    public bool scene7_is_completed;    //Седьмая cцена пройдена один раз
-    public bool scene8_is_purchased;    //Восьмая сцена приобретена 
-    public bool scene8_is_completed;    //Восьмая cцена пройдена один раз
-    public bool scene9_is_purchased;    //Девятая сцена приобретена 
-    public bool scene9_is_completed;    //Девятая cцена пройдена один раз
-    public bool scene10_is_purchased;   //Десятая сцена приобретена 
-    public bool scene10_is_completed;   //Десятая cцена пройдена один раз
-    public bool scene11_is_purchased;   //Одиннадцатая сцена приобретена 
-    public bool scene11_is_completed;   //Одиннадцатая cцена пройдена один раз
-    public bool broken_sword_is_purchased;  //Сломанный меч приобретен
-    public bool falchion_is_purchased;      //Фальшион приобретен
-    public bool zweihander_is_purchased;    //Двуручник приобретен
-    public bool peter_sword_is_purchased;   //Меч святого Петра приобретен
-    public bool januar_dagger_is_purchased; //Кинжал святого Януария приобретен
-    public bool viennese_spear_is_purchased;//Венское копье приобретено
-    public bool russian_sword_is_purchased; //Русский меч приобретен
-    public bool chain_mail_is_purchased;            //Кольчуга приобретена
-    public bool hardened_chain_mail_is_purchased;   //Урепленная кольчуга приобретена
-    public bool heavy_armor_is_purchased;           //Тяжелая броня приобретена
-    public bool welfare_charm_is_purchased;     //Талисман благоденствия приобретен
-    public bool heretic_charm_is_purchased;     //Талисман еритика приобретен
-    public bool order_charm_is_purchased;       //Талисман ордена приобретен
-    public bool cross_charm_is_purchased;       //Талисман нагрудный крест приобретен
-    public bool pommel_charm_is_purchased;      //Талисман навершие из слоновой кости приобретен
-    public bool papa_charm_is_purchased;        //Талисман печать папы приобретен
-    public bool traitor_charm_is_purchased;     //Талисман предателя приобретен
+    public bool prologIsCompleted;    //Пройден ли пролог
+    public bool scene1IsPurchased;    //Первая сцена приобретена 
+    public bool scene1IsCompleted;    //Первая cцена пройдена один раз
+    public bool scene2IsPurchased;    //Вторая сцена приобретена 
+    public bool scene2IsCompleted;    //Вторая cцена пройдена один раз
+    public bool scene3IsPurchased;    //Третья сцена приобретена 
+    public bool scene3IsCompleted;    //Третья cцена пройдена один раз
+    public bool scene4IsPurchased;    //Четвертая сцена приобретена 
+    public bool scene4IsCompleted;    //Четвертая cцена пройдена один раз
+    public bool scene5IsPurchased;    //Пятая сцена приобретена 
+    public bool scene5IsCompleted;    //Пятая cцена пройдена один раз
+    public bool scene6IsPurchased;    //Шестая сцена приобретена 
+    public bool scene6IsCompleted;    //Шестая cцена пройдена один раз
+    public bool scene7IsPurchased;    //Седьмая сцена приобретена 
+    public bool scene7IsCompleted;    //Седьмая cцена пройдена один раз
+    public bool scene8IsPurchased;    //Восьмая сцена приобретена 
+    public bool scene8IsCompleted;    //Восьмая cцена пройдена один раз
+    public bool scene9IsPurchased;    //Девятая сцена приобретена 
+    public bool scene9IsCompleted;    //Девятая cцена пройдена один раз
+    public bool scene10IsPurchased;   //Десятая сцена приобретена 
+    public bool scene10IsCompleted;   //Десятая cцена пройдена один раз
+    public bool scene11IsPurchased;   //Одиннадцатая сцена приобретена 
+    public bool scene11IsCompleted;   //Одиннадцатая cцена пройдена один раз
+    public bool brokenSwordIsPurchased;  //Сломанный меч приобретен
+    public bool falchionIsPurchased;      //Фальшион приобретен
+    public bool zweihanderIsPurchased;    //Двуручник приобретен
+    public bool peterSwordIsPurchased;   //Меч святого Петра приобретен
+    public bool januarDaggerIsPurchased; //Кинжал святого Януария приобретен
+    public bool vienneseSpearIsPurchased;//Венское копье приобретено
+    public bool russianSwordIsPurchased; //Русский меч приобретен
+    public bool chainMailIsPurchased;            //Кольчуга приобретена
+    public bool hardenedChainMailIsPurchased;   //Урепленная кольчуга приобретена
+    public bool heavyArmorIsPurchased;           //Тяжелая броня приобретена
+    public bool welfareCharmIsPurchased;     //Талисман благоденствия приобретен
+    public bool hereticCharmIsPurchased;     //Талисман еритика приобретен
+    public bool orderCharmIsPurchased;       //Талисман ордена приобретен
+    public bool crossCharmIsPurchased;       //Талисман нагрудный крест приобретен
+    public bool pommelCharmIsPurchased;      //Талисман навершие из слоновой кости приобретен
+    public bool papaCharmIsPurchased;        //Талисман печать папы приобретен
+    public bool traitorCharmIsPurchased;     //Талисман предателя приобретен
 
     [Header("Score and ink")]   //очки и чернила
-    public short best_score;    //Лучший результат
-    public short black_ink;     //Количество чернил
+    public short bestScore;    //Лучший результат
+    public short blackInk;     //Количество чернил
 
     [Header("Settings")]        //Настройки игры
     public byte language;      //Текущий язык
-    public byte graphics_tier; //Уровень графики
-    public float master_volume; //Общая громкость игры
-    public float music_volume;  //Громкость музыки
-    public float sfx_volume;    //Громкость звуковых эффектов
+    public byte graphicsTier; //Уровень графики
+    public float masterVolume; //Общая громкость игры
+    public float musicVolume;  //Громкость музыки
+    public float sfxVolume;    //Громкость звуковых эффектов
 
     public GameData()
         //Конструктор для пустого объекта. Нужен для первого запуска игры, когда игрок еще ничего не сделал
     {
-        current_scene = 0;     //Текущая сцена
-        current_weapon = 0;    //текущиее оружее
-        current_armor = 0;     //Текущая броня
-        current_charm_0 = 0;   //текущий первый талисман
-        current_charm_1 = 0;   //текущий второй талисман
-        current_charm_2 = 0;   //текущий третий талисман
-        combometer_size = 1;   //Текущий размер комбометра
-        combo_split_is_available = false;               //Доступно ли комбо разрыва
-        combo_fourious_attack_is_available = false;     //Доступно ли комбо яростной атаки
-        combo_master_stun_is_available = false;         //Доступно ли комбо мастерское оглушение
-        combo_horizontal_cut_is_available = false;      //Доступно ли комбо горизонтального разреза
-        combo_shuffle_is_available = false;             //Доступно ли комбо перетасовки
-        combo_florescence_is_available = false;         //Доступно ли комбо расцвета
-        combo_sublime_dissection_is_available = false;  //Доступно ли комбо грандиозного рассчения
+        currentScene = 0;     //Текущая сцена
+        currentWeapon = 0;    //текущиее оружее
+        currentArmor = 0;     //Текущая броня
+        currentCharm0 = 0;   //текущий первый талисман
+        currentCharm1 = 0;   //текущий второй талисман
+        currentCharm2 = 0;   //текущий третий талисман
+        combometerSize = 1;   //Текущий размер комбометра
+        comboSplitIsAvailable = false;               //Доступно ли комбо разрыва
+        comboFouriousAttackIsAvailable = false;     //Доступно ли комбо яростной атаки
+        comboMasterStunIsAvailable = false;         //Доступно ли комбо мастерское оглушение
+        comboHorizontalCutIsAvailable = false;      //Доступно ли комбо горизонтального разреза
+        comboShuffleIsAvailable = false;             //Доступно ли комбо перетасовки
+        comboFlorescenceIsAvailable = false;         //Доступно ли комбо расцвета
+        comboSublimeDissectionIsAvailable = false;  //Доступно ли комбо грандиозного рассчения
 
-        prolog_is_completed = false;    //Пройден ли пролог
-        scene1_is_purchased = false;    //Первая сцена приобретена 
-        scene1_is_completed = false;    //Первая cцена пройдена один раз
-        scene2_is_purchased = false;    //Вторая сцена приобретена 
-        scene2_is_completed = false;    //Вторая cцена пройдена один раз
-        scene3_is_purchased = false;    //Третья сцена приобретена 
-        scene3_is_completed = false;    //Третья cцена пройдена один раз
-        scene4_is_purchased = false;    //Четвертая сцена приобретена 
-        scene4_is_completed = false;    //Четвертая cцена пройдена один раз
-        scene5_is_purchased = false;    //Пятая сцена приобретена 
-        scene5_is_completed = false;    //Пятая cцена пройдена один раз
-        scene6_is_purchased = false;    //Шестая сцена приобретена 
-        scene6_is_completed = false;    //Шестая cцена пройдена один раз
-        scene7_is_purchased = false;    //Седьмая сцена приобретена 
-        scene7_is_completed = false;    //Седьмая cцена пройдена один раз
-        scene8_is_purchased = false;    //Восьмая сцена приобретена 
-        scene8_is_completed = false;    //Восьмая cцена пройдена один раз
-        scene9_is_purchased = false;    //Девятая сцена приобретена 
-        scene9_is_completed = false;    //Девятая cцена пройдена один раз
-        scene10_is_purchased = false;   //Десятая сцена приобретена 
-        scene10_is_completed = false;   //Десятая cцена пройдена один раз
-        scene11_is_purchased = false;   //Одиннадцатая сцена приобретена 
-        scene11_is_completed = false;   //Одиннадцатая cцена пройдена один раз
-        broken_sword_is_purchased = false;  //Сломанный меч приобретен
-        falchion_is_purchased = false;      //Фальшион приобретен
-        zweihander_is_purchased = false;    //Двуручник приобретен
-        peter_sword_is_purchased = false;   //Меч святого Петра приобретен
-        januar_dagger_is_purchased = false; //Кинжал святого Януария приобретен
-        viennese_spear_is_purchased = false;//Венское копье приобретено
-        russian_sword_is_purchased = false; //Русский меч приобретен
-        chain_mail_is_purchased = false;            //Кольчуга приобретена
-        hardened_chain_mail_is_purchased = false;   //Урепленная кольчуга приобретена
-        heavy_armor_is_purchased = false;           //Тяжелая броня приобретена
-        welfare_charm_is_purchased = false;     //Талисман благоденствия приобретен
-        heretic_charm_is_purchased = false;     //Талисман еритика приобретен
-        order_charm_is_purchased = false;       //Талисман ордена приобретен
-        cross_charm_is_purchased = false;       //Талисман нагрудный крест приобретен
-        pommel_charm_is_purchased = false;      //Талисман навершие из слоновой кости приобретен
-        papa_charm_is_purchased = false;        //Талисман печать папы приобретен
-        traitor_charm_is_purchased = false;     //Талисман предателя приобретен
+        prologIsCompleted = false;    //Пройден ли пролог
+        scene1IsPurchased = false;    //Первая сцена приобретена 
+        scene1IsCompleted = false;    //Первая cцена пройдена один раз
+        scene2IsPurchased = false;    //Вторая сцена приобретена 
+        scene2IsCompleted = false;    //Вторая cцена пройдена один раз
+        scene3IsPurchased = false;    //Третья сцена приобретена 
+        scene3IsCompleted = false;    //Третья cцена пройдена один раз
+        scene4IsPurchased = false;    //Четвертая сцена приобретена 
+        scene4IsCompleted = false;    //Четвертая cцена пройдена один раз
+        scene5IsPurchased = false;    //Пятая сцена приобретена 
+        scene5IsCompleted = false;    //Пятая cцена пройдена один раз
+        scene6IsPurchased = false;    //Шестая сцена приобретена 
+        scene6IsCompleted = false;    //Шестая cцена пройдена один раз
+        scene7IsPurchased = false;    //Седьмая сцена приобретена 
+        scene7IsCompleted = false;    //Седьмая cцена пройдена один раз
+        scene8IsPurchased = false;    //Восьмая сцена приобретена 
+        scene8IsCompleted = false;    //Восьмая cцена пройдена один раз
+        scene9IsPurchased = false;    //Девятая сцена приобретена 
+        scene9IsCompleted = false;    //Девятая cцена пройдена один раз
+        scene10IsPurchased = false;   //Десятая сцена приобретена 
+        scene10IsCompleted = false;   //Десятая cцена пройдена один раз
+        scene11IsPurchased = false;   //Одиннадцатая сцена приобретена 
+        scene11IsCompleted = false;   //Одиннадцатая cцена пройдена один раз
+        brokenSwordIsPurchased = false;  //Сломанный меч приобретен
+        falchionIsPurchased = false;      //Фальшион приобретен
+        zweihanderIsPurchased = false;    //Двуручник приобретен
+        peterSwordIsPurchased = false;   //Меч святого Петра приобретен
+        januarDaggerIsPurchased = false; //Кинжал святого Януария приобретен
+        vienneseSpearIsPurchased = false;//Венское копье приобретено
+        russianSwordIsPurchased = false; //Русский меч приобретен
+        chainMailIsPurchased = false;            //Кольчуга приобретена
+        hardenedChainMailIsPurchased = false;   //Урепленная кольчуга приобретена
+        heavyArmorIsPurchased = false;           //Тяжелая броня приобретена
+        welfareCharmIsPurchased = false;     //Талисман благоденствия приобретен
+        hereticCharmIsPurchased = false;     //Талисман еритика приобретен
+        orderCharmIsPurchased = false;       //Талисман ордена приобретен
+        crossCharmIsPurchased = false;       //Талисман нагрудный крест приобретен
+        pommelCharmIsPurchased = false;      //Талисман навершие из слоновой кости приобретен
+        papaCharmIsPurchased = false;        //Талисман печать папы приобретен
+        traitorCharmIsPurchased = false;     //Талисман предателя приобретен
 
-        best_score = 0;  //Лучший результат
-        black_ink = 0;   //Количество чернил
+        bestScore = 0;  //Лучший результат
+        blackInk = 0;   //Количество чернил
 
         language = 1;      //Текущий язык
-        graphics_tier = 0; //Уровень графики
-        master_volume = 0.5f; //Общая громкость игры
-        music_volume = 0.5f;  //Громкость музыки
-        sfx_volume = 0.5f;    //Громкость звуковых эффектов
+        graphicsTier = 0; //Уровень графики
+        masterVolume = 0.5f; //Общая громкость игры
+        musicVolume = 0.5f;  //Громкость музыки
+        sfxVolume = 0.5f;    //Громкость звуковых эффектов
     }
 
-    public GameData(LevelLoader level_loader)
+    public GameData(LevelLoader levelLoader)
         //Конструктор для сохранения игры после завершения уровня
     {
         GameData temp = SaveSystem.LoadData();
-        current_scene = temp.current_scene;     //Текущая сцена
-        current_weapon = temp.current_weapon;    //текущиее оружее
-        current_armor = temp.current_armor;     //Текущая броня
-        current_charm_0 = temp.current_charm_0;   //текущий первый талисман
-        current_charm_1 = temp.current_charm_1;   //текущий второй талисман
-        current_charm_2 = temp.current_charm_2;   //текущий третий талисман
-        combometer_size = temp.combometer_size;   //Текущий размер комбометра
-        combo_fourious_attack_is_available = temp.combo_fourious_attack_is_available;     //Доступно ли комбо яростной атаки
-        combo_master_stun_is_available = temp.combo_master_stun_is_available;         //Доступно ли комбо мастерское оглушение
-        combo_horizontal_cut_is_available = temp.combo_horizontal_cut_is_available;      //Доступно ли комбо горизонтального разреза
-        combo_shuffle_is_available = temp.combo_shuffle_is_available;             //Доступно ли комбо перетасовки
-        combo_florescence_is_available = temp.combo_florescence_is_available;         //Доступно ли комбо расцвета
-        combo_sublime_dissection_is_available = temp.combo_sublime_dissection_is_available;  //Доступно ли комбо грандиозного рассчения
+        currentScene = temp.currentScene;     //Текущая сцена
+        currentWeapon = temp.currentWeapon;    //текущиее оружее
+        currentArmor = temp.currentArmor;     //Текущая броня
+        currentCharm0 = temp.currentCharm0;   //текущий первый талисман
+        currentCharm1 = temp.currentCharm1;   //текущий второй талисман
+        currentCharm2 = temp.currentCharm2;   //текущий третий талисман
+        combometerSize = temp.combometerSize;   //Текущий размер комбометра
+        comboFouriousAttackIsAvailable = temp.comboFouriousAttackIsAvailable;     //Доступно ли комбо яростной атаки
+        comboMasterStunIsAvailable = temp.comboMasterStunIsAvailable;         //Доступно ли комбо мастерское оглушение
+        comboHorizontalCutIsAvailable = temp.comboHorizontalCutIsAvailable;      //Доступно ли комбо горизонтального разреза
+        comboShuffleIsAvailable = temp.comboShuffleIsAvailable;             //Доступно ли комбо перетасовки
+        comboFlorescenceIsAvailable = temp.comboFlorescenceIsAvailable;         //Доступно ли комбо расцвета
+        comboSublimeDissectionIsAvailable = temp.comboSublimeDissectionIsAvailable;  //Доступно ли комбо грандиозного рассчения
 
-        prolog_is_completed = temp.prolog_is_completed;     //Пролог завершен
-        scene1_is_purchased = temp.scene1_is_purchased;    //Первая сцена приобретена 
-        scene1_is_completed = temp.scene1_is_completed;    //Первая cцена пройдена один раз
-        scene2_is_purchased = temp.scene2_is_purchased;    //Вторая сцена приобретена 
-        scene2_is_completed = temp.scene2_is_completed;    //Вторая cцена пройдена один раз
-        scene3_is_purchased = temp.scene3_is_purchased;    //Третья сцена приобретена 
-        scene3_is_completed = temp.scene3_is_completed;    //Третья cцена пройдена один раз
-        scene4_is_purchased = temp.scene4_is_purchased;    //Четвертая сцена приобретена 
-        scene4_is_completed = temp.scene4_is_completed;    //Четвертая cцена пройдена один раз
-        scene5_is_purchased = temp.scene5_is_purchased;    //Пятая сцена приобретена 
-        scene5_is_completed = temp.scene5_is_completed;    //Пятая cцена пройдена один раз
-        scene6_is_purchased = temp.scene6_is_purchased;    //Шестая сцена приобретена 
-        scene6_is_completed = temp.scene6_is_completed;    //Шестая cцена пройдена один раз
-        scene7_is_purchased = temp.scene7_is_purchased;    //Седьмая сцена приобретена 
-        scene7_is_completed = temp.scene7_is_completed;    //Седьмая cцена пройдена один раз
-        scene8_is_purchased = temp.scene8_is_purchased;    //Восьмая сцена приобретена 
-        scene8_is_completed = temp.scene8_is_completed;    //Восьмая cцена пройдена один раз
-        scene9_is_purchased = temp.scene9_is_purchased;    //Девятая сцена приобретена 
-        scene9_is_completed = temp.scene9_is_completed;    //Девятая cцена пройдена один раз
-        scene10_is_purchased = temp.scene10_is_purchased;   //Десятая сцена приобретена 
-        scene10_is_completed = temp.scene10_is_completed;   //Десятая cцена пройдена один раз
-        scene11_is_purchased = temp.scene11_is_purchased;   //Одиннадцатая сцена приобретена 
-        scene11_is_completed = temp.scene11_is_completed;   //Одиннадцатая cцена пройдена один раз
+        prologIsCompleted = temp.prologIsCompleted;     //Пролог завершен
+        scene1IsPurchased = temp.scene1IsPurchased;    //Первая сцена приобретена 
+        scene1IsCompleted = temp.scene1IsCompleted;    //Первая cцена пройдена один раз
+        scene2IsPurchased = temp.scene2IsPurchased;    //Вторая сцена приобретена 
+        scene2IsCompleted = temp.scene2IsCompleted;    //Вторая cцена пройдена один раз
+        scene3IsPurchased = temp.scene3IsPurchased;    //Третья сцена приобретена 
+        scene3IsCompleted = temp.scene3IsCompleted;    //Третья cцена пройдена один раз
+        scene4IsPurchased = temp.scene4IsPurchased;    //Четвертая сцена приобретена 
+        scene4IsCompleted = temp.scene4IsCompleted;    //Четвертая cцена пройдена один раз
+        scene5IsPurchased = temp.scene5IsPurchased;    //Пятая сцена приобретена 
+        scene5IsCompleted = temp.scene5IsCompleted;    //Пятая cцена пройдена один раз
+        scene6IsPurchased = temp.scene6IsPurchased;    //Шестая сцена приобретена 
+        scene6IsCompleted = temp.scene6IsCompleted;    //Шестая cцена пройдена один раз
+        scene7IsPurchased = temp.scene7IsPurchased;    //Седьмая сцена приобретена 
+        scene7IsCompleted = temp.scene7IsCompleted;    //Седьмая cцена пройдена один раз
+        scene8IsPurchased = temp.scene8IsPurchased;    //Восьмая сцена приобретена 
+        scene8IsCompleted = temp.scene8IsCompleted;    //Восьмая cцена пройдена один раз
+        scene9IsPurchased = temp.scene9IsPurchased;    //Девятая сцена приобретена 
+        scene9IsCompleted = temp.scene9IsCompleted;    //Девятая cцена пройдена один раз
+        scene10IsPurchased = temp.scene10IsPurchased;   //Десятая сцена приобретена 
+        scene10IsCompleted = temp.scene10IsCompleted;   //Десятая cцена пройдена один раз
+        scene11IsPurchased = temp.scene11IsPurchased;   //Одиннадцатая сцена приобретена 
+        scene11IsCompleted = temp.scene11IsCompleted;   //Одиннадцатая cцена пройдена один раз
 
-        broken_sword_is_purchased = temp.broken_sword_is_purchased;  //Сломанный меч приобретен
-        falchion_is_purchased = temp.falchion_is_purchased;      //Фальшион приобретен
-        zweihander_is_purchased = temp.zweihander_is_purchased;    //Двуручник приобретен
-        peter_sword_is_purchased = temp.peter_sword_is_purchased;   //Меч святого Петра приобретен
-        januar_dagger_is_purchased = temp.januar_dagger_is_purchased; //Кинжал святого Януария приобретен
-        viennese_spear_is_purchased = temp.viennese_spear_is_purchased;//Венское копье приобретено
-        russian_sword_is_purchased = temp.russian_sword_is_purchased; //Русский меч приобретен
+        brokenSwordIsPurchased = temp.brokenSwordIsPurchased;  //Сломанный меч приобретен
+        falchionIsPurchased = temp.falchionIsPurchased;      //Фальшион приобретен
+        zweihanderIsPurchased = temp.zweihanderIsPurchased;    //Двуручник приобретен
+        peterSwordIsPurchased = temp.peterSwordIsPurchased;   //Меч святого Петра приобретен
+        januarDaggerIsPurchased = temp.januarDaggerIsPurchased; //Кинжал святого Януария приобретен
+        vienneseSpearIsPurchased = temp.vienneseSpearIsPurchased;//Венское копье приобретено
+        russianSwordIsPurchased = temp.russianSwordIsPurchased; //Русский меч приобретен
 
-        chain_mail_is_purchased = temp.chain_mail_is_purchased;            //Кольчуга приобретена
-        hardened_chain_mail_is_purchased = temp.hardened_chain_mail_is_purchased;   //Урепленная кольчуга приобретена
-        heavy_armor_is_purchased = temp.heavy_armor_is_purchased;           //Тяжелая броня приобретена
+        chainMailIsPurchased = temp.chainMailIsPurchased;            //Кольчуга приобретена
+        hardenedChainMailIsPurchased = temp.hardenedChainMailIsPurchased;   //Урепленная кольчуга приобретена
+        heavyArmorIsPurchased = temp.heavyArmorIsPurchased;           //Тяжелая броня приобретена
 
-        welfare_charm_is_purchased = temp.welfare_charm_is_purchased;     //Талисман благоденствия приобретен
-        heretic_charm_is_purchased = temp.heretic_charm_is_purchased;     //Талисман еритика приобретен
-        order_charm_is_purchased = temp.order_charm_is_purchased;       //Талисман ордена приобретен
-        cross_charm_is_purchased = temp.cross_charm_is_purchased;       //Талисман нагрудный крест приобретен
-        pommel_charm_is_purchased = temp.pommel_charm_is_purchased;      //Талисман навершие из слоновой кости приобретен
-        papa_charm_is_purchased = temp.papa_charm_is_purchased;        //Талисман печать папы приобретен
-        traitor_charm_is_purchased = temp.traitor_charm_is_purchased;     //Талисман предателя приобретен
-        switch (temp.current_scene)
+        welfareCharmIsPurchased = temp.welfareCharmIsPurchased;     //Талисман благоденствия приобретен
+        hereticCharmIsPurchased = temp.hereticCharmIsPurchased;     //Талисман еритика приобретен
+        orderCharmIsPurchased = temp.orderCharmIsPurchased;       //Талисман ордена приобретен
+        crossCharmIsPurchased = temp.crossCharmIsPurchased;       //Талисман нагрудный крест приобретен
+        pommelCharmIsPurchased = temp.pommelCharmIsPurchased;      //Талисман навершие из слоновой кости приобретен
+        papaCharmIsPurchased = temp.papaCharmIsPurchased;        //Талисман печать папы приобретен
+        traitorCharmIsPurchased = temp.traitorCharmIsPurchased;     //Талисман предателя приобретен
+        switch (temp.currentScene)
         {
             case 11:
-                scene11_is_completed = true;
+                scene11IsCompleted = true;
                 break;
             case 10:
-                scene10_is_completed = true;
+                scene10IsCompleted = true;
                 break;
             case 9:
-                scene9_is_completed = true;
+                scene9IsCompleted = true;
                 break;
             case 8:
-                scene8_is_completed = true;
+                scene8IsCompleted = true;
                 break;
             case 7:
-                scene7_is_completed = true;
+                scene7IsCompleted = true;
                 break;
             case 6:
-                scene6_is_completed = true;
+                scene6IsCompleted = true;
                 break;
             case 5:
-                scene5_is_completed = true;
+                scene5IsCompleted = true;
                 break;
             case 4:
-                scene4_is_completed = true;
+                scene4IsCompleted = true;
                 break;
             case 3:
-                scene3_is_completed = true;
+                scene3IsCompleted = true;
                 break;
             case 2:
-                scene2_is_completed = true;
+                scene2IsCompleted = true;
                 break;
             case 1:
-                scene1_is_completed = true;
+                scene1IsCompleted = true;
                 break;
             case 0:
-                prolog_is_completed = true;
+                prologIsCompleted = true;
                 break;
             default:
                 break;
@@ -250,179 +250,179 @@ public class GameData
 
         language = temp.language;
 
-        graphics_tier = temp.graphics_tier; //Уровень графики
-        master_volume = temp.master_volume; //Общая громкость игры
-        music_volume = temp.music_volume;  //Громкость музыки
-        sfx_volume = temp.sfx_volume;    //Громкость звуковых эффектов
+        graphicsTier = temp.graphicsTier; //Уровень графики
+        masterVolume = temp.masterVolume; //Общая громкость игры
+        musicVolume = temp.musicVolume;  //Громкость музыки
+        sfxVolume = temp.sfxVolume;    //Громкость звуковых эффектов
 
-        short score = System.Convert.ToInt16(level_loader.gameManager.score);
-        if (score > level_loader.bestScore)
+        short score = System.Convert.ToInt16(levelLoader.gameManager.score);
+        if (score > levelLoader.bestScore)
         {
-            best_score = score;  //Лучший результат
+            bestScore = score;  //Лучший результат
         }
         
-        black_ink = level_loader.blackInk;   //Количество чернил
+        blackInk = levelLoader.blackInk;   //Количество чернил
     }
 
-    public GameData(MainMenuManager main_menu)
+    public GameData(MainMenuManager mainMenu)
     //Конструктор для сохранения игры после завершения уровня
     {
-        current_scene = main_menu.current_scene;     //Текущая сцена
-        current_weapon = main_menu.GetCurrentEquipId(EquipSelector.EquipType.Weapon); //текущиее оружее
-        current_armor = main_menu.GetCurrentEquipId(EquipSelector.EquipType.Armor);   //Текущая броня
-        current_charm_0 = main_menu.GetCurrentEquipId(EquipSelector.EquipType.Talisman1);   //текущий первый талисман
-        current_charm_1 = main_menu.GetCurrentEquipId(EquipSelector.EquipType.Talisman2);   //текущий второй талисман
-        current_charm_2 = main_menu.GetCurrentEquipId(EquipSelector.EquipType.Talisman3);   //текущий третий талисман
-        combometer_size = main_menu.combometer_size;   //Текущий размер комбометра
-        combo_split_is_available = main_menu.combo_split_is_available;               //Доступно ли комбо разрыва
-        combo_fourious_attack_is_available = main_menu.combo_fourious_attack_is_available;     //Доступно ли комбо яростной атаки
-        combo_master_stun_is_available = main_menu.combo_master_stun_is_available;         //Доступно ли комбо мастерское оглушение
-        combo_horizontal_cut_is_available = main_menu.combo_horizontal_cut_is_available;      //Доступно ли комбо горизонтального разреза
-        combo_shuffle_is_available = main_menu.combo_shuffle_is_available;             //Доступно ли комбо перетасовки
-        combo_florescence_is_available = main_menu.combo_florescence_is_available;         //Доступно ли комбо расцвета
-        combo_sublime_dissection_is_available = main_menu.combo_sublime_dissection_is_available;  //Доступно ли комбо грандиозного рассчения
+        currentScene = mainMenu.currentScene;     //Текущая сцена
+        currentWeapon = mainMenu.GetCurrentEquipId(EquipSelector.EquipType.Weapon); //текущиее оружее
+        currentArmor = mainMenu.GetCurrentEquipId(EquipSelector.EquipType.Armor);   //Текущая броня
+        currentCharm0 = mainMenu.GetCurrentEquipId(EquipSelector.EquipType.Talisman1);   //текущий первый талисман
+        currentCharm1 = mainMenu.GetCurrentEquipId(EquipSelector.EquipType.Talisman2);   //текущий второй талисман
+        currentCharm2 = mainMenu.GetCurrentEquipId(EquipSelector.EquipType.Talisman3);   //текущий третий талисман
+        combometerSize = mainMenu.combometerSize;   //Текущий размер комбометра
+        comboSplitIsAvailable = mainMenu.comboSplitIsAvailable;               //Доступно ли комбо разрыва
+        comboFouriousAttackIsAvailable = mainMenu.comboFouriousAttackIsAvailable;     //Доступно ли комбо яростной атаки
+        comboMasterStunIsAvailable = mainMenu.comboMasterStunIsAvailable;         //Доступно ли комбо мастерское оглушение
+        comboHorizontalCutIsAvailable = mainMenu.comboHorizontalCutIsAvailable;      //Доступно ли комбо горизонтального разреза
+        comboShuffleIsAvailable = mainMenu.comboShuffleIsAvailable;             //Доступно ли комбо перетасовки
+        comboFlorescenceIsAvailable = mainMenu.comboFlorescenceIsAvailable;         //Доступно ли комбо расцвета
+        comboSublimeDissectionIsAvailable = mainMenu.comboSublimeDissectionIsAvailable;  //Доступно ли комбо грандиозного рассчения
 
-        prolog_is_completed = main_menu.is_prolog_completed;        //Пройден ли пролог
-        scene1_is_purchased = main_menu.scenes[0].is_purchased;    //Первая сцена приобретена 
-        scene1_is_completed = main_menu.scenes[0].is_completed;    //Первая cцена пройдена один раз
-        scene2_is_purchased = main_menu.scenes[1].is_purchased;    //Вторая сцена приобретена 
-        scene2_is_completed = main_menu.scenes[1].is_completed;    //Вторая cцена пройдена один раз
-        scene3_is_purchased = main_menu.scenes[2].is_purchased;    //Третья сцена приобретена 
-        scene3_is_completed = main_menu.scenes[2].is_completed;    //Третья cцена пройдена один раз
-        scene4_is_purchased = main_menu.scenes[3].is_purchased;    //Четвертая сцена приобретена 
-        scene4_is_completed = main_menu.scenes[3].is_completed;    //Четвертая cцена пройдена один раз
-        scene5_is_purchased = main_menu.scenes[4].is_purchased;    //Пятая сцена приобретена 
-        scene5_is_completed = main_menu.scenes[4].is_completed;    //Пятая cцена пройдена один раз
-        scene6_is_purchased = main_menu.scenes[5].is_purchased;    //Шестая сцена приобретена 
-        scene6_is_completed = main_menu.scenes[5].is_completed;    //Шестая cцена пройдена один раз
-        scene7_is_purchased = main_menu.scenes[6].is_purchased;    //Седьмая сцена приобретена 
-        scene7_is_completed = main_menu.scenes[6].is_completed;    //Седьмая cцена пройдена один раз
-        scene8_is_purchased = main_menu.scenes[7].is_purchased;    //Восьмая сцена приобретена 
-        scene8_is_completed = main_menu.scenes[7].is_completed;    //Восьмая cцена пройдена один раз
-        scene9_is_purchased = main_menu.scenes[8].is_purchased;    //Девятая сцена приобретена 
-        scene9_is_completed = main_menu.scenes[8].is_completed;    //Девятая cцена пройдена один раз
-        scene10_is_purchased = main_menu.scenes[9].is_purchased;   //Десятая сцена приобретена 
-        scene10_is_completed = main_menu.scenes[9].is_completed;   //Десятая cцена пройдена один раз
-        scene11_is_purchased = main_menu.scenes[10].is_purchased;   //Одиннадцатая сцена приобретена 
-        scene11_is_completed = main_menu.scenes[10].is_completed;   //Одиннадцатая cцена пройдена один раз
-        broken_sword_is_purchased = main_menu.broken_sword_is_purchased;  //Сломанный меч приобретен
-        falchion_is_purchased = main_menu.falchion_is_purchased;      //Фальшион приобретен
-        zweihander_is_purchased = main_menu.zweihander_is_purchased;    //Двуручник приобретен
-        peter_sword_is_purchased = main_menu.peter_sword_is_purchased;   //Меч святого Петра приобретен
-        januar_dagger_is_purchased = main_menu.januar_dagger_is_purchased; //Кинжал святого Януария приобретен
-        viennese_spear_is_purchased = main_menu.viennese_spear_is_purchased;//Венское копье приобретено
-        russian_sword_is_purchased = main_menu.russian_sword_is_purchased; //Русский меч приобретен
-        chain_mail_is_purchased = main_menu.chain_mail_is_purchased;            //Кольчуга приобретена
-        hardened_chain_mail_is_purchased = main_menu.hardened_chain_mail_is_purchased;   //Урепленная кольчуга приобретена
-        heavy_armor_is_purchased = main_menu.heavy_armor_is_purchased;           //Тяжелая броня приобретена
-        welfare_charm_is_purchased = main_menu.welfare_charm_is_purchased;     //Талисман благоденствия приобретен
-        heretic_charm_is_purchased = main_menu.heretic_charm_is_purchased;     //Талисман еритика приобретен
-        order_charm_is_purchased = main_menu.order_charm_is_purchased;       //Талисман ордена приобретен
-        cross_charm_is_purchased = main_menu.cross_charm_is_purchased;       //Талисман нагрудный крест приобретен
-        pommel_charm_is_purchased = main_menu.pommel_charm_is_purchased;      //Талисман навершие из слоновой кости приобретен
-        papa_charm_is_purchased = main_menu.papa_charm_is_purchased;        //Талисман печать папы приобретен
-        traitor_charm_is_purchased = main_menu.traitor_charm_is_purchased;     //Талисман предателя приобретен
+        prologIsCompleted = mainMenu.isPrologCompleted;        //Пройден ли пролог
+        scene1IsPurchased = mainMenu.scenes[0].is_purchased;    //Первая сцена приобретена 
+        scene1IsCompleted = mainMenu.scenes[0].is_completed;    //Первая cцена пройдена один раз
+        scene2IsPurchased = mainMenu.scenes[1].is_purchased;    //Вторая сцена приобретена 
+        scene2IsCompleted = mainMenu.scenes[1].is_completed;    //Вторая cцена пройдена один раз
+        scene3IsPurchased = mainMenu.scenes[2].is_purchased;    //Третья сцена приобретена 
+        scene3IsCompleted = mainMenu.scenes[2].is_completed;    //Третья cцена пройдена один раз
+        scene4IsPurchased = mainMenu.scenes[3].is_purchased;    //Четвертая сцена приобретена 
+        scene4IsCompleted = mainMenu.scenes[3].is_completed;    //Четвертая cцена пройдена один раз
+        scene5IsPurchased = mainMenu.scenes[4].is_purchased;    //Пятая сцена приобретена 
+        scene5IsCompleted = mainMenu.scenes[4].is_completed;    //Пятая cцена пройдена один раз
+        scene6IsPurchased = mainMenu.scenes[5].is_purchased;    //Шестая сцена приобретена 
+        scene6IsCompleted = mainMenu.scenes[5].is_completed;    //Шестая cцена пройдена один раз
+        scene7IsPurchased = mainMenu.scenes[6].is_purchased;    //Седьмая сцена приобретена 
+        scene7IsCompleted = mainMenu.scenes[6].is_completed;    //Седьмая cцена пройдена один раз
+        scene8IsPurchased = mainMenu.scenes[7].is_purchased;    //Восьмая сцена приобретена 
+        scene8IsCompleted = mainMenu.scenes[7].is_completed;    //Восьмая cцена пройдена один раз
+        scene9IsPurchased = mainMenu.scenes[8].is_purchased;    //Девятая сцена приобретена 
+        scene9IsCompleted = mainMenu.scenes[8].is_completed;    //Девятая cцена пройдена один раз
+        scene10IsPurchased = mainMenu.scenes[9].is_purchased;   //Десятая сцена приобретена 
+        scene10IsCompleted = mainMenu.scenes[9].is_completed;   //Десятая cцена пройдена один раз
+        scene11IsPurchased = mainMenu.scenes[10].is_purchased;   //Одиннадцатая сцена приобретена 
+        scene11IsCompleted = mainMenu.scenes[10].is_completed;   //Одиннадцатая cцена пройдена один раз
+        brokenSwordIsPurchased = mainMenu.brokenSwordIsPurchased;  //Сломанный меч приобретен
+        falchionIsPurchased = mainMenu.falchionIsPurchased;      //Фальшион приобретен
+        zweihanderIsPurchased = mainMenu.zweihanderIsPurchased;    //Двуручник приобретен
+        peterSwordIsPurchased = mainMenu.peterSwordIsPurchased;   //Меч святого Петра приобретен
+        januarDaggerIsPurchased = mainMenu.januarDaggerIsPurchased; //Кинжал святого Януария приобретен
+        vienneseSpearIsPurchased = mainMenu.vienneseSpearIsPurchased;//Венское копье приобретено
+        russianSwordIsPurchased = mainMenu.russianSwordIsPurchased; //Русский меч приобретен
+        chainMailIsPurchased = mainMenu.chainMailIsPurchased;            //Кольчуга приобретена
+        hardenedChainMailIsPurchased = mainMenu.hardenedChainMailIsPurchased;   //Урепленная кольчуга приобретена
+        heavyArmorIsPurchased = mainMenu.heavyArmorIsPurchased;           //Тяжелая броня приобретена
+        welfareCharmIsPurchased = mainMenu.welfareCharmIsPurchased;     //Талисман благоденствия приобретен
+        hereticCharmIsPurchased = mainMenu.hereticCharmIsPurchased;     //Талисман еритика приобретен
+        orderCharmIsPurchased = mainMenu.orderCharmIsPurchased;       //Талисман ордена приобретен
+        crossCharmIsPurchased = mainMenu.crossCharmIsPurchased;       //Талисман нагрудный крест приобретен
+        pommelCharmIsPurchased = mainMenu.pommelCharmIsPurchased;      //Талисман навершие из слоновой кости приобретен
+        papaCharmIsPurchased = mainMenu.papaCharmIsPurchased;        //Талисман печать папы приобретен
+        traitorCharmIsPurchased = mainMenu.traitorCharmIsPurchased;     //Талисман предателя приобретен
 
-        Language.LanguageType current_language = main_menu.language_settings;
-        switch (current_language)
+        Language.LanguageType currentLanguage = mainMenu.languageSettings;
+        switch (currentLanguage)
         {
-            case Language.LanguageType.english:
+            case Language.LanguageType.English:
                 language = 0;
                 break;
 
-            case Language.LanguageType.russian:
+            case Language.LanguageType.Russian:
                 language = 1;
                 break;
 
-            case Language.LanguageType.german:
+            case Language.LanguageType.German:
                 language = 2;
                 break;
 
-            case Language.LanguageType.french:
+            case Language.LanguageType.French:
                 language = 3;
                 break;
 
-            case Language.LanguageType.esperanto:
+            case Language.LanguageType.Esperanto:
                 language = 4;
                 break;
         }//Текущий язык
 
-        graphics_tier = main_menu.graphics_tier; //Уровень графики
-        master_volume = main_menu.master_volume; //Общая громкость игры
-        music_volume = main_menu.music_volume;  //Громкость музыки
-        sfx_volume = main_menu.sfx_volume;    //Громкость звуковых эффектов
+        graphicsTier = mainMenu.graphicsTier; //Уровень графики
+        masterVolume = mainMenu.masterVolume; //Общая громкость игры
+        musicVolume = mainMenu.musicVolume;  //Громкость музыки
+        sfxVolume = mainMenu.sfxVolume;    //Громкость звуковых эффектов
 
-        best_score = main_menu.best_score;  //лучший результат
-        black_ink = 0;   //Количество чернил
+        bestScore = mainMenu.bestScore;  //лучший результат
+        blackInk = 0;   //Количество чернил
     }
 
-    public GameData (StartScreenManager screen_manager)
+    public GameData (StartScreenManager screenManager)
     //конструктор для сохранения после ервого запуска
     {
         GameData temp = new GameData();
-        language = (byte) Language.LanguageToInt(screen_manager.current_language);
+        language = (byte) Language.LanguageToInt(screenManager.currentLanguage);
 
-        current_scene = temp.current_scene;     //Текущая сцена
-        current_weapon = temp.current_weapon;    //текущиее оружее
-        current_armor = temp.current_armor;     //Текущая броня
-        current_charm_0 = temp.current_charm_0;   //текущий первый талисман
-        current_charm_1 = temp.current_charm_1;   //текущий второй талисман
-        current_charm_2 = temp.current_charm_2;   //текущий третий талисман
-        combometer_size = temp.combometer_size;   //Текущий размер комбометра
-        combo_split_is_available = temp.combo_split_is_available;               //Доступно ли комбо разрыва
-        combo_fourious_attack_is_available = temp.combo_fourious_attack_is_available;     //Доступно ли комбо яростной атаки
-        combo_master_stun_is_available = temp.combo_master_stun_is_available;         //Доступно ли комбо мастерское оглушение
-        combo_horizontal_cut_is_available = temp.combo_horizontal_cut_is_available;      //Доступно ли комбо горизонтального разреза
-        combo_shuffle_is_available = temp.combo_shuffle_is_available;             //Доступно ли комбо перетасовки
-        combo_florescence_is_available = temp.combo_florescence_is_available;         //Доступно ли комбо расцвета
-        combo_sublime_dissection_is_available = temp.combo_sublime_dissection_is_available;  //Доступно ли комбо грандиозного рассчения
+        currentScene = temp.currentScene;     //Текущая сцена
+        currentWeapon = temp.currentWeapon;    //текущиее оружее
+        currentArmor = temp.currentArmor;     //Текущая броня
+        currentCharm0 = temp.currentCharm0;   //текущий первый талисман
+        currentCharm1 = temp.currentCharm1;   //текущий второй талисман
+        currentCharm2 = temp.currentCharm2;   //текущий третий талисман
+        combometerSize = temp.combometerSize;   //Текущий размер комбометра
+        comboSplitIsAvailable = temp.comboSplitIsAvailable;               //Доступно ли комбо разрыва
+        comboFouriousAttackIsAvailable = temp.comboFouriousAttackIsAvailable;     //Доступно ли комбо яростной атаки
+        comboMasterStunIsAvailable = temp.comboMasterStunIsAvailable;         //Доступно ли комбо мастерское оглушение
+        comboHorizontalCutIsAvailable = temp.comboHorizontalCutIsAvailable;      //Доступно ли комбо горизонтального разреза
+        comboShuffleIsAvailable = temp.comboShuffleIsAvailable;             //Доступно ли комбо перетасовки
+        comboFlorescenceIsAvailable = temp.comboFlorescenceIsAvailable;         //Доступно ли комбо расцвета
+        comboSublimeDissectionIsAvailable = temp.comboSublimeDissectionIsAvailable;  //Доступно ли комбо грандиозного рассчения
 
-        prolog_is_completed = temp.prolog_is_completed;     //Пролог завершен
-        scene1_is_purchased = temp.scene1_is_purchased;    //Первая сцена приобретена 
-        scene1_is_completed = temp.scene1_is_completed;    //Первая cцена пройдена один раз
-        scene2_is_purchased = temp.scene2_is_purchased;    //Вторая сцена приобретена 
-        scene2_is_completed = temp.scene2_is_completed;    //Вторая cцена пройдена один раз
-        scene3_is_purchased = temp.scene3_is_purchased;    //Третья сцена приобретена 
-        scene3_is_completed = temp.scene3_is_completed;    //Третья cцена пройдена один раз
-        scene4_is_purchased = temp.scene4_is_purchased;    //Четвертая сцена приобретена 
-        scene4_is_completed = temp.scene4_is_completed;    //Четвертая cцена пройдена один раз
-        scene5_is_purchased = temp.scene5_is_purchased;    //Пятая сцена приобретена 
-        scene5_is_completed = temp.scene5_is_completed;    //Пятая cцена пройдена один раз
-        scene6_is_purchased = temp.scene6_is_purchased;    //Шестая сцена приобретена 
-        scene6_is_completed = temp.scene6_is_completed;    //Шестая cцена пройдена один раз
-        scene7_is_purchased = temp.scene7_is_purchased;    //Седьмая сцена приобретена 
-        scene7_is_completed = temp.scene7_is_completed;    //Седьмая cцена пройдена один раз
-        scene8_is_purchased = temp.scene8_is_purchased;    //Восьмая сцена приобретена 
-        scene8_is_completed = temp.scene8_is_completed;    //Восьмая cцена пройдена один раз
-        scene9_is_purchased = temp.scene9_is_purchased;    //Девятая сцена приобретена 
-        scene9_is_completed = temp.scene9_is_completed;    //Девятая cцена пройдена один раз
-        scene10_is_purchased = temp.scene10_is_purchased;   //Десятая сцена приобретена 
-        scene10_is_completed = temp.scene10_is_completed;   //Десятая cцена пройдена один раз
-        scene11_is_purchased = temp.scene11_is_purchased;   //Одиннадцатая сцена приобретена 
-        scene11_is_completed = temp.scene11_is_completed;   //Одиннадцатая cцена пройдена один раз
-        broken_sword_is_purchased = temp.broken_sword_is_purchased;  //Сломанный меч приобретен
-        falchion_is_purchased = temp.falchion_is_purchased;      //Фальшион приобретен
-        zweihander_is_purchased = temp.zweihander_is_purchased;    //Двуручник приобретен
-        peter_sword_is_purchased = temp.peter_sword_is_purchased;   //Меч святого Петра приобретен
-        januar_dagger_is_purchased = temp.januar_dagger_is_purchased; //Кинжал святого Януария приобретен
-        viennese_spear_is_purchased = temp.viennese_spear_is_purchased;//Венское копье приобретено
-        russian_sword_is_purchased = temp.russian_sword_is_purchased; //Русский меч приобретен
-        chain_mail_is_purchased = temp.chain_mail_is_purchased;            //Кольчуга приобретена
-        hardened_chain_mail_is_purchased = temp.hardened_chain_mail_is_purchased;   //Урепленная кольчуга приобретена
-        heavy_armor_is_purchased = temp.heavy_armor_is_purchased;           //Тяжелая броня приобретена
-        welfare_charm_is_purchased = temp.welfare_charm_is_purchased;     //Талисман благоденствия приобретен
-        heretic_charm_is_purchased = temp.heretic_charm_is_purchased;     //Талисман еритика приобретен
-        order_charm_is_purchased = temp.order_charm_is_purchased;       //Талисман ордена приобретен
-        cross_charm_is_purchased = temp.cross_charm_is_purchased;       //Талисман нагрудный крест приобретен
-        pommel_charm_is_purchased = temp.pommel_charm_is_purchased;      //Талисман навершие из слоновой кости приобретен
-        papa_charm_is_purchased = temp.papa_charm_is_purchased;        //Талисман печать папы приобретен
-        traitor_charm_is_purchased = temp.traitor_charm_is_purchased;     //Талисман предателя приобретен
+        prologIsCompleted = temp.prologIsCompleted;     //Пролог завершен
+        scene1IsPurchased = temp.scene1IsPurchased;    //Первая сцена приобретена 
+        scene1IsCompleted = temp.scene1IsCompleted;    //Первая cцена пройдена один раз
+        scene2IsPurchased = temp.scene2IsPurchased;    //Вторая сцена приобретена 
+        scene2IsCompleted = temp.scene2IsCompleted;    //Вторая cцена пройдена один раз
+        scene3IsPurchased = temp.scene3IsPurchased;    //Третья сцена приобретена 
+        scene3IsCompleted = temp.scene3IsCompleted;    //Третья cцена пройдена один раз
+        scene4IsPurchased = temp.scene4IsPurchased;    //Четвертая сцена приобретена 
+        scene4IsCompleted = temp.scene4IsCompleted;    //Четвертая cцена пройдена один раз
+        scene5IsPurchased = temp.scene5IsPurchased;    //Пятая сцена приобретена 
+        scene5IsCompleted = temp.scene5IsCompleted;    //Пятая cцена пройдена один раз
+        scene6IsPurchased = temp.scene6IsPurchased;    //Шестая сцена приобретена 
+        scene6IsCompleted = temp.scene6IsCompleted;    //Шестая cцена пройдена один раз
+        scene7IsPurchased = temp.scene7IsPurchased;    //Седьмая сцена приобретена 
+        scene7IsCompleted = temp.scene7IsCompleted;    //Седьмая cцена пройдена один раз
+        scene8IsPurchased = temp.scene8IsPurchased;    //Восьмая сцена приобретена 
+        scene8IsCompleted = temp.scene8IsCompleted;    //Восьмая cцена пройдена один раз
+        scene9IsPurchased = temp.scene9IsPurchased;    //Девятая сцена приобретена 
+        scene9IsCompleted = temp.scene9IsCompleted;    //Девятая cцена пройдена один раз
+        scene10IsPurchased = temp.scene10IsPurchased;   //Десятая сцена приобретена 
+        scene10IsCompleted = temp.scene10IsCompleted;   //Десятая cцена пройдена один раз
+        scene11IsPurchased = temp.scene11IsPurchased;   //Одиннадцатая сцена приобретена 
+        scene11IsCompleted = temp.scene11IsCompleted;   //Одиннадцатая cцена пройдена один раз
+        brokenSwordIsPurchased = temp.brokenSwordIsPurchased;  //Сломанный меч приобретен
+        falchionIsPurchased = temp.falchionIsPurchased;      //Фальшион приобретен
+        zweihanderIsPurchased = temp.zweihanderIsPurchased;    //Двуручник приобретен
+        peterSwordIsPurchased = temp.peterSwordIsPurchased;   //Меч святого Петра приобретен
+        januarDaggerIsPurchased = temp.januarDaggerIsPurchased; //Кинжал святого Януария приобретен
+        vienneseSpearIsPurchased = temp.vienneseSpearIsPurchased;//Венское копье приобретено
+        russianSwordIsPurchased = temp.russianSwordIsPurchased; //Русский меч приобретен
+        chainMailIsPurchased = temp.chainMailIsPurchased;            //Кольчуга приобретена
+        hardenedChainMailIsPurchased = temp.hardenedChainMailIsPurchased;   //Урепленная кольчуга приобретена
+        heavyArmorIsPurchased = temp.heavyArmorIsPurchased;           //Тяжелая броня приобретена
+        welfareCharmIsPurchased = temp.welfareCharmIsPurchased;     //Талисман благоденствия приобретен
+        hereticCharmIsPurchased = temp.hereticCharmIsPurchased;     //Талисман еритика приобретен
+        orderCharmIsPurchased = temp.orderCharmIsPurchased;       //Талисман ордена приобретен
+        crossCharmIsPurchased = temp.crossCharmIsPurchased;       //Талисман нагрудный крест приобретен
+        pommelCharmIsPurchased = temp.pommelCharmIsPurchased;      //Талисман навершие из слоновой кости приобретен
+        papaCharmIsPurchased = temp.papaCharmIsPurchased;        //Талисман печать папы приобретен
+        traitorCharmIsPurchased = temp.traitorCharmIsPurchased;     //Талисман предателя приобретен
 
-        graphics_tier = temp.graphics_tier; //Уровень графики
-        master_volume = temp.master_volume; //Общая громкость игры
-        music_volume = temp.music_volume;  //Громкость музыки
-        sfx_volume = temp.sfx_volume;    //Громкость звуковых эффектов
-        best_score = temp.best_score;  //Лучший результат
-        black_ink = temp.black_ink;   //Количество чернил
+        graphicsTier = temp.graphicsTier; //Уровень графики
+        masterVolume = temp.masterVolume; //Общая громкость игры
+        musicVolume = temp.musicVolume;  //Громкость музыки
+        sfxVolume = temp.sfxVolume;    //Громкость звуковых эффектов
+        bestScore = temp.bestScore;  //Лучший результат
+        blackInk = temp.blackInk;   //Количество чернил
     }
 }

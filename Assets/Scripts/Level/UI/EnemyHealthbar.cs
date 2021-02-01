@@ -6,8 +6,8 @@ using UnityEngine.UI;
 public class EnemyHealthbar : MonoBehaviour
 {
     public Image healthbarImage;
-    public GameObject _object;
-    public Animator _animator;
+    public GameObject @object;
+    public Animator animator;
     public float waitForStart = 1f;
     private void Start()
     {
@@ -16,14 +16,14 @@ public class EnemyHealthbar : MonoBehaviour
             healthbarImage = GetComponent<Image>();
         }
 
-        if (_object == null)
+        if (@object == null)
         {
-            _object = gameObject;
+            @object = gameObject;
         }
 
-        if (_animator == null)
+        if (animator == null)
         {
-            _animator = GetComponent<Animator>();
+            animator = GetComponent<Animator>();
         }
     }
 
@@ -34,7 +34,7 @@ public class EnemyHealthbar : MonoBehaviour
 
     public void ActivateHealthBar()
     {
-        _animator.SetBool("appear", true);
+        animator.SetBool("appear", true);
     }
 
     public void ActivateHealthBar(float fill)
@@ -45,7 +45,7 @@ public class EnemyHealthbar : MonoBehaviour
 
     public void DeactivateHealthBar()
     {
-        _animator.SetBool("appear", false);
+        animator.SetBool("appear", false);
     }
 
     public IEnumerator WaitToStart()

@@ -9,13 +9,13 @@ public class RhythmManager : MonoBehaviour
 {
 
     public static RhythmManager instance;               //Ссылка на этот ритм менеджер
-    public GameManager game_manager;                    //Ссылка на игровой менеджер
-    public Image[] button_images = new Image[4];        //Изображения кнопок
-    public TextMeshProUGUI combo_text;                  //Текст комбосчетчика
-    public float song_time;                             //Время композиции
-    public float deactivation_time;
+    public GameManager gameManager;                    //Ссылка на игровой менеджер
+    public Image[] buttonImages = new Image[4];        //Изображения кнопок
+    public TextMeshProUGUI comboText;                  //Текст комбосчетчика
+    public float songTime;                             //Время композиции
+    public float deactivationTime;
 
-    public int combo_count = 0;                         //Комбосчетчик
+    public int comboCount = 0;                         //Комбосчетчик
 
     private void Awake()
     {
@@ -25,12 +25,12 @@ public class RhythmManager : MonoBehaviour
     //Начинает работу менежджера ритм игры
     public bool StartRhytmManager()
     {
-        if (game_manager == null)
+        if (gameManager == null)
         {
-            game_manager = GameManager.instance;
+            gameManager = GameManager.instance;
         }
 
-        song_time = game_manager.audioSource.time;
+        songTime = gameManager.audioSource.time;
 
         ComboToZero();
         return true;
@@ -46,17 +46,15 @@ public class RhythmManager : MonoBehaviour
     //Поймать указанную точку
     public void CatchPoint(PointBehaviour point)
     {
-
         point.DeactivatePoint();
         AddToCombo();
-        game_manager.AddScore(point.is_red_point);
-
+        gameManager.AddScore(point.isRedPoint);
     }
 
     public void OnMissPoint()
     {
         ComboToZero();
-        game_manager.AddToEnemy();
+        gameManager.AddToEnemy();
     }
 
     //Активировать линию
@@ -68,18 +66,18 @@ public class RhythmManager : MonoBehaviour
     //Добавить к комбосчетчику
     public void AddToCombo()
     {
-        combo_count++;
-        if (combo_count >=2)
+        comboCount++;
+        if (comboCount >=2)
         {
-            combo_text.text = "x" + combo_count;
-            combo_text.GetComponent<Animator>().speed = PointBehaviour.beat_tempo / 60;
+            comboText.text = "x" + comboCount;
+            comboText.GetComponent<Animator>().speed = PointBehaviour.beat_tempo / 60;
         }
     }
 
     //Обнулить комбосчетчик
     public void ComboToZero()
     {
-        combo_count = 0;
-        combo_text.text = "";
+        comboCount = 0;
+        comboText.text = "";
     }
 }

@@ -314,9 +314,16 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 59f06bca0c6ac9a4a814aaa5a122b149, type: 2}
   - {fileID: 11400000, guid: 16c861722edf24f4d900eb4d90eb9e5b, type: 2}
   - {fileID: 11400000, guid: 994b05bf1ac268b46b3240218632f22f, type: 2}
+  charmDatas:
+  - {fileID: 11400000, guid: cddf1b7410f650341af4c5e55a20e2e6, type: 2}
+  - {fileID: 11400000, guid: 6f438a266f7a0844ab45478aaf69dfc5, type: 2}
+  - {fileID: 11400000, guid: 56f51f37b87d2604bbd0a6705a6013b5, type: 2}
+  - {fileID: 11400000, guid: 4110dddbaab9ada46ab1304e155c890f, type: 2}
+  - {fileID: 11400000, guid: 382febfdbaff2e347a0d18a4acf8234e, type: 2}
+  - {fileID: 11400000, guid: c36074a1c9ac5e94481f1182f879f77e, type: 2}
+  - {fileID: 11400000, guid: e9492c83e313f7f4f87d785a49de4f02, type: 2}
+  - {fileID: 11400000, guid: 0920d67230bcf644e9558c74e7f3688a, type: 2}
   combometer: {fileID: 0}
-  knightHealthbar: {fileID: 1798473622}
-  progress: {fileID: 694020943}
   knightPrefab: {fileID: 4734167138094323541, guid: 35773e9e26b8c5a41bf9268a68aa8b9d,
     type: 3}
   decorationsPos: {x: 0, y: 0.4, z: 0}
@@ -333,120 +340,119 @@ MonoBehaviour:
   sfxVolume: 0
   knightHealth: 5
   scoreForPointModifier: 0
-  combometerNeededPoints: 3
   stringSettings:
     headphones: 
-    play_tutorial: 
-    skip_tutorial: 
-    pause_header: 
-    _continue: 
+    playTutorial: 
+    skipTutorial: 
+    pauseHeader: 
+    continue: 
     restart: 
-    victory_header: 
-    death_header: 
-    confirmation_header: 
-    confirmation_yes: 
-    confirmation_no: 
+    victoryHeader: 
+    deathHeader: 
+    confirmationHeader: 
+    confirmationYes: 
+    confirmationNo: 
     exit: 
-    best_score: 
+    bestScore: 
     equipment: 
     shop: 
     content: 
     settings: 
-    graphics_low: 
-    graphics_normal: 
+    graphicsLow: 
+    graphicsNormal: 
     volume: 
-    language_: 
+    language: 
     next: 
     previous: 
     following: 
     back: 
     select: 
     purchase: 
-    current_weapon: 
-    current_armor: 
-    current_talisman: 
+    currentWeapon: 
+    currentArmor: 
+    currentTalisman: 
     longsword: 
-    broken_sword: 
+    brokenSword: 
     falchion: 
     zweichender: 
-    peter_sword: 
-    januarius_dagger: 
+    peterSword: 
+    januariusDagger: 
     spear: 
-    russian_sword: 
-    longsword_description: 
-    broken_sword_description: 
-    falchion_description: 
-    zweichender_description: 
-    peter_sword_description: 
-    januarius_dagger_description: 
-    spear_description: 
-    russian_sword_description: 
-    longsword_loading_screen_description: 
-    broken_sword_loading_screen_description: 
-    falchion_loading_screen_description: 
-    zweichender_loading_screen_description: 
-    peter_sword_loading_screen_description: 
-    januarius_dagger_loading_screen_description: 
-    spear_loading_screen_description: 
-    russian_sword_loading_screen_description: 
-    light_armor: 
-    chain_mail: 
-    strengthened_chain_mail: 
-    heavy_armor: 
-    light_armor_description: 
-    chain_mail_description: 
-    strengthened_chain_mail_description: 
-    heavy_armor_description: 
-    light_armor_loading_screen_description: 
-    chain_mail_loading_screen_description: 
-    strengthened_chain_mail_loading_screen_description: 
-    heavy_armor_loading_screen_description: 
-    no_charm: 
-    welfare_charm: 
-    heretics_charm: 
-    orders_charm: 
+    russianSword: 
+    longswordDescription: 
+    brokenSwordDescription: 
+    falchionDescription: 
+    zweichenderDescription: 
+    peterSwordDescription: 
+    januariusDaggerDescription: 
+    spearDescription: 
+    russianSwordDescription: 
+    longswordLoadingScreenDescription: 
+    brokenSwordLoadingScreenDescription: 
+    falchionLoadingScreenDescription: 
+    zweichenderLoadingScreenDescription: 
+    peterSwordLoadingScreenDescription: 
+    januariusDaggerLoadingScreenDescription: 
+    spearLoadingScreenDescription: 
+    russianSwordLoadingScreenDescription: 
+    lightArmor: 
+    chainMail: 
+    strengthenedChainMail: 
+    heavyArmor: 
+    lightArmorDescription: 
+    chainMailDescription: 
+    strengthenedChainMailDescription: 
+    heavyArmorDescription: 
+    lightArmorLoadingScreenDescription: 
+    chainMailLoadingScreenDescription: 
+    strengthenedChainMailLoadingScreenDescription: 
+    heavyArmorLoadingScreenDescription: 
+    noCharm: 
+    welfareCharm: 
+    hereticCharm: 
+    orderCharm: 
     crucifix: 
-    ivory_pommel: 
-    popes_seal: 
-    traitors_pendant: 
-    welfare_charm_description: 
-    heretics_charm_description: 
-    orders_charm_description: 
-    crucifix_description: 
-    ivory_pommel_description: 
-    popes_seal_description: 
-    traitors_pendant_description: 
-    welfare_charm_loading_screen_description: 
-    heretics_charm_loading_screen_description: 
-    orders_charm_loading_screen_description: 
-    crucifix_loading_screen_description: 
-    ivory_pommel_loading_screen_description: 
-    popes_seal_loading_screen_description: 
-    traitors_pendant_loading_screen_description: 
+    ivoryPommel: 
+    popeSeal: 
+    traitorPendant: 
+    welfareCharmDescription: 
+    hereticCharmDescription: 
+    orderCharmDescription: 
+    crucifixDescription: 
+    ivoryPommelDescription: 
+    popeSealDescription: 
+    traitorPendantDescription: 
+    welfareCharmLoadingScreenDescription: 
+    hereticCharmLoadingScreenDescription: 
+    orderCharmLoadingScreenDescription: 
+    crucifixLoadingScreenDescription: 
+    ivoryPommelLoadingScreenDescription: 
+    popeSealLoadingScreenDescription: 
+    traitorPendantLoadingScreenDescription: 
     prologue: 
     epilogue: 
     titles: 
-    chapter_1: 
-    chapter_2: 
-    chapter_3: 
-    chapter_4: 
-    chapter_5: 
-    chapter_6: 
-    chapter_7: 
-    chapter_8: 
-    chapter_9: 
-    chapter_10: 
-    chapter_11: 
-    pop_up_now_available: 
-    pop_up_size_update: 
-    pop_up_new_combo: 
-    pop_up_ok: 
-    tutorial_points: 
-    tutorial_combometer: 
-    tutorial_attack: 
-    tutorial_enemy: 
-    tutorial_exit: 
-    tutorial_end: 
+    chapter1: 
+    chapter2: 
+    chapter3: 
+    chapter4: 
+    chapter5: 
+    chapter6: 
+    chapter7: 
+    chapter8: 
+    chapter9: 
+    chapter10: 
+    chapter11: 
+    popUpNowAvailable: 
+    popUpSizeUpdate: 
+    popUpNewCombo: 
+    popUpOk: 
+    tutorialPoints: 
+    tutorialCombometer: 
+    tutorialAttack: 
+    tutorialEnemy: 
+    tutorialExit: 
+    tutorialEnd: 
   languageSettings: 1
   startRunningDelta: 3
 --- !u!1 &74842563
@@ -983,14 +989,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c82a18d26d526b340a46c3b52a9739ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  game_manager: {fileID: 1093084283}
-  button_images:
+  gameManager: {fileID: 1093084283}
+  buttonImages:
   - {fileID: 945369252}
   - {fileID: 1365181850}
-  combo_text: {fileID: 1813162359}
-  song_time: 0
-  deactivation_time: 0.01
-  combo_count: 0
+  comboText: {fileID: 1813162359}
+  songTime: 0
+  deactivationTime: 0
+  comboCount: 0
 --- !u!114 &228418104
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1603,17 +1609,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c18becc75e7c8944cafd3a96c2848ed9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_slider: {fileID: 336077069}
-  handle_image: {fileID: 274171115}
-  background_image: {fileID: 852534849}
+  slider: {fileID: 336077069}
+  handleImage: {fileID: 274171115}
+  backgroundImage: {fileID: 852534849}
   circle: {fileID: 901715467}
   waves: {fileID: 1199098249}
   animator: {fileID: 336077070}
-  attack_menu: {fileID: 616301474}
-  color_left: {r: 0.26666668, g: 0.44313726, b: 0.30980393, a: 1}
-  color_right: {r: 0.43137255, g: 0.18431373, b: 0.18039216, a: 1}
+  attackMenu: {fileID: 616301474}
+  colorLeft: {r: 0.47058824, g: 0.8784314, b: 0.56078434, a: 1}
+  colorRight: {r: 0.8980392, g: 0.3137255, b: 0.22352941, a: 1}
   id: 2
-  is_changed: 0
+  isChanged: 0
 --- !u!114 &336077069
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2224,8 +2230,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aea206af22cd6ad4a9d601a7a68d953b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _audioSource: {fileID: 455996194}
-  rhytmEvent: {fileID: 0}
+  audioSource: {fileID: 455996194}
+  rhytmEvent: {fileID: 228418104}
   musicAudioSource: {fileID: 1093084282}
   rhythmManager: {fileID: 228418103}
   gameManager: {fileID: 1093084283}
@@ -2386,17 +2392,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c18becc75e7c8944cafd3a96c2848ed9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_slider: {fileID: 537992218}
-  handle_image: {fileID: 1491361469}
-  background_image: {fileID: 282994577}
+  slider: {fileID: 537992218}
+  handleImage: {fileID: 1491361469}
+  backgroundImage: {fileID: 282994577}
   circle: {fileID: 209127876}
   waves: {fileID: 1238183686}
   animator: {fileID: 537992219}
-  attack_menu: {fileID: 616301474}
-  color_left: {r: 0.26666668, g: 0.44313726, b: 0.30980393, a: 1}
-  color_right: {r: 0.43137255, g: 0.18431373, b: 0.18039216, a: 1}
+  attackMenu: {fileID: 616301474}
+  colorLeft: {r: 0.47058824, g: 0.8784314, b: 0.56078434, a: 1}
+  colorRight: {r: 0.8980392, g: 0.3137255, b: 0.22352941, a: 1}
   id: 1
-  is_changed: 0
+  isChanged: 0
 --- !u!114 &537992218
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2958,6 +2964,7 @@ MonoBehaviour:
   - {fileID: 5984371359630213757, guid: e150ad6d0a816aa4eb625f0ea08c3a2c, type: 3}
   - {fileID: -7699349106523695469, guid: e150ad6d0a816aa4eb625f0ea08c3a2c, type: 3}
   swordDamage: 1
+  hitChance: 100
   timeToDisableHealth: 1
   dazeTime: 2
   timeOfLatestAttack: 0
@@ -3102,7 +3109,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d014b4a700938ac4a88696c1cd516cbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  progress_bar: {fileID: 996842345}
+  progressBar: {fileID: 996842345}
 --- !u!1 &723886559
 GameObject:
   m_ObjectHideFlags: 0
@@ -4810,41 +4817,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70dbdac5183406744be9a363f7cc5257, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scene_loader: {fileID: 1110867253858244153}
-  camera_manager: {fileID: 1347287473}
+  sceneLoader: {fileID: 1110867253858244153}
+  cameraManager: {fileID: 1347287473}
   pointSpawner: {fileID: 455996195}
   rhythmManager: {fileID: 228418103}
-  menu_animator: {fileID: 1004277546}
+  menuAnimator: {fileID: 1004277546}
   mainLineAnimator: {fileID: 1085181548}
-  game_manager: {fileID: 1093084283}
-  line_buttons: {fileID: 1554846757}
+  gameManager: {fileID: 1093084283}
+  lineButtons: {fileID: 1554846757}
   sliders:
   - {fileID: 2002092029}
   - {fileID: 537992217}
   - {fileID: 336077068}
-  start_position: {x: -16.67, y: 0, z: 0}
-  last_position: {x: -5.17, y: 0, z: 0}
-  header_game_object: {fileID: 218387143}
-  header_text: {fileID: 218387145}
-  continue_button_game_object: {fileID: 1721981482}
-  continue_button_text: {fileID: 723886561}
-  restart_button_game_object: {fileID: 1803472251}
-  restart_button_text: {fileID: 557761314}
-  exit_button_game_object: {fileID: 1505869165}
-  exit_button_text: {fileID: 753789873}
-  score_game_object: {fileID: 1520578684}
-  score_text: {fileID: 1520578686}
-  black_ink_game_object: {fileID: 1096449368}
-  black_ink_text: {fileID: 1096449369}
-  confirmation_field: {fileID: 1084308431}
-  confirmation_header_game_object: {fileID: 747426877}
-  confirmation_header_text: {fileID: 747426879}
-  confirmation_yes_button_game_object: {fileID: 561819447}
-  confirmation_yes_button_text: {fileID: 259381693}
-  confirmation_no_button_game_object: {fileID: 245641111}
-  confirmation_no_button_text: {fileID: 438226785}
-  game_is_paused: 0
-  current_state: 0
+  startPosition: {x: 0, y: 0, z: 0}
+  lastPosition: {x: 0, y: 0, z: 0}
+  headerGameObject: {fileID: 218387143}
+  headerText: {fileID: 218387145}
+  continueButtonGameObject: {fileID: 1721981482}
+  continueButtonText: {fileID: 723886561}
+  restartButtonGameObject: {fileID: 1803472251}
+  restartButtonText: {fileID: 557761314}
+  exitButtonGameObject: {fileID: 1505869165}
+  exitButtonText: {fileID: 753789873}
+  scoreGameObject: {fileID: 1520578684}
+  scoreText: {fileID: 1520578686}
+  blackInkGameObject: {fileID: 1096449368}
+  blackInkText: {fileID: 1096449369}
+  confirmationField: {fileID: 1084308431}
+  confirmationHeaderGameObject: {fileID: 747426877}
+  confirmationHeaderText: {fileID: 747426879}
+  confirmationYesButtonGameObject: {fileID: 561819447}
+  confirmationYesButtonText: {fileID: 259381693}
+  confirmationNoButtonGameObject: {fileID: 245641111}
+  confirmationNoButtonText: {fileID: 438226785}
+  gameIsPaused: 0
+  currentState: 0
 --- !u!1 &1005325689
 GameObject:
   m_ObjectHideFlags: 0
@@ -5280,7 +5287,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8c469a203f2fb7478db709c02f8dc7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _audioSource: {fileID: 1093084282}
+  audioSource: {fileID: 0}
   rhytmEvent: {fileID: 228418104}
 --- !u!1 &1096449368
 GameObject:
@@ -6362,11 +6369,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 1347287472}
-  m_camera: {fileID: 1347287470}
-  start_position: {x: 0, y: 0, z: -10}
-  last_position: {x: -5.13, y: 0.13, z: -10}
-  start_size: 2.693245
-  last_size: 3.2
+  mCamera: {fileID: 0}
+  startPosition: {x: 0, y: 0, z: 0}
+  lastPosition: {x: 0, y: 0, z: 0}
+  startSize: 0
+  lastSize: 0
 --- !u!114 &1347287474
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8266,7 +8273,7 @@ GameObject:
   - component: {fileID: 1798473623}
   - component: {fileID: 1798473624}
   m_Layer: 5
-  m_Name: knight_health
+  m_Name: HealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9009,17 +9016,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c18becc75e7c8944cafd3a96c2848ed9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_slider: {fileID: 2002092030}
-  handle_image: {fileID: 1472147475}
-  background_image: {fileID: 2031919492}
+  slider: {fileID: 2002092030}
+  handleImage: {fileID: 1472147475}
+  backgroundImage: {fileID: 2031919492}
   circle: {fileID: 1600232749}
   waves: {fileID: 1615420858}
   animator: {fileID: 2002092031}
-  attack_menu: {fileID: 616301474}
-  color_left: {r: 0.26666668, g: 0.4431373, b: 0.30980393, a: 1}
-  color_right: {r: 0.43137258, g: 0.18431373, b: 0.18039216, a: 1}
+  attackMenu: {fileID: 616301474}
+  colorLeft: {r: 0.47058824, g: 0.8784314, b: 0.56078434, a: 1}
+  colorRight: {r: 0.8980392, g: 0.3137255, b: 0.22352941, a: 1}
   id: 0
-  is_changed: 0
+  isChanged: 0
 --- !u!114 &2002092030
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -5,9 +5,9 @@
 [RequireComponent (typeof (MeshRenderer))]
 public class MeshCopy : MonoBehaviour
 {
-    public MeshFilter OriginalMesh;
-    [ColorUsage (false)] public Color Color = Color.white;
-    public float Intensity = 1;
+    public MeshFilter originalMesh;
+    [ColorUsage (false)] public Color color = Color.white;
+    public float intensity = 1;
 
     MeshFilter meshFilter;
     Renderer rend;
@@ -19,8 +19,8 @@ public class MeshCopy : MonoBehaviour
     void Update ()
     {
         CheckReferences ();
-        if (OriginalMesh && OriginalMesh.sharedMesh)
-            meshFilter.sharedMesh = OriginalMesh.sharedMesh;
+        if (originalMesh && originalMesh.sharedMesh)
+            meshFilter.sharedMesh = originalMesh.sharedMesh;
         else meshFilter.sharedMesh = null;
         UpdateColor ();
     }
@@ -32,12 +32,12 @@ public class MeshCopy : MonoBehaviour
     }
     void UpdateColor ()
     {
-        if (oldColor != Color || oldIntensity != Intensity)
+        if (oldColor != color || oldIntensity != intensity)
         {
-            oldColor = Color;
-            oldIntensity = Intensity;
+            oldColor = color;
+            oldIntensity = intensity;
             rend.GetPropertyBlock (propBlock);
-            propBlock.SetColor (colorProp, Color * Intensity);
+            propBlock.SetColor (colorProp, color * intensity);
             rend.SetPropertyBlock (propBlock);
         }
     }

@@ -10,67 +10,67 @@ public class MenuManager : MonoBehaviour
 {
     [Header("Scene Links")] //Главные ссылки сцены
     public static MenuManager instance;     //Ссылка на экземпляр меню на сцене
-    public SceneLoader scene_loader;        //Ссылка на загрузчик уровня
-    public CameraManager camera_manager;    //Ссылка на менеджер камеры
+    public SceneLoader sceneLoader;        //Ссылка на загрузчик уровня
+    public CameraManager cameraManager;    //Ссылка на менеджер камеры
     public PointSpawner pointSpawner;
     public RhythmManager rhythmManager;
-    public Animator menu_animator;          //Ссылка на аниматор меню
+    public Animator menuAnimator;          //Ссылка на аниматор меню
     public Animator mainLineAnimator;
-    public GameManager game_manager;        //Ссылка на игровой менджер
-    public GameObject line_buttons;         //Ссылка на кнопки линий
+    public GameManager gameManager;        //Ссылка на игровой менджер
+    public GameObject lineButtons;         //Ссылка на кнопки линий
     public SliderScript[] sliders;              //Ссылка слайдеры
 
     [Header("Positions")]   //Позиции меню
-    public Vector3 start_position;  //Стартовая позиция
-    public Vector3 last_position;   //Конечная позиция
+    public Vector3 startPosition;  //Стартовая позиция
+    public Vector3 lastPosition;   //Конечная позиция
 
     [Header("Header Links")]    //Ссылки заголовка
-    public GameObject header_game_object;   //Ссылка на игровой объект заголовка
-    public TextMeshProUGUI header_text;     //Ссылка на тест заголовка
+    public GameObject headerGameObject;   //Ссылка на игровой объект заголовка
+    public TextMeshProUGUI headerText;     //Ссылка на тест заголовка
     private readonly List<string> header_strings = new List<string>();   //Массив текстов заголовка
 
     [Header("Continue Links")]  //Ссылки кнопки продолжить
-    public GameObject continue_button_game_object;  //Ссылка на игровой объект кнопки продолжить
-    public TextMeshProUGUI continue_button_text;    //Ссылка на текст кнопки продолжить
+    public GameObject continueButtonGameObject;  //Ссылка на игровой объект кнопки продолжить
+    public TextMeshProUGUI continueButtonText;    //Ссылка на текст кнопки продолжить
     private readonly List<string> continue_strings = new List<string>(); //Массив текстов кнопки продолжить
 
     [Header("Restart Links")]   //Ссылки кнопки рестарт
-    public GameObject restart_button_game_object;   //Ссылка на игровой объект кнопки рестарт
-    public TextMeshProUGUI restart_button_text;     //Ссылка на текст кнопки рестарт
+    public GameObject restartButtonGameObject;   //Ссылка на игровой объект кнопки рестарт
+    public TextMeshProUGUI restartButtonText;     //Ссылка на текст кнопки рестарт
     private readonly List<string> restart_strings = new List<string>();  //Массив текстов кнопки рестарт
 
     [Header("Exit Links")]  //Ссылки кнопки выход
-    public GameObject exit_button_game_object;  //Ссылка на игровой объект кнопки выход
-    public TextMeshProUGUI exit_button_text;    //Ссылка на текст кнопки выход
+    public GameObject exitButtonGameObject;  //Ссылка на игровой объект кнопки выход
+    public TextMeshProUGUI exitButtonText;    //Ссылка на текст кнопки выход
 
     [Header("Score Links")] //Ссылки счета
-    public GameObject score_game_object;        //Ссылка на игровой объект счета
-    public TextMeshProUGUI score_text;          //Ссылка на текст счета
+    public GameObject scoreGameObject;        //Ссылка на игровой объект счета
+    public TextMeshProUGUI scoreText;          //Ссылка на текст счета
 
     [Header("Ink Links")]   //Ссылки чернил
-    public GameObject black_ink_game_object;    //Ссылка на игровой объект чернил
-    public TextMeshProUGUI black_ink_text;      //Ссылка на текст чернил
+    public GameObject blackInkGameObject;    //Ссылка на игровой объект чернил
+    public TextMeshProUGUI blackInkText;      //Ссылка на текст чернил
 
     [Header("Confirmation Links")]  //Ссылки на поле потдверждения
-    public GameObject confirmation_field;                   //Ссылка на поле, в котором находятся кнопки и текст
-    public GameObject confirmation_header_game_object;      //Ссылка на заголовок поля подтверждения
-    public TextMeshProUGUI confirmation_header_text;        //Ссылка на текст заголовока поля подтверждения
-    public GameObject confirmation_yes_button_game_object;  //Ссылка на кнопку "ДА" поля подтверждения
-    public TextMeshProUGUI confirmation_yes_button_text;    //Ссылка на текст кнопки "ДА" поля подтверждения
-    public GameObject confirmation_no_button_game_object;   //Ссылка на кнопку "НЕТ" поля подтверждения
-    public TextMeshProUGUI confirmation_no_button_text;     //Ссылка на текст кнопки "НЕТ" поля подтверждения
+    public GameObject confirmationField;                   //Ссылка на поле, в котором находятся кнопки и текст
+    public GameObject confirmationHeaderGameObject;      //Ссылка на заголовок поля подтверждения
+    public TextMeshProUGUI confirmationHeaderText;        //Ссылка на текст заголовока поля подтверждения
+    public GameObject confirmationYesButtonGameObject;  //Ссылка на кнопку "ДА" поля подтверждения
+    public TextMeshProUGUI confirmationYesButtonText;    //Ссылка на текст кнопки "ДА" поля подтверждения
+    public GameObject confirmationNoButtonGameObject;   //Ссылка на кнопку "НЕТ" поля подтверждения
+    public TextMeshProUGUI confirmationNoButtonText;     //Ссылка на текст кнопки "НЕТ" поля подтверждения
 
     [Header("State")]   //Состояние меню
-    public bool game_is_paused = false;                     //Игра на паузе?
+    public bool gameIsPaused = false;                     //Игра на паузе?
     private bool menu_is_loaded = false;                    //Меню загружено?
     //Перечисление состояния меню
     public enum State
     {
-        pause,
-        victory,
-        defeat
+        Pause,
+        Victory,
+        Defeat
     }
-    public State current_state = State.pause;               //Текущее состояние меню
+    public State currentState = State.Pause;               //Текущее состояние меню
     private bool is_pause_on_cooldown = false;              //Меню на кулдауне?
 
     private void Awake()
@@ -83,20 +83,20 @@ public class MenuManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape) && !is_pause_on_cooldown)
         {
-            if (!game_is_paused && current_state == State.pause)
+            if (!gameIsPaused && currentState == State.Pause)
             {
                 Pause();
             }
             else
             {
-                if(current_state == State.pause)
+                if(currentState == State.Pause)
                 {
                     Resume();
                 }
             }
         }
 
-        if (menu_is_loaded && (current_state != State.victory || current_state != State.defeat))
+        if (menu_is_loaded && (currentState != State.Victory || currentState != State.Defeat))
         {
             UpdateMenu();
         }
@@ -104,74 +104,74 @@ public class MenuManager : MonoBehaviour
 
     public void UpdateMenu()
     {
-        switch(current_state)
+        switch(currentState)
         {
-            case State.pause:
-                continue_button_game_object.SetActive(true);
-                header_text.text = header_strings[0];
-                continue_button_text.text = continue_strings[0];
-                restart_button_text.text = restart_strings[0];
+            case State.Pause:
+                continueButtonGameObject.SetActive(true);
+                headerText.text = header_strings[0];
+                continueButtonText.text = continue_strings[0];
+                restartButtonText.text = restart_strings[0];
                 break;
 
-            case State.victory:
-                continue_button_game_object.SetActive(false);
-                header_text.text = header_strings[1];
-                continue_button_text.text = continue_strings[1];
-                restart_button_text.text = restart_strings[1];
+            case State.Victory:
+                continueButtonGameObject.SetActive(false);
+                headerText.text = header_strings[1];
+                continueButtonText.text = continue_strings[1];
+                restartButtonText.text = restart_strings[1];
                 break;
 
-            case State.defeat:
-                continue_button_game_object.SetActive(false);
-                header_text.text = header_strings[2];
-                continue_button_text.text = continue_strings[2];
-                restart_button_text.text = restart_strings[2];
+            case State.Defeat:
+                continueButtonGameObject.SetActive(false);
+                headerText.text = header_strings[2];
+                continueButtonText.text = continue_strings[2];
+                restartButtonText.text = restart_strings[2];
                 break;
         }
     }
 
     //Сделать специальное меню для соответсвующей опции
-    public bool SetMenu(StringSettings string_settings_temp)
+    public bool SetMenu(StringSettings stringSettingsTemp)
     {
         instance = this;
-        if (game_manager == null)
+        if (gameManager == null)
         {
-            game_manager = GameManager.instance;
+            gameManager = GameManager.instance;
         }
         if (pointSpawner == null)
         {
             pointSpawner = PointSpawner.instance;
         }
 
-        game_is_paused = false;
-        current_state = State.pause;
+        gameIsPaused = false;
+        currentState = State.Pause;
 
         header_strings.Clear();
         continue_strings.Clear();
         restart_strings.Clear();
 
-        header_strings.Add(string_settings_temp.pause_header);
-        continue_strings.Add(string_settings_temp._continue);
-        restart_strings.Add(string_settings_temp.restart);
+        header_strings.Add(stringSettingsTemp.pauseHeader);
+        continue_strings.Add(stringSettingsTemp.@continue);
+        restart_strings.Add(stringSettingsTemp.restart);
 
-        header_strings.Add(string_settings_temp.victory_header);
-        continue_strings.Add(string_settings_temp._continue);
-        restart_strings.Add(string_settings_temp.restart);
+        header_strings.Add(stringSettingsTemp.victoryHeader);
+        continue_strings.Add(stringSettingsTemp.@continue);
+        restart_strings.Add(stringSettingsTemp.restart);
 
-        header_strings.Add(string_settings_temp.death_header);
-        continue_strings.Add(string_settings_temp._continue);
-        restart_strings.Add(string_settings_temp.restart);
+        header_strings.Add(stringSettingsTemp.deathHeader);
+        continue_strings.Add(stringSettingsTemp.@continue);
+        restart_strings.Add(stringSettingsTemp.restart);
 
-        exit_button_text.text = string_settings_temp.exit;
-        confirmation_header_text.text = string_settings_temp.confirmation_header;
-        confirmation_yes_button_text.text = string_settings_temp.confirmation_yes;
-        confirmation_no_button_text.text = string_settings_temp.confirmation_no;
+        exitButtonText.text = stringSettingsTemp.exit;
+        confirmationHeaderText.text = stringSettingsTemp.confirmationHeader;
+        confirmationYesButtonText.text = stringSettingsTemp.confirmationYes;
+        confirmationNoButtonText.text = stringSettingsTemp.confirmationNo;
 
-        black_ink_text = black_ink_game_object.GetComponent<TextMeshProUGUI>();
-        score_text = score_game_object.GetComponent<TextMeshProUGUI>();
+        blackInkText = blackInkGameObject.GetComponent<TextMeshProUGUI>();
+        scoreText = scoreGameObject.GetComponent<TextMeshProUGUI>();
 
-        confirmation_header_text = confirmation_header_game_object.GetComponent<TextMeshProUGUI>();
-        confirmation_yes_button_text = confirmation_yes_button_game_object.transform.Find("Yes").gameObject.GetComponent<TextMeshProUGUI>();
-        confirmation_no_button_text = confirmation_no_button_game_object.transform.Find("No").gameObject.GetComponent<TextMeshProUGUI>();
+        confirmationHeaderText = confirmationHeaderGameObject.GetComponent<TextMeshProUGUI>();
+        confirmationYesButtonText = confirmationYesButtonGameObject.transform.Find("Yes").gameObject.GetComponent<TextMeshProUGUI>();
+        confirmationNoButtonText = confirmationNoButtonGameObject.transform.Find("No").gameObject.GetComponent<TextMeshProUGUI>();
 
         UpdateScore();
         DeactivateMenu();
@@ -185,18 +185,18 @@ public class MenuManager : MonoBehaviour
         if (menu_is_loaded)
         {
             Debug.Log("UIManager.ActivateMenu()");
-            header_game_object.SetActive(true);
-            continue_button_game_object.SetActive(true);
-            restart_button_game_object.SetActive(true);
-            exit_button_game_object.SetActive(true);
-            black_ink_game_object.SetActive(true);
+            headerGameObject.SetActive(true);
+            continueButtonGameObject.SetActive(true);
+            restartButtonGameObject.SetActive(true);
+            exitButtonGameObject.SetActive(true);
+            blackInkGameObject.SetActive(true);
 
             UpdateScore();
             UpdateMenu();
 
             gameObject.SetActive(true);
-            camera_manager.ActivateTransition();
-            menu_animator.SetBool("ActivateMenu", true);
+            cameraManager.ActivateTransition();
+            menuAnimator.SetBool("ActivateMenu", true);
             mainLineAnimator.SetTrigger("activate");
         }
     }
@@ -209,19 +209,19 @@ public class MenuManager : MonoBehaviour
             Debug.Log("UIManager.DeactivateMenu()");
 
             UpdateMenu();
-            header_game_object.SetActive(false);
-            continue_button_game_object.SetActive(false);
-            restart_button_game_object.SetActive(false);
-            exit_button_game_object.SetActive(false);
-            black_ink_game_object.SetActive(false);
+            headerGameObject.SetActive(false);
+            continueButtonGameObject.SetActive(false);
+            restartButtonGameObject.SetActive(false);
+            exitButtonGameObject.SetActive(false);
+            blackInkGameObject.SetActive(false);
 
-            confirmation_field.SetActive(false);
-            confirmation_header_game_object.SetActive(false);
-            confirmation_yes_button_game_object.SetActive(false);
-            confirmation_no_button_game_object.SetActive(false);
+            confirmationField.SetActive(false);
+            confirmationHeaderGameObject.SetActive(false);
+            confirmationYesButtonGameObject.SetActive(false);
+            confirmationNoButtonGameObject.SetActive(false);
 
-            camera_manager.DeactivateTransition();
-            menu_animator.SetBool("DeactivateMenu", true);
+            cameraManager.DeactivateTransition();
+            menuAnimator.SetBool("DeactivateMenu", true);
             mainLineAnimator.SetTrigger("activate");
         }
     }
@@ -233,8 +233,8 @@ public class MenuManager : MonoBehaviour
         {
             Debug.Log("UIManager.UpdateScore()");
 
-            score_text.text = game_manager.score.ToString();
-            black_ink_text.text = game_manager.blackInk.ToString();
+            scoreText.text = gameManager.score.ToString();
+            blackInkText.text = gameManager.blackInk.ToString();
         }
     }
 
@@ -248,8 +248,8 @@ public class MenuManager : MonoBehaviour
             Time.timeScale = 0f;
 
             rhythmManager.TriggerPoints(false);
-            game_manager.audioSource.Pause();
-            pointSpawner._audioSource.Pause();
+            gameManager.audioSource.Pause();
+            pointSpawner.audioSource.Pause();
         }
 
         is_pause_on_cooldown = true;
@@ -273,17 +273,17 @@ public class MenuManager : MonoBehaviour
     //Установить положение меню
     public void SetPosition()
     {
-        menu_animator.SetBool("ActivateMenu", false);
-        menu_animator.SetBool("DeactivateMenu", false);
-        if(game_is_paused)
+        menuAnimator.SetBool("ActivateMenu", false);
+        menuAnimator.SetBool("DeactivateMenu", false);
+        if(gameIsPaused)
         {
             rhythmManager.TriggerPoints(true);
-            pointSpawner._audioSource.Play();
+            pointSpawner.audioSource.Play();
             if (pointSpawner.levelIsStarted)
             {
-                game_manager.audioSource.Play();
+                gameManager.audioSource.Play();
             }
-            line_buttons.SetActive(true);
+            lineButtons.SetActive(true);
             if (SliderScript.showed)
             {
                 foreach (SliderScript slider in sliders)
@@ -291,12 +291,12 @@ public class MenuManager : MonoBehaviour
                     slider.SliderImageAppear();
                 }
             }
-            game_is_paused = false;
+            gameIsPaused = false;
         }
         else
         {
-            game_is_paused = true;
-            line_buttons.SetActive(false);
+            gameIsPaused = true;
+            lineButtons.SetActive(false);
             foreach (SliderScript slider in sliders)
             {
                 slider.SliderImageDisappear();
@@ -307,14 +307,14 @@ public class MenuManager : MonoBehaviour
     //Активировать меню победы
     public void ActivateVictoryScreen()
     {
-        current_state = State.victory;
+        currentState = State.Victory;
         Pause();
     }
 
     //Активировать меню поражения
     public void ActivateDefeatScreen()
     {
-        current_state = State.defeat;
+        currentState = State.Defeat;
         Pause();
     }
 
@@ -331,10 +331,10 @@ public class MenuManager : MonoBehaviour
 
         DisableButtons();
 
-        confirmation_field.SetActive(true);
-        confirmation_header_game_object.SetActive(true);
-        confirmation_yes_button_game_object.SetActive(true);
-        confirmation_no_button_game_object.SetActive(true);
+        confirmationField.SetActive(true);
+        confirmationHeaderGameObject.SetActive(true);
+        confirmationYesButtonGameObject.SetActive(true);
+        confirmationNoButtonGameObject.SetActive(true);
 
         SetConfirm(action);
     }
@@ -346,10 +346,10 @@ public class MenuManager : MonoBehaviour
 
         AbleButtons();
 
-        confirmation_field.SetActive(false);
-        confirmation_header_game_object.SetActive(false);
-        confirmation_yes_button_game_object.SetActive(false);
-        confirmation_no_button_game_object.SetActive(false);
+        confirmationField.SetActive(false);
+        confirmationHeaderGameObject.SetActive(false);
+        confirmationYesButtonGameObject.SetActive(false);
+        confirmationNoButtonGameObject.SetActive(false);
     }
 
     //Функция отключает кнопки меню
@@ -357,9 +357,9 @@ public class MenuManager : MonoBehaviour
     {
         Debug.Log("UImanager.DisableButtons()");
 
-        continue_button_game_object.SetActive(false);
-        restart_button_game_object.SetActive(false);
-        exit_button_game_object.SetActive(false);
+        continueButtonGameObject.SetActive(false);
+        restartButtonGameObject.SetActive(false);
+        exitButtonGameObject.SetActive(false);
     }
 
     //Функция включает кнопки меню
@@ -367,9 +367,9 @@ public class MenuManager : MonoBehaviour
     {
         Debug.Log("UIManager.AbleButtons()");
 
-        continue_button_game_object.SetActive(true);
-        restart_button_game_object.SetActive(true);
-        exit_button_game_object.SetActive(true);
+        continueButtonGameObject.SetActive(true);
+        restartButtonGameObject.SetActive(true);
+        exitButtonGameObject.SetActive(true);
     }
 
     //Функция настраивает поддтверждение. action - то, что требует подтверждения
@@ -380,15 +380,15 @@ public class MenuManager : MonoBehaviour
         switch (action)
         {
             case "restart":
-                confirmation_yes_button_game_object.GetComponent<Button>().onClick.AddListener(Restart);
+                confirmationYesButtonGameObject.GetComponent<Button>().onClick.AddListener(Restart);
                 break;
 
             case "exit":
-                if (current_state == State.victory)
+                if (currentState == State.Victory)
                 {
                     SaveData();
                 }
-                confirmation_yes_button_game_object.GetComponent<Button>().onClick.AddListener(ExitLevel);
+                confirmationYesButtonGameObject.GetComponent<Button>().onClick.AddListener(ExitLevel);
                 break;
 
             default:
@@ -402,7 +402,7 @@ public class MenuManager : MonoBehaviour
     {
         Debug.Log("UIManager.ExitLevel()");
         Time.timeScale = 1f;
-        scene_loader.SceneLoad("MainMenu");   //Загрузить меню
+        sceneLoader.SceneLoad("MainMenu");   //Загрузить меню
     }
 
     //Функция перезапускает уровень
@@ -410,7 +410,7 @@ public class MenuManager : MonoBehaviour
     {
         Debug.Log("UIManager.Restart()");
         Time.timeScale = 1f;
-        scene_loader.SceneLoad("Level"); //Перезагрузить уровень
+        sceneLoader.SceneLoad("Level"); //Перезагрузить уровень
     }
 
     //Начать кулдаун
@@ -423,11 +423,11 @@ public class MenuManager : MonoBehaviour
     public void SaveData()
     {
         DataHolder.from_level = true;
-        if (game_manager.score > DataHolder.best_score)
+        if (gameManager.score > DataHolder.best_score)
         {
-            DataHolder.best_score = (short) game_manager.score;
+            DataHolder.best_score = (short) gameManager.score;
         }
 
-        DataHolder.black_ink += (short) game_manager.blackInk;
+        DataHolder.black_ink += (short) gameManager.blackInk;
     }
 }

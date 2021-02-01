@@ -13,7 +13,7 @@ public class CircleSize : MonoBehaviour
         if (rhytmEvent == null)
         rhytmEvent = RhytmEvent.instance;
 
-        rhytmEvent.onFrequancyChange += OnFrequancyChange;
+        rhytmEvent.ONFrequancyChange += OnFrequancyChange;
     }
 
     public void OnFrequancyChange(int id, float freq)

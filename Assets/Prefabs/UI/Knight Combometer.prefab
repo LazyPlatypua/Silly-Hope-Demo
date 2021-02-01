@@ -264,26 +264,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92393362fa5d91e428caa8e2b2355cc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cells_green:
+  cellsGreen:
   - {fileID: 4816741377023058987}
   - {fileID: 8116430386812738481}
   - {fileID: 8890495951050750738}
   - {fileID: 7233136137195872037}
   - {fileID: 1731407467817402494}
   - {fileID: 8100301668371450447}
-  cells_red:
+  cellsRed:
   - {fileID: 4649520596470541818}
   - {fileID: 7889228553095846048}
   - {fileID: 5258845450876198102}
   - {fileID: 796279508134479648}
   - {fileID: 5899550016758628271}
   - {fileID: 3607447329739625151}
-  light_green: {fileID: 1691522334386061569}
-  light_red: {fileID: 3426524269906717629}
-  currently_filled_green: 0
-  currently_filled_red: 0
+  greenFlame: {fileID: 1691522334386061569}
+  redFlame: {fileID: 3426524269906717629}
+  currentlyFilledGreen: 0
+  currentlyFilledRed: 0
   size: 0
-  knight_behaviour: {fileID: 0}
+  knightBehaviour: {fileID: 0}
 --- !u!1 &1193571219566494753
 GameObject:
   m_ObjectHideFlags: 0
@@ -478,7 +478,7 @@ Animator:
   m_GameObject: {fileID: 1691522334386061569}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: ecb9a6053c6380644b24f93ea62d4919, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -752,7 +752,7 @@ Animator:
   m_GameObject: {fileID: 3426524269906717629}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: ecb9a6053c6380644b24f93ea62d4919, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

@@ -4,8 +4,8 @@ using System;
 using System.Collections.Generic;
 using JetBrains.Annotations;
 using Level.Decoration;
-using Save_System;
-using Save_System.Scriptable_Objects;
+using Level.FightGame;
+using Scriptable_Objects;
 using Temp;
 using UnityEngine;
 
@@ -35,11 +35,13 @@ namespace Level.Load_and_Manager
         [Tooltip("Scriptable objects of swords. " +
                  "It must be 8 in total.")]
         public List<SwordData> swordDatas;
+        [Tooltip("Scriptable objects of charms. " +
+                 "It must be 8 in total.")]
+        public List<CharmData> charmDatas;
 
         [Header("UI")]
         public GameObject combometer;           //Комбометр на сцене
-        public GameObject knightHealthbar;     //Здоровье рыцаря на сцене
-        public GameObject progress;             //Прогресс игрока на сцене
+        
 
         [Header("Positions")]
         [Tooltip("Knight prefab")]public GameObject knightPrefab;
@@ -59,15 +61,14 @@ namespace Level.Load_and_Manager
 
         public int knightHealth = 5;                   //Здоровье рыцаря
         public bool scoreForPointModifier; //Модификатор для получнения очков за точки
-        public int combometerNeededPoints = 3;        //Количество точек, необходимых для заполнения одной ячейки комбометра
-
+        
         [Header("Settings")]    //Общие настройки
         public StringSettings stringSettings;                          //Файл с языками
         
         public Language.LanguageType
             languageSettings =
                 Language.LanguageType
-                    .english; //Выбор языка. 0 - английский, 1 - русский, 2 - немецкий, 3 - французский, 4 - эсперанто. В будущем написать класс для него и добавить в класс сохранений
+                    .English; //Выбор языка. 0 - английский, 1 - русский, 2 - немецкий, 3 - французский, 4 - эсперанто. В будущем написать класс для него и добавить в класс сохранений
 
         public float startRunningDelta = 3.0f;                        //разница между позицией врага и той, с которой он начинает дфижение
 
@@ -97,10 +98,11 @@ namespace Level.Load_and_Manager
             LoadLocation(locationDatas[DataHolder.current_scene]); 
             LoadUI();
                              
-            LoadEquipment(swordDatas[DataHolder.current_weapon], DataHolder.current_armor, DataHolder.current_charm_0,
-                DataHolder.current_charm_1, DataHolder.current_charm_2);
+            LoadEquipment(swordDatas[DataHolder.current_weapon], DataHolder.current_armor,
+                new CharmData[3] {charmDatas[DataHolder.current_charm_0], charmDatas[DataHolder.current_charm_1],
+                charmDatas[DataHolder.current_charm_2]});
 
-            pauseMenu.game_is_paused = true;
+            pauseMenu.gameIsPaused = true;
             pauseMenu.SetPosition();
         }
 
@@ -132,7 +134,7 @@ namespace Level.Load_and_Manager
                     newGo.SetActive(false);
                     enemies.Add(newGo);
                     enemy.GetComponent<EnemyBehaviour>().position = enemiesPosition[placement];
-                    enemy.GetComponent<EnemyBehaviour>().spawn_point_index = placement;
+                    enemy.GetComponent<EnemyBehaviour>().spawnPointIndex = placement;
                     placement++;
                     if (placement >= enemiesPosition.Count)
                     {
@@ -142,8 +144,8 @@ namespace Level.Load_and_Manager
 
                 foreach (GameObject enemy in enemies)
                 {
-                    enemy.GetComponent<EnemyBehaviour>().attack_menu = this.attackMenu;
-                    enemy.GetComponent<EnemyBehaviour>().game_manager = this.gameManager;
+                    enemy.GetComponent<EnemyBehaviour>().attackMenu = this.attackMenu;
+                    enemy.GetComponent<EnemyBehaviour>().gameManager = this.gameManager;
                 }
 
                 attackMenu.enemies = this.enemies;
@@ -172,140 +174,27 @@ namespace Level.Load_and_Manager
         }
 
         //Функция загружает настройки, согласно снаряжению рыцаря
-        private void LoadEquipment(SwordData currentWeapon, int currentArmor, int currentCharm0, int currentCharm1, int currentCharm2)
+        private void LoadEquipment(SwordData currentWeapon, int currentArmor, CharmData[] charms)
         {
-            //талисманы
-            switch (currentCharm0)
-            {
-                case 1:
-                    break;
-
-                case 2:
-                    combometerNeededPoints = 6; //Таллисман еретика
-                    knightHealth += 1;
-                    break;
-
-                case 3:
-                    knightHealth += 1;    //Талисман ордена
-                    break;
-
-                case 4:
-                    combometerNeededPoints = 1;    //Нагрудный крест
-                    scoreForPointModifier = true;
-                    break;
-
-                case 5:
-                    gameManager.progress = this.progress; //Навершие из слоновой кости
-                    progress.SetActive(true);
-                    break;
-
-                case 6:
-                    knightHealthbar.SetActive(true);    //Печать папы
-                    break;
-
-                case 7:
-                    musicVolume = 1.0f;  //Подвеска предателя
-                    break;
-
-                default:
-                    Debug.Log("LevelLoader.LoadEquipment(): undefined Charm");
-                    break;
-            }
-
-            switch (currentCharm1)
-            {
-                case 1:
-                    break;
-
-                case 2:
-                    combometerNeededPoints = 6; //Таллисман еретика
-                    knightHealth += 1;
-                    break;
-
-                case 3:
-                    knightHealth += 1;    //Талисман ордена
-                    break;
-
-                case 4:
-                    combometerNeededPoints = 1;    //Нагрудный крест
-                    scoreForPointModifier = true;
-                    break;
-
-                case 5:
-                    gameManager.progress = this.progress; //Навершие из слоновой кости
-                    progress.SetActive(true);
-                    break;
-
-                case 6:
-                    knightHealthbar.SetActive(true);    //Печать папы
-                    break;
-
-                case 7:
-                    musicVolume = 1.0f;  //Подвеска предателя
-                    break;
-
-                default:
-                    Debug.Log("LevelLoader.LoadEquipment(): undefined Charm");
-                    break;
-            }
-
-            switch (currentCharm2)
-            {
-                case 1:
-                    break;
-
-                case 2:
-                    combometerNeededPoints = 6; //Таллисман еретика
-                    knightHealth += 1;
-                    break;
-
-                case 3:
-                    knightHealth += 1; //Талисман ордена
-                    break;
-
-                case 4:
-                    combometerNeededPoints = 1; //Нагрудный крест
-                    scoreForPointModifier = true;
-                    break;
-
-                case 5:
-                    gameManager.progress = this.progress; //Навершие из слоновой кости
-                    progress.SetActive(true);
-                    break;
-
-                case 6:
-                    knightHealthbar.SetActive(true); //Печать папы
-                    break;
-
-                case 7:
-                    musicVolume = 1.0f; //Подвеска предателя
-                    break;
-
-                default:
-                    Debug.Log("LevelLoader.LoadEquipment(): undefined Charm");
-                    break;
-            }
-
-            if ((currentCharm0 == 4 || currentCharm1 == 4 || currentCharm2 == 4) && (currentCharm0 == 2 || currentCharm1 == 2 || currentCharm2 == 2))
-            {
-                combometerNeededPoints = 1;
-            }
-            
-            gameManager.currentRecord = bestScore; //Текущий рекорд игрока
-            gameManager.blackInk = blackInk; //Общее количество добытых чернил
-            gameManager.pauseMenu = this.pauseMenu; //ссылка на меню паузы
+            gameManager.currentRecord = bestScore;
+            gameManager.blackInk = blackInk;
+            gameManager.pauseMenu = this.pauseMenu; 
             gameManager.UpdateEquipment(scoreForPointModifier, musicVolume);
             gameManager.StartManager();
             
             attackMenu.enemiesPosition = this.enemiesPosition;
             attackMenu.startRunningDelta = this.startRunningDelta;
-            attackMenu.StartAttackMenu(currentWeapon, DataHolder.combometer_size, combometerNeededPoints); 
+
+            foreach (var charm in charms)
+            {
+                charm.ExecuteEffect();
+            }
             
             knightHealth += currentArmor;
+            attackMenu.StartAttackMenu(currentWeapon, DataHolder.combometer_size); 
             knightBehaviour.SetKnightBehaviour(knightHealth, currentWeapon, DataHolder.combometer_size);
             
             attackMenu.knightCombometer = knightBehaviour.GetCombometer();
-
         }
     }
 }

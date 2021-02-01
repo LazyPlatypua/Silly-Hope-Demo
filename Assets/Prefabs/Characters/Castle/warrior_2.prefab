@@ -301,22 +301,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc9c897dda76fe848bd88ab10b002446, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  game_manager: {fileID: 0}
-  attack_menu: {fileID: 0}
+  gameManager: {fileID: 0}
+  attackMenu: {fileID: 0}
   animator: {fileID: 8580653070993006482}
-  default_health: 5
-  daze_time: 2
-  current_health: 5
+  defaultHealth: 8
+  dazeTime: 2
+  currentHealth: 8
   enemyUI: {fileID: 8140299921450438823}
-  m_sprite_renderer: {fileID: 6511049536135551293}
+  spriteRenderer: {fileID: 6511049536135551293}
   damage: 1
   ink: 8
-  combo_meter_size: 4
+  comboMeterSize: 4
   position: {x: 0, y: 0, z: 0}
-  spawn_point_index: 0
-  running_speed: 1
-  death_count: 0
-  currently_filled: 0
+  spawnPointIndex: 0
+  runningSpeed: 1
+  deathCount: 0
+  currentlyFilled: 0
 --- !u!95 &8580653070993006482
 Animator:
   serializedVersion: 3

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections;
+using Level.FightGame;
 using Level.Load_and_Manager;
-using Save_System;
-using Save_System.Scriptable_Objects;
+using Scriptable_Objects;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -56,13 +56,13 @@ public class PointSpawner : AudioAnalizer
         PointBehaviour.end_point = endLine;
         audioLenght = musicClip.length;
 
-        _audioSource.Stop();
-        _audioSource.clip = musicClip;
+        audioSource.Stop();
+        audioSource.clip = musicClip;
 
         musicAudioSource.Stop();
         musicAudioSource.clip = musicClip;
 
-        _audioSource.Play();
+        audioSource.Play();
         StartCoroutine(StartMusic());
     }
 
@@ -87,8 +87,8 @@ public class PointSpawner : AudioAnalizer
             GeneratePoint();
         }
 
-        isStarted |= _audioSource.time > 0f;
-        if (!_audioSource.loop && (isStarted && _audioSource.time <= 0f))
+        isStarted |= audioSource.time > 0f;
+        if (!audioSource.loop && (isStarted && audioSource.time <= 0f))
         {
             attackMenu.StartEnemiesRunOut();
             StartCoroutine(WaitForVictoryScreen());
@@ -106,21 +106,21 @@ public class PointSpawner : AudioAnalizer
 
     protected override void MakeFrequencyBand()
     {
-        freqBand = _samples[0];
+        freqBand = samples[0];
     }
 
     public void GeneratePoint()
     {
         int line = UnityEngine.Random.Range(0, 2);
         GameObject newgo = Instantiate(pointPrefab);
-        PointBehaviour newgo_pb = newgo.GetComponent<PointBehaviour>();
+        PointBehaviour newgoPb = newgo.GetComponent<PointBehaviour>();
 
         newgo.transform.position = spawnPosition;
-        newgo_pb.line = line;
-        newgo_pb.rhythm_manager = this.rhythmManager;
-        newgo_pb.game_manager = this.gameManager;
-        newgo_pb.sprite_renderer.sprite = pointSprite;
-        newgo_pb.SetRed(line >= 1);
+        newgoPb.line = line;
+        newgoPb.rhythmManager = this.rhythmManager;
+        newgoPb.gameManager = this.gameManager;
+        newgoPb.spriteRenderer.sprite = pointSprite;
+        newgoPb.SetRed(line >= 1);
         StartCoroutine(WaitToGenerateNewPoint());
     }
 
