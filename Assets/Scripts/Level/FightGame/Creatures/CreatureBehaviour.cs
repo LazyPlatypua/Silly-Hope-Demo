@@ -29,7 +29,7 @@ public class CreatureBehaviour : MonoBehaviour
         }
     }
 
-    public virtual void PointOfAttack(string name)
+    public virtual void PointOfAttack(string attackName)
     //Функция, обозначающая точку касания атаки
     {
         

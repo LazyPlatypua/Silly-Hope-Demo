@@ -2,6 +2,7 @@
 
 using System;
 using Level.FightGame;
+using Level.UI;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -102,6 +103,7 @@ namespace Level.Load_and_Manager
         //Функция добавляет очки
         public bool AddScore(bool isRed)
         {
+            Debug.Log($"GameManager.AddScore({isRed})");
             attackMenu.AddToKnight(isRed);
             if(!scoreForPointModificator)
             {

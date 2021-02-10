@@ -46,6 +46,7 @@ public class RhythmManager : MonoBehaviour
     //Поймать указанную точку
     public void CatchPoint(PointBehaviour point)
     {
+        Debug.Log($"RhytmManager.CatchPoint({point.isRedPoint}: Point caught");
         point.DeactivatePoint();
         AddToCombo();
         gameManager.AddScore(point.isRedPoint);

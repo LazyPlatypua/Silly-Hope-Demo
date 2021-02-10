@@ -1,106 +1,82 @@
 ﻿//Класс отвечает за меню атак, за комбометры врагов и рыцаря, за спавн врагов
 
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using JetBrains.Annotations;
 using Level.Load_and_Manager;
+using Level.UI;
 using Scriptable_Objects;
 using UnityEngine;
 using UnityEngine.Serialization;
+using Random = UnityEngine.Random;
 
 namespace Level.FightGame
 {
-    public struct CombometerCell
-    {
-        private bool isFull;
-        private bool[] combometerPoints;
-
-        public CombometerCell(int combometerNeededPoints)
-        {
-            isFull = false;
-            combometerPoints = new bool[combometerNeededPoints];
-            for (var index = 0; index < combometerPoints.Length; index++)
-            {
-                combometerPoints[index] = false;
-            }
-        }
-
-        public bool IsFull()
-        {
-            return isFull;
-        }
-
-        public bool AddPoint()
-        {
-            for (var index = 0; index < combometerPoints.Length; index++)
-            {
-                if (!combometerPoints[index])
-                {
-                    combometerPoints[index] = true;
-                    return isFull;
-                }
-            }
-            DeletePoints();
-            isFull = true;
-            return isFull;
-        }
-
-        private void DeletePoints()
-        {
-            for (var index = 0; index < combometerPoints.Length; index++)
-            {
-                combometerPoints[index] = false;
-            }
-        }
-
-        public void SetFalse()
-        {
-            isFull = false;
-        }
-    }
-
     [RequireComponent(typeof(GameManager))]
     [RequireComponent(typeof(CameraManager))]
     public class AttackMenu : MonoBehaviour
     {
+        public static AttackMenu instance;    
+        
         [Header("Links")]
-        public static AttackMenu instance;          //ссылка на это меню
-    
-        public KnightBehaviour knightBehaviour;    //сылка на поведение рыцаря
-        public KnightCombometer knightCombometer;  //ссылка на комбометр игрока
-        public GameManager gameManager;            //ссылка на игровой менеджер
-        [NotNull]public CameraManager cameraManager;         //ссылка на поведение камеры
-        public List<Transform> activeLinesTransforms;       //трансформы активных линий
-        [NotNull] public List<SliderScript> sliders;          //скрипты слайдеров
-        public List<Sprite> enemyPortrets;          //портреты врагов
+        [Tooltip("Link to knight's behaviour")]
+        public KnightBehaviour knightBehaviour;  
+        [Tooltip("Link to knight's combometer")]
+        public KnightCombometer knightCombometer; 
+        [Tooltip("Link to game manager")]
+        public GameManager gameManager;   
+        [Tooltip("Link to camera manager")]
+        public CameraManager cameraManager;
+        [Tooltip("Link to green and rad lines transforms")]
+        public List<Transform> activeLinesTransforms; 
+        [Tooltip("Link to attack buttons")]
+        public List<AttackButton> attackButtons;
+        [Tooltip("List of enemy's portrets to change on buttons")]
+        public List<Sprite> enemyPortrets;
 
         [Header("Attack Settings")]
-        public int swordDamage;                    //урон меча
+        [Tooltip("Amount of damage dealt to enemy with attack")]
+        public int swordDamage;
+        [Tooltip("Chance of knight hitting someone")]
         public int  hitChance = 100;
+        [Tooltip("Time in which enemy's health will be hidden")]
         public float timeToDisableHealth = 1f;
-        public int dazeTime = 2;                   //Время оглушения врагов
-        public float timeOfLatestAttack = 0f;    //Время последней атаки
+        [Tooltip("Time in which enemy will be unable to function after stun hit")]
+        public int dazeTime = 2;
+        [Tooltip("Time of latest attack to calculate combos")]
+        public float timeOfLatestAttack;
 
         [Header("Enemies Settings")]
-        public List<GameObject> enemies;            //список врагов
-        public List<Vector3> enemiesPosition;      //Позиция врагов на экране
-        public float startRunningDelta;           //разница между позицией врага и той, с которой он начинает дфижение
+        [Tooltip("List of enemies")]
+        public List<EnemyBehaviour> enemies;
+        [Tooltip("List of enemy positions on screen")]
+        public List<Vector3> enemiesPosition; 
+        [Tooltip("Distance between spawn and end position")]
+        public float startRunningDelta;          
 
-        [FormerlySerializedAs("combometer_needed_points")] [Header("Combometer Settings")]
-        public int combometerNeededPoints;            //количество точек, необходимых для заполнения одной ячейки комбометра
-
-        private List<CombometerCell> greenCombometerCell;           //Какие точки заполнены в одной ячейке зеленого комбметра
-        private List<CombometerCell> redCombometerCell;             //Какие точки заполнены в одной ячейке красного комбметра  
+        [FormerlySerializedAs("combometer_needed_points")] [Header("Combometer Settings")] [Tooltip("Points needed for one cell too fill")]
+        public int combometerNeededPoints; 
+        [Tooltip("Green combometer cells")]
+        private List<CombometerCell> _greenCombometerCell;
+        [Tooltip("Red combometer cells")]
+        private List<CombometerCell> _redCombometerCell;
 
         [Header("Combos Settings")]
-        public bool comboSplitIsAvailable;               //Доступно ли комбо разрыва
-        public bool comboFuriousAttackIsAvailable;     //Доступно ли комбо яростной атаки
-        public bool comboMasterStunIsAvailable;         //Доступно ли комбо мастерское оглушение
-        public bool comboHorizontalCutIsAvailable;      //Доступно ли комбо горизонтального разреза
-        public bool comboShuffleIsAvailable;             //Доступно ли комбо перетасовки
-        public bool comboFlorescenceIsAvailable;         //Доступно ли комбо расцвета
-        public bool comboSublimeDissectionIsAvailable;  //Доступно ли комбо грандиозного рассчения
-
+        [Tooltip("Combo Split Is Available")]
+        public bool comboSplitIsAvailable; 
+        [Tooltip("Combo Furious Attack Is Available")]
+        public bool comboFuriousAttackIsAvailable;
+        [Tooltip("Combo Master Stun Is Available")]
+        public bool comboMasterStunIsAvailable;
+        [Tooltip("Combo FHorizontal Cut Is Available")]
+        public bool comboHorizontalCutIsAvailable;
+        [Tooltip("Combo Shuffle Is Available")]
+        public bool comboShuffleIsAvailable;     
+        [Tooltip("Combo Florescence Is Available")]
+        public bool comboFlorescenceIsAvailable;         
+        [Tooltip("Combo Sublime Dissection Is Available")]
+        public bool comboSublimeDissectionIsAvailable;  
+        
         private void Awake()
         {
             instance = this;
@@ -109,26 +85,51 @@ namespace Level.FightGame
         //Запустить меню атак
         public bool StartAttackMenu (SwordData swordData, int combometersSize)
         {
-            greenCombometerCell = new List<CombometerCell>();
-            redCombometerCell = new List<CombometerCell>();
+            Debug.Log($"AttackMenu.StartAttackMenu({swordData.id}, {combometersSize})");
             
+            CheckComponents();
+            SetSword(swordData);
+            SetEnemies(enemies.Count);
+            UpdateImages();
+            SetCombometers(combometersSize);
+            SetCombos(combometersSize);
+            
+            return true;
+        }
+
+        private void CheckComponents()
+        {
             if(knightBehaviour == null)
             {
                 knightBehaviour = KnightBehaviour.instance;
             }
-
+            
+            if (cameraManager == null)
             {
-                swordDamage = swordData.damage;
-                Vector3 captureLinesSize =
-                    new Vector3(activeLinesTransforms[1].localScale.x, activeLinesTransforms[1].localScale.y);
-                captureLinesSize *= swordData.captureZoneSize;
-                foreach (Transform line in activeLinesTransforms)
-                {
-                    line.localScale = captureLinesSize;
-                }
+                cameraManager = GetComponent<CameraManager>();
+                
             }
+        }
 
-            switch (enemies.Count)
+        // Установить настройки меча
+        private void SetSword(SwordData swordData)
+        {
+            Debug.Log($"AttackMenu.SetSword({swordData.id})");
+            swordDamage = swordData.damage;
+            Vector3 captureLinesSize =
+                new Vector3(activeLinesTransforms[1].localScale.x, activeLinesTransforms[1].localScale.y);
+            captureLinesSize *= swordData.captureZoneSize;
+            foreach (Transform line in activeLinesTransforms)
+            {
+                line.localScale = captureLinesSize;
+            }
+        }
+        
+        // Установить позиции врагов
+        private void SetEnemies(int enemiesNumber)
+        {
+            Debug.Log($"AttackMenu.SetEnemies({enemiesNumber})");
+            switch (enemiesNumber)
             {
                 case 0:
                     Debug.LogError("AttackMenu: No Enemies Loaded!");
@@ -153,15 +154,179 @@ namespace Level.FightGame
                         ActivateEnemies(i);
                     break;
             }
+        }
 
-            UpdateImages();
-
-            for (var index = 0; index < combometersSize; index++)
+        //Активировать врагов на позиции
+        public void ActivateEnemies(int position)
+        {
+            var deathCountTemp = 100;
+            var indexTemp = 0;
+            var changed = false;
+            for (var i =0; i < enemies.Count; i ++)
             {
-                greenCombometerCell.Add(new CombometerCell(combometerNeededPoints));
-                redCombometerCell.Add(new CombometerCell(combometerNeededPoints));
+                if (!enemies[i].gameObject.activeSelf && enemies[i].deathCount <= deathCountTemp)
+                {
+                    changed = true;
+                    indexTemp = i;
+                    deathCountTemp = enemies[indexTemp].deathCount;
+                }
+            }
+            if(!changed)
+            {
+                indexTemp = position;
+            }
+            enemies[indexTemp].spawnPointIndex = position;
+            enemies[indexTemp].position = enemiesPosition[position];
+            enemies[indexTemp].Activate();
+        }
+
+        //Обновить изображения врагов в меню
+        public void UpdateImages()
+        {
+            Debug.Log($"AttackMenu.UpdateImages()");
+            foreach (var enemy in enemies)
+            {
+                if (enemy.gameObject.activeSelf)
+                {
+                    var sliderNumber = 100;
+                    switch (enemy.name)
+                    {
+                        case "peasant_red(Clone)":
+                            sliderNumber = enemy.spawnPointIndex;
+                            ChangeImage(sliderNumber, 0);
+                            
+                            break;
+
+                        case "peasant_green(Clone)":
+                            sliderNumber = enemy.spawnPointIndex;
+                            ChangeImage(sliderNumber, 1);
+                            
+                            break;
+
+                        case "peasant_blue(Clone)":
+                            sliderNumber = enemy.spawnPointIndex;
+                            ChangeImage(sliderNumber, 2);
+                            
+                            break;
+
+                        case "peasant_yellow(Clone)":
+                            sliderNumber = enemy.spawnPointIndex;
+                            ChangeImage(sliderNumber, 3);
+                            
+                            break;
+
+                        case "hog(Clone)":
+                            sliderNumber = enemy.spawnPointIndex;
+                            ChangeImage(sliderNumber, 4);
+                            
+                            break;
+
+                        case "hare(Clone)":
+                            sliderNumber = enemy.spawnPointIndex;
+                            ChangeImage(sliderNumber, 5);
+                            
+                            break;
+
+                        case "manticore(Clone)":
+                            sliderNumber = enemy.spawnPointIndex;
+                            ChangeImage(sliderNumber, 6);
+                            
+                            break;
+
+                        case "dryad(Clone)":
+                            sliderNumber = enemy.spawnPointIndex;
+                            ChangeImage(sliderNumber, 7);
+                            
+                            break;
+
+                        case "warrior_1(Clone)":
+                            sliderNumber = enemy.spawnPointIndex;
+                            ChangeImage(sliderNumber, 8);
+                            
+                            break;
+
+                        case "warrior_2(Clone)":
+                            sliderNumber = enemy.spawnPointIndex;
+                            ChangeImage(sliderNumber, 9);
+                            
+                            break;
+
+                        case "warrior_3(Clone)":
+                            sliderNumber = enemy.spawnPointIndex;
+                            ChangeImage(sliderNumber, 10);
+                            
+                            break;
+
+                        case "ent(Clone)":
+                            sliderNumber = enemy.spawnPointIndex;
+                            ChangeImage(sliderNumber, 11);
+                            
+                            break;
+
+                        case "skeleton_1(Clone)":
+                            sliderNumber = enemy.spawnPointIndex;
+                            ChangeImage(sliderNumber, 12);
+                            
+                            break;
+
+                        case "skeleton_2(Clone)":
+                            sliderNumber = enemy.spawnPointIndex;
+                            ChangeImage(sliderNumber, 13);
+                            
+                            break;
+
+                        case "mutant_1(Clone)":
+                            sliderNumber = enemy.spawnPointIndex;
+                            ChangeImage(sliderNumber, 14);
+                            
+                            break;
+
+                        case "mutant_2(Clone)":
+                            sliderNumber = enemy.spawnPointIndex;
+                            ChangeImage(sliderNumber,15);
+                            
+                            break;
+
+                        case "necromancer(Clone)":
+                            sliderNumber = enemy.spawnPointIndex;
+                            ChangeImage(sliderNumber, 16);
+                            
+                            break;
+
+                        default:
+                            Debug.LogError("AttackMenu.StartAttackMenu(): Undefined enemy!");
+                            break;
+                    }
+                }
+            }
+        }
+
+        private void SetCombometers(int combometersSize)
+        {
+            Debug.Log($"AttackMenu.SetCombometers({combometersSize})");
+            
+            if (combometersSize <= 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(combometersSize));
             }
 
+            if (combometersSize > 3)
+            {
+                combometersSize = 3;
+            }
+            
+            _greenCombometerCell = new List<CombometerCell>();
+            _redCombometerCell = new List<CombometerCell>();
+            for (var index = 0; index < combometersSize; index++)
+            {
+                _greenCombometerCell.Add(new CombometerCell(combometerNeededPoints));
+                _redCombometerCell.Add(new CombometerCell(combometerNeededPoints));
+            }
+        }
+
+        private void SetCombos(int combometersSize)
+        {
+            Debug.Log($"AttackMenu.SetCombos({combometersSize})");
             switch (combometersSize)
             {
                 case 2:
@@ -192,232 +357,79 @@ namespace Level.FightGame
                     comboSublimeDissectionIsAvailable = true;  //Доступно ли комбо грандиозного рассчения
                     break;
             }
-            return true;
         }
 
-        //Активировать врагов на позиции
-        public void ActivateEnemies(int position)
+        //Изменить изображения лиц в меню контроля атак
+        private void ChangeImage(int buttonNumber, int enemyIndex)
         {
-            int deathCountTemp = 100;
-            int indexTemp = 0;
-            bool changed = false;
-            for (int i =0; i < enemies.Count; i ++)
+            foreach (var aButton in attackButtons)
             {
-                if (!enemies[i].activeSelf && enemies[i].GetComponent<EnemyBehaviour>().deathCount <= deathCountTemp)
+                if (buttonNumber == aButton.id)
                 {
-                    changed = true;
-                    indexTemp = i;
-                    deathCountTemp = enemies[indexTemp].GetComponent<EnemyBehaviour>().deathCount;
+                    aButton.EditImage(enemyPortrets[enemyIndex]);
                 }
             }
-            if(!changed)
-            {
-                indexTemp = position;
-            }
-            enemies[indexTemp].GetComponent<EnemyBehaviour>().spawnPointIndex = position;
-            enemies[indexTemp].GetComponent<EnemyBehaviour>().position = enemiesPosition[position];
-            enemies[indexTemp].GetComponent<EnemyBehaviour>().Activate();
         }
 
-        //Обновить изображения врагов в меню
-        public void UpdateImages()
+        //Активировать функцию кнопки атак
+        public void ActivateAttackButtons(int attackButtonID, int attack)
         {
-            bool[] activatedSliders = new bool[3] {false, false, false };
-            int index = 100;
-            foreach (GameObject enemy in enemies)
+            Debug.Log($"AttackMenu.ActivateAttackButtons({attackButtonID}, {attack})");
+            
+            ActivateEnemyHealth(attackButtonID);
+            
+            var current = new Attack();
+            foreach (var enemy in enemies)
             {
-                if (enemy.activeSelf)
-                {
-                    switch (enemy.name)
-                    {
-                        case "peasant_red(Clone)":
-                            index = enemy.GetComponent<EnemyBehaviour>().spawnPointIndex;
-                            ChangeImage(index, 0);
-                            activatedSliders[index] = true;
-                            break;
-
-                        case "peasant_green(Clone)":
-                            index = enemy.GetComponent<EnemyBehaviour>().spawnPointIndex;
-                            ChangeImage(index, 1);
-                            activatedSliders[index] = true;
-                            break;
-
-                        case "peasant_blue(Clone)":
-                            index = enemy.GetComponent<EnemyBehaviour>().spawnPointIndex;
-                            ChangeImage(index, 2);
-                            activatedSliders[index] = true;
-                            break;
-
-                        case "peasant_yellow(Clone)":
-                            index = enemy.GetComponent<EnemyBehaviour>().spawnPointIndex;
-                            ChangeImage(index, 3);
-                            activatedSliders[index] = true;
-                            break;
-
-                        case "hog(Clone)":
-                            index = enemy.GetComponent<EnemyBehaviour>().spawnPointIndex;
-                            ChangeImage(index, 4);
-                            activatedSliders[index] = true;
-                            break;
-
-                        case "hare(Clone)":
-                            index = enemy.GetComponent<EnemyBehaviour>().spawnPointIndex;
-                            ChangeImage(index, 5);
-                            activatedSliders[index] = true;
-                            break;
-
-                        case "manticore(Clone)":
-                            index = enemy.GetComponent<EnemyBehaviour>().spawnPointIndex;
-                            ChangeImage(index, 6);
-                            activatedSliders[index] = true;
-                            break;
-
-                        case "dryad(Clone)":
-                            index = enemy.GetComponent<EnemyBehaviour>().spawnPointIndex;
-                            ChangeImage(index, 7);
-                            activatedSliders[index] = true;
-                            break;
-
-                        case "warrior_1(Clone)":
-                            index = enemy.GetComponent<EnemyBehaviour>().spawnPointIndex;
-                            ChangeImage(index, 8);
-                            activatedSliders[index] = true;
-                            break;
-
-                        case "warrior_2(Clone)":
-                            index = enemy.GetComponent<EnemyBehaviour>().spawnPointIndex;
-                            ChangeImage(index, 9);
-                            activatedSliders[index] = true;
-                            break;
-
-                        case "warrior_3(Clone)":
-                            index = enemy.GetComponent<EnemyBehaviour>().spawnPointIndex;
-                            ChangeImage(index, 10);
-                            activatedSliders[index] = true;
-                            break;
-
-                        case "ent(Clone)":
-                            index = enemy.GetComponent<EnemyBehaviour>().spawnPointIndex;
-                            ChangeImage(index, 11);
-                            activatedSliders[index] = true;
-                            break;
-
-                        case "skeleton_1(Clone)":
-                            index = enemy.GetComponent<EnemyBehaviour>().spawnPointIndex;
-                            ChangeImage(index, 12);
-                            activatedSliders[index] = true;
-                            break;
-
-                        case "skeleton_2(Clone)":
-                            index = enemy.GetComponent<EnemyBehaviour>().spawnPointIndex;
-                            ChangeImage(index, 13);
-                            activatedSliders[index] = true;
-                            break;
-
-                        case "mutant_1(Clone)":
-                            index = enemy.GetComponent<EnemyBehaviour>().spawnPointIndex;
-                            ChangeImage(index, 14);
-                            activatedSliders[index] = true;
-                            break;
-
-                        case "mutant_2(Clone)":
-                            index = enemy.GetComponent<EnemyBehaviour>().spawnPointIndex;
-                            ChangeImage(index,15);
-                            activatedSliders[index] = true;
-                            break;
-
-                        case "necromancer(Clone)":
-                            index = enemy.GetComponent<EnemyBehaviour>().spawnPointIndex;
-                            ChangeImage(index, 16);
-                            activatedSliders[index] = true;
-                            break;
-
-                        default:
-                            Debug.LogError("AttackMenu.StartAttackMenu(): Undefined enemy!");
-                            break;
-                    }
-                }
-            }
-            for(int i = 0; i< activatedSliders.Length; i ++)
-            {
-                sliders[i].Trigger(activatedSliders[i]);
-            }
-        }
-
-        //Изменить изображения лиц в меню
-        private void ChangeImage(int sliderNumber, int enemyIndex)
-        {
-            sliders[sliderNumber].EditHandleImage(enemyPortrets[enemyIndex]);
-        }
-
-        //Активировать слайдер
-        public void ActivateSlider(int sliderID, int attack)
-        {
-            Attack current = new Attack();
-            foreach (GameObject enemy in enemies)
-            {
-                if (enemy.activeSelf && enemy.GetComponent<EnemyBehaviour>().spawnPointIndex == sliderID)
+                if (enemy.gameObject.activeSelf && enemy.spawnPointIndex == attackButtonID)
                 {
                     current.receiver = enemy.name;
                     break;
                 }
             }
 
-            if (current.receiver != null && ( greenCombometerCell[0].IsFull() || redCombometerCell[0].IsFull()))
+            if (current.receiver != null)
             {
                 switch (attack)
                 {
                     case 0:
-                        if (greenCombometerCell[0].IsFull())
-                        {
-                            RemoveFromCombometer(0);
-                            current.attackName = "attack";
-                            StartCoroutine(WaitToDeactivateEnemyHealth(sliderID));
-                        }
-                        else
-                        {
-                            Debug.Log("ActivateSlider");
-                            DeactivateEnemyHealth(sliderID);
-                        }
+                        RemoveFromCombometer(false);
+                        current.attackName = "attack";
+                        StartCoroutine(WaitToDeactivateEnemyHealth(attackButtonID));
+                        
+                        DeactivateAttackButtons(false);
                         break;
 
                     case 1:
-                        if (redCombometerCell[0].IsFull())
-                        {
-                            RemoveFromCombometer(1);
-                            current.attackName = "heavy_attack";
-                            StartCoroutine(WaitToDeactivateEnemyHealth(sliderID));
-                        }
-                        else
-                        {
-                            Debug.Log("ActivateSlider");
-                            DeactivateEnemyHealth(sliderID);
-                        }
+                        RemoveFromCombometer(true);
+                        current.attackName = "heavy_attack";
+                        StartCoroutine(WaitToDeactivateEnemyHealth(attackButtonID));
+                        DeactivateAttackButtons(true);
                         break;
 
                     default:
-                        DeactivateEnemyHealth(sliderID);
+                        DeactivateEnemyHealth(attackButtonID);
                         break;
                 }
 
                 timeOfLatestAttack = Time.time;
                 knightBehaviour.Attack(current);
 
-                SetSliderToDefault();
             }
             else
             {
-                DeactivateEnemyHealth(sliderID);
+                DeactivateEnemyHealth(attackButtonID);
             }
         }
 
-        public void ActivateEnemyHealth(int sliderID)
+        public void ActivateEnemyHealth(int buttonID)
         {
-            foreach (GameObject enemy in enemies)
+            Debug.Log($"AttackMenu.ActivateEnemyHealth({buttonID})");
+            foreach (var enemy in enemies)
             {
-                if (enemy.activeSelf && enemy.GetComponent<EnemyBehaviour>().spawnPointIndex == sliderID)
+                if (enemy.gameObject.activeSelf && enemy.spawnPointIndex == buttonID)
                 {
-                    enemy.GetComponent<EnemyBehaviour>().ShowHealth();
+                    enemy.ShowHealth();
                     break;
                 }
             }
@@ -425,252 +437,281 @@ namespace Level.FightGame
 
         public IEnumerator WaitToDeactivateEnemyHealth(int id)
         {
+            Debug.Log($"AttackMenu.WaitToDeactivateEnemyHealth({id})");
             yield return new WaitForSecondsRealtime(timeToDisableHealth);
             DeactivateEnemyHealth(id);
         }
 
-        public void DeactivateEnemyHealth(int sliderID)
+        public void DeactivateEnemyHealth(int attackButtonID)
         {
-            foreach (GameObject enemy in enemies)
+            Debug.Log($"AttackMenu.DeactivateEnemyHealth({attackButtonID})");
+            foreach (var enemy in enemies)
             {
-                if (enemy.activeSelf && enemy.GetComponent<EnemyBehaviour>().spawnPointIndex == sliderID)
+                if (enemy.gameObject.activeSelf && enemy.spawnPointIndex == attackButtonID)
                 {
-                    enemy.GetComponent<EnemyBehaviour>().HideHealth();
+                    enemy.HideHealth();
                     break;
                 }
             }
         }
 
-        //Обнулить слайдер
-        private void SetSliderToDefault()
+        //Выключить кнопки атаки
+        private void DeactivateAttackButtons(bool isRed)
         {
-            foreach (SliderScript slider in sliders)
+            Debug.Log($"AttackMenu.DeactivateAttackButtons()");
+            foreach (var attackButton in attackButtons)
             {
-                slider.ToDefault();
+                if (attackButton.isRed == isRed)
+                {
+                    attackButton.Deactivate();
+                }
             }
         }
 
-        //Добавить точку r комбометру рыцаря
+        //Добавить точку к комбометру рыцаря
         public void AddToKnight(bool isRed)
         {
-            knightCombometer.Add(!isRed);
+            knightCombometer.Add(isRed);
             switch (isRed)
             {
                 case true:
-                    if (redCombometerCell != null)
+                    if (_redCombometerCell != null)
                     {
-                        switch (redCombometerCell.Count)
+                        switch (_redCombometerCell.Count)
                         {
                             case 1:
-                                redCombometerCell[0].AddPoint();
+                                Debug.Log($"AttackMenu.AddToKnight(true): Adding point to first red cell.");
+                                if (_redCombometerCell[0].AddPoint())
+                                {
+                                    ActivateAttack(true);
+                                }
                                 break;
 
                             case 2:
-                                if (redCombometerCell[0].IsFull())
+                                if (_redCombometerCell[0].IsFull())
                                 {
-                                    redCombometerCell[1].AddPoint();
+                                    Debug.Log($"AttackMenu.AddToKnight(true): Adding point to second red cell.");
+                                    _redCombometerCell[1].AddPoint();
                                 }
                                 else
                                 {
-                                    redCombometerCell[0].AddPoint();
+                                    Debug.Log($"AttackMenu.AddToKnight(true): Adding point to first red cell.");
+                                    if (_redCombometerCell[0].AddPoint())
+                                    {
+                                        ActivateAttack(true);
+                                    }
                                 }
 
                                 break;
 
                             case 3:
-                                if (redCombometerCell[0].IsFull())
+                                if (_redCombometerCell[0].IsFull())
                                 {
-                                    if (redCombometerCell[1].IsFull())
+                                    if (_redCombometerCell[1].IsFull())
                                     {
-                                        redCombometerCell[2].AddPoint();
+                                        Debug.Log($"AttackMenu.AddToKnight(true): Adding point to third red cell.");
+                                        _redCombometerCell[2].AddPoint();
                                     }
                                     else
                                     {
-                                        redCombometerCell[1].AddPoint();
+                                        Debug.Log($"AttackMenu.AddToKnight(true): Adding point to second red cell.");
+                                        _redCombometerCell[1].AddPoint();
                                     }
                                 }
                                 else
                                 {
-                                    redCombometerCell[0].AddPoint();
+                                    Debug.Log($"AttackMenu.AddToKnight(true): Adding point to first red cell.");
+                                    if (_redCombometerCell[0].AddPoint())
+                                    {
+                                        ActivateAttack(true);
+                                    }
                                 }
                                 break;
-                        }
-
-                        if (redCombometerCell[0].IsFull())
-                        {
-                            knightCombometer.Deactivate(true);
-                            knightCombometer.ActivateLight(true, true);
-                            foreach (SliderScript slider in sliders)
-                            {
-                                slider.SliderImageAppear();
-                            }
-                            return;
                         }
                     }
                     break;
                 
                 case false:
-                    if (greenCombometerCell != null)
+                    if (_greenCombometerCell != null)
                     {
-                        switch (greenCombometerCell.Count)
+                        switch (_greenCombometerCell.Count)
                         {
                             case 1:
-                                greenCombometerCell[0].AddPoint();
+                                Debug.Log($"AttackMenu.AddToKnight(false): Adding point to first green cell.");
+                                if (_greenCombometerCell[0].AddPoint())
+                                {
+                                    ActivateAttack(false);
+                                }
                                 break;
 
                             case 2:
-                                if (greenCombometerCell[0].IsFull())
+                                if (_greenCombometerCell[0].IsFull())
                                 {
-                                    greenCombometerCell[1].AddPoint();
+                                    Debug.Log($"AttackMenu.AddToKnight(false): Adding point to second green cell.");
+                                    _greenCombometerCell[1].AddPoint();
                                 }
                                 else
                                 {
-                                    greenCombometerCell[0].AddPoint();
+                                    Debug.Log($"AttackMenu.AddToKnight(false): Adding point to first green cell.");
+                                    if (_greenCombometerCell[0].AddPoint())
+                                    {
+                                        ActivateAttack(false);
+                                    }
                                 }
 
                                 break;
 
                             case 3:
-                                if (greenCombometerCell[0].IsFull())
+                                if (_greenCombometerCell[0].IsFull())
                                 {
-                                    if (greenCombometerCell[1].IsFull())
+                                    if (_greenCombometerCell[1].IsFull())
                                     {
-                                        greenCombometerCell[2].AddPoint();
+                                        Debug.Log($"AttackMenu.AddToKnight(false): Adding point to third green cell.");
+                                        _greenCombometerCell[2].AddPoint();
                                     }
                                     else
                                     {
-                                        greenCombometerCell[1].AddPoint();
+                                        Debug.Log($"AttackMenu.AddToKnight(false): Adding point to second green cell.");
+                                        _greenCombometerCell[1].AddPoint();
                                     }
                                 }
                                 else
                                 {
-                                    greenCombometerCell[0].AddPoint();
-                                }
+                                    Debug.Log($"AttackMenu.AddToKnight(false): Adding point to first green cell.");
+                                    if (_greenCombometerCell[0].AddPoint())
+                                    {
+                                        ActivateAttack(false);
+                                    }
+                                } 
                                 break;
                         }
-
-                        if (greenCombometerCell[0].IsFull())
-                        {
-                            knightCombometer.Deactivate(false);
-                            knightCombometer.ActivateLight(false, true);
-                            foreach (SliderScript slider in sliders)
-                            {
-                                slider.SliderImageAppear();
-                            }
-                            return;
-                        }
                     }
-
                     break;
+            }
+        }
+
+        //Включить кнопки атак
+        private void ActivateAttack(bool isRed)
+        {
+            Debug.Log($"AttackMenu.ActivateAttack({isRed})");
+            switch (isRed)
+            {
+                case true:
+                    Debug.Log("Red cell is full. Attack is available");
+                    knightCombometer.Deactivate(true);
+                    knightCombometer.ActivateLight(true, true);
+                    break;
+                
+                case false:
+                    Debug.Log("Green cell is full. Attack is available");
+                    knightCombometer.Deactivate(false);
+                    knightCombometer.ActivateLight(false, true);
+                    break;
+            }
+            foreach (var attackButton in attackButtons)
+            {
+                if (attackButton.isRed == isRed)
+                {
+                    attackButton.Activate();
+                }
             }
         }
 
         //Убрать очко из комбометра
-        private bool RemoveFromCombometer(int point)
+        private void RemoveFromCombometer(bool isRed)
         {
-            point++;
-            Debug.Log("RemoveFromCombometer(" + point + ")");
-            int size = greenCombometerCell.Count;
-            switch (point)
+            Debug.Log($"AttackMenu.RemoveFromCombometer({isRed})");
+            int size = _greenCombometerCell.Count;
+            switch (isRed)
             {
-                case 1:
-                    if (!greenCombometerCell[0].IsFull())
-                    {
-                        return false;
-                    }
-
+                case false:
                     switch (size)
                     {
                         case 1:
-                            greenCombometerCell[0].SetFalse();
-                            knightCombometer.ActivateLight(false, false);
+                            _greenCombometerCell[0].SetFalse();
                             break;
                         
                         case 2:
-                            if (greenCombometerCell[2].IsFull())
+                            if (_greenCombometerCell[2].IsFull())
                             {
-                                greenCombometerCell[1].SetFalse();
+                                _greenCombometerCell[1].SetFalse();
                             }
                             break;
                         case 3:
-                            if (greenCombometerCell[size - 1].IsFull())
+                            if (_greenCombometerCell[size - 1].IsFull())
                             {
-                                greenCombometerCell[size - 1].SetFalse();
+                                _greenCombometerCell[size - 1].SetFalse();
                             }
                             else
                             {
-                                if (greenCombometerCell[2].IsFull())
+                                if (_greenCombometerCell[2].IsFull())
                                 {
-                                    greenCombometerCell[1].SetFalse();
+                                    _greenCombometerCell[1].SetFalse();
                                 }
                                 else
                                 {
-                                    greenCombometerCell[0].SetFalse();
-                                    knightCombometer.ActivateLight(false, false);
+                                    _greenCombometerCell[0].SetFalse();
                                 }
                             }
                             break;
+                    }
+                    if (!_greenCombometerCell[0].IsFull())
+                    {
+                        knightCombometer.ActivateLight(false, false);
                     }
 
                     break;
 
-                case 2:
-                    if (!redCombometerCell[0].IsFull())
-                    {
-                        return false;
-                    }
-
+                case true:
                     switch (size)
                     {
                         case 1:
-                            redCombometerCell[0].SetFalse();
-                            knightCombometer.ActivateLight(true, false);
+                            _redCombometerCell[0].SetFalse();
                             break;
                         
                         case 2:
-                            if (redCombometerCell[2].IsFull())
+                            if (_redCombometerCell[2].IsFull())
                             {
-                                redCombometerCell[1].SetFalse();
+                                _redCombometerCell[1].SetFalse();
                             }
                             break;
                         case 3:
-                            if (redCombometerCell[size - 1].IsFull())
+                            if (_redCombometerCell[size - 1].IsFull())
                             {
-                                redCombometerCell[size - 1].SetFalse();
+                                _redCombometerCell[size - 1].SetFalse();
                             }
                             else
                             {
-                                if (redCombometerCell[2].IsFull())
+                                if (_redCombometerCell[2].IsFull())
                                 {
-                                    redCombometerCell[1].SetFalse();
+                                    _redCombometerCell[1].SetFalse();
                                 }
                                 else
                                 {
-                                    redCombometerCell[0].SetFalse();
-                                    knightCombometer.ActivateLight(true, false);
+                                    _redCombometerCell[0].SetFalse();
                                 }
                             }
                             break;
                     }
-
-                    break;
-
-                default:
-                    Debug.Log("RemoveFromCombometer(" + point + "): Undefined point!");
+                    if (!_redCombometerCell[0].IsFull())
+                    {
+                        knightCombometer.ActivateLight(true, false);
+                    }
                     break;
             }
-
-            if (redCombometerCell[0].IsFull() || greenCombometerCell[0].IsFull()) return false;
-            foreach (SliderScript slider in sliders)
+            
+            if (_redCombometerCell[0].IsFull() || _greenCombometerCell[0].IsFull()) return;
+            
+            foreach (var aButton in attackButtons)
             {
-                slider.SliderImageDisappear();
+                aButton.Deactivate();
             }
-            return true;
         }
 
-        //Наснести урон врагу
+        //Нанести урон врагу
         public bool DealDamageToEnemy(Attack attack)
         {
+            Debug.Log($"AttackMenu.DealDamageToEnemy({attack.attackName})");
             int damage;
             cameraManager.JiggleRight();
             if (attack.attackName == "daze")
@@ -686,29 +727,31 @@ namespace Level.FightGame
         }
 
         //Нанести урон рыцарю
-        public void DealDamageToKnight(string name, int damage)
+        public void DealDamageToKnight(string attackName, int damage)
         {
+            Debug.Log($"AttackMenu.DealDamageToKnight({attackName}, {damage})");
             cameraManager.JiggleLeft();
-            knightBehaviour.TakeDamage(damage, name);
+            knightBehaviour.TakeDamage(damage, attackName);
         }
 
         //Добавить точку к вражескому комбометру
         public bool AddToEnemyCombometer()
         {
-            foreach(GameObject enemy in enemies)
+            Debug.Log($"AttackMenu.AddToEnemyCombometer()");
+            foreach(var enemy in enemies)
             {
-                if(enemy.GetComponent<EnemyBehaviour>().IsCombometerFull() && enemy.activeSelf)
+                if(enemy.IsCombometerFull() && enemy.gameObject.activeSelf)
                 {
-                    enemy.GetComponent<EnemyBehaviour>().Attack(new Attack(enemy.name, "attack"));
+                    enemy.Attack(new Attack(enemy.name, "attack"));
                     return true;
                 }
             }
             while (true)
             {
                 int rand = Random.Range(0, enemies.Count);
-                if (enemies[rand].activeSelf)
+                if (enemies[rand].gameObject.activeSelf)
                 {
-                    enemies[rand].GetComponent<EnemyBehaviour>().AddToCombometer();
+                    enemies[rand].AddToCombometer();
                     break;
                 }
             }
@@ -717,9 +760,10 @@ namespace Level.FightGame
 
         public void StartEnemiesRunOut()
         {
-            foreach(GameObject enemy in enemies)
+            Debug.Log($"AttackMenu.StartEnemiesRunOut()");
+            foreach(var enemy in enemies)
             {
-                enemy.GetComponent<EnemyBehaviour>().RuningOut();
+                enemy.RuningOut();
             }
         }
     }

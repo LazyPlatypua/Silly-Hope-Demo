@@ -2,32 +2,36 @@
 
 using System;
 using System.Collections.Generic;
-using JetBrains.Annotations;
 using Level.Decoration;
 using Level.FightGame;
+using Level.UI;
 using Scriptable_Objects;
-using Temp;
 using UnityEngine;
 
 namespace Level.Load_and_Manager
 {
+    [RequireComponent(typeof(AttackMenu))]
+    [RequireComponent(typeof(PointSpawner))]
+    [RequireComponent(typeof(RhythmManager))]
+    [RequireComponent(typeof(MenuManager))]
     public class LevelLoader : MonoBehaviour
     {
-        public static LevelLoader instance; //Ссылка на этот загрузчик уровня
+        public static LevelLoader instance;
+        
         [Header("Scene Links")] 
         [Tooltip("Link to Game Manager.")] 
         public GameManager gameManager;
-        [Tooltip("Link to Pause Menu.")] [NotNull] 
+        [Tooltip("Link to Pause Menu.")] 
         public MenuManager pauseMenu;
-        [Tooltip("Link to Rhythm Manager.")] [NotNull]
+        [Tooltip("Link to Rhythm Manager.")]
         public RhythmManager rhythmManager;
-        [Tooltip("Link to Point Spawner.")] [NotNull]
+        [Tooltip("Link to Point Spawner.")] 
         public PointSpawner pointSpawner;
-        [Tooltip("Link to Attack Menu.")] [NotNull] 
+        [Tooltip("Link to Attack Menu.")]  
         public AttackMenu attackMenu;
         
-        private KnightBehaviour knightBehaviour;    //Ссылка на поведение рыцаря
-        private List<GameObject> enemies;   //Список загруженных врагов
+        private KnightBehaviour _knightBehaviour;    //Ссылка на поведение рыцаря
+        private List<EnemyBehaviour> _enemies;   //Список загруженных врагов
 
         [Header("Data"), Tooltip("Scriptable objects of locations. " +
                  "It must be 12 in total.")]
@@ -76,7 +80,7 @@ namespace Level.Load_and_Manager
         private void Start()
         {
             instance = this;
-            enemies = new List<GameObject>();
+            _enemies = new List<EnemyBehaviour>();
 
             if (DataHolder.current_scene >= 3)
             {
@@ -117,7 +121,7 @@ namespace Level.Load_and_Manager
             }
 
             {     // Спавн рыцаря
-                knightBehaviour = Instantiate(knightPrefab, knightPosition, Quaternion.Euler(0.0f, 180.0f, 0.0f))
+                _knightBehaviour = Instantiate(knightPrefab, knightPosition, Quaternion.Euler(0.0f, 180.0f, 0.0f))
                     .GetComponent<KnightBehaviour>();
             }
 
@@ -132,7 +136,7 @@ namespace Level.Load_and_Manager
                         new Vector3(enemiesPosition[placement].x + startRunningDelta, enemiesPosition[placement].y,
                             enemiesPosition[placement].z), Quaternion.identity);
                     newGo.SetActive(false);
-                    enemies.Add(newGo);
+                    _enemies.Add(newGo.GetComponent<EnemyBehaviour>());
                     enemy.GetComponent<EnemyBehaviour>().position = enemiesPosition[placement];
                     enemy.GetComponent<EnemyBehaviour>().spawnPointIndex = placement;
                     placement++;
@@ -142,13 +146,13 @@ namespace Level.Load_and_Manager
                     }
                 }
 
-                foreach (GameObject enemy in enemies)
+                foreach (var enemy in _enemies)
                 {
-                    enemy.GetComponent<EnemyBehaviour>().attackMenu = this.attackMenu;
-                    enemy.GetComponent<EnemyBehaviour>().gameManager = this.gameManager;
+                    enemy.attackMenu = this.attackMenu;
+                    enemy.gameManager = this.gameManager;
                 }
 
-                attackMenu.enemies = this.enemies;
+                attackMenu.enemies = this._enemies;
             }
 
             {    // Настройки ритм менеджера и спавнера точек
@@ -192,9 +196,9 @@ namespace Level.Load_and_Manager
             
             knightHealth += currentArmor;
             attackMenu.StartAttackMenu(currentWeapon, DataHolder.combometer_size); 
-            knightBehaviour.SetKnightBehaviour(knightHealth, currentWeapon, DataHolder.combometer_size);
+            _knightBehaviour.SetKnightBehaviour(knightHealth, currentWeapon, attackMenu.combometerNeededPoints);
             
-            attackMenu.knightCombometer = knightBehaviour.GetCombometer();
+            attackMenu.knightCombometer = _knightBehaviour.GetCombometer();
         }
     }
 }

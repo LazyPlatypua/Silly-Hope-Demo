@@ -188,7 +188,7 @@ MonoBehaviour:
   - {r: 0.9647059, g: 0.7254902, b: 0.23137255, a: 1}
   - {r: 0.49056602, g: 0.49056602, b: 0.49056602, a: 1}
   line: 0
-  canBePressed: 1
+  canBePressed: 0
   isRedPoint: 0
   canBeMoved: 1
   isMissed: 0

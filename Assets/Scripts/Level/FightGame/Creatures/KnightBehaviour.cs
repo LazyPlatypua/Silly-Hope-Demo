@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Level.FightGame;
 using Level.Load_and_Manager;
+using Level.UI;
 using Scriptable_Objects;
 using UnityEngine;
 
@@ -21,7 +22,7 @@ public class KnightBehaviour : CreatureBehaviour
     }
 
     //Установить поведение рыцаря
-    public void SetKnightBehaviour(int health, SwordData swordData, int size)
+    public void SetKnightBehaviour(int health, SwordData swordData, int combometerNeededPoints)
     {
         foreach(GameObject sword in swords)
         {
@@ -49,7 +50,7 @@ public class KnightBehaviour : CreatureBehaviour
         GameObject currentSword = swords[swordData.id];
         currentSword.SetActive(true);
         combometer = currentSword.transform.Find("Knight Combometer").GetComponent<KnightCombometer>();
-        combometer.StartCombometer(size);
+        combometer.StartCombometer(combometerNeededPoints);
     }
 
     public KnightCombometer GetCombometer()
@@ -60,15 +61,16 @@ public class KnightBehaviour : CreatureBehaviour
     //Начать атаку
     public override void Attack(Attack a)
     {
+        Debug.Log($"KnightBehaviour.Attack({a.attackName})");
         animator.SetBool(a.attackName, true);
         current_a = a;
     }
 
     //Точка контакта атаки
-    public override void PointOfAttack(string name)
+    public override void PointOfAttack(string attackName)
     {
-        base.PointOfAttack(name);
-        current_a.attackName = name;
+        base.PointOfAttack(attackName);
+        current_a.attackName = attackName;
         attackMenu.DealDamageToEnemy(current_a);
         current_a = new Attack();
     }

@@ -336,7 +336,7 @@ GameObject:
   - component: {fileID: 5769736217018103089}
   - component: {fileID: 1961917951425428700}
   m_Layer: 0
-  m_Name: Pillar Green
+  m_Name: 'Pillar '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -478,7 +478,7 @@ Animator:
   m_GameObject: {fileID: 1691522334386061569}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 386f41a503e3d0f44b64143d32f161a8, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -610,7 +610,7 @@ GameObject:
   - component: {fileID: 5823472955753092981}
   - component: {fileID: 6915982841010496862}
   m_Layer: 0
-  m_Name: Pillar Green
+  m_Name: 'Pillar '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -752,7 +752,7 @@ Animator:
   m_GameObject: {fileID: 3426524269906717629}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 386f41a503e3d0f44b64143d32f161a8, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

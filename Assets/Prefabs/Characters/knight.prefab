@@ -1553,7 +1553,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 9100000, guid: 386f41a503e3d0f44b64143d32f161a8, type: 2}
     - target: {fileID: 3426524269906717629, guid: 961bc07b99ac92f4b826026f448b1f2f,
         type: 3}
       propertyPath: m_IsActive
@@ -1573,7 +1573,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 9100000, guid: 386f41a503e3d0f44b64143d32f161a8, type: 2}
     - target: {fileID: 4649520596470541818, guid: 961bc07b99ac92f4b826026f448b1f2f,
         type: 3}
       propertyPath: m_IsActive
@@ -1922,12 +1922,12 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 9100000, guid: 386f41a503e3d0f44b64143d32f161a8, type: 2}
     - target: {fileID: 3873596598026900499, guid: 961bc07b99ac92f4b826026f448b1f2f,
         type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 9100000, guid: 386f41a503e3d0f44b64143d32f161a8, type: 2}
     - target: {fileID: 6970731100431110067, guid: 961bc07b99ac92f4b826026f448b1f2f,
         type: 3}
       propertyPath: knight_behaviour
@@ -2067,12 +2067,12 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 9100000, guid: 386f41a503e3d0f44b64143d32f161a8, type: 2}
     - target: {fileID: 3873596598026900499, guid: 961bc07b99ac92f4b826026f448b1f2f,
         type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 9100000, guid: 386f41a503e3d0f44b64143d32f161a8, type: 2}
     - target: {fileID: 6970731100431110067, guid: 961bc07b99ac92f4b826026f448b1f2f,
         type: 3}
       propertyPath: knight_behaviour
@@ -2212,12 +2212,12 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 9100000, guid: 386f41a503e3d0f44b64143d32f161a8, type: 2}
     - target: {fileID: 3873596598026900499, guid: 961bc07b99ac92f4b826026f448b1f2f,
         type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 9100000, guid: 386f41a503e3d0f44b64143d32f161a8, type: 2}
     - target: {fileID: 6970731100431110067, guid: 961bc07b99ac92f4b826026f448b1f2f,
         type: 3}
       propertyPath: knight_behaviour
@@ -2357,12 +2357,12 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 9100000, guid: 386f41a503e3d0f44b64143d32f161a8, type: 2}
     - target: {fileID: 3873596598026900499, guid: 961bc07b99ac92f4b826026f448b1f2f,
         type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 9100000, guid: 386f41a503e3d0f44b64143d32f161a8, type: 2}
     - target: {fileID: 6970731100431110067, guid: 961bc07b99ac92f4b826026f448b1f2f,
         type: 3}
       propertyPath: knight_behaviour
@@ -2502,12 +2502,12 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 9100000, guid: 386f41a503e3d0f44b64143d32f161a8, type: 2}
     - target: {fileID: 3873596598026900499, guid: 961bc07b99ac92f4b826026f448b1f2f,
         type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 9100000, guid: 386f41a503e3d0f44b64143d32f161a8, type: 2}
     - target: {fileID: 6970731100431110067, guid: 961bc07b99ac92f4b826026f448b1f2f,
         type: 3}
       propertyPath: knight_behaviour
@@ -2647,12 +2647,12 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 9100000, guid: 386f41a503e3d0f44b64143d32f161a8, type: 2}
     - target: {fileID: 3873596598026900499, guid: 961bc07b99ac92f4b826026f448b1f2f,
         type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 9100000, guid: 386f41a503e3d0f44b64143d32f161a8, type: 2}
     - target: {fileID: 6970731100431110067, guid: 961bc07b99ac92f4b826026f448b1f2f,
         type: 3}
       propertyPath: knight_behaviour
@@ -2792,12 +2792,12 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 9100000, guid: 386f41a503e3d0f44b64143d32f161a8, type: 2}
     - target: {fileID: 3873596598026900499, guid: 961bc07b99ac92f4b826026f448b1f2f,
         type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 9100000, guid: 386f41a503e3d0f44b64143d32f161a8, type: 2}
     - target: {fileID: 6970731100431110067, guid: 961bc07b99ac92f4b826026f448b1f2f,
         type: 3}
       propertyPath: knight_behaviour

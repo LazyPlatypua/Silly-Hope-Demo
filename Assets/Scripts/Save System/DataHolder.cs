@@ -1,7 +1,7 @@
 ﻿public static class DataHolder 
 {
     public static byte current_scene = 0;     //Текущая сцена
-    public static byte current_weapon = 0;    //текущиее оружее
+    public static byte current_weapon = 0;    //Текущее оружие
     public static byte current_armor = 0;     //Текущая броня
     public static byte current_charm_0 = 0;   //текущий первый талисман
     public static byte current_charm_1 = 0;   //текущий второй талисман

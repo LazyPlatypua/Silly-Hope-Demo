@@ -1,4 +1,6 @@
 ﻿//Класс отвечает за поведение врага.
+
+using Level.FightGame;
 using UnityEngine;  //Подключить классы unity
 
 public class EnemyBehaviour : CreatureBehaviour
@@ -139,11 +141,11 @@ public class EnemyBehaviour : CreatureBehaviour
     }
     
     //Функция, обозначающая точку касания атаки
-    public override void PointOfAttack(string name)
+    public override void PointOfAttack(string attackName)
     {
-        base.PointOfAttack(name);
+        base.PointOfAttack(attackName);
 
-        attackMenu.DealDamageToKnight(name, damage);
+        attackMenu.DealDamageToKnight(attackName, damage);
     }
 
     //Функция, выключающая анимацию. 

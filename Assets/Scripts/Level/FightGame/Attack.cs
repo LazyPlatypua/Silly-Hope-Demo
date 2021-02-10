@@ -1,15 +1,18 @@
 ﻿//Структура атаки существ
-[System.Serializable]
-public struct Attack
+namespace Level.FightGame
 {
-    public string sender;       //кто наносит урон
-    public string receiver;     //получатель урона
-    public string attackName;  //имя атаки
-
-    public Attack(string r, string a, string s = "knight(clone)")
+    [System.Serializable]
+    public struct Attack
     {
-        sender = s;
-        receiver = r;
-        attackName = a;
+        public string sender;       //кто наносит урон
+        public string receiver;     //получатель урона
+        public string attackName;  //имя атаки
+
+        public Attack(string r, string a, string s = "knight(clone)")
+        {
+            sender = s;
+            receiver = r;
+            attackName = a;
+        }
     }
 }

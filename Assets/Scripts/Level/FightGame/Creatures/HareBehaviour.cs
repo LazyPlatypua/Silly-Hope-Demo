@@ -1,5 +1,7 @@
 ﻿//Класс отвечает за поведение зайца
 
+using Level.FightGame;
+
 public class HareBehaviour : EnemyBehaviour
 {
     //вместо атаки заяц убегает
