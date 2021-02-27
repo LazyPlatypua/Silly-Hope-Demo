@@ -1,6 +1,7 @@
 ﻿//Класс отвечает за поведение точки
 
 using Level.Load_and_Manager;
+using Level.RhytmGame;
 using UnityEngine;  //Подключить классы unity
 
 public class PointBehaviour : MonoBehaviour

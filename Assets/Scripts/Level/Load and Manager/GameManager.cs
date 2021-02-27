@@ -2,6 +2,7 @@
 
 using System;
 using Level.FightGame;
+using Level.RhytmGame;
 using Level.UI;
 using UnityEngine;
 using UnityEngine.Serialization;

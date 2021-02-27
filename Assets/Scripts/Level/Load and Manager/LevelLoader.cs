@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using Level.Decoration;
 using Level.FightGame;
+using Level.RhytmGame;
 using Level.UI;
 using Scriptable_Objects;
 using UnityEngine;

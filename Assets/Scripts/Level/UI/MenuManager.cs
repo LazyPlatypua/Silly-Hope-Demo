@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Level.FightGame;
 using Level.Load_and_Manager;
+using Level.RhytmGame;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
