@@ -30,7 +30,7 @@ Transform:
   - {fileID: 4492484578048592987}
   - {fileID: 5345282453259195085}
   m_Father: {fileID: 7661861197831079406}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1311424149004373840
 GameObject:
@@ -189,61 +189,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &2863082478091841919
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6273188400584279355}
-  - component: {fileID: 7718668558621092093}
-  m_Layer: 0
-  m_Name: Spawn Decorations
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6273188400584279355
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2863082478091841919}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.4, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 7661861197831079406}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7718668558621092093
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2863082478091841919}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5211c15b103f32143b0e12b72a4246ce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  decorationPrefab: {fileID: 1241658159659159857, guid: 2f60942bd58863f4aac7a26cf24f56a0,
-    type: 3}
-  points:
-  - {x: -5, y: -2.72, z: -0.2}
-  - {x: 5, y: -2.72, z: 0.28}
-  additionalPoints:
-  - 0.25
-  - 0.1
-  - -0.2
-  layers: 1d0000001300000009000000
-  decorationDensity: 3
-  randomMaxThreshold: 0.01
 --- !u!1 &3225940744629151499
 GameObject:
   m_ObjectHideFlags: 0
@@ -422,7 +367,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8485439806147422204}
-  - {fileID: 6273188400584279355}
   - {fileID: 2672541984160836295}
   - {fileID: 1960814079125551749}
   - {fileID: 758672200673836829}
@@ -441,7 +385,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23f736a90cf5d6a4b939fa0363aa48bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnDecorations: {fileID: 7718668558621092093}
   postProcessing: {fileID: 3283966378211419008}
   locationEffects: {fileID: 8382599901985993947}
   randomDecorations:
@@ -5579,7 +5522,7 @@ Transform:
   - {fileID: 7428934198657002323}
   - {fileID: 6348135176763980872}
   m_Father: {fileID: 7661861197831079406}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8382599901985993947
 GameObject:
@@ -5612,7 +5555,7 @@ Transform:
   m_Children:
   - {fileID: 3292155856675373755}
   m_Father: {fileID: 7661861197831079406}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 22.47, y: 0, z: 0}
 --- !u!198 &1076235208899402898
 ParticleSystem:

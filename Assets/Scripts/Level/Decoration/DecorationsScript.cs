@@ -5,10 +5,8 @@ using UnityEngine;
 
 namespace Level.Decoration
 {
-    [RequireComponent(typeof(SpawnDecorations))]
     public class DecorationsScript : MonoBehaviour
     {
-        [NotNull] [Tooltip("Link to Spawn Decorations Script.")] public SpawnDecorations spawnDecorations;
         [NotNull] [Tooltip("Link to PP Volume gameObject.")] public GameObject postProcessing;
         [NotNull] [Tooltip("Link to location particle effect gameObject.")] public GameObject locationEffects;
         [NotNull] [Tooltip("List of decorations sprites for this location.")] public List<Sprite> randomDecorations;
@@ -18,11 +16,6 @@ namespace Level.Decoration
         { 
             postProcessing.SetActive(!isLow); 
             locationEffects.SetActive(!isLow);
-
-            if (!isLow)
-            {
-                spawnDecorations.Spawn(randomDecorations);
-            }
         }
     }
 }

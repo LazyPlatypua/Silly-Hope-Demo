@@ -18,7 +18,7 @@ MonoBehaviour:
     value: 0
   mode:
     overrideState: 1
-    value: 1
+    value: 0
   color:
     overrideState: 0
     value: {r: 0, g: 0, b: 0, a: 1}
@@ -38,7 +38,7 @@ MonoBehaviour:
     overrideState: 0
     value: 0
   mask:
-    overrideState: 1
+    overrideState: 0
     value: {fileID: 2800000, guid: de6217d352d3aaf478111848b7e12947, type: 3}
     defaultState: 1
   opacity:
@@ -159,14 +159,14 @@ MonoBehaviour:
     overrideState: 0
     value: 180
   saturation:
-    overrideState: 1
+    overrideState: 0
     value: 70
   brightness:
     overrideState: 0
     value: 0
   postExposure:
     overrideState: 1
-    value: 0
+    value: 1.36
   contrast:
     overrideState: 0
     value: -38
